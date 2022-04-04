@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+
+\title{Peer-Review 1: UML}
+\author{Favento, Laini, Macaluso\\Gruppo 32}
+
+
+\begin{document}
+
+\maketitle
+
+\centerline {Valutazione del diagramma UML delle classi del gruppo 31.}
+
+\section{Lati positivi}
+
+\subsection{Overview}
+In generale il Model ci sembra completo e in grado di eseguire tutte le funzionalità principali del gioco, infatti è possibile realizzare una simulazione della partita attraverso l'invocazione dei metodi. Abbiamo inoltre apprezzato l'ordine e la pulizia dell'UML, che presenta le cardinalità corrette nelle relazioni tra le varie classi.
+
+
+\subsection{Assistant}
+Abbiamo apprezzato il modo in cui viene gestita la classe \texttt{Assistant} tramite Enum, che consente un codice più ordinato, visto che è sufficiente inizializzare le 10 carte all'inizio della partita e poi non c'è bisogno di modificare i loro attributi. Prenderemo spunto da questa implementazione per migliorare la nostra gestione degli assistenti.
+
+
+
+\section{Lati negativi}
+\subsection{Professori}
+La gestione dei professori tramite ArrayList di \texttt{PawnType} in ogni \texttt{SchoolBoard} non è vantaggiosa e può potenzialmente portare alla presenza di più di 5 professori contemporaneamente. Crediamo che sia più appropriata la creazione di 5 oggetti di tipo Professore, che poi vengano assegnati nel corso della partita alla \texttt{SchoolBoard} del singolo \texttt{Player}.
+
+\subsection{Altri dettagli}
+All'interno di \texttt{StudentsBag}, il metodo \texttt{fillWith} prevede il passaggio come parametro di un altro oggetto di tipo \texttt{StudentList}, mentre sarebbe possibile riempire la StudentsBag semplicemente richiamando i metodi della sua \texttt{StudentList}. Il problema dell'approccio attuale è la richiesta del parametro in ingresso, che necessita la creazione di un'ulteriore \texttt{StudentList}.
+
+
+Alcuni metodi in \texttt{Player} ci sembrano ripetizioni non necessarie di metodi presenti in \texttt{SchoolBoard}, ad esempio il metodo \texttt{addStudentToDiningRoom} o \texttt{getNumStudentOf}, nonostante la funzionalità e la visibilità di entrambi i metodi sia pubblica. Queste ripetizioni rendono la classe \texttt{Player} troppo grande e con un numero molto elevato di metodi.
+
+\section{Confronto tra le architetture}
+\subsection{Gestione studenti}
+Il metodo di gestione degli studenti, confrontato al nostro UML, è diverso: noi abbiamo optato per rappresentare gli studenti appartenenti a una classe attraverso liste di oggetti \texttt{Student}, mentre qui viene istanziata la classe \texttt{StudentList}, composta da 5 attributi di tipo intero che rappresentano il numero di studenti di ogni colore, in ogni classe che deve contenere studenti.
+
+\subsection{Calcolo influenza}
+Il calcolo dell'influenza viene gestito in modo differente rispetto alla nostra implementazione. Qui troviamo il metodo \texttt{conquerIsland} nel \texttt{GameModel} che permette a un giocatore di conquistare un'isola. La nostra gestione invece prevede un metodo che calcola l'influenza del singolo giocatore direttamente nella classe isola.
+
+
+
+\end{document}
