@@ -52,4 +52,5 @@ public class Island {
         return noEntry;
     }
 
+    public int getID(){return ID;}
 }
