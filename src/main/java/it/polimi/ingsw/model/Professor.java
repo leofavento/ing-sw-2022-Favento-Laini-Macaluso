@@ -15,7 +15,7 @@ public class Professor {
         this.color= color;
     }
 
-    //public void changeOwner(player:Player){}
+    public void changeOwner(Player player){ owner = player.getNickname(); }
 
     public String getOwnerNickname(){
         return owner;

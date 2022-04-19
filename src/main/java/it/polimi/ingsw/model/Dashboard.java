@@ -4,17 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Dashboard {
-        private ArrayList<Island> islands;
-        private Character[] characters;
-        private ArrayList<Cloud> clouds;
-        private Professor[] professors;
-
+        private final ArrayList<Island> islands;
+        private final Character[] characters;
+        private final ArrayList<Cloud> clouds;
+        private final Professor[] professors;
+        private final MotherNature motherNature;
+        private final Bag bag;
 
         public Dashboard(){
                 this.islands= new ArrayList<>();
                 this.clouds = new ArrayList<>();
                 this.characters= new Character[3];
                 this.professors= new Professor[5];
+                motherNature = new MotherNature();
+                bag = new Bag();
         }
 
         public ArrayList<Island> getIslands(){
@@ -22,15 +25,19 @@ public class Dashboard {
         }
 
         public void placeIslands(){
-                //TODO
+                for(int i = 1; i <= 12; i++) {
+                        islands.add(new Island(i));
+                }
         }
 
-        public void placeCloudTiles(){
-                //TODO
+        public void placeCloudTiles(int number){
+                for(int i = 0; i < number; i++) {
+                        clouds.add(new Cloud());
+                }
         }
 
         public void MoveMotherNature(int steps){
-                //TODO
+                motherNature.setIsland((motherNature.getIsland() + steps) % islands.size());
         }
 
         public void deleteIsland(int islandID){
@@ -43,5 +50,12 @@ public class Dashboard {
 
         public void updateProfessors(){
                 //TODO
+        }
+
+        public void mergeIslands(Island a, Island ... merging) {
+                for (Island t : merging) {
+                        a.addIsland(t);
+                        deleteIsland(t.getID());
+                }
         }
 }

@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public class Bag {
 
-    private ArrayList<Student> students;  /*students may be final*/
+    private final ArrayList<Student> students;  /*students may be final*/
 
     public Bag(){
         students = new ArrayList<>();
@@ -19,5 +19,20 @@ public class Bag {
             }
         }
         Collections.shuffle(students);
+    }
+
+    public int getStudentsLeft() {
+        return students.size();
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+        Collections.shuffle(students);
+    }
+
+    public Student drawStudent() {
+        Student t = students.get(0);
+        students.remove(0);
+        return t;
     }
 }

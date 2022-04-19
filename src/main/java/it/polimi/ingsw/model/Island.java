@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 public class Island {
     private int numUnits;
-    private ArrayList<Student> students;
-    private ArrayList<Island> addedIslands;
+    private final ArrayList<Student> students;
+    // private ArrayList<Island> addedIslands;
     private Tower towerColor;
     private boolean noEntry;
     private final int ID;
 
-    public Island(int numUnits, int ID) {
-        this.numUnits = numUnits;
-        students = new ArrayList<Student>();
-        addedIslands = new ArrayList<Island>();
+
+    public Island(int ID) {
+        numUnits = 1;
+        students = new ArrayList<>();
+        // addedIslands = new ArrayList<Island>();
         this.ID= ID;
     }
 
@@ -22,7 +23,11 @@ public class Island {
     }
 
     public void addIsland(Island isl){
-        addedIslands.add(isl);
+        // addedIslands.add(isl);
+        numUnits += 1;
+        for (Student s : isl.students) { // visibility error?
+            addStudent(s);
+        }
     }
 
     //TODO

@@ -12,7 +12,9 @@ public class Cloud {
         students.add(s);
     }
 
-    public ArrayList<Student> get_Students(){
-        return students;
+    public ArrayList<Student> getStudents(){
+        ArrayList<Student> temp = students;
+        students = new ArrayList<>();
+        return temp;
     }
 }
