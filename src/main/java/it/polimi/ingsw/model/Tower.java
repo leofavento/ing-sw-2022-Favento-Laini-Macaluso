@@ -7,20 +7,29 @@ public enum Tower {
     WHITE,
     GREY;
 
-    private static final ArrayList<Tower> availableTowers = new ArrayList<>();
+    private final ArrayList<Tower> availableTowers = new ArrayList<>();
+    private final ArrayList<Player> teamComponents = new ArrayList<>();
 
-    public static void reset() {
+    public void reset() {
         availableTowers.clear();
         availableTowers.add(BLACK);
         availableTowers.add(WHITE);
         availableTowers.add(GREY);
     }
 
-    public static void choose(Tower tower) {
+    public void choose(Tower tower) {
         availableTowers.remove(tower);
     }
 
-    public static ArrayList<Tower> getAvailableTowers() {
+    public ArrayList<Tower> getAvailableTowers() {
         return availableTowers;
+    }
+
+    public ArrayList<Player> getTeamComponents() {
+        return teamComponents;
+    }
+
+    public void addTeamComponent(Player p) {
+        teamComponents.add(p);
     }
 }

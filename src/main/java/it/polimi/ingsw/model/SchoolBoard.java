@@ -1,27 +1,28 @@
 package it.polimi.ingsw.model;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 
 public class SchoolBoard {
-    private HashMap<String, Integer> dining_room;
+    private final EnumMap<Color, Integer> dining_room;
     private int numTower;
     private Tower towerColor;
     private int coins;
-    private ArrayList<Student> entrance;
-
+    private final ArrayList<Student> entrance;
+    private final ArrayList<Professor> professors;
 
     public SchoolBoard(){
-        this.dining_room = new HashMap<>();
-        dining_room.put("yellow", 0);
-        dining_room.put("blue", 0);
-        dining_room.put("green", 0);
-        dining_room.put("red", 0);
-        dining_room.put("pink", 0);
+        this.dining_room = new EnumMap<>(Color.class);
+        dining_room.put(Color.YELLOW, 0);
+        dining_room.put(Color.BLUE, 0);
+        dining_room.put(Color.GREEN, 0);
+        dining_room.put(Color.RED, 0);
+        dining_room.put(Color.PINK, 0);
 
         this.numTower=0;
         this.coins=0;
 
         this.entrance= new ArrayList<>();
+        professors = new ArrayList<>();
     }
 
     public void setTowerColor(Tower t){
@@ -45,7 +46,7 @@ public class SchoolBoard {
     }
 
     public void moveToDiningRoom(Student student){
-        dining_room.replace(String.valueOf(student.getColor()), (dining_room.get(String.valueOf(student.getColor()))+1));
+        dining_room.put(student.getColor(), dining_room.get(student.getColor()) + 1);
     }
 
     public ArrayList<Student> getFromEntrance(){
@@ -53,7 +54,7 @@ public class SchoolBoard {
     }
 
     public int getColor(Color color){
-        return dining_room.get(String.valueOf(color));
+        return dining_room.get(color);
     }
 
     public void addCoin(){
@@ -68,4 +69,15 @@ public class SchoolBoard {
         this.coins= (this.coins - coins);
     }
 
+    public ArrayList<Professor> getProfessors() {
+        return professors;
+    }
+
+    public void addProfessor(Professor p) {
+        professors.add(p);
+    }
+
+    public void removeProfessor(Professor p) {
+        professors.remove(p);
+    }
 }

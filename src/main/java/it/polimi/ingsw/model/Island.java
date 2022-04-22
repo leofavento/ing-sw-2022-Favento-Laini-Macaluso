@@ -40,11 +40,28 @@ public class Island {
         }
     }
 
-    // TODO
-    /*public int countInfluence(Player p){
-        int influencevalue=0;
+    public int countInfluence(Tower tower){
+        int influence = 0;
+        ArrayList<Color> colors = new ArrayList<>();
 
-    }*/
+        influence += (tower == towerColor) ? numUnits : 0;
+
+        for (Player p : tower.getTeamComponents()) {
+            colors.addAll(p.getSchoolBoard()
+                    .getProfessors()
+                    .stream()
+                    .map(Professor::getColor)
+                    .collect(Collectors.toList()));
+        }
+
+        for (Student s : students) {
+            if (colors.contains(s.getColor())) {
+                influence++;
+            }
+        }
+
+        return influence;
+    }
 
     public Tower getTowerColor(){
         return towerColor;
