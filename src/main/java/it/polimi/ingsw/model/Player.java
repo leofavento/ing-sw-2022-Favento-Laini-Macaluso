@@ -64,4 +64,6 @@ public class Player {
                 return chosenCloud;
         }
 
+        public SchoolBoard getSchoolBoard() { return schoolBoard; }
+
 }

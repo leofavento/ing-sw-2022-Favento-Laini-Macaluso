@@ -1,23 +1,20 @@
 package it.polimi.ingsw.model;
 
 public class Professor {
-    private Color color;
-    private String owner;
+    private final Color color;
+    private Player owner;
 
-    public Professor(){
+    public Professor(Color color){
+        this.color= color;
     }
 
     public Color getColor(){
         return color;
     }
 
-    public void setColor(Color color){
-        this.color= color;
-    }
+    public void changeOwner(Player player){ owner = player; }
 
-    public void changeOwner(Player player){ owner = player.getNickname(); }
-
-    public String getOwnerNickname(){
+    public Player getOwner(){
         return owner;
     }
 }

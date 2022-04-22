@@ -44,12 +44,12 @@ public class Dashboard {
                 islands.removeIf(island -> (island.getID()==islandID));
         }
 
-        public void countTowers(Player player){
-                //TODO
-        }
-
-        public void updateProfessors(){
-                //TODO
+        public int countTowers(Player player){
+                return islands.stream()
+                        .filter(i -> i.hasTower())
+                        .filter(i -> i.getTowerColor() == player.getSchoolBoard().getTowerColor())
+                        .mapToInt(i -> i.getNumUnits())
+                        .sum();
         }
 
         public void mergeIslands(Island a, Island ... merging) {
@@ -57,5 +57,9 @@ public class Dashboard {
                         a.addIsland(t);
                         deleteIsland(t.getID());
                 }
+        }
+
+        public Professor[] getProfessors() {
+                return professors;
         }
 }

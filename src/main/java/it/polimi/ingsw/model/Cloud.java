@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Cloud {
 
-    private ArrayList<Student> students;
+    private final ArrayList<Student> students;
 
     public Cloud() {students = new ArrayList<>();}
 
@@ -13,8 +13,8 @@ public class Cloud {
     }
 
     public ArrayList<Student> getStudents(){
-        ArrayList<Student> temp = students;
-        students = new ArrayList<>();
+        ArrayList<Student> temp = new ArrayList<>(students);
+        students.clear();
         return temp;
     }
 }

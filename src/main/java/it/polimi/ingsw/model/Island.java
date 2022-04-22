@@ -18,6 +18,10 @@ public class Island {
         this.ID= ID;
     }
 
+    public int getNumUnits() {
+        return numUnits;
+    }
+
     public void addStudent(Student student) {
         students.add(student);
     }
