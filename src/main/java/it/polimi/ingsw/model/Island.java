@@ -1,6 +1,10 @@
 package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class Island {
     private int numUnits;
@@ -9,12 +13,14 @@ public class Island {
     private Tower towerColor;
     private boolean noEntry;
     private final int ID;
+    private final Map<Player, Integer> extraInfluence;
 
 
     public Island(int ID) {
         numUnits = 1;
         students = new ArrayList<>();
         // addedIslands = new ArrayList<Island>();
+        extraInfluence = new HashMap<>();
         this.ID= ID;
     }
 
@@ -34,12 +40,11 @@ public class Island {
         }
     }
 
-    //TODO
-    //public int countInfluence(Player p){
-        //int influencevalue=0;
-        //da sistemare una volta aggiunte tutte le altre classi necessarie al conteggio
-        //return influencevalue;
-    //}
+    // TODO
+    /*public int countInfluence(Player p){
+        int influencevalue=0;
+
+    }*/
 
     public Tower getTowerColor(){
         return towerColor;
@@ -61,5 +66,19 @@ public class Island {
         return noEntry;
     }
 
-    public int getID(){return ID;}
+    public int getID() {
+        return ID;
+    }
+
+    public void setExtraInfluence(Player p, int influence) {
+        extraInfluence.put(p, influence);
+    }
+
+    public int getExtraInfluence(Player p) {
+        return extraInfluence.get(p);
+    }
+
+    public void resetExtraInfluences() {
+        extraInfluence.clear();
+    }
 }
