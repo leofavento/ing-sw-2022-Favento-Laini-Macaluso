@@ -12,7 +12,9 @@ public class Professor {
         return color;
     }
 
-    public void changeOwner(Player player){ owner = player; }
+    public void changeOwner(Player player){
+        owner = player;
+    }
 
     public Player getOwner(){
         return owner;

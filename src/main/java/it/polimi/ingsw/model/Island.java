@@ -52,6 +52,7 @@ public class Island {
                     .stream()
                     .map(Professor::getColor)
                     .collect(Collectors.toList()));
+            influence += getExtraInfluence(p);
         }
 
         for (Student s : students) {
