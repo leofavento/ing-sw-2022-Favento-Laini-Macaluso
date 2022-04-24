@@ -25,8 +25,8 @@ public class Dashboard {
         }
 
         public void placeIslands(){
-                for(int i = 1; i <= 12; i++) {
-                        islands.add(new Island(i));
+                for(int i = 0; i < 12; i++) {
+                        islands.add(new Island());
                 }
         }
 
@@ -36,12 +36,12 @@ public class Dashboard {
                 }
         }
 
-        public void MoveMotherNature(int steps){
+        public void moveMotherNature(int steps){
                 motherNature.setIsland((motherNature.getIsland() + steps) % islands.size());
         }
 
-        public void deleteIsland(int islandID){
-                islands.removeIf(island -> (island.getID()==islandID));
+        public void deleteIsland(Island island){
+                islands.remove(island);
         }
 
         public int countTowers(Player player){
@@ -55,8 +55,9 @@ public class Dashboard {
         public void mergeIslands(Island a, Island ... merging) {
                 for (Island t : merging) {
                         a.addIsland(t);
-                        deleteIsland(t.getID());
+                        deleteIsland(t);
                 }
+                motherNature.setIsland(islands.indexOf(a));
         }
 
         public Professor[] getProfessors() {
@@ -65,5 +66,9 @@ public class Dashboard {
 
         public Bag getBag() {
                 return bag;
+        }
+
+        public MotherNature getMotherNature() {
+                return motherNature;
         }
 }

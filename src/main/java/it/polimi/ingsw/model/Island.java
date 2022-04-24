@@ -12,16 +12,14 @@ public class Island {
     // private ArrayList<Island> addedIslands;
     private Tower towerColor;
     private boolean noEntry;
-    private final int ID;
     private final Map<Player, Integer> extraInfluence;
 
 
-    public Island(int ID) {
+    public Island() {
         numUnits = 1;
         students = new ArrayList<>();
         // addedIslands = new ArrayList<Island>();
         extraInfluence = new HashMap<>();
-        this.ID= ID;
     }
 
     public int getNumUnits() {
@@ -82,10 +80,6 @@ public class Island {
 
     public boolean getNoEntry(){
         return noEntry;
-    }
-
-    public int getID() {
-        return ID;
     }
 
     public void setExtraInfluence(Player p, int influence) {
