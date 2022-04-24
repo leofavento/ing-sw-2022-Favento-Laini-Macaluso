@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -9,17 +8,16 @@ import java.util.stream.Collectors;
 public class Island {
     private int numUnits;
     private final ArrayList<Student> students;
-    // private ArrayList<Island> addedIslands;
     private Tower towerColor;
-    private boolean noEntry;
+    private int noEntry;
     private final Map<Player, Integer> extraInfluence;
 
 
     public Island() {
         numUnits = 1;
         students = new ArrayList<>();
-        // addedIslands = new ArrayList<Island>();
         extraInfluence = new HashMap<>();
+        noEntry = 0;
     }
 
     public int getNumUnits() {
@@ -31,7 +29,6 @@ public class Island {
     }
 
     public void addIsland(Island isl){
-        // addedIslands.add(isl);
         numUnits += 1;
         for (Student s : isl.students) { // visibility error?
             addStudent(s);
@@ -74,12 +71,19 @@ public class Island {
         return towerColor != null;
     }
 
-    public void enableNoEntry(){
-        this.noEntry= true;
+    public void addNoEntry(){
+        noEntry++;
     }
 
-    public boolean getNoEntry(){
-        return noEntry;
+    public boolean useNoEntry(){
+        if (noEntry > 0) {
+            noEntry--;
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 
     public void setExtraInfluence(Player p, int influence) {
@@ -87,7 +91,8 @@ public class Island {
     }
 
     public int getExtraInfluence(Player p) {
-        return extraInfluence.get(p);
+        Integer value = extraInfluence.get(p);
+        return value == null ? 0 : value;
     }
 
     public void resetExtraInfluences() {

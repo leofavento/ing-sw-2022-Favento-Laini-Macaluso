@@ -12,11 +12,12 @@ public class Player {
         private final ArrayList<Assistant> deck;
         private Assistant playedAssistant;
         private Cloud chosenCloud;
-        private SchoolBoard schoolBoard;
+        private final SchoolBoard schoolBoard;
 
 
         public Player(){
-            this.deck= new ArrayList<>();
+            deck= new ArrayList<>();
+            schoolBoard = new SchoolBoard();
         }
 
         public String getNickname(){
