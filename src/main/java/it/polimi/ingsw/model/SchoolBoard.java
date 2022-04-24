@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model;
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.NoSuchElementException;
 
 public class SchoolBoard {
     private final EnumMap<Color, Integer> dining_room;
@@ -46,7 +47,13 @@ public class SchoolBoard {
     }
 
     public void moveToDiningRoom(Student student){
-        dining_room.put(student.getColor(), dining_room.get(student.getColor()) + 1);
+        if (! entrance.contains(student)) {
+            throw new NoSuchElementException();
+        }
+        else {
+            entrance.remove(student);
+            dining_room.put(student.getColor(), dining_room.get(student.getColor()) + 1);
+        }
     }
 
     public ArrayList<Student> getFromEntrance(){

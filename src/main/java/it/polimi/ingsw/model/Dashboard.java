@@ -17,6 +17,11 @@ public class Dashboard {
                 this.clouds = new ArrayList<>();
                 this.characters= new Character[3];
                 this.professors= new Professor[5];
+                professors[Color.YELLOW.ordinal()] = new Professor(Color.YELLOW);
+                professors[Color.BLUE.ordinal()] = new Professor(Color.BLUE);
+                professors[Color.GREEN.ordinal()] = new Professor(Color.GREEN);
+                professors[Color.RED.ordinal()] = new Professor(Color.RED);
+                professors[Color.PINK.ordinal()] = new Professor(Color.PINK);
                 motherNature = new MotherNature();
                 bag = new Bag();
         }

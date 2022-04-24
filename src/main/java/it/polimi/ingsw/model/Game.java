@@ -17,6 +17,14 @@ public class Game {
         dashboard = new Dashboard();
     }
 
+    public Dashboard getDashboard() {
+        return dashboard;
+    }
+
+    public void addNewPlayer(Player player) {
+        players.add(player);
+        onlinePlayers.add(player);
+    }
 
     public Player getPlayer(String nickname){
         for (Player p : onlinePlayers) {
@@ -66,13 +74,15 @@ public class Game {
                     .filter(p -> p.getSchoolBoard().getColor(color) == max)
                     .collect(Collectors.toList());
 
-            // if the former owner of the professor is not in the list, proceed to change the owner
-            if (! newOwners.contains(dashboard.getProfessors()[color.ordinal()].getOwner())) {
+            // if the former owner of the professor is not in the list AND there is only one newOwner, proceed to change the owner
+            if (!newOwners.contains(dashboard.getProfessors()[color.ordinal()].getOwner()) && newOwners.size() == 1) {
                 // remove Professor from former owner's SchoolBoard
-                dashboard.getProfessors()[color.ordinal()]
-                        .getOwner()
-                        .getSchoolBoard()
-                        .removeProfessor(dashboard.getProfessors()[color.ordinal()]);
+                if (dashboard.getProfessors()[color.ordinal()].getOwner() != null) {
+                    dashboard.getProfessors()[color.ordinal()]
+                            .getOwner()
+                            .getSchoolBoard()
+                            .removeProfessor(dashboard.getProfessors()[color.ordinal()]);
+                }
 
                 // change owner in Professor object
                 dashboard.getProfessors()[color.ordinal()]
@@ -85,9 +95,4 @@ public class Game {
             }
         }
     }
-
-
-
-
-
 }
