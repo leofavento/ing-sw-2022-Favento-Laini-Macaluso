@@ -46,9 +46,9 @@ public class Dashboard {
 
         public int countTowers(Player player){
                 return islands.stream()
-                        .filter(i -> i.hasTower())
+                        .filter(Island::hasTower)
                         .filter(i -> i.getTowerColor() == player.getSchoolBoard().getTowerColor())
-                        .mapToInt(i -> i.getNumUnits())
+                        .mapToInt(Island::getNumUnits)
                         .sum();
         }
 
@@ -61,5 +61,9 @@ public class Dashboard {
 
         public Professor[] getProfessors() {
                 return professors;
+        }
+
+        public Bag getBag() {
+                return bag;
         }
 }

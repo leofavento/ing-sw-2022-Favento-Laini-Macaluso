@@ -9,7 +9,7 @@ public class Player {
         private String nickname;
         private boolean isOnline;
         private int wizardID;
-        private ArrayList<Assistant> deck;
+        private final ArrayList<Assistant> deck;
         private Assistant playedAssistant;
         private Cloud chosenCloud;
         private SchoolBoard schoolBoard;
@@ -46,14 +46,8 @@ public class Player {
 
         }
 
-        public void setAssistants(){
-                //TODO
-                //don't know what this should do
-        }
-
         public Assistant getPlayedAssistant(){
                 return playedAssistant;
-
         }
 
         public void chooseCloud(Cloud cloud){

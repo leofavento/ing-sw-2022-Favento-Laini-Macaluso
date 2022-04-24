@@ -9,37 +9,48 @@ public class Game {
     private final ArrayList<Player> players;
     private final ArrayList<Player> onlinePlayers;
     private Player currentPlayer;
-    private Dashboard dashboard;
+    private final Dashboard dashboard;
 
     public Game(){
         this.players=new ArrayList<>();
         this.onlinePlayers=new ArrayList<>();
+        dashboard = new Dashboard();
     }
 
 
-    //public Player getPlayer(String nickname){
-        //TODO
-        //don't know what this should do
-    //}
+    public Player getPlayer(String nickname){
+        for (Player p : onlinePlayers) {
+            if (p.getNickname().equals(nickname)) {
+                return p;
+            }
+        }
+        return null;
+    }
 
     public ArrayList<Player> getOnlinePlayers(){
             return onlinePlayers;
         }
 
+    public void setCurrentPlayer(Player player) {
+        currentPlayer = player;
+    }
+
     public Player getCurrentPlayer(){
-            return currentPlayer;
-        }
+        return currentPlayer;
+    }
+
+    public void setNextPlayer(){
+        setCurrentPlayer(onlinePlayers.get((onlinePlayers.indexOf(getCurrentPlayer()) + 1) % onlinePlayers.size()));
+    }
 
     public void initialTowersDeal(){
         //TODO
     }
 
-    public void setNextPlayer(){
-        //TODO
-    }
-
     public void dealStudents(Player p, int numStudents){
-        //TODO
+        for (int i = 0; i < numStudents; i++) {
+            p.getSchoolBoard().addToEntrance(dashboard.getBag().drawStudent());
+        }
     }
 
     public void updateProfessors(){
