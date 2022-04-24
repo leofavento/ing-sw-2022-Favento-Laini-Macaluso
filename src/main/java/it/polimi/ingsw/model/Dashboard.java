@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,6 +23,10 @@ public class Dashboard {
 
         public ArrayList<Island> getIslands(){
                 return islands;
+        }
+
+        public ArrayList<Cloud> getClouds() {
+                return clouds;
         }
 
         public void placeIslands(){

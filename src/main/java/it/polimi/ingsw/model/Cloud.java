@@ -6,9 +6,11 @@ public class Cloud {
 
     private final ArrayList<Student> students;
 
-    public Cloud() {students = new ArrayList<>();}
+    public Cloud() {
+        students = new ArrayList<>();
+    }
 
-    public void AddStudent(Student s){
+    public void addStudent(Student s){
         students.add(s);
     }
 
