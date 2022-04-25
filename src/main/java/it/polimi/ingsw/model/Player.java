@@ -1,65 +1,67 @@
 package it.polimi.ingsw.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 public class Player {
 
-        private final String nickname;
-        private boolean isOnline;
-        private int wizardID;
-        private final ArrayList<Assistant> deck;
-        private Assistant playedAssistant;
-        private Cloud chosenCloud;
-        private final SchoolBoard schoolBoard;
+    private final String nickname;
+    private boolean isOnline;
+    private int wizardID;
+    private final ArrayList<Assistant> availableAssistants;
+    private Assistant playedAssistant;
+    private Cloud chosenCloud;
+    private final SchoolBoard schoolBoard;
 
 
-        public Player(String nickname){
-            this.nickname = nickname;
-            deck= new ArrayList<>();
-            schoolBoard = new SchoolBoard();
+    public Player(String nickname){
+        this.nickname = nickname;
+        availableAssistants = new ArrayList<>();
+        setAssistants();
+        schoolBoard = new SchoolBoard();
+    }
+
+    private void setAssistants() {
+        Collections.addAll(availableAssistants, Assistant.values());
+    }
+
+    public String getNickname(){
+        return nickname;
+    }
+
+    public void setWizardID(int wizardID){
+        this.wizardID = wizardID;
+    }
+
+    public int getWizardID(){
+        return wizardID;
+    }
+
+    public ArrayList<Assistant> getAvailableAssistants() {
+        return availableAssistants;
+    }
+
+    public void playAssistant(Assistant assistant) throws Exception {
+        if (availableAssistants.remove(assistant)) {
+            playedAssistant = assistant;
         }
-
-        public String getNickname(){
-            return nickname;
+        else {
+            throw new Exception("Assistente già utilizzato");
         }
+    }
 
-        public void setWizardID(int wizardID){
-            this.wizardID= wizardID;
-        }
+    public Assistant getPlayedAssistant(){
+        return playedAssistant;
+    }
 
-        public int getWizardID(){
-            return wizardID;
-        }
+    public void chooseCloud(Cloud cloud){
+        this.chosenCloud=cloud;
+    }
 
-        public void createDeck(){
-                List<Assistant> deck = Arrays.asList(Assistant.values());
-        }
+    public Cloud getChosenCloud(){
+        return chosenCloud;
+    }
 
-        public void playAssistant(Assistant assistant){
-                try{
-                        deck.remove(assistant);
-                }
-                catch (Exception alreadyUsedAssistant){
-                        System.out.println("Assistente già utilizzato");
-                }
-                this.playedAssistant=assistant;
-
-        }
-
-        public Assistant getPlayedAssistant(){
-                return playedAssistant;
-        }
-
-        public void chooseCloud(Cloud cloud){
-                this.chosenCloud=cloud;
-        }
-
-        public Cloud getChosenCloud(){
-                return chosenCloud;
-        }
-
-        public SchoolBoard getSchoolBoard() { return schoolBoard; }
+    public SchoolBoard getSchoolBoard() { return schoolBoard; }
 
 }
