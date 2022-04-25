@@ -6,6 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
     @Test
+    public void testDealStudents() {
+        Game game = new Game();
+        Player player = new Player();
+
+        game.getDashboard().getBag().refill(1);
+        game.dealStudents(player, 5);
+
+        while (player.getSchoolBoard().getFromEntrance().size() > 0) {
+            player.getSchoolBoard().moveToDiningRoom(player.getSchoolBoard().getFromEntrance().get(0));
+        }
+
+        assertEquals(1, player.getSchoolBoard().getColor(Color.GREEN));
+        assertEquals(1, player.getSchoolBoard().getColor(Color.RED));
+        assertEquals(1, player.getSchoolBoard().getColor(Color.PINK));
+        assertEquals(1, player.getSchoolBoard().getColor(Color.BLUE));
+        assertEquals(1, player.getSchoolBoard().getColor(Color.YELLOW));
+    }
+
+    @Test
     public void testUpdateProfessors() {
         Game game = new Game();
         Player p1 = new Player();
