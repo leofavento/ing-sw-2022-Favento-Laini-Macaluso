@@ -1,0 +1,21 @@
+package it.polimi.ingsw.model.characters;
+
+public enum Type3 {
+
+    CARD2(2), //You take control of the Professor in case of draw
+
+    CARD4(1), //Move Mother Nature up to 2 additional islands
+
+    CARD10(1), //Exchange up to 2 students between Entrance and Dining Room
+
+    CARD12(3); //Choose a color. Every player must return 3 student of that color from Dining Room to the Bag
+
+    private final int cost;
+    Type3(int c){
+        this.cost = c;
+    }
+
+    public int getCost(){
+        return cost;
+    }
+}
