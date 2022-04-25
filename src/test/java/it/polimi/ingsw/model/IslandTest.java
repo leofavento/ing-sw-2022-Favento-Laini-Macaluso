@@ -19,7 +19,7 @@ class IslandTest {
     public void testInfluenceCount() {
         Island island = new Island();
         Tower blackTower = Tower.BLACK;
-        Player player = new Player();
+        Player player = new Player("Player");
 
         blackTower.addTeamComponent(player);
         for (int i = 0; i < 2; i++) {
@@ -44,7 +44,7 @@ class IslandTest {
     @Test
     public void testExtraInfluence() {
         Island island = new Island();
-        Player player = new Player();
+        Player player = new Player("Player");
         assertEquals(0, island.getExtraInfluence(player));
 
         island.setExtraInfluence(player, 3);

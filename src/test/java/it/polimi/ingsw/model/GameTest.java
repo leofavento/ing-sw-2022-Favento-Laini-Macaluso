@@ -6,9 +6,60 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
     @Test
+    public void testGetPlayer() {
+        Game game = new Game();
+        Player player1 = new Player("Player1");
+        Player player2 = new Player("Player2");
+
+        game.addNewPlayer(player1);
+        game.addNewPlayer(player2);
+
+        assertEquals(player1, game.getPlayer("Player1"));
+        assertEquals(player2, game.getPlayer("Player2"));
+        assertNotEquals(player1, game.getPlayer("Player2"));
+        assertNotEquals(player2, game.getPlayer("Player1"));
+        assertNull(game.getPlayer("Player3"));
+    }
+
+    @Test
+    public void testPlayerTurns() {
+        Game game = new Game();
+        Player p1 = new Player("Player1");
+        Player p2 = new Player("Player2");
+
+        assertFalse(game.getOnlinePlayers().contains(p1));
+        assertFalse(game.getOnlinePlayers().contains(p2));
+
+        game.addNewPlayer(p1);
+        game.addNewPlayer(p2);
+
+        assertTrue(game.getOnlinePlayers().contains(p1));
+        assertTrue(game.getOnlinePlayers().contains(p2));
+
+        game.setCurrentPlayer(p1);
+        assertEquals(p1, game.getCurrentPlayer());
+
+        game.setNextPlayer();
+        assertEquals(p2, game.getCurrentPlayer());
+
+        game.setNextPlayer();
+        assertEquals(p1, game.getCurrentPlayer());
+
+        Player p3 = new Player("Player3");
+        game.addNewPlayer(p3);
+
+        game.setNextPlayer();
+        game.setNextPlayer();
+        assertEquals(p3, game.getCurrentPlayer());
+
+        game.setNextPlayer();
+        assertEquals(p1, game.getCurrentPlayer());
+    }
+
+    @Test
     public void testDealStudents() {
         Game game = new Game();
-        Player player = new Player();
+        Player player = new Player("Player");
 
         game.getDashboard().getBag().refill(1);
         game.dealStudents(player, 5);
@@ -27,8 +78,8 @@ class GameTest {
     @Test
     public void testUpdateProfessors() {
         Game game = new Game();
-        Player p1 = new Player();
-        Player p2 = new Player();
+        Player p1 = new Player("Player1");
+        Player p2 = new Player("Player2");
 
         game.addNewPlayer(p1);
         game.addNewPlayer(p2);

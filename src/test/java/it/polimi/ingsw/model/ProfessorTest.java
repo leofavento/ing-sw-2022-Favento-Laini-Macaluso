@@ -14,7 +14,7 @@ class ProfessorTest {
 
     @Test
     public void testProfessorOwner() {
-        Player playerTest = new Player();
+        Player playerTest = new Player("Player");
         assertNull(professor.getOwner());
         professor.changeOwner(playerTest);
         assertEquals(playerTest, professor.getOwner());

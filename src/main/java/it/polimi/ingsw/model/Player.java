@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Player {
 
-        private String nickname;
+        private final String nickname;
         private boolean isOnline;
         private int wizardID;
         private final ArrayList<Assistant> deck;
@@ -15,7 +15,8 @@ public class Player {
         private final SchoolBoard schoolBoard;
 
 
-        public Player(){
+        public Player(String nickname){
+            this.nickname = nickname;
             deck= new ArrayList<>();
             schoolBoard = new SchoolBoard();
         }
