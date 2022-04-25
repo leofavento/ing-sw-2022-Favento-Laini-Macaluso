@@ -1,8 +1,6 @@
 package it.polimi.ingsw.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Dashboard {
         private final ArrayList<Island> islands;
@@ -54,10 +52,10 @@ public class Dashboard {
                 islands.remove(island);
         }
 
-        public int countTowers(Player player){
+        public int countTowers(Tower tower){
                 return islands.stream()
                         .filter(Island::hasTower)
-                        .filter(i -> i.getTowerColor() == player.getSchoolBoard().getTowerColor())
+                        .filter(i -> i.getTowerColor() == tower)
                         .mapToInt(Island::getNumUnits)
                         .sum();
         }

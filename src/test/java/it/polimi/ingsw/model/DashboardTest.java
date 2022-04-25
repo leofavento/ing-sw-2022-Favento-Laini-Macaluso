@@ -54,4 +54,23 @@ class DashboardTest {
         assertArrayEquals(new Student[]{s1, s2, s3}, dashboard.getClouds().get(0).getStudents().toArray());
         assertArrayEquals(new Student[]{s4, s5}, dashboard.getClouds().get(1).getStudents().toArray());
     }
+
+    @Test
+    public void testCountTowers() {
+        Dashboard dashboard = new Dashboard();
+        Tower tower = Tower.BLACK;
+
+        dashboard.placeIslands();
+
+        assertEquals(0, dashboard.countTowers(tower));
+
+        dashboard.getIslands().get(3).setTowers(Tower.BLACK);
+        dashboard.getIslands().get(6).setTowers(Tower.WHITE);
+        dashboard.getIslands().get(1).setTowers(Tower.BLACK);
+        dashboard.getIslands().get(8).setTowers(Tower.GREY);
+        assertEquals(2, dashboard.countTowers(tower));
+
+        dashboard.getIslands().get(3).setTowers(Tower.GREY);
+        assertEquals(1, dashboard.countTowers(tower));
+    }
 }
