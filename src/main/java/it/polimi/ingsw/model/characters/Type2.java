@@ -1,5 +1,5 @@
 package it.polimi.ingsw.model.characters;
-import it.polimi.ingsw.model.Student;
+import it.polimi.ingsw.model.Color;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public enum Type2 implements Character {
     CARD11(2); //Take 1 student and place it into Dining Room
 
     private int cost;
-    private final ArrayList<Student> students;
+    private final ArrayList<Color> students;
 
     Type2(int c) {
         this.cost = c;
@@ -52,12 +52,12 @@ public enum Type2 implements Character {
     public void setUsedBy(String player) {
     }
 
-    public void addStudent(Student s){
+    public void addStudent(Color s){
         students.add(s);
     }
 
-    public Student takeStudent(int n){
-        Student t = students.get(n);
+    public Color takeStudent(int n){
+        Color t = students.get(n);
         students.remove(n);
         return t;
     }

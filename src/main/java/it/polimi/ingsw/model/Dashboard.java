@@ -9,7 +9,6 @@ public class Dashboard {
     private final Character[] characters;
     private final ArrayList<Cloud> clouds;
     private final Professor[] professors;
-    private final MotherNature motherNature;
     private final Bag bag;
 
     public Dashboard(){
@@ -22,7 +21,6 @@ public class Dashboard {
         professors[Color.GREEN.ordinal()] = new Professor(Color.GREEN);
         professors[Color.RED.ordinal()] = new Professor(Color.RED);
         professors[Color.PINK.ordinal()] = new Professor(Color.PINK);
-        motherNature = new MotherNature();
         bag = new Bag();
     }
 
@@ -46,8 +44,9 @@ public class Dashboard {
         }
     }
 
-    public void moveMotherNature(int steps){
-        motherNature.setIsland((motherNature.getIsland() + steps) % islands.size());
+    public void moveMotherNature(int steps) throws Exception {
+        int indexCurrentMotherNature = islands.indexOf(getCurrentMotherNatureIsland());
+        setMotherNature(islands.get((indexCurrentMotherNature + steps) % islands.size()));
     }
 
     public void deleteIsland(Island island){
@@ -67,7 +66,7 @@ public class Dashboard {
             a.addIsland(t);
             deleteIsland(t);
         }
-        motherNature.setIsland(islands.indexOf(a));
+        setMotherNature(a);
     }
 
     public Professor[] getProfessors() {
@@ -78,7 +77,17 @@ public class Dashboard {
         return bag;
     }
 
-    public MotherNature getMotherNature() {
-        return motherNature;
+    public Island getCurrentMotherNatureIsland() throws Exception {
+        return islands.stream()
+                .filter(Island::hasMotherNature)
+                .findAny()
+                .orElseThrow(() -> new Exception("Mother Nature not found in any island"));
+    }
+
+    public void setMotherNature(Island island) {
+        for (Island i : islands) {
+            i.setMotherNature(false);
+        }
+        island.setMotherNature(true);
     }
 }

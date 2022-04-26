@@ -25,8 +25,8 @@ class BagTest {
         Bag bag = new Bag();
 
         assertEquals(0, bag.getStudentsLeft());
-        bag.addStudent(new Student(Color.BLUE));
+        bag.addStudent(Color.BLUE);
         assertEquals(1, bag.getStudentsLeft());
-        assertEquals(Color.BLUE, bag.drawStudent().getColor());
+        assertEquals(Color.BLUE, bag.drawStudent());
     }
 }

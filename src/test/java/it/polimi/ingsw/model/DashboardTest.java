@@ -15,20 +15,20 @@ class DashboardTest {
     }
 
     @Test
-    public void testMotherNature() {
+    public void testMotherNature() throws Exception {
         Dashboard dashboard = new Dashboard();
 
         dashboard.placeIslands();
-        dashboard.getMotherNature().setIsland(1);
-        assertEquals(1, dashboard.getMotherNature().getIsland());
+        dashboard.setMotherNature(dashboard.getIslands().get(1));
+        assertEquals(dashboard.getIslands().get(1), dashboard.getCurrentMotherNatureIsland());
 
         dashboard.moveMotherNature(15);
-        assertEquals(4, dashboard.getMotherNature().getIsland());
+        assertEquals(dashboard.getIslands().get(4), dashboard.getCurrentMotherNatureIsland());
 
         dashboard.mergeIslands(dashboard.getIslands().get(4), dashboard.getIslands().get(3), dashboard.getIslands().get(5));
-        assertEquals(3, dashboard.getMotherNature().getIsland());
+        assertEquals(dashboard.getIslands().get(3), dashboard.getCurrentMotherNatureIsland());
         dashboard.moveMotherNature(11);
-        assertEquals(4, dashboard.getMotherNature().getIsland());
+        assertEquals(dashboard.getIslands().get(4), dashboard.getCurrentMotherNatureIsland());
     }
 
     @Test
@@ -36,23 +36,23 @@ class DashboardTest {
         Dashboard dashboard = new Dashboard();
 
         dashboard.placeCloudTiles(2);
-        assertArrayEquals(new Student[]{}, dashboard.getClouds().get(0).getStudents().toArray());
-        assertArrayEquals(new Student[]{}, dashboard.getClouds().get(1).getStudents().toArray());
+        assertArrayEquals(new Color[]{}, dashboard.getClouds().get(0).getStudents().toArray());
+        assertArrayEquals(new Color[]{}, dashboard.getClouds().get(1).getStudents().toArray());
 
-        Student s1 = new Student(Color.GREEN);
-        Student s2 = new Student(Color.PINK);
-        Student s3 = new Student(Color.PINK);
-        Student s4 = new Student(Color.RED);
-        Student s5 = new Student(Color.BLUE);
+        Color student1 = Color.GREEN;
+        Color student2 = Color.PINK;
+        Color student3 = Color.PINK;
+        Color student4 = Color.RED;
+        Color student5 = Color.BLUE;
 
-        dashboard.getClouds().get(0).addStudent(s1);
-        dashboard.getClouds().get(0).addStudent(s2);
-        dashboard.getClouds().get(0).addStudent(s3);
-        dashboard.getClouds().get(1).addStudent(s4);
-        dashboard.getClouds().get(1).addStudent(s5);
+        dashboard.getClouds().get(0).addStudent(student1);
+        dashboard.getClouds().get(0).addStudent(student2);
+        dashboard.getClouds().get(0).addStudent(student3);
+        dashboard.getClouds().get(1).addStudent(student4);
+        dashboard.getClouds().get(1).addStudent(student5);
 
-        assertArrayEquals(new Student[]{s1, s2, s3}, dashboard.getClouds().get(0).getStudents().toArray());
-        assertArrayEquals(new Student[]{s4, s5}, dashboard.getClouds().get(1).getStudents().toArray());
+        assertArrayEquals(new Color[]{student1, student2, student3}, dashboard.getClouds().get(0).getStudents().toArray());
+        assertArrayEquals(new Color[]{student4, student5}, dashboard.getClouds().get(1).getStudents().toArray());
     }
 
     @Test

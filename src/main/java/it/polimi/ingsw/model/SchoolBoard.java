@@ -8,7 +8,7 @@ public class SchoolBoard {
     private int numTower;
     private Tower towerColor;
     private int coins;
-    private final ArrayList<Student> entrance;
+    private final ArrayList<Color> entrance;
     private final ArrayList<Professor> professors;
 
     public SchoolBoard(){
@@ -42,21 +42,21 @@ public class SchoolBoard {
         this.numTower=numTower;
     }
 
-    public void addToEntrance(Student student){
+    public void addToEntrance(Color student){
         entrance.add(student);
     }
 
-    public void moveToDiningRoom(Student student){
+    public void moveToDiningRoom(Color student){
         if (! entrance.contains(student)) {
             throw new NoSuchElementException();
         }
         else {
             entrance.remove(student);
-            dining_room.put(student.getColor(), dining_room.get(student.getColor()) + 1);
+            dining_room.put(student, dining_room.get(student) + 1);
         }
     }
 
-    public ArrayList<Student> getFromEntrance(){
+    public ArrayList<Color> getFromEntrance(){
         return entrance;
     }
 

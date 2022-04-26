@@ -23,8 +23,8 @@ class IslandTest {
 
         blackTower.addTeamComponent(player);
         for (int i = 0; i < 2; i++) {
-            island.addStudent(new Student(Color.BLUE));
-            island.addStudent(new Student(Color.GREEN));
+            island.addStudent(Color.BLUE);
+            island.addStudent(Color.GREEN);
         }
         assertEquals(0, island.countInfluence(blackTower));
 
@@ -36,7 +36,7 @@ class IslandTest {
         assertEquals(3, island.countInfluence(blackTower));
 
         Island newIsland = new Island();
-        newIsland.addStudent(new Student(Color.PINK));
+        newIsland.addStudent(Color.PINK);
         island.addIsland(newIsland);
         assertEquals(5, island.countInfluence(blackTower));
     }

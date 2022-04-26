@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 
 public class Island {
     private int numUnits;
-    private final ArrayList<Student> students;
+    private final ArrayList<Color> students;
     private Tower towerColor;
     private int noEntry;
     private final Map<Player, Integer> extraInfluence;
+    private boolean hasMotherNature;
 
 
     public Island() {
@@ -18,19 +19,20 @@ public class Island {
         students = new ArrayList<>();
         extraInfluence = new HashMap<>();
         noEntry = 0;
+        hasMotherNature = false;
     }
 
     public int getNumUnits() {
         return numUnits;
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(Color student) {
         students.add(student);
     }
 
     public void addIsland(Island isl){
         numUnits += 1;
-        for (Student s : isl.students) { // visibility error?
+        for (Color s : isl.students) { // visibility error?
             addStudent(s);
         }
     }
@@ -50,8 +52,8 @@ public class Island {
             influence += getExtraInfluence(p);
         }
 
-        for (Student s : students) {
-            if (colors.contains(s.getColor())) {
+        for (Color s : students) {
+            if (colors.contains(s)) {
                 influence++;
             }
         }
@@ -97,5 +99,13 @@ public class Island {
 
     public void resetExtraInfluences() {
         extraInfluence.clear();
+    }
+
+    public boolean hasMotherNature() {
+        return hasMotherNature;
+    }
+
+    public void setMotherNature(boolean motherNature) {
+        hasMotherNature = motherNature;
     }
 }

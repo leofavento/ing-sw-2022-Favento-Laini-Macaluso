@@ -41,16 +41,16 @@ class PlayerTest {
         Player player = new Player("Player");
         Cloud cloud = new Cloud();
 
-        cloud.addStudent(new Student(Color.BLUE));
-        cloud.addStudent(new Student(Color.BLUE));
-        cloud.addStudent(new Student(Color.YELLOW));
+        cloud.addStudent(Color.BLUE);
+        cloud.addStudent(Color.BLUE);
+        cloud.addStudent(Color.YELLOW);
 
         assertNull(player.getChosenCloud());
 
         player.chooseCloud(cloud);
         assertEquals(cloud, player.getChosenCloud());
 
-        for (Student student : player.getChosenCloud().getStudents()) {
+        for (Color student : player.getChosenCloud().getStudents()) {
             player.getSchoolBoard().addToEntrance(student);
         }
         assertEquals(3, player.getSchoolBoard().getFromEntrance().size());

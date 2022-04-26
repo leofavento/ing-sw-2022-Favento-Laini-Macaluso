@@ -38,9 +38,9 @@ class SchoolBoardTest {
     public void testEntrance() {
         SchoolBoard schoolBoard = new SchoolBoard();
 
-        schoolBoard.addToEntrance(new Student(Color.BLUE));
-        schoolBoard.addToEntrance(new Student(Color.BLUE));
-        schoolBoard.addToEntrance(new Student(Color.RED));
+        schoolBoard.addToEntrance(Color.BLUE);
+        schoolBoard.addToEntrance(Color.BLUE);
+        schoolBoard.addToEntrance(Color.RED);
 
         assertEquals(3, schoolBoard.getFromEntrance().size());
         schoolBoard.moveToDiningRoom(schoolBoard.getFromEntrance().get(0));
