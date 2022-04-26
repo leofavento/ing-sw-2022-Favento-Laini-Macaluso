@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model.characters;
 
-public enum Type3 {
+//Characters that don't need extra attributes
+
+public enum Type3 implements Character{
 
     CARD2(2), //You take control of the Professor in case of draw
 
@@ -15,7 +17,37 @@ public enum Type3 {
         this.cost = c;
     }
 
+    @Override
+    public void increaseCost() {
+
+    }
+
+    @Override
+    public void setInitialCost(int c) {
+
+    }
+
+    @Override
+    public void effect() {
+
+    }
+
     public int getCost(){
         return cost;
+    }
+
+    @Override
+    public void setActive() {
+
+    }
+
+    @Override
+    public void setInactive() {
+
+    }
+
+    @Override
+    public void setUsedBy(String player) {
+
     }
 }

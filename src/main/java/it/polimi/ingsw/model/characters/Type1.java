@@ -1,6 +1,7 @@
 package it.polimi.ingsw.model.characters;
 
-public enum Type1 {
+public enum Type1 implements Character
+{
 
     CARD3(3), //Choose an island and apply influence
 
@@ -12,12 +13,37 @@ public enum Type1 {
 
     CARD9(3); //Choose a color. During influence, that color adds no influence
 
-    private final int cost;
-    Type1(int c){
+    private int cost;
+
+    Type1(int c) {
         this.cost = c;
     }
 
-    public int getCost(){
+    @Override
+    public void increaseCost() {
+        cost++;
+    }
+
+    @Override
+    public void setInitialCost(int c){}
+
+    @Override
+    public void effect(){}
+
+    @Override
+    public int getCost() {
         return cost;
     }
+
+
+    @Override
+    public void setActive(){}
+
+    @Override
+    public void setInactive(){}
+
+    @Override
+    public void setUsedBy(String player){}
+
+
 }

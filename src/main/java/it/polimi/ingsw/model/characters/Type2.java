@@ -1,6 +1,11 @@
 package it.polimi.ingsw.model.characters;
+import it.polimi.ingsw.model.Student;
 
-public enum Type2 {
+import java.util.ArrayList;
+
+//Characters that affect Students
+
+public enum Type2 implements Character {
 
     CARD1(1), //Take 1 student and place on an Island
 
@@ -8,12 +13,53 @@ public enum Type2 {
 
     CARD11(2); //Take 1 student and place it into Dining Room
 
-    private final int cost;
-    Type2(int c){
+    private int cost;
+    private final ArrayList<Student> students;
+
+    Type2(int c) {
         this.cost = c;
+        students=new ArrayList<>();
     }
 
-    public int getCost(){
+    @Override
+    public void increaseCost() {
+        cost++;
+    }
+
+    @Override
+    public void setInitialCost(int c) {
+    }
+
+    @Override
+    public void effect() {
+    }
+
+    @Override
+    public int getCost() {
         return cost;
     }
+
+
+    @Override
+    public void setActive() {
+    }
+
+    @Override
+    public void setInactive() {
+    }
+
+    @Override
+    public void setUsedBy(String player) {
+    }
+
+    public void addStudent(Student s){
+        students.add(s);
+    }
+
+    public Student takeStudent(int n){
+        Student t = students.get(n);
+        students.remove(n);
+        return t;
+    }
 }
+
