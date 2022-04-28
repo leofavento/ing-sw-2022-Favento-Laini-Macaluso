@@ -73,4 +73,16 @@ class DashboardTest {
         dashboard.getIslands().get(3).setTowers(Tower.GREY);
         assertEquals(1, dashboard.countTowers(tower));
     }
+
+    @Test
+    public void testCharactersInitialization() {
+        Dashboard dashboard = new Dashboard();
+
+        dashboard.setCharacters();
+
+        assertEquals(3, dashboard.getCharacters().length);
+        assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[1]);
+        assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[2]);
+        assertNotEquals(dashboard.getCharacters()[1], dashboard.getCharacters()[2]);
+    }
 }

@@ -1,8 +1,10 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.characters.Character;
+import it.polimi.ingsw.model.characters.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Dashboard {
     private final ArrayList<Island> islands;
@@ -89,5 +91,22 @@ public class Dashboard {
             i.setMotherNature(false);
         }
         island.setMotherNature(true);
+    }
+    
+    public void setCharacters() {
+        ArrayList<Character> allCharacters = new ArrayList<>();
+
+        Collections.addAll(allCharacters, Type1.values());
+        Collections.addAll(allCharacters, Type2.values());
+        Collections.addAll(allCharacters, Type3.values());
+        Collections.shuffle(allCharacters);
+
+        for (int i = 0; i < characters.length; i++) {
+            characters[i] = allCharacters.get(i);
+        }
+    }
+
+    public Character[] getCharacters() {
+        return characters;
     }
 }
