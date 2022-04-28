@@ -15,20 +15,20 @@ class DashboardTest {
     }
 
     @Test
-    public void testMotherNature() throws Exception {
+    public void testMotherNature() {
         Dashboard dashboard = new Dashboard();
 
         dashboard.placeIslands();
         dashboard.setMotherNature(dashboard.getIslands().get(1));
-        assertEquals(dashboard.getIslands().get(1), dashboard.getCurrentMotherNatureIsland());
+        assertEquals(1, dashboard.getMotherNaturePosition());
 
         dashboard.moveMotherNature(15);
-        assertEquals(dashboard.getIslands().get(4), dashboard.getCurrentMotherNatureIsland());
+        assertEquals(4, dashboard.getMotherNaturePosition());
 
         dashboard.mergeIslands(dashboard.getIslands().get(4), dashboard.getIslands().get(3), dashboard.getIslands().get(5));
-        assertEquals(dashboard.getIslands().get(3), dashboard.getCurrentMotherNatureIsland());
+        assertEquals(3, dashboard.getMotherNaturePosition());
         dashboard.moveMotherNature(11);
-        assertEquals(dashboard.getIslands().get(4), dashboard.getCurrentMotherNatureIsland());
+        assertEquals(4, dashboard.getMotherNaturePosition());
     }
 
     @Test

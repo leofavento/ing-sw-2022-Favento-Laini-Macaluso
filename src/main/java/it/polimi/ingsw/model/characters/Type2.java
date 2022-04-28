@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 //Characters that affect Students
 
-public enum Type2 implements Character {
+public enum Type2 implements CharacterCard {
 
     CARD1(1), //Take 1 student and place on an Island
 

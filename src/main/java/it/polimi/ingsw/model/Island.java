@@ -11,7 +11,6 @@ public class Island {
     private Tower towerColor;
     private int noEntry;
     private final Map<Player, Integer> extraInfluence;
-    private boolean hasMotherNature;
 
 
     public Island() {
@@ -19,7 +18,6 @@ public class Island {
         students = new ArrayList<>();
         extraInfluence = new HashMap<>();
         noEntry = 0;
-        hasMotherNature = false;
     }
 
     public int getNumUnits() {
@@ -99,13 +97,5 @@ public class Island {
 
     public void resetExtraInfluences() {
         extraInfluence.clear();
-    }
-
-    public boolean hasMotherNature() {
-        return hasMotherNature;
-    }
-
-    public void setMotherNature(boolean motherNature) {
-        hasMotherNature = motherNature;
     }
 }

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.model.characters;
 
-public enum Type1 implements Character
-{
+public enum Type1 implements CharacterCard {
 
     CARD3(3), //Choose an island and apply influence
 

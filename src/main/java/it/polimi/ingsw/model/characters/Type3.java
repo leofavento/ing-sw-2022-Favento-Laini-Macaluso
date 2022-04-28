@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.characters;
 
 //Characters that don't need extra attributes
 
-public enum Type3 implements Character{
+public enum Type3 implements CharacterCard {
 
     CARD2(2), //You take control of the Professor in case of draw
 

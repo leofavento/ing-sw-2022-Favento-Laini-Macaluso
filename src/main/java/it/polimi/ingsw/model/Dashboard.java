@@ -1,6 +1,5 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.characters.Character;
 import it.polimi.ingsw.model.characters.*;
 
 import java.util.ArrayList;
@@ -8,15 +7,16 @@ import java.util.Collections;
 
 public class Dashboard {
     private final ArrayList<Island> islands;
-    private final Character[] characters;
+    private final CharacterCard[] characters;
     private final ArrayList<Cloud> clouds;
     private final Professor[] professors;
     private final Bag bag;
+    private int motherNaturePosition;
 
     public Dashboard(){
         this.islands= new ArrayList<>();
         this.clouds = new ArrayList<>();
-        this.characters= new Character[3];
+        this.characters= new CharacterCard[3];
         this.professors= new Professor[5];
         professors[Color.YELLOW.ordinal()] = new Professor(Color.YELLOW);
         professors[Color.BLUE.ordinal()] = new Professor(Color.BLUE);
@@ -46,9 +46,8 @@ public class Dashboard {
         }
     }
 
-    public void moveMotherNature(int steps) throws Exception {
-        int indexCurrentMotherNature = islands.indexOf(getCurrentMotherNatureIsland());
-        setMotherNature(islands.get((indexCurrentMotherNature + steps) % islands.size()));
+    public void moveMotherNature(int steps){
+        motherNaturePosition = (motherNaturePosition + steps) % islands.size();
     }
 
     public void deleteIsland(Island island){
@@ -79,22 +78,16 @@ public class Dashboard {
         return bag;
     }
 
-    public Island getCurrentMotherNatureIsland() throws Exception {
-        return islands.stream()
-                .filter(Island::hasMotherNature)
-                .findAny()
-                .orElseThrow(() -> new Exception("Mother Nature not found in any island"));
+    public int getMotherNaturePosition() {
+        return motherNaturePosition;
     }
 
     public void setMotherNature(Island island) {
-        for (Island i : islands) {
-            i.setMotherNature(false);
-        }
-        island.setMotherNature(true);
+        motherNaturePosition = islands.indexOf(island);
     }
     
     public void setCharacters() {
-        ArrayList<Character> allCharacters = new ArrayList<>();
+        ArrayList<CharacterCard> allCharacters = new ArrayList<>();
 
         Collections.addAll(allCharacters, Type1.values());
         Collections.addAll(allCharacters, Type2.values());
@@ -106,7 +99,7 @@ public class Dashboard {
         }
     }
 
-    public Character[] getCharacters() {
+    public CharacterCard[] getCharacters() {
         return characters;
     }
 }
