@@ -56,18 +56,31 @@ class IslandTest {
 
     @Test
     public void testNoEntry() {
-        Island island = new Island();
+        Island island1 = new Island();
 
-        assertFalse(island.useNoEntry());
+        assertFalse(island1.useNoEntry());
 
         for (int i = 0; i < 2; i++) {
-            island.addNoEntry();
+            island1.addNoEntry();
         }
 
         for (int i = 0; i < 2; i++) {
-            assertTrue(island.useNoEntry());
+            assertTrue(island1.useNoEntry());
         }
 
-        assertFalse(island.useNoEntry());
+        assertFalse(island1.useNoEntry());
+
+        Island island2 = new Island();
+        for (int i = 0; i < 2; i++) {
+            island1.addNoEntry();
+            island2.addNoEntry();
+        }
+        island1.addIsland(island2);
+
+        for (int i = 0; i < 4; i++) {
+            assertTrue(island1.useNoEntry());
+        }
+
+        assertFalse(island1.useNoEntry());
     }
 }

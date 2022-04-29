@@ -33,6 +33,9 @@ public class Island {
         for (Color s : isl.students) { // visibility error?
             addStudent(s);
         }
+        while(isl.useNoEntry()) {
+            noEntry++;
+        }
     }
 
     public int countInfluence(Tower tower){
