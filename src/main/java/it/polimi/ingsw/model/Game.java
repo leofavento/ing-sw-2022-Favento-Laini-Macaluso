@@ -1,24 +1,37 @@
 package it.polimi.ingsw.model;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Game {
+    private final int ID;
     private final ArrayList<Player> players;
     private final ArrayList<Player> onlinePlayers;
     private Player currentPlayer;
     private final Dashboard dashboard;
+    private final int numberOfPlayers;
+    private final boolean expertGame;
+    private final EnumMap<Tower, ArrayList<Player>> teams;
 
-    public Game(){
-        this.players=new ArrayList<>();
-        this.onlinePlayers=new ArrayList<>();
-        dashboard = new Dashboard();
+    public Game(int id, int numberOfPlayers, boolean expertGame){
+        ID = id;
+        this.players = new ArrayList<>();
+        this.onlinePlayers = new ArrayList<>();
+        this.dashboard = new Dashboard();
+        this.numberOfPlayers = numberOfPlayers;
+        this.expertGame = expertGame;
+        this.teams = new EnumMap<>(Tower.class);
     }
 
     public Dashboard getDashboard() {
         return dashboard;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
     }
 
     public void addNewPlayer(Player player) {
@@ -52,7 +65,18 @@ public class Game {
     }
 
     public void initialTowersDeal(){
-        //TODO
+        switch(numberOfPlayers) {
+            case(2):
+            case(4):
+                teams.get(Tower.BLACK).get(0).getSchoolBoard().setTowersNumber(8);
+                teams.get(Tower.WHITE).get(0).getSchoolBoard().setTowersNumber(8);
+                break;
+            case(3):
+                teams.get(Tower.BLACK).get(0).getSchoolBoard().setTowersNumber(6);
+                teams.get(Tower.WHITE).get(0).getSchoolBoard().setTowersNumber(6);
+                teams.get(Tower.GREY).get(0).getSchoolBoard().setTowersNumber(6);
+                break;
+        }
     }
 
     public void dealStudents(Player p, int numStudents){
@@ -61,7 +85,7 @@ public class Game {
         }
     }
 
-    public void updateProfessors(){
+    public void updateProfessors() {
         for (Color color : Color.values()) {
             // calculate maximum number of students of a certain color in any SchoolBoard
             int max = players.stream()
@@ -94,5 +118,14 @@ public class Game {
                         .addProfessor(dashboard.getProfessors()[color.ordinal()]);
             }
         }
+    }
+
+    public ArrayList<Player> getTeamFromTower(Tower tower) {
+        return teams.get(tower);
+    }
+
+    public void addPlayerToTeam(Tower tower, Player player) {
+        teams.putIfAbsent(tower, new ArrayList<>());
+        teams.get(tower).add(player);
     }
 }

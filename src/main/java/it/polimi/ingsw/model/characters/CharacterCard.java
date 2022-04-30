@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model.characters;
 
+import it.polimi.ingsw.model.Game;
+
 public interface CharacterCard {
     int cost=0;
     String usedBy=null;
@@ -9,7 +11,7 @@ public interface CharacterCard {
 
     void setInitialCost(int c);
 
-    void effect();
+    void effect(Game game);
 
     int getCost();
 

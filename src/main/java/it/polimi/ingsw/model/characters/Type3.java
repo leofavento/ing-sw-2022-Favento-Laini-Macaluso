@@ -2,6 +2,8 @@ package it.polimi.ingsw.model.characters;
 
 //Characters that don't need extra attributes
 
+import it.polimi.ingsw.model.Game;
+
 public enum Type3 implements CharacterCard {
 
     CARD2(2), //You take control of the Professor in case of draw
@@ -28,7 +30,7 @@ public enum Type3 implements CharacterCard {
     }
 
     @Override
-    public void effect() {
+    public void effect(Game game) {
 
     }
 

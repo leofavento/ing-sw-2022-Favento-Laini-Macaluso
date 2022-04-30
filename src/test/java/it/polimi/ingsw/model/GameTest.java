@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
     @Test
     public void testGetPlayer() {
-        Game game = new Game();
+        Game game = new Game(1, 2, true);
         Player player1 = new Player("Player1");
         Player player2 = new Player("Player2");
 
@@ -23,7 +23,7 @@ class GameTest {
 
     @Test
     public void testPlayerTurns() {
-        Game game = new Game();
+        Game game = new Game(10, 2, true);
         Player p1 = new Player("Player1");
         Player p2 = new Player("Player2");
 
@@ -58,7 +58,7 @@ class GameTest {
 
     @Test
     public void testDealStudents() {
-        Game game = new Game();
+        Game game = new Game(3, 2, true);
         Player player = new Player("Player");
 
         game.getDashboard().getBag().refill(1);
@@ -77,7 +77,7 @@ class GameTest {
 
     @Test
     public void testUpdateProfessors() {
-        Game game = new Game();
+        Game game = new Game(5, 2, false);
         Player p1 = new Player("Player1");
         Player p2 = new Player("Player2");
 

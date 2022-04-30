@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model.characters;
 
+import it.polimi.ingsw.model.Game;
+
 public enum Type1 implements CharacterCard {
 
     CARD3(3), //Choose an island and apply influence
@@ -27,7 +29,7 @@ public enum Type1 implements CharacterCard {
     public void setInitialCost(int c){}
 
     @Override
-    public void effect(){}
+    public void effect(Game game){}
 
     @Override
     public int getCost() {

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.characters;
 import it.polimi.ingsw.model.Color;
+import it.polimi.ingsw.model.Game;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public enum Type2 implements CharacterCard {
     }
 
     @Override
-    public void effect() {
+    public void effect(Game game) {
     }
 
     @Override
