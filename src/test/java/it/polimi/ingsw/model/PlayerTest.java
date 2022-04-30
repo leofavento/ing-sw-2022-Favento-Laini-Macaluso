@@ -26,17 +26,6 @@ class PlayerTest {
     }
 
     @Test
-    public void testPlayAssistantThrowsException() {
-        Player player = new Player("Player");
-
-        try {
-            player.playAssistant(Assistant.DOG);
-        } catch (Exception ignored) {
-        }
-        assertThrows(Exception.class, () -> player.playAssistant(Assistant.DOG));
-    }
-
-    @Test
     public void testGetFromCloud() {
         Player player = new Player("Player");
         Cloud cloud = new Cloud();

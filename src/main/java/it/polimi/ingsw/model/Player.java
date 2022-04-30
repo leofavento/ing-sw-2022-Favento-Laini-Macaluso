@@ -41,13 +41,9 @@ public class Player {
         return availableAssistants;
     }
 
-    public void playAssistant(Assistant assistant) throws Exception {
-        if (availableAssistants.remove(assistant)) {
-            playedAssistant = assistant;
-        }
-        else {
-            throw new Exception("Assistente già utilizzato");
-        }
+    public void playAssistant(Assistant assistant) {
+        availableAssistants.remove(assistant);
+        playedAssistant = assistant;
     }
 
     public Assistant getPlayedAssistant(){
