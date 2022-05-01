@@ -1,8 +1,10 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.StudentNotExistingException;
+
 import java.util.ArrayList;
 
-public class Cloud {
+public class Cloud implements StudentDeposit {
 
     private final ArrayList<Color> students;
 
@@ -10,8 +12,18 @@ public class Cloud {
         students = new ArrayList<>();
     }
 
-    public void addStudent(Color s){
-        students.add(s);
+    @Override
+    public void addStudent(Color student){
+        students.add(student);
+    }
+
+    @Override
+    public void extractStudent(Color color) throws StudentNotExistingException {
+        if (! students.contains(color)) {
+            throw new StudentNotExistingException("There is no " + color.name() + " student in this cloud.");
+        } else {
+            students.remove(color);
+        }
     }
 
     public ArrayList<Color> getStudents(){

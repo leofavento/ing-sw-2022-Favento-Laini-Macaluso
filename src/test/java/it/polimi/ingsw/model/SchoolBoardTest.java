@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.StudentNotExistingException;
+import it.polimi.ingsw.model.player.SchoolBoard;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,16 +40,28 @@ class SchoolBoardTest {
     public void testEntrance() {
         SchoolBoard schoolBoard = new SchoolBoard();
 
-        schoolBoard.addToEntrance(Color.BLUE);
-        schoolBoard.addToEntrance(Color.BLUE);
-        schoolBoard.addToEntrance(Color.RED);
+        schoolBoard.getEntrance().addStudent(Color.BLUE);
+        schoolBoard.getEntrance().addStudent(Color.BLUE);
+        schoolBoard.getEntrance().addStudent(Color.RED);
 
-        assertEquals(3, schoolBoard.getFromEntrance().size());
-        schoolBoard.moveToDiningRoom(schoolBoard.getFromEntrance().get(0));
-        assertEquals(2, schoolBoard.getFromEntrance().size());
-        schoolBoard.moveToDiningRoom(schoolBoard.getFromEntrance().get(0));
-        assertEquals(1, schoolBoard.getFromEntrance().size());
-        schoolBoard.moveToDiningRoom(schoolBoard.getFromEntrance().get(0));
-        assertEquals(0, schoolBoard.getFromEntrance().size());
+        assertEquals(3, schoolBoard.getEntrance().getStudents().size());
+        schoolBoard.getDiningRoom().addStudent(schoolBoard.getEntrance().getStudents().get(0));
+        try {
+            schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
+        } catch (StudentNotExistingException ignored) {
+        }
+        assertEquals(2, schoolBoard.getEntrance().getStudents().size());
+        schoolBoard.getDiningRoom().addStudent(schoolBoard.getEntrance().getStudents().get(0));
+        try {
+            schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
+        } catch (StudentNotExistingException ignored) {
+        }
+        assertEquals(1, schoolBoard.getEntrance().getStudents().size());
+        schoolBoard.getDiningRoom().addStudent(schoolBoard.getEntrance().getStudents().get(0));
+        try {
+            schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
+        } catch (StudentNotExistingException ignored) {
+        }
+        assertEquals(0, schoolBoard.getEntrance().getStudents().size());
     }
 }

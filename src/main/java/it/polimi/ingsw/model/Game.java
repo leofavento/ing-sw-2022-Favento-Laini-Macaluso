@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.player.Player;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -81,7 +83,7 @@ public class Game {
 
     public void dealStudents(Player p, int numStudents){
         for (int i = 0; i < numStudents; i++) {
-            p.getSchoolBoard().addToEntrance(dashboard.getBag().drawStudent());
+            p.getSchoolBoard().getEntrance().addStudent(dashboard.getBag().drawStudent());
         }
     }
 
@@ -89,13 +91,13 @@ public class Game {
         for (Color color : Color.values()) {
             // calculate maximum number of students of a certain color in any SchoolBoard
             int max = players.stream()
-                    .mapToInt(p -> p.getSchoolBoard().getColor(color))
+                    .mapToInt(p -> p.getSchoolBoard().getDiningRoom().getStudentsNumber(color))
                     .max()
                     .orElseThrow(NoSuchElementException::new);
 
             // List of players having maximum number of students of a certain color
             List<Player> newOwners = players.stream()
-                    .filter(p -> p.getSchoolBoard().getColor(color) == max)
+                    .filter(p -> p.getSchoolBoard().getDiningRoom().getStudentsNumber(color) == max)
                     .collect(Collectors.toList());
 
             // if the former owner of the professor is not in the list AND there is only one newOwner, proceed to change the owner

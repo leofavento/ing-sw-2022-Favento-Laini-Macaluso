@@ -1,6 +1,9 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,27 +21,29 @@ class IslandTest {
     @Test
     public void testInfluenceCount() {
         Island island = new Island();
-        Tower blackTower = Tower.BLACK;
+        ArrayList<Player> team = new ArrayList<>();
         Player player = new Player("Player");
+        player.getSchoolBoard().setTowerColor(Tower.BLACK);
 
-        blackTower.addTeamComponent(player);
+
+        team.add(player);
         for (int i = 0; i < 2; i++) {
             island.addStudent(Color.BLUE);
             island.addStudent(Color.GREEN);
         }
-        assertEquals(0, island.countInfluence(blackTower));
+        assertEquals(0, island.countInfluence(team));
 
         player.getSchoolBoard().addProfessor(new Professor(Color.GREEN));
         player.getSchoolBoard().addProfessor(new Professor(Color.PINK));
-        assertEquals(2, island.countInfluence(blackTower));
+        assertEquals(2, island.countInfluence(team));
 
         island.setTowers(Tower.BLACK);
-        assertEquals(3, island.countInfluence(blackTower));
+        assertEquals(3, island.countInfluence(team));
 
         Island newIsland = new Island();
         newIsland.addStudent(Color.PINK);
         island.addIsland(newIsland);
-        assertEquals(5, island.countInfluence(blackTower));
+        assertEquals(5, island.countInfluence(team));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.player.Player;
+
 public class Professor {
     private final Color color;
     private Player owner;

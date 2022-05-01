@@ -1,4 +1,7 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.player;
+
+import it.polimi.ingsw.model.Assistant;
+import it.polimi.ingsw.model.Cloud;
 
 import java.util.ArrayList;
 import java.util.Collections;

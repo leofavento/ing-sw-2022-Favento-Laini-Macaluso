@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,8 +41,8 @@ class PlayerTest {
         assertEquals(cloud, player.getChosenCloud());
 
         for (Color student : player.getChosenCloud().getStudents()) {
-            player.getSchoolBoard().addToEntrance(student);
+            player.getSchoolBoard().getEntrance().addStudent(student);
         }
-        assertEquals(3, player.getSchoolBoard().getFromEntrance().size());
+        assertEquals(3, player.getSchoolBoard().getEntrance().getStudents().size());
     }
 }
