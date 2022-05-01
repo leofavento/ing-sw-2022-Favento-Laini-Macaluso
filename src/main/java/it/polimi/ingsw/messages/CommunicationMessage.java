@@ -1,8 +1,6 @@
 package it.polimi.ingsw.messages;
 
-import java.io.Serializable;
-
-public enum CommunicationMessage implements Serializable {
+public enum CommunicationMessage implements Message {
     TAKEN_NICKNAME("This nickname is already taken, please choose another one.");
 
     private final String message;
