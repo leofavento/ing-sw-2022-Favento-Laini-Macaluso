@@ -1,9 +1,9 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.controller.states.Setup;
+import it.polimi.ingsw.controller.states.EnumState;
 import it.polimi.ingsw.controller.states.State;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.player.Player;
 
 public class Controller {
     private final Game game;
@@ -12,7 +12,7 @@ public class Controller {
 
     public Controller(Game game) {
         this.game = game;
-        this.state = new Setup();
+        this.state = EnumState.SETUP.getState();
     }
 
     public void setState(State state) {
@@ -45,4 +45,6 @@ public class Controller {
     public void updateTurnOrder() {
         game.getOnlinePlayers().sort((Player p1, Player p2) -> Integer.compare(p1.getPlayedAssistant().getValue(), p1.getPlayedAssistant().getValue()));
     }
+
+
 }

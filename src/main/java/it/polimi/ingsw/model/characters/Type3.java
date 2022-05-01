@@ -15,17 +15,13 @@ public enum Type3 implements CharacterCard {
     CARD12(3); //Choose a color. Every player must return 3 student of that color from Dining Room to the Bag
 
     private final int cost;
+
     Type3(int c){
         this.cost = c;
     }
 
     @Override
     public void increaseCost() {
-
-    }
-
-    @Override
-    public void setInitialCost(int c) {
 
     }
 

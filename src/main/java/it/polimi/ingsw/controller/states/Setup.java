@@ -1,12 +1,10 @@
 package it.polimi.ingsw.controller.states;
 
-import it.polimi.ingsw.model.Bag;
+import it.polimi.ingsw.controller.Action;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.player.Player;
 
 import java.util.Collections;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Setup implements State {
 
@@ -44,20 +42,19 @@ public class Setup implements State {
             switch (game.getNumberOfPlayers()) {
                 case (2):
                 case (4):
-                    moveFromBagToEntrance(game.getDashboard().getBag(), player, 7);
+                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                            player.getSchoolBoard().getEntrance(),
+                            7);
                     break;
                 case (3):
-                    moveFromBagToEntrance(game.getDashboard().getBag(), player, 9);
+                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                            player.getSchoolBoard().getEntrance(),
+                            9);
                     break;
             }
         }
 
         Collections.shuffle(game.getOnlinePlayers());
         game.setCurrentPlayer(game.getOnlinePlayers().get(0));
-    }
-
-    private void moveFromBagToEntrance(Bag bag, Player player, int number) {
-        IntStream.range(0, number)
-                .forEach(i -> player.getSchoolBoard().addToEntrance(bag.drawStudent()));
     }
 }

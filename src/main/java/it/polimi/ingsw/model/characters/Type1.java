@@ -26,9 +26,6 @@ public enum Type1 implements CharacterCard {
     }
 
     @Override
-    public void setInitialCost(int c){}
-
-    @Override
     public void effect(Game game){}
 
     @Override

@@ -1,10 +1,11 @@
 package it.polimi.ingsw.controller.states;
 
+import it.polimi.ingsw.controller.Action;
 import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -14,7 +15,7 @@ public class Planning implements State {
     @Override
     public State nextState() {
         // TODO
-        return this;
+        return null;
     }
 
     @Override
@@ -24,12 +25,14 @@ public class Planning implements State {
             switch (game.getNumberOfPlayers()) {
                 case (2):
                 case (4):
-                    IntStream.range(0, 3)
-                            .forEach(i -> cloud.addStudent(game.getDashboard().getBag().drawStudent()));
+                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                            cloud,
+                            3);
                     break;
                 case (3):
-                    IntStream.range(0, 4)
-                            .forEach(i -> cloud.addStudent(game.getDashboard().getBag().drawStudent()));
+                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                            cloud,
+                            4);
                     break;
             }
         }
@@ -55,9 +58,9 @@ public class Planning implements State {
         }
 
         if (! player.getAvailableAssistants().contains(assistant)) {
-            throw new AlreadyPlayedAssistant();
+            throw new AlreadyPlayedAssistant("This assistant has already been played in a previous turn.");
         } else if (! realAvailableAssistants.contains(assistant)) {
-            throw new AlreadyPlayedAssistant();
+            throw new AlreadyPlayedAssistant("This assistant has already been played by another player.");
         } else {
             player.playAssistant(assistant);
         }
