@@ -1,19 +1,28 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ServerClientConnection implements Runnable {
+import it.polimi.ingsw.messages.fromClient.LoginMessage;
+import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
+import it.polimi.ingsw.observer.Observer;
+import it.polimi.ingsw.observer.Observable;
+
+public class ServerClientConnection implements Observable<Message>, Runnable {
     private Server server;
     private Socket socket;
     private String nickname;
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private boolean active;
+
+    private final List<Observer<Message>> observers = new ArrayList<>();
 
     public ServerClientConnection(Server server, Socket socket) {
         this.socket = socket;
@@ -60,7 +69,11 @@ public class ServerClientConnection implements Runnable {
     }
 
     public void readMessage(Message message) {
-
+        if (message instanceof LoginMessage) {
+            nickname = ((LoginMessage) message).getNickname();
+        } else {
+            notify(message);
+        }
     }
 
     public synchronized void close() {
@@ -68,6 +81,18 @@ public class ServerClientConnection implements Runnable {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void addObserver(Observer<Message> observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notify(Message message) {
+        for (Observer<Message> observer : observers) {
+            observer.update(message);
         }
     }
 }

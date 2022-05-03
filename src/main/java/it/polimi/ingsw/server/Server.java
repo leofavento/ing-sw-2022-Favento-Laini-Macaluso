@@ -28,6 +28,12 @@ public class Server implements Runnable {
                 new Thread(socketConnection).start();
             } catch (IOException e) {
                 System.out.println("Connection dropped.");
+                if (!socket.isClosed()) {
+                    try {
+                        socket.close();
+                    } catch (IOException ignored) {
+                    }
+                }
             }
         }
     }

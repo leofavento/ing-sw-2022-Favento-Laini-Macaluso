@@ -1,4 +1,6 @@
-package it.polimi.ingsw.messages;
+package it.polimi.ingsw.messages.fromClient;
+
+import it.polimi.ingsw.messages.Message;
 
 public class LoginMessage implements Message {
     private final String nickname;
