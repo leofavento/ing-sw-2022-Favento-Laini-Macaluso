@@ -5,15 +5,12 @@ import it.polimi.ingsw.model.GameInfo;
 
 public class JoinAlreadyExistingGame implements Message {
 
-    private GameInfo gameInfo;
+    private final GameInfo gameInfo;
 
 
-    public JoinAlreadyExistingGame(){
-        gameInfo = new GameInfo(gameInfo.getGameID(), gameInfo.getNumOfWaitingPlayers(), gameInfo.getNumOfTotalPlayers(), gameInfo.isExpertGame());
-
-
+    public JoinAlreadyExistingGame(int getGameID, int numOfWaitingPlayers, int numOfTotalPlayers, boolean isExpertGame){
+        gameInfo = new GameInfo(getGameID,numOfWaitingPlayers,numOfTotalPlayers,isExpertGame);
     }
-
 
     public GameInfo getGameInfo(){
         return gameInfo;
