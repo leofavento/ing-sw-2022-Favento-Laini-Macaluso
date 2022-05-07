@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Player {
-
     private final String nickname;
     private boolean isOnline;
     private int wizardID;
@@ -15,7 +14,7 @@ public class Player {
     private Assistant playedAssistant;
     private Cloud chosenCloud;
     private final SchoolBoard schoolBoard;
-
+    private PlayerStatus status;
 
     public Player(String nickname){
         this.nickname = nickname;
@@ -63,4 +62,11 @@ public class Player {
 
     public SchoolBoard getSchoolBoard() { return schoolBoard; }
 
+    public void setStatus(PlayerStatus status) {
+        this.status = status;
+    }
+
+    public PlayerStatus getStatus() {
+        return status;
+    }
 }

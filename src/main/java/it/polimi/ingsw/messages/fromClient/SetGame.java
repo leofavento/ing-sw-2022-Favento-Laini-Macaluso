@@ -3,20 +3,20 @@ package it.polimi.ingsw.messages.fromClient;
 import it.polimi.ingsw.messages.Message;
 
 public class SetGame implements Message {
-    private int NumberOfPlayers;
-    private boolean ExpertMode;
+    private final int numberOfPlayers;
+    private final boolean expertMode;
 
-    public SetGame(int NumberOfPlayers, boolean ExpertMode){
-        this.NumberOfPlayers = NumberOfPlayers;
-        this.ExpertMode = ExpertMode;
+    public SetGame(int numberOfPlayers, boolean expertMode){
+        this.numberOfPlayers = numberOfPlayers;
+        this.expertMode = expertMode;
     }
 
     public int getNumberOfPlayers(){
-        return NumberOfPlayers;
+        return numberOfPlayers;
     }
 
     public boolean getExpertMode(){
-        return ExpertMode;
+        return expertMode;
     }
 
 }
