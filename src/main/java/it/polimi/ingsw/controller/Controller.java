@@ -46,5 +46,7 @@ public class Controller {
         game.getOnlinePlayers().sort((Player p1, Player p2) -> Integer.compare(p1.getPlayedAssistant().getValue(), p1.getPlayedAssistant().getValue()));
     }
 
-
+    public State getState() {
+        return state;
+    }
 }
