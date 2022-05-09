@@ -87,7 +87,7 @@ public class Dashboard {
     }
     
     public void setCharacters() {
-        ArrayList<CharacterCard> allCharacters = new ArrayList<>();
+        /*ArrayList<CharacterCard> allCharacters = new ArrayList<>();
 
         Collections.addAll(allCharacters, Type1.values());
         Collections.addAll(allCharacters, Type2.values());
@@ -96,7 +96,7 @@ public class Dashboard {
 
         for (int i = 0; i < characters.length; i++) {
             characters[i] = allCharacters.get(i);
-        }
+        }*/
     }
 
     public CharacterCard[] getCharacters() {

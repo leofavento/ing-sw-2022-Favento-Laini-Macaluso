@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class CharacterController {
     public void setupCharacters(Dashboard dashboard) {
-        dashboard.setCharacters();
+        /*dashboard.setCharacters();
 
         for (CharacterCard c : dashboard.getCharacters()) {
             if (c instanceof Type2) {
@@ -23,10 +23,10 @@ public class CharacterController {
                         break;
                 }
             }
-        }
+        }*/
     }
 
-    public void applyEffect(Type1 character, Object destination) {
+    /*public void applyEffect(Type1 character, Object destination) {
 
-    }
+    }*/
 }

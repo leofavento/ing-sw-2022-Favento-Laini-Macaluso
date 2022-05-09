@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 //Characters that affect Students
 
-public enum Type2 implements CharacterCard {
+/*public enum Type2 implements CharacterCard {
 
     CARD1(1), //Take 1 student and place on an Island
 
@@ -58,5 +58,5 @@ public enum Type2 implements CharacterCard {
         students.remove(n);
         return t;
     }
-}
+}*/
 

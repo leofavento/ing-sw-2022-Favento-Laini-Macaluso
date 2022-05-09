@@ -2,21 +2,36 @@ package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.model.Game;
 
-public interface CharacterCard {
-    int cost = 0;
-    String usedBy = null;
-    boolean isActive = false;
+public abstract class CharacterCard {
 
-    void increaseCost();
+    int cost;
+    boolean isActive=false;
+    String UsedBy=null;
 
-    void effect(Game game);
+    public int getCost(){return cost;}
 
-    int getCost();
+    public void increaseCost(){
+        this.cost++;
+    }
 
-    void setActive();
+    public void setActive(){
+        this.isActive=true;
+    }
 
-    void setInactive();
+    public void setInactive(){
+        this.isActive=false;
+    }
 
-    void setUsedBy(String player);
+    public boolean getActive(){return isActive;}
+
+    public void setUsedBy(String Player){
+        this.UsedBy=Player;
+    }
+
+    public void resetUsedBy(){
+        this.UsedBy=null;
+    }
+
+    public String getUsedBy(){return UsedBy;}
 
 }

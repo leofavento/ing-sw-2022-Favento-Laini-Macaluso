@@ -19,9 +19,7 @@ public class DiningRoom implements StudentDeposit {
     }
 
     @Override
-    public void addStudent(Color color) {
-        students.put(color, students.get(color) + 1);
-    }
+    public void addStudent(Color color) {students.put(color, students.get(color) + 1);}
 
     @Override
     public void extractStudent(Color color) throws StudentNotExistingException {
