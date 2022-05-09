@@ -90,12 +90,6 @@ public class Dashboard {
         characters[0] = c.get(0);
         characters[1] = c.get(1);
         characters[2] = c.get(2);
-
-        //Collections.addAll(allCharacters,c);
-        //Collections.shuffle(gameCharacters);
-        //for (int i = 0; i < characters.length; i++) {
-          //  characters[i] = allCharacters.get(i);
-        //}
     }
 
     public CharacterCard[] getCharacters() {
