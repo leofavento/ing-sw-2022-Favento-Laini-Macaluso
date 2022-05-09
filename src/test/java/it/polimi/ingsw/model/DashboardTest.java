@@ -1,6 +1,12 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.characters.Char1;
+import it.polimi.ingsw.model.characters.Char5;
+import it.polimi.ingsw.model.characters.Char9;
+import it.polimi.ingsw.model.characters.CharacterCard;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,7 +84,14 @@ class DashboardTest {
     public void testCharactersInitialization() {
         Dashboard dashboard = new Dashboard();
 
-        dashboard.setCharacters();
+        ArrayList<CharacterCard> array = new ArrayList<>();
+        CharacterCard c1 = new Char1();
+        array.add(c1);
+        CharacterCard c2 = new Char9();
+        array.add(c2);
+        CharacterCard c3 = new Char5();
+        array.add(c3);
+        dashboard.setCharacters(array);
 
         assertEquals(3, dashboard.getCharacters().length);
         assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[1]);

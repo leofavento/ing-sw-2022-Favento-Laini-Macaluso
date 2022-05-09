@@ -8,30 +8,28 @@ import java.util.ArrayList;
 
 public class Char11 extends CharacterCard{
 
-    private final ArrayList<Color> students;
-
-    Char11(){
+    public Char11(){
         cost=2;
         students=new ArrayList<>();
     }
 
     //In setup draw 4 students and place them on this card
+    @Override
     public void setUp (Bag bag){
         while(students.size()<4) {
             students.add(bag.drawStudent());
         }
     }
 
-    public void addStudent(Bag bag){
-        this.students.add(bag.drawStudent());}
-
-    public ArrayList<Color> getStudents(){return students;}
+    @Override
+    public void addStudent(Color c){
+        this.students.add(c);}
 
     //Take 1 student from this card and place it on your DiningRoom
-    public void effect(Color c, DiningRoom diningRoom){
+    /*public void effect(Color c, DiningRoom diningRoom){
         this.students.remove(c);
         diningRoom.addStudent(c);
-    }
+    }*/
 
 
 }

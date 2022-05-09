@@ -5,8 +5,8 @@ import it.polimi.ingsw.model.characters.*;
 
 import java.util.stream.IntStream;
 
-public class CharacterController {
-    public void setupCharacters(Dashboard dashboard) {
+public class CharacterFactory {
+    public void generateCharacters(Dashboard dashboard) {
         /*dashboard.setCharacters();
 
         for (CharacterCard c : dashboard.getCharacters()) {

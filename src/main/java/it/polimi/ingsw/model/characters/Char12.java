@@ -7,17 +7,15 @@ import it.polimi.ingsw.model.player.DiningRoom;
 
 public class Char12 extends CharacterCard{
 
-    private Color color;
-
-    Char12(){cost=3;}
+    public Char12(){cost=3;}
 
     //Every player must return 3 Students of that type from their DiningRoom to the bag. If any player has fewer than 3 Students of that color, return as many Students as they have
 
-    public void effect(Color c, DiningRoom diningRoom, Bag bag) throws StudentNotExistingException {
+    /*public void effect(Color c, DiningRoom diningRoom, Bag bag) throws StudentNotExistingException {
         for (int z=0; z<3; z++){
             diningRoom.extractStudent(c);
             bag.addStudent(c);
         }
-    }
+    }*/
 
 }

@@ -2,8 +2,7 @@ package it.polimi.ingsw.model.characters;
 
 public class Char8 extends CharacterCard{
 
-    private final int moreInfluence=2;
-    Char8(){
+    public Char8(){
         cost=2;
     }
 

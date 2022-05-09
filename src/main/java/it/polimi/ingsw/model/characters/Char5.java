@@ -5,17 +5,12 @@ import it.polimi.ingsw.model.Island;
 
 public class Char5 extends CharacterCard{
 
-    private int noEntryTiles=4;
-
     public Char5(){
         this.cost=2;
+        this.noEntryTiles=4;
     }
 
-
-    public int getNoEntryTiles(){
-        return noEntryTiles;
-    }
-
+    @Override
     public void useNoEntryTiles(Island island) throws NoEntryTilesLeftException {
         if(noEntryTiles==0){
             throw new NoEntryTilesLeftException("There are " + noEntryTiles +  " NO ENTRY TILES left");

@@ -86,17 +86,16 @@ public class Dashboard {
         motherNaturePosition = islands.indexOf(island);
     }
     
-    public void setCharacters() {
-        /*ArrayList<CharacterCard> allCharacters = new ArrayList<>();
+    public void setCharacters(ArrayList<CharacterCard> c) {
+        characters[0] = c.get(0);
+        characters[1] = c.get(1);
+        characters[2] = c.get(2);
 
-        Collections.addAll(allCharacters, Type1.values());
-        Collections.addAll(allCharacters, Type2.values());
-        Collections.addAll(allCharacters, Type3.values());
-        Collections.shuffle(allCharacters);
-
-        for (int i = 0; i < characters.length; i++) {
-            characters[i] = allCharacters.get(i);
-        }*/
+        //Collections.addAll(allCharacters,c);
+        //Collections.shuffle(gameCharacters);
+        //for (int i = 0; i < characters.length; i++) {
+          //  characters[i] = allCharacters.get(i);
+        //}
     }
 
     public CharacterCard[] getCharacters() {

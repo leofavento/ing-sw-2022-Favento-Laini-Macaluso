@@ -2,7 +2,7 @@ package it.polimi.ingsw.model.characters;
 
 public class Char6 extends CharacterCard{
 
-    Char6(){
+    public Char6(){
         this.cost=3;
     }
 
