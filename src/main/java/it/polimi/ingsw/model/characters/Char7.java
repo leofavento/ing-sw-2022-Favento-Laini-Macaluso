@@ -26,4 +26,6 @@ public class Char7 extends CharacterCard{
 
     //Take 3 student from this card and replace them with the same number of Students from entrance
     public void removeStudent(Color c){this.students.remove(c);}
+
+
 }

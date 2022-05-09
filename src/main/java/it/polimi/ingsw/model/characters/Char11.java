@@ -2,6 +2,7 @@ package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
+import it.polimi.ingsw.model.player.DiningRoom;
 
 import java.util.ArrayList;
 
@@ -21,12 +22,16 @@ public class Char11 extends CharacterCard{
         }
     }
 
-    public void addStudent(Color c){this.students.add(c);}
+    public void addStudent(Bag bag){
+        this.students.add(bag.drawStudent());}
 
     public ArrayList<Color> getStudents(){return students;}
 
     //Take 1 student from this card and place it on your DiningRoom
-    public void removeStudent(Color c){this.students.remove(c);}
+    public void effect(Color c, DiningRoom diningRoom){
+        this.students.remove(c);
+        diningRoom.addStudent(c);
+    }
 
 
 }
