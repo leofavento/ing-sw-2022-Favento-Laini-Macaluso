@@ -7,7 +7,9 @@ import it.polimi.ingsw.model.player.Entrance;
 
 public class Char10 extends CharacterCard{
 
-    public Char10(){this.cost=1;}
+    public Char10(){
+        value= CharacterEnum.valueOf(("Char10"));
+        this.cost=1;}
 
     //You may exchange up to 2 students between your Entrance and your dining room
 

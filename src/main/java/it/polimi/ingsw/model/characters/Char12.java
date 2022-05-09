@@ -7,7 +7,9 @@ import it.polimi.ingsw.model.player.DiningRoom;
 
 public class Char12 extends CharacterCard{
 
-    public Char12(){cost=3;}
+    public Char12(){
+        value= CharacterEnum.valueOf(("Char12"));
+        cost=3;}
 
     //Every player must return 3 Students of that type from their DiningRoom to the bag. If any player has fewer than 3 Students of that color, return as many Students as they have
 

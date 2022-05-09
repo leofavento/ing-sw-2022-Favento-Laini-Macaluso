@@ -1,9 +1,9 @@
 package it.polimi.ingsw.model.characters;
 
 public class Char4 extends CharacterCard{
-    private final int additionalMovements=2;
 
     public Char4(){
+        value= CharacterEnum.valueOf(("Char4"));
         this.cost=1;
     }
 

@@ -24,25 +24,16 @@ public class CharacterController {
         dashboard.setCharacters(gameCharacters);
     }
 
+    public void setUpCharacter(CharacterCard c){
+        //TODO
+    }
 
-        /*for (CharacterCard c : dashboard.getCharacters()) {
-            if (c instanceof Type2) {
-                switch((Type2) c) {
-                    case CARD1:
-                    case CARD11:
-                        IntStream.range(0,4).
-                                forEach(i -> ((Type2) c).addStudent(dashboard.getBag().drawStudent()));
-                        break;
-                    case CARD7:
-                        IntStream.range(0,6).
-                                forEach(i -> ((Type2) c).addStudent(dashboard.getBag().drawStudent()));
-                        break;
-                }
-            }
-        }*/
+    public void applyEffect(CharacterCard c){
+        switch(c.getValue()){
+            case Char1:
+                //TODO
 
+        }
 
-    /*public void applyEffect(Type1 character, Object destination) {
-
-    }*/
+    }
 }

@@ -5,6 +5,7 @@ import it.polimi.ingsw.model.Color;
 public class Char9 extends CharacterCard{
 
     public Char9(){
+        value= CharacterEnum.valueOf(("Char9"));
         cost=3;
     }
 

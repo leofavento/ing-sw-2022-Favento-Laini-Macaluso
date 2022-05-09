@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Char7 extends CharacterCard{
 
     public Char7(){
+        value= CharacterEnum.valueOf(("Char7"));
         students = new ArrayList<>();
         cost=1;
     }

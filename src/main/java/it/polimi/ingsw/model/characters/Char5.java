@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Island;
 public class Char5 extends CharacterCard{
 
     public Char5(){
+        value= CharacterEnum.valueOf(("Char5"));
         this.cost=2;
         this.noEntryTiles=4;
     }

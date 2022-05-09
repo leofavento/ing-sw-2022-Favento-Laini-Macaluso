@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public abstract class CharacterCard {
 
+    CharacterEnum value=null;
     int cost;
     boolean isActive=false;
     String UsedBy=null;
@@ -39,6 +40,8 @@ public abstract class CharacterCard {
     public void resetUsedBy(){this.UsedBy=null;}
 
     public String getUsedBy(){return UsedBy;}
+
+    public CharacterEnum getValue(){return value;}
 
     public void setUp (Bag bag){}
 

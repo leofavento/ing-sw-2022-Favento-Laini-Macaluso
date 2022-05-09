@@ -3,6 +3,7 @@ package it.polimi.ingsw.model.characters;
 public class Char8 extends CharacterCard{
 
     public Char8(){
+        value= CharacterEnum.valueOf(("Char8"));
         cost=2;
     }
 
