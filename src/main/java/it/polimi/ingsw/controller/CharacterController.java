@@ -1,5 +1,6 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.characters.CharacterEnum;
@@ -20,12 +21,21 @@ public class CharacterController {
         Collections.shuffle(allCharacters);
         for (int i = 0; i < 3; i++) {
             gameCharacters.add(factory.getCharacter(allCharacters.get(i)));
+            setUpCharacter(gameCharacters.get(i),dashboard.getBag());
         }
         dashboard.setCharacters(gameCharacters);
+
     }
 
-    public void setUpCharacter(CharacterCard c){
-        //TODO
+    public void setUpCharacter(CharacterCard c, Bag bag){
+        switch  (c.getValue()){
+            case Char1:
+                c.setUp(bag);
+            case Char7:
+                c.setUp(bag);
+            case Char11:
+                c.setUp(bag);
+        }
     }
 
     public void applyEffect(CharacterCard c){
