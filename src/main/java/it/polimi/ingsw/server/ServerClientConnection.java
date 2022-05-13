@@ -17,13 +17,13 @@ import it.polimi.ingsw.observer.Observer;
 import it.polimi.ingsw.observer.Observable;
 
 public class ServerClientConnection implements Observable<Message>, Runnable {
-    private Server server;
-    private Socket socket;
+    private final Server server;
+    private final Socket socket;
     private String nickname;
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private boolean active;
-    private int TIMER_VALUE = 30000;
+    private GameHandler gameHandler;
 
     private final List<Observer<Message>> observers = new ArrayList<>();
 
@@ -76,7 +76,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         if (message instanceof LoginMessage || message instanceof SetGame) {
             readSetupMessage(message);
         } else {
-            notify(message);
+            gameHandler.readMessage(nickname, message);
         }
     }
 
@@ -114,6 +114,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
 
     public String getNickname() {
         return nickname;
+    }
+
+    public void setGame(GameHandler game) {
+        this.gameHandler = game;
     }
 
     @Override

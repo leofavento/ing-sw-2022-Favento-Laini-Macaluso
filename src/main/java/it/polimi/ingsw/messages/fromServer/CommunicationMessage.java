@@ -3,6 +3,7 @@ package it.polimi.ingsw.messages.fromServer;
 import it.polimi.ingsw.messages.Message;
 
 public enum CommunicationMessage implements Message {
+    PING("Ping!"),
     ENTER_NICKNAME("Please enter your nickname: "),
     SUCCESS("Success"),
     END_MOVE_1("Move 1 is ended"),
