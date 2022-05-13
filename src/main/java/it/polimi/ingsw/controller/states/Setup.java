@@ -1,12 +1,20 @@
 package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Action;
+import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.observer.Observer;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Setup implements State {
+    Message requestedMessage;
+    String requestedSender; // maybe not needed (should always be currentPlayer)
+
+    private final List<Observer<Message>> observers = new ArrayList<>();
 
     @Override
     public State nextState() {
@@ -25,18 +33,7 @@ public class Setup implements State {
             }
         }
         game.getDashboard().getBag().refill(24);
-        game.getDashboard().placeCloudTiles(game.getOnlinePlayers().size());
-        switch(game.getNumberOfPlayers()) {
-            case (2):
-                game.getDashboard().placeCloudTiles(2);
-                break;
-            case (3):
-                game.getDashboard().placeCloudTiles(3);
-                break;
-            case (4):
-                game.getDashboard().placeCloudTiles(4);
-                break;
-        }
+        game.getDashboard().placeCloudTiles(game.getNumberOfPlayers());
         game.initialTowersDeal();
         for (Player player : game.getOnlinePlayers()) {
             switch (game.getNumberOfPlayers()) {
@@ -56,5 +53,29 @@ public class Setup implements State {
 
         Collections.shuffle(game.getOnlinePlayers());
         game.setCurrentPlayer(game.getOnlinePlayers().get(0));
+    }
+
+    @Override
+    public void receiveMessage(Message message, String sender) {
+        if (! message.getClass().equals(requestedMessage.getClass())) {
+
+        } else if (! sender.equals(requestedSender)) {
+
+        } else {
+
+        }
+    }
+
+
+    @Override
+    public void addObserver(Observer<Message> observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void notify(Message message) {
+        for(Observer<Message> o : observers) {
+            o.update(message);
+        }
     }
 }

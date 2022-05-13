@@ -3,9 +3,11 @@ package it.polimi.ingsw.controller.states;
 import it.polimi.ingsw.exceptions.FullDiningRoomException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
+import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.observer.Observer;
 
 public class ActionStep1 implements State {
     @Override
@@ -43,6 +45,11 @@ public class ActionStep1 implements State {
         }
     }
 
+    @Override
+    public void receiveMessage(Message message, String sender) {
+
+    }
+
     private void checkIfFullDiningRoom(Player player, Color student) throws FullDiningRoomException {
         if (player.getSchoolBoard().getDiningRoom().getStudentsNumber(student) == 10) {
             throw new FullDiningRoomException("The dining room is full for " + student.name() + " students.");
@@ -53,5 +60,15 @@ public class ActionStep1 implements State {
         if (destination < 0 || destination > islandsSize) {
             throw new InvalidInputException("The destination value must be between 0 and " + islandsSize);
         }
+    }
+
+    @Override
+    public void addObserver(Observer<Message> observer) {
+
+    }
+
+    @Override
+    public void notify(Message message) {
+
     }
 }

@@ -2,10 +2,12 @@ package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Action;
 import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -50,6 +52,11 @@ public class Planning implements State {
         }
     }
 
+    @Override
+    public void receiveMessage(Message message, String sender) {
+
+    }
+
     private void playAssistant(ArrayList<Player> allPlayers, Player player, Assistant assistant) throws AlreadyPlayedAssistant {
         ArrayList<Assistant> realAvailableAssistants = new ArrayList<>(player.getAvailableAssistants());
         
@@ -64,5 +71,15 @@ public class Planning implements State {
         } else {
             player.playAssistant(assistant);
         }
+    }
+
+    @Override
+    public void addObserver(Observer<Message> observer) {
+
+    }
+
+    @Override
+    public void notify(Message message) {
+
     }
 }
