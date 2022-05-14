@@ -8,12 +8,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server implements Runnable {
-    private int socketPort;
-    private ServerSocket socket;
-    private ArrayList<ServerClientConnection> lobby;
+    private final int socketPort;
+    private final ServerSocket socket;
+    private final ArrayList<ServerClientConnection> lobby;
     private ServerClientConnection host;
-    private ArrayList<String> takenNicknames;
-    private ArrayList<GameHandler> activeGames;
+    private final ArrayList<String> takenNicknames;
+    private final ArrayList<GameHandler> activeGames;
+    private final int SOCKET_TIMEOUT = 2000000;
 
     private int gameID;
     private int numberOfPlayers;
@@ -42,6 +43,7 @@ public class Server implements Runnable {
         while(true) {
             try {
                 Socket client = socket.accept();
+                client.setSoTimeout(SOCKET_TIMEOUT);
                 ServerClientConnection socketConnection = new ServerClientConnection(this, client);
                 new Thread(socketConnection).start();
             } catch (IOException e) {
@@ -58,7 +60,7 @@ public class Server implements Runnable {
 
     /**
      * Checks if newNickname has already been used or not
-     * @param newNickname
+     * @param newNickname nickname checked
      * @return true if the nickname is valid, false if it has to be changed
      */
     public boolean checkNickname(String newNickname) {
@@ -89,7 +91,24 @@ public class Server implements Runnable {
                 players.add(lobby.remove(0));
             }
             GameHandler gameHandler = new GameHandler(gameID, players, expertMode, numberOfPlayers);
+            gameID++;
+            expertMode = false;
+            numberOfPlayers = 0;
+            for (ServerClientConnection player : players) {
+                player.setGame(gameHandler);
+            }
             activeGames.add(gameHandler);
         }
+    }
+
+    public GameHandler getGameByNickname(String nickname) {
+        for(GameHandler game : activeGames) {
+            for (ServerClientConnection player : game.getPlayers()) {
+                if (player.getNickname().equals(nickname)) {
+                    return game;
+                }
+            }
+        }
+        return null;
     }
 }
