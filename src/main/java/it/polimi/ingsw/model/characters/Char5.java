@@ -12,13 +12,17 @@ public class Char5 extends CharacterCard{
     }
 
     @Override
-    public void useNoEntryTiles(Island island) throws NoEntryTilesLeftException {
+    public void useNoEntryTile() throws NoEntryTilesLeftException {
         if(noEntryTiles==0){
             throw new NoEntryTilesLeftException("There are " + noEntryTiles +  " NO ENTRY TILES left");
         }
         else{
-            island.addNoEntry();
             noEntryTiles--;
         }
+    }
+
+    @Override
+    public void addNoEntryTile(){
+        noEntryTiles++;
     }
 }

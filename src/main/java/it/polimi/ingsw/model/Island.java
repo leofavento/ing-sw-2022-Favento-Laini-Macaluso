@@ -82,6 +82,31 @@ public class Island implements StudentDeposit {
         return influence;
     }
 
+    public int noTowerInfluence(ArrayList<Player> team){
+        int influence = 0;
+        ArrayList<Color> colors = new ArrayList<>();
+
+        for (Player p : team) {
+            colors.addAll(p.getSchoolBoard()
+                    .getProfessors()
+                    .stream()
+                    .map(Professor::getColor)
+                    .collect(Collectors.toList()));
+            influence += getExtraInfluence(p);
+        }
+
+        for (Color s : students) {
+            if (colors.contains(s)) {
+                influence++;
+            }
+        }
+
+        return influence;
+
+    }
+
+
+
     public Tower getTowerColor(){
         return towerColor;
     }
@@ -97,6 +122,8 @@ public class Island implements StudentDeposit {
     public void addNoEntry(){
         noEntry++;
     }
+
+    public int getNoEntry(){return noEntry;}
 
     public boolean useNoEntry(){
         if (noEntry > 0) {

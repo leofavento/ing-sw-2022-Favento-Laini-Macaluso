@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.model.characters.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Dashboard {
@@ -12,6 +13,8 @@ public class Dashboard {
     private final Professor[] professors;
     private final Bag bag;
     private int motherNaturePosition;
+    private int additionalMNMovements;
+    private boolean doNotCountTowers=false;
 
     public Dashboard(){
         this.islands= new ArrayList<>();
@@ -74,6 +77,10 @@ public class Dashboard {
         return professors;
     }
 
+    public Professor getProfessorwithindex(Integer i){
+        return professors[i];
+    }
+
     public Bag getBag() {
         return bag;
     }
@@ -94,5 +101,25 @@ public class Dashboard {
 
     public CharacterCard[] getCharacters() {
         return characters;
+    }
+
+    public int getAdditionalMNMovements() {
+        return additionalMNMovements;
+    }
+
+    public void setAdditionalMNMovements(int additionalMNMovements) {
+        this.additionalMNMovements = additionalMNMovements;
+    }
+
+    public boolean getDoNotCountTowers(){
+        return doNotCountTowers;
+    }
+
+    public void enableDoNotCountTowers(){
+        doNotCountTowers=true;
+    }
+
+    public void disableDoNotCountTowers(){
+        doNotCountTowers=false;
     }
 }

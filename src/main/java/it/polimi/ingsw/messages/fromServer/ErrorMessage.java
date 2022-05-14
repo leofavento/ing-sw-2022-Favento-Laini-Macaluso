@@ -9,7 +9,8 @@ public enum ErrorMessage implements Message {
     TOWER_NOT_AVAILABLE("The chosen tower color is not available"),
     WIZARD_NOT_AVAILABLE("The chosen wizard is not available"),
     INVALID_ASSISTANT("The chosen assistant has already been played"),
-    INVALID_INPUT("Invalid input");
+    INVALID_INPUT("Invalid input"),
+    INVALID_ACTION("There's a time and a place for everything, but not now.");
 
     private final String message;
 

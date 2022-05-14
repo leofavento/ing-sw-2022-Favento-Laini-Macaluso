@@ -130,4 +130,8 @@ public class Game {
         teams.putIfAbsent(tower, new ArrayList<>());
         teams.get(tower).add(player);
     }
+
+    public List<Tower> getTeams() {
+        return new ArrayList<>(teams.keySet());
+    }
 }

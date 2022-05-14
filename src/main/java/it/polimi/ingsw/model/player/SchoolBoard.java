@@ -36,6 +36,10 @@ public class SchoolBoard {
         this.numTower=numTower;
     }
 
+    public void addTower(){this.numTower++;}
+
+    public void removeTower(){this.numTower--;}
+
     public DiningRoom getDiningRoom() {
         return diningRoom;
     }

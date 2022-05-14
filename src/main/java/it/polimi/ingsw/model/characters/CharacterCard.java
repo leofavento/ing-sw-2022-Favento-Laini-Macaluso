@@ -4,6 +4,7 @@ import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
+import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 
@@ -33,8 +34,8 @@ public abstract class CharacterCard {
 
     public boolean getActive(){return isActive;}
 
-    public void setUsedBy(String Player){
-        this.UsedBy=Player;
+    public void setUsedBy(String nickname){
+        this.UsedBy=nickname;
     }
 
     public void resetUsedBy(){this.UsedBy=null;}
@@ -45,21 +46,23 @@ public abstract class CharacterCard {
 
     public void setUp (Bag bag){}
 
-    void addStudent(Color c){}
+    public void addStudent(Color c){}
 
-    ArrayList<Color> getStudents(){return students;}
+    public ArrayList<Color> getStudents(){return students;}
 
-    void removeStudent(Color c){}
+    public void removeStudent(Color c){}
 
-    int getNoEntryTiles(){
+    public int getNoEntryTiles(){
         return noEntryTiles;
     }
 
-    void useNoEntryTiles(Island island) throws NoEntryTilesLeftException {}
+    public void addNoEntryTile(){}
 
-    Color getColor(){return color;}
+    public void useNoEntryTile() throws NoEntryTilesLeftException {}
 
-    void setColor(Color c){}
+    public Color getColor(){return color;}
 
-    void resetColor(){}
+    public void setColor(Color c){}
+
+    public void resetColor(){}
 }
