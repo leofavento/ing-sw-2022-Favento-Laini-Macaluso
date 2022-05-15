@@ -1,23 +1,17 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.controller.states.EnumState;
+import it.polimi.ingsw.controller.states.Setup;
 import it.polimi.ingsw.controller.states.State;
 import it.polimi.ingsw.messages.Message;
-import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.characters.Char5;
 import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
-import it.polimi.ingsw.model.player.PlayerStatus;
-import it.polimi.ingsw.server.VirtualView;
 
 import it.polimi.ingsw.observer.Observable;
 import it.polimi.ingsw.observer.Observer;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -34,7 +28,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
     public Controller(Game game) {
         //this.virtualView=v;
         this.game = game;
-        setState(EnumState.SETUP.getState());
+        setState(new Setup(game, this));
     }
 
     public void setState(State state) {

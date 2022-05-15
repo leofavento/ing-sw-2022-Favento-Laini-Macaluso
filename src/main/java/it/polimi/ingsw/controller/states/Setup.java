@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Action;
+import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
@@ -17,6 +18,7 @@ import java.util.stream.IntStream;
 
 public class Setup implements State {
     Game game;
+    Controller controller;
     boolean requestedTower = false;
     boolean requestedWizardID = false;
     boolean requestedAck = false;
@@ -26,14 +28,19 @@ public class Setup implements State {
 
     private final List<Observer<Message>> observers = new ArrayList<>();
 
-    @Override
-    public State nextState() {
-        return new Planning();
+    public Setup(Game game, Controller controller) {
+        this.game = game;
+        this.controller = controller;
     }
 
     @Override
-    public void execute(Game game) {
-        this.game = game;
+    public void nextState() {
+        controller.setState(new Planning(game, controller));
+        controller.getState().execute();
+    }
+
+    @Override
+    public void execute() {
         game.getDashboard().placeIslands();
         game.getDashboard().setMotherNature(game.getDashboard().getIslands().get(0));
         game.getDashboard().getBag().refill(2);
@@ -69,7 +76,7 @@ public class Setup implements State {
      * Checks if every tower has been chosen. If there are still towers left the current player
      * is asked to enter his desired tower color, otherwise the method proceeds in the setup
      */
-    public void checkTowers() {
+    private void checkTowers() {
         for (Integer i : availableTowers.values()) {
             if (i > 0) {
                 requestedTower = true;
@@ -82,7 +89,7 @@ public class Setup implements State {
         notify(new AvailableWizards(availableWizards));
     }
 
-    public void checkWizards() {
+    private void checkWizards() {
         if (game.getOnlinePlayers().stream().anyMatch(player -> player.getWizardID() == 0)) {
             requestedWizardID = true;
             notify(new AvailableWizards(availableWizards));
@@ -117,10 +124,8 @@ public class Setup implements State {
         if ((! sender.equals(game.getCurrentPlayer().getNickname())) && ! requestedAck) {
             notify(ErrorMessage.WRONG_TURN);
         } else if (message instanceof ChosenTower && requestedTower) {
-            requestedTower = false;
             receiveTower((ChosenTower) message);
         } else if (message instanceof ChosenWizard && requestedWizardID) {
-            requestedWizardID = false;
             receiveWizard((ChosenWizard) message);
         } else if (message instanceof Ack && requestedAck) {
             receiveAck(sender);
@@ -134,10 +139,11 @@ public class Setup implements State {
      * sends an ErrorMessage
      * @param message message sent from client to server containing the desired tower color
      */
-    public void receiveTower(ChosenTower message) {
+    private void receiveTower(ChosenTower message) {
         Tower chosenTower = message.getColor();
         if (game.getCurrentPlayer().getSchoolBoard().getTowerColor() == null) {
             if (availableTowers.get(chosenTower) > 0) {
+                requestedTower = false;
                 availableTowers.put(chosenTower, availableTowers.get(chosenTower) - 1);
                 game.addPlayerToTeam(chosenTower, game.getCurrentPlayer());
                 game.getCurrentPlayer().getSchoolBoard().setTowerColor(chosenTower);
@@ -153,10 +159,11 @@ public class Setup implements State {
         }
     }
 
-    public void receiveWizard(ChosenWizard message) {
+    private void receiveWizard(ChosenWizard message) {
         Integer chosenWizard = message.getChosenWizard();
         if (game.getCurrentPlayer().getWizardID() == 0) {
             if (availableWizards.contains(chosenWizard)) {
+                requestedWizardID = false;
                 availableWizards.remove(chosenWizard);
                 game.getCurrentPlayer().setWizardID(chosenWizard);
                 notify(CommunicationMessage.SUCCESS);
@@ -171,10 +178,10 @@ public class Setup implements State {
         }
     }
 
-    public void receiveAck(String sender) {
+    private void receiveAck(String sender) {
         missingAcks.remove(sender);
         if (missingAcks.isEmpty()) {
-            nextState().execute(game);
+            nextState();
         }
     }
 

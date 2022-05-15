@@ -1,5 +1,6 @@
 package it.polimi.ingsw.controller.states;
 
+import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.exceptions.FullDiningRoomException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
@@ -10,14 +11,21 @@ import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.observer.Observer;
 
 public class ActionStep1 implements State {
-    @Override
-    public State nextState() {
-        // TODO
-        return null;
+    Game game;
+    Controller controller;
+
+    public ActionStep1(Game game, Controller controller) {
+        this.game = game;
+        this.controller = controller;
     }
 
     @Override
-    public void execute(Game game) {
+    public void nextState() {
+        // TODO
+    }
+
+    @Override
+    public void execute() {
         int numStudent = 3;
         if (game.getNumberOfPlayers() == 3) {
             numStudent = 4;

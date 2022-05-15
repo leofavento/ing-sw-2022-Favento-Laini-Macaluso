@@ -1,8 +1,14 @@
 package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Action;
+import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromClient.Ack;
+import it.polimi.ingsw.messages.fromClient.PlayAssistant;
+import it.polimi.ingsw.messages.fromServer.AvailableAssistants;
+import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
+import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.messages.fromServer.PlayerStatusMessage;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
@@ -15,62 +21,72 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Planning implements State {
     Game game;
+    Controller controller;
+    boolean requestedAck = false;
+    boolean requestedAssistant = false;
     Map<Player, Assistant> playedAssistants = new HashMap<>();
+    ArrayList<String> missingAcks = new ArrayList<>();
 
     private final List<Observer<Message>> observers = new ArrayList<>();
 
-    @Override
-    public State nextState() {
-        // TODO
-        return null;
+    public Planning(Game game, Controller controller) {
+        this.game = game;
+        this.controller = controller;
     }
 
     @Override
-    public void execute(Game game) {
-        this.game = game;
+    public void nextState() {
+        controller.setState(new ActionStep1(game, controller));
+        controller.getState().execute();
+    }
 
+    @Override
+    public void execute() {
         initializeStudentsToClouds();
-
-        for (Player player : game.getOnlinePlayers()) {
-            player.setStatus(PlayerStatus.WAITING);
-        }
-        game.getCurrentPlayer().setStatus(PlayerStatus.PLANNING);
         notifyStatus();
-
-        for (Player player : game.getOnlinePlayers()) {
-            game.setCurrentPlayer(player);
-
-            // TODO ask current player to select assistant
-            Assistant receivedAssistant = null;
-            try {
-                playAssistant(game.getOnlinePlayers(), player, receivedAssistant);
-            } catch (AlreadyPlayedAssistant e) {
-                // TODO ask again to select an assistant
-            }
-        }
     }
 
     @Override
     public void receiveMessage(Message message, String sender) {
-
+        if ((! sender.equals(game.getCurrentPlayer().getNickname())) && ! requestedAck) {
+            notify(ErrorMessage.WRONG_TURN);
+        } else if (message instanceof PlayAssistant && requestedAssistant) {
+            receiveAssistant((PlayAssistant) message);
+        } else if (message instanceof Ack && requestedAck) {
+            receiveAck(sender);
+        }
     }
 
-    private void playAssistant(ArrayList<Player> allPlayers, Player player, Assistant assistant) throws AlreadyPlayedAssistant {
-        ArrayList<Assistant> realAvailableAssistants = new ArrayList<>(player.getAvailableAssistants());
-        
-        for (int i = 0; i < allPlayers.indexOf(player); i++) {
-            realAvailableAssistants.remove(allPlayers.get(i).getPlayedAssistant());
-        }
+    private void receiveAssistant(PlayAssistant message) {
+        Assistant assistant = message.getAssistant();
 
-        if (! player.getAvailableAssistants().contains(assistant)) {
-            throw new AlreadyPlayedAssistant("This assistant has already been played in a previous turn.");
-        } else if (! realAvailableAssistants.contains(assistant)) {
-            throw new AlreadyPlayedAssistant("This assistant has already been played by another player.");
+        if (game.getCurrentPlayer().getAvailableAssistants().contains(assistant)) {
+            if (! playedAssistants.containsValue(assistant)
+                    || playedAssistants.values().containsAll(game.getCurrentPlayer().getAvailableAssistants())) {
+                requestedAssistant = false;
+                game.getCurrentPlayer().playAssistant(assistant);
+                playedAssistants.put(game.getCurrentPlayer(), assistant);
+                notify(CommunicationMessage.SUCCESS);
+                game.setNextPlayer();
+                notifyStatus();
+            } else {
+                notify(ErrorMessage.INVALID_ASSISTANT);
+            }
         } else {
-            player.playAssistant(assistant);
+            notify(ErrorMessage.UNAVAILABLE_ASSISTANT);
+        }
+    }
+
+    private void checkAssistants() {
+        if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
+            requestedAssistant = true;
+            notify(new AvailableAssistants(game.getCurrentPlayer().getAvailableAssistants(), playedAssistants));
+        } else {
+            nextState();
         }
     }
 
@@ -92,7 +108,23 @@ public class Planning implements State {
         }
     }
 
+    private void receiveAck(String sender) {
+        missingAcks.remove(sender);
+        if (missingAcks.isEmpty()) {
+            requestedAck = false;
+            checkAssistants();
+        }
+    }
+
     private void notifyStatus() {
+        requestedAck = true;
+        missingAcks.addAll(game.getOnlinePlayers().stream()
+                .map(Player::getNickname)
+                .collect(Collectors.toList()));
+        for (Player player : game.getOnlinePlayers()) {
+            player.setStatus(PlayerStatus.WAITING);
+        }
+        game.getCurrentPlayer().setStatus(PlayerStatus.PLANNING);
         for (Player player : game.getOnlinePlayers()) {
             notify(new PlayerStatusMessage(player.getStatus()));
         }

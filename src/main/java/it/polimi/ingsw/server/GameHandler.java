@@ -27,7 +27,7 @@ public class GameHandler implements Observer<Message> {
         game = new Game(gameID, numberOfPlayers, expertMode);
         controller = new Controller(game);
         controller.addObserver(this);
-        controller.getState().execute(game);
+        controller.getState().execute();
     }
 
     public ArrayList<ServerClientConnection> getPlayers() {

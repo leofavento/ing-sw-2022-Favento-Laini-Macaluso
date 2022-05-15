@@ -6,7 +6,7 @@ import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.observer.Observable;
 
 public interface State extends Observable<Message>{
-    State nextState();
-    void execute(Game game);
+    void nextState();
+    void execute();
     void receiveMessage(Message message, String sender);
 }
