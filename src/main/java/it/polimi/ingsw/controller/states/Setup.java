@@ -114,7 +114,7 @@ public class Setup implements State {
 
     @Override
     public void receiveMessage(Message message, String sender) {
-        if (! sender.equals(game.getCurrentPlayer().getNickname())) {
+        if ((! sender.equals(game.getCurrentPlayer().getNickname())) && ! requestedAck) {
             notify(ErrorMessage.WRONG_TURN);
         } else if (message instanceof ChosenTower && requestedTower) {
             requestedTower = false;
@@ -123,7 +123,7 @@ public class Setup implements State {
             requestedWizardID = false;
             receiveWizard((ChosenWizard) message);
         } else if (message instanceof Ack && requestedAck) {
-            receiveAck((Ack) message);
+            receiveAck(sender);
         }
     }
 
@@ -171,13 +171,8 @@ public class Setup implements State {
         }
     }
 
-    public void receiveAck(Ack message) {
-        String sender = message.getSender();
-        if (missingAcks.contains(sender)) {
-            notify(ErrorMessage.ALREADY_RECEIVED);
-        } else {
-            missingAcks.remove(sender);
-        }
+    public void receiveAck(String sender) {
+        missingAcks.remove(sender);
         if (missingAcks.isEmpty()) {
             nextState().execute(game);
         }
