@@ -2,11 +2,10 @@ package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Action;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
 import it.polimi.ingsw.messages.fromClient.ChosenWizard;
-import it.polimi.ingsw.messages.fromServer.AvailableTowers;
-import it.polimi.ingsw.messages.fromServer.AvailableWizards;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
@@ -18,10 +17,12 @@ import java.util.stream.IntStream;
 
 public class Setup implements State {
     Game game;
-    boolean requestedTower;
-    boolean requestedWizardID;
+    boolean requestedTower = false;
+    boolean requestedWizardID = false;
+    boolean requestedAck = false;
     Map<Tower, Integer> availableTowers = new HashMap<>();
     ArrayList<Integer> availableWizards = new ArrayList<>();
+    ArrayList<String> missingAcks = new ArrayList<>();
 
     private final List<Observer<Message>> observers = new ArrayList<>();
 
@@ -104,21 +105,25 @@ public class Setup implements State {
         }
         Collections.shuffle(game.getOnlinePlayers());
         game.setCurrentPlayer(game.getOnlinePlayers().get(0));
+        missingAcks.addAll(game.getOnlinePlayers().stream()
+                .map(Player::getNickname)
+                .collect(Collectors.toList()));
+        notify(new UpdateBoard(null, game.getDashboard()));
+        requestedAck = true;
     }
-    
-    
 
     @Override
     public void receiveMessage(Message message, String sender) {
         if (! sender.equals(game.getCurrentPlayer().getNickname())) {
             notify(ErrorMessage.WRONG_TURN);
-        }
-        else if (message instanceof ChosenTower && requestedTower) {
+        } else if (message instanceof ChosenTower && requestedTower) {
             requestedTower = false;
             receiveTower((ChosenTower) message);
         } else if (message instanceof ChosenWizard && requestedWizardID) {
             requestedWizardID = false;
             receiveWizard((ChosenWizard) message);
+        } else if (message instanceof Ack && requestedAck) {
+            receiveAck((Ack) message);
         }
     }
 
@@ -136,6 +141,7 @@ public class Setup implements State {
                 availableTowers.put(chosenTower, availableTowers.get(chosenTower) - 1);
                 game.addPlayerToTeam(chosenTower, game.getCurrentPlayer());
                 game.getCurrentPlayer().getSchoolBoard().setTowerColor(chosenTower);
+                notify(CommunicationMessage.SUCCESS);
                 game.setNextPlayer();
                 checkTowers();
             } else {
@@ -143,7 +149,7 @@ public class Setup implements State {
                 notify(new AvailableTowers(availableTowers));
             }
         } else {
-            notify(ErrorMessage.INVALID_INPUT);
+            notify(ErrorMessage.ALREADY_RECEIVED);
         }
     }
 
@@ -153,6 +159,7 @@ public class Setup implements State {
             if (availableWizards.contains(chosenWizard)) {
                 availableWizards.remove(chosenWizard);
                 game.getCurrentPlayer().setWizardID(chosenWizard);
+                notify(CommunicationMessage.SUCCESS);
                 game.setNextPlayer();
                 checkWizards();
             } else {
@@ -160,7 +167,19 @@ public class Setup implements State {
                 notify(new AvailableTowers(availableTowers));
             }
         } else {
-            notify(ErrorMessage.INVALID_INPUT);
+            notify(ErrorMessage.ALREADY_RECEIVED);
+        }
+    }
+
+    public void receiveAck(Ack message) {
+        String sender = message.getSender();
+        if (missingAcks.contains(sender)) {
+            notify(ErrorMessage.ALREADY_RECEIVED);
+        } else {
+            missingAcks.remove(sender);
+        }
+        if (missingAcks.isEmpty()) {
+            nextState().execute(game);
         }
     }
 

@@ -28,10 +28,6 @@ public class GameHandler implements Observer<Message> {
         controller = new Controller(game);
         controller.addObserver(this);
         controller.getState().execute(game);
-        /* while?
-        controller.setState(controller.getState().nextState());
-        controller.getState().execute(game);
-         */
     }
 
     public ArrayList<ServerClientConnection> getPlayers() {
@@ -74,12 +70,18 @@ public class GameHandler implements Observer<Message> {
 
     @Override
     public void update(Message message) {
+        String nickCurrentPlayer = game.getCurrentPlayer().getNickname();
+
         if (message instanceof AvailableTowers) {
-            sendMessageByNickname(game.getCurrentPlayer().getNickname(), message);
+            sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof AvailableWizards) {
-            sendMessageByNickname(game.getCurrentPlayer().getNickname(), message);
+            sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof ErrorMessage) {
-            sendMessageByNickname(game.getCurrentPlayer().getNickname(), message);
+            sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message == CommunicationMessage.SUCCESS) {
+            sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message instanceof PlayerStatusMessage) {
+            sendMessageByNickname(nickCurrentPlayer, message);
         }
     }
 }
