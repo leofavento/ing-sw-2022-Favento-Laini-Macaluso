@@ -19,6 +19,7 @@ public class Player {
     public Player(String nickname){
         this.nickname = nickname;
         availableAssistants = new ArrayList<>();
+        wizardID = 0;
         setAssistants();
         schoolBoard = new SchoolBoard();
     }

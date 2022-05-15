@@ -26,7 +26,12 @@ public class GameHandler implements Observer<Message> {
 
         game = new Game(gameID, numberOfPlayers, expertMode);
         controller = new Controller(game);
+        controller.addObserver(this);
         controller.getState().execute(game);
+        /* while?
+        controller.setState(controller.getState().nextState());
+        controller.getState().execute(game);
+         */
     }
 
     public ArrayList<ServerClientConnection> getPlayers() {
@@ -69,6 +74,12 @@ public class GameHandler implements Observer<Message> {
 
     @Override
     public void update(Message message) {
-
+        if (message instanceof AvailableTowers) {
+            sendMessageByNickname(game.getCurrentPlayer().getNickname(), message);
+        } else if (message instanceof AvailableWizards) {
+            sendMessageByNickname(game.getCurrentPlayer().getNickname(), message);
+        } else if (message instanceof ErrorMessage) {
+            sendMessageByNickname(game.getCurrentPlayer().getNickname(), message);
+        }
     }
 }

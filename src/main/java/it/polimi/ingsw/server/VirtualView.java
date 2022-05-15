@@ -7,16 +7,21 @@ import it.polimi.ingsw.observer.Observer;
 
 public class VirtualView implements Observer<Message> {
     ServerClientConnection serverClientConnection;
-    private Player player;
+    private final String nickname;
+    private final GameHandler gameHandler;
 
-    public VirtualView(ServerClientConnection serverClientConnection) {
+    public VirtualView(ServerClientConnection serverClientConnection, String nickname, GameHandler gameHandler) {
         this.serverClientConnection = serverClientConnection;
+        this.nickname = nickname;
+        this.gameHandler = gameHandler;
+    }
 
-        serverClientConnection.addObserver(this);
+    public GameHandler getGameHandler() {
+        return gameHandler;
     }
 
     @Override
     public void update(Message message) {
-
+        serverClientConnection.sendMessage(message);
     }
 }

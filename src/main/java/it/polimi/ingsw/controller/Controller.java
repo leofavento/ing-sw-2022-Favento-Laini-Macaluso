@@ -14,26 +14,32 @@ import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.server.VirtualView;
 
+import it.polimi.ingsw.observer.Observable;
+import it.polimi.ingsw.observer.Observer;
+
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
-public class Controller {
+public class Controller implements Observer<Message>, Observable<Message> {
     private final Game game;
     private State state;
     private boolean isLastRound;
     //VirtualView virtualView;
 
+    private final List<Observer<Message>> observers = new ArrayList<>();
+
     public Controller(Game game) {
         //this.virtualView=v;
         this.game = game;
-        this.state = EnumState.SETUP.getState();
+        setState(EnumState.SETUP.getState());
     }
 
     public void setState(State state) {
         this.state = state;
+        getState().addObserver(this);
     }
 
     public boolean checkIfLastRound() {
@@ -133,16 +139,20 @@ public class Controller {
             game.getDashboard().setAdditionalMNMovements(0);
         }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public void update(Message message) {
+        notify(message);
     }
 
+    @Override
+    public void addObserver(Observer<Message> observer) {
+        observers.add(observer);
+    }
 
-
+    @Override
+    public void notify(Message message) {
+        for(Observer<Message> o : observers) {
+            o.update(message);
+        }
+    }
+}
