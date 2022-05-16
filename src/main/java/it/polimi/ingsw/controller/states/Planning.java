@@ -43,15 +43,14 @@ public class Planning implements State {
 
     @Override
     public void execute() {
+        game.newRound();
         initializeStudentsToClouds();
         notifyStatus(PlayerStatus.PLANNING);
     }
 
     @Override
     public void receiveMessage(Message message, String sender) {
-        if ((! sender.equals(game.getCurrentPlayer().getNickname())) && ! requestedAck) {
-            notify(ErrorMessage.WRONG_TURN);
-        } else if (message instanceof PlayAssistant && requestedAssistant) {
+        if (message instanceof PlayAssistant && requestedAssistant) {
             receiveAssistant((PlayAssistant) message);
         } else if (message instanceof Ack && requestedAck) {
             receiveAck(sender);

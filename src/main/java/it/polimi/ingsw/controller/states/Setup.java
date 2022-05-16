@@ -121,9 +121,7 @@ public class Setup implements State {
 
     @Override
     public void receiveMessage(Message message, String sender) {
-        if ((! sender.equals(game.getCurrentPlayer().getNickname())) && ! requestedAck) {
-            notify(ErrorMessage.WRONG_TURN);
-        } else if (message instanceof ChosenTower && requestedTower) {
+        if (message instanceof ChosenTower && requestedTower) {
             receiveTower((ChosenTower) message);
         } else if (message instanceof ChosenWizard && requestedWizardID) {
             receiveWizard((ChosenWizard) message);

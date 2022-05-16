@@ -2,6 +2,7 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.player.PlayerStatus;
@@ -40,7 +41,7 @@ public class GameHandler implements Observer<Message> {
     }
 
     public void readMessage(String nickname, Message message) {
-        if (! nickname.equals(game.getCurrentPlayer().getNickname())) {
+        if (! nickname.equals(game.getCurrentPlayer().getNickname()) && ! (message instanceof Ack)) {
             sendMessageByNickname(nickname, ErrorMessage.WRONG_TURN);
         } else {
             controller.getState().receiveMessage(message, nickname);

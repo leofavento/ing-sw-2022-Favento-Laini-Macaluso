@@ -16,6 +16,7 @@ public class Game {
     private final Dashboard dashboard;
     private final int numberOfPlayers;
     private final boolean expertGame;
+    private int roundNumber;
     private final EnumMap<Tower, ArrayList<Player>> teams;
 
     public Game(int id, int numberOfPlayers, boolean expertGame){
@@ -26,6 +27,7 @@ public class Game {
         this.numberOfPlayers = numberOfPlayers;
         this.expertGame = expertGame;
         this.teams = new EnumMap<>(Tower.class);
+        this.roundNumber = 0;
     }
 
     public Dashboard getDashboard() {
@@ -133,5 +135,13 @@ public class Game {
 
     public List<Tower> getTeams() {
         return new ArrayList<>(teams.keySet());
+    }
+
+    public void newRound() {
+        roundNumber++;
+    }
+
+    public int getRoundNumber() {
+        return roundNumber;
     }
 }
