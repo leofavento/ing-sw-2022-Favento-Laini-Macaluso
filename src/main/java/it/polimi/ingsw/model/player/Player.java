@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.player;
 
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
 
@@ -44,9 +45,13 @@ public class Player {
         return availableAssistants;
     }
 
-    public void playAssistant(Assistant assistant) {
-        availableAssistants.remove(assistant);
-        playedAssistant = assistant;
+    public void playAssistant(Assistant assistant) throws AlreadyPlayedAssistant {
+        if (! availableAssistants.contains(assistant)) {
+            throw new AlreadyPlayedAssistant("This assistant was already played.");
+        } else {
+            availableAssistants.remove(assistant);
+            playedAssistant = assistant;
+        }
     }
 
     public Assistant getPlayedAssistant(){

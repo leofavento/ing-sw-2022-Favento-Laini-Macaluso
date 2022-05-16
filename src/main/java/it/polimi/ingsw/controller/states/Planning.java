@@ -47,7 +47,7 @@ public class Planning implements State {
     @Override
     public void execute() {
         initializeStudentsToClouds();
-        notifyStatus();
+        notifyStatus(PlayerStatus.PLANNING);
     }
 
     @Override
@@ -64,19 +64,23 @@ public class Planning implements State {
     private void receiveAssistant(PlayAssistant message) {
         Assistant assistant = message.getAssistant();
 
-        if (game.getCurrentPlayer().getAvailableAssistants().contains(assistant)) {
+        try {
             if (! playedAssistants.containsValue(assistant)
                     || playedAssistants.values().containsAll(game.getCurrentPlayer().getAvailableAssistants())) {
-                requestedAssistant = false;
                 game.getCurrentPlayer().playAssistant(assistant);
+                requestedAssistant = false;
                 playedAssistants.put(game.getCurrentPlayer(), assistant);
                 notify(CommunicationMessage.SUCCESS);
                 game.setNextPlayer();
-                notifyStatus();
+                if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
+                    notifyStatus(PlayerStatus.PLANNING);
+                } else {
+                    notifyStatus(PlayerStatus.WAITING);
+                }
             } else {
                 notify(ErrorMessage.INVALID_ASSISTANT);
             }
-        } else {
+        } catch (AlreadyPlayedAssistant e) {
             notify(ErrorMessage.UNAVAILABLE_ASSISTANT);
         }
     }
@@ -116,18 +120,20 @@ public class Planning implements State {
         }
     }
 
-    private void notifyStatus() {
+    private void notifyStatus(PlayerStatus currPlayerStatus) {
         requestedAck = true;
         missingAcks.addAll(game.getOnlinePlayers().stream()
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
+        setStatus(currPlayerStatus);
+        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+    }
+
+    private void setStatus(PlayerStatus currPlayerStatus) {
         for (Player player : game.getOnlinePlayers()) {
             player.setStatus(PlayerStatus.WAITING);
         }
-        game.getCurrentPlayer().setStatus(PlayerStatus.PLANNING);
-        for (Player player : game.getOnlinePlayers()) {
-            notify(new PlayerStatusMessage(player.getStatus()));
-        }
+        game.getCurrentPlayer().setStatus(currPlayerStatus);
     }
 
     @Override

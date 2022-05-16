@@ -4,6 +4,7 @@ import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
+import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
@@ -82,6 +83,7 @@ public class GameHandler implements Observer<Message> {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof PlayerStatusMessage) {
             sendMessageByNickname(nickCurrentPlayer, message);
+            sendToAllExcept(nickCurrentPlayer, new PlayerStatusMessage(PlayerStatus.WAITING));
         }
     }
 }
