@@ -34,6 +34,9 @@ public class ActionStep3 implements State {
 
     @Override
     public void nextState() {
+        if (game.getFinalRound() && (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1)))){
+            controller.getEndGameController().check();
+        }
         controller.setState(new Planning(game, controller));
         controller.getState().execute();
     }

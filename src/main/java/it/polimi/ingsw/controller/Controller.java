@@ -25,8 +25,8 @@ import static java.util.Comparator.comparing;
 public class Controller implements Observer<Message>, Observable<Message> {
     private final Game game;
     private State state;
-    private boolean isLastRound;
     private CharacterController characterController;
+    private EndGameController endGameController;
     //VirtualView virtualView;
 
     private final List<Observer<Message>> observers = new ArrayList<>();
@@ -43,31 +43,9 @@ public class Controller implements Observer<Message>, Observable<Message> {
         getState().addObserver(this);
     }
 
-    public boolean checkIfLastRound() {
-        int necessaryStudents = 0;
-
-        switch (game.getNumberOfPlayers()) {
-            case (2):
-                necessaryStudents = 6;
-                break;
-            case (3):
-            case (4):
-                necessaryStudents = 12;
-                break;
-            default:
-                // throw exception?
-        }
-
-        isLastRound = necessaryStudents < game.getDashboard().getBag().getStudentsLeft();
-        return isLastRound;
-    }
-
-    public boolean getIsLastRound() {
-        return isLastRound;
-    }
 
     public void updateTurnOrder() {
-        game.getOnlinePlayers().sort((Player p1, Player p2) -> Integer.compare(p1.getPlayedAssistant().getValue(), p1.getPlayedAssistant().getValue()));
+        game.getOnlinePlayers().sort(Comparator.comparingInt((Player p) -> p.getPlayedAssistant().getValue()));
     }
 
     public State getState() {
@@ -91,7 +69,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
             }
 
                 Integer max = Collections.max(tempHash.values());
-                List<Tower> maxTowers = new ArrayList<>();
+                List<Tower> maxTowers;
                 maxTowers = tempHash.entrySet().stream()
                         .filter(Tower -> Objects.equals(Tower.getValue(), max))
                         .map(Map.Entry::getKey)
@@ -108,12 +86,31 @@ public class Controller implements Observer<Message>, Observable<Message> {
                         island.setTowers(maxTowers.get(0));
                         //remove tower1 from team1 SchoolBoard
                         game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
+                        checkMerge(island);
                     }
                 } else {
                     notify(CommunicationMessage.NO_CHANGES);
                 }
         }
 
+        public void checkMerge(Island island){
+            int islandIndex = game.getDashboard().getIslands().indexOf(island);
+            if (game.getDashboard().getIslands().get(islandIndex+1).getTowerColor()==island.getTowerColor()){
+                game.getDashboard().mergeIslands(island, game.getDashboard().getIslands().get(islandIndex+1));
+                notify(CommunicationMessage.UNIFIED_ISLANDS);
+                notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+                endGameController.check();
+                checkMerge(island);
+            }
+            else if (game.getDashboard().getIslands().get(islandIndex-1).getTowerColor()==island.getTowerColor()){
+                game.getDashboard().mergeIslands(island, game.getDashboard().getIslands().get(islandIndex-1));
+                notify(CommunicationMessage.UNIFIED_ISLANDS);
+                notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+                endGameController.check();
+                checkMerge(island);
+            }
+
+        }
 
         public void motherNatureMovement (int steps){
             if (!(game.getCurrentPlayer().getStatus()== PlayerStatus.MOVE_2)){
@@ -138,6 +135,14 @@ public class Controller implements Observer<Message>, Observable<Message> {
             notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), null));
         }
 
+    public CharacterController getCharacterController() {
+        return characterController;
+    }
+
+    public EndGameController getEndGameController(){
+        return endGameController;
+    }
+
     @Override
     public void update(Message message) {
         notify(message);
@@ -154,4 +159,5 @@ public class Controller implements Observer<Message>, Observable<Message> {
             o.update(message);
         }
     }
+
 }

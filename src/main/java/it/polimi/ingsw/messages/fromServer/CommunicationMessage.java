@@ -10,6 +10,7 @@ public enum CommunicationMessage implements Message {
     NO_CHANGES("Influence resulted in a draw. No tower change."),
     NO_ENTRY_TILE_ON_ISLAND("Island was not resolved because of No Entry Tile"),
     NEW_GAME("Please enter your game preferences (number of players and gamemode): "),
+    LAST_ROUND("This will be the last round of this game"),
     CLOSING_GAME("The game is closed");
 
 

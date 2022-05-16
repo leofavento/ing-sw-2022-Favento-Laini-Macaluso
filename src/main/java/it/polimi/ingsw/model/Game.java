@@ -18,6 +18,7 @@ public class Game {
     private final boolean expertGame;
     private int roundNumber;
     private final EnumMap<Tower, ArrayList<Player>> teams;
+    private boolean finalRound=false;
 
     public Game(int id, int numberOfPlayers, boolean expertGame){
         ID = id;
@@ -143,5 +144,13 @@ public class Game {
 
     public int getRoundNumber() {
         return roundNumber;
+    }
+
+    public boolean getFinalRound(){
+        return finalRound;
+    }
+
+    public void setFinalRound(){
+        this.finalRound=true;
     }
 }

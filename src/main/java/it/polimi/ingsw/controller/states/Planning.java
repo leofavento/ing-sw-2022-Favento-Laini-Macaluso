@@ -37,6 +37,7 @@ public class Planning implements State {
 
     @Override
     public void nextState() {
+        controller.getEndGameController().isFinalRound();
         controller.setState(new ActionStep1(game, controller));
         controller.getState().execute();
     }
