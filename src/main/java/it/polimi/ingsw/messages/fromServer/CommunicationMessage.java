@@ -8,6 +8,7 @@ public enum CommunicationMessage implements Message {
     SUCCESS("Success"),
     END_MOVE_1("Move 1 is ended"),
     UNIFIED_ISLANDS("Some islands have been unified"),
+    NO_CHANGES("Influence resulted in a draw. No tower change."),
     NO_ENTRY_TILE_ON_ISLAND("Island was not resolved because of No Entry Tile"),
     END_MOVE_2("Move 2 is ended"),
     NEW_GAME("Please enter your game preferences (number of players and gamemode): "),

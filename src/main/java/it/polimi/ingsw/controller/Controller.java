@@ -3,12 +3,17 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.controller.states.Setup;
 import it.polimi.ingsw.controller.states.State;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
+import it.polimi.ingsw.messages.fromServer.ErrorMessage;
+import it.polimi.ingsw.messages.fromServer.MotherNatureSteps;
+import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
 
+import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observable;
 import it.polimi.ingsw.observer.Observer;
 
@@ -21,6 +26,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
     private final Game game;
     private State state;
     private boolean isLastRound;
+    private CharacterController characterController;
     //VirtualView virtualView;
 
     private final List<Observer<Message>> observers = new ArrayList<>();
@@ -29,6 +35,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
         //this.virtualView=v;
         this.game = game;
         setState(new Setup(game, this));
+        //characterController=new CharacterController(this, game, v);
     }
 
     public void setState(State state) {
@@ -103,34 +110,32 @@ public class Controller implements Observer<Message>, Observable<Message> {
                         game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
                     }
                 } else {
-                    //virtualview.sendCommunicationMessage("Draw. No changes");
+                    notify(CommunicationMessage.NO_CHANGES);
                 }
         }
 
 
-        public void motherNatureMovement (){
-            //if (!(game.getCurrentPlayer().getStatus()== PlayerStatus.MOVE_2)){
-                //virtualview.sendMessage(ErrorMessage.INVALID_ACTION);
-            //}
+        public void motherNatureMovement (int steps){
+            if (!(game.getCurrentPlayer().getStatus()== PlayerStatus.MOVE_2)){
+                notify(ErrorMessage.INVALID_ACTION);
+            }
             //provides the user the number of max steps allowed
-            //int num_steps=virtualview.askMNatureMovement(game.getCurrentPlayer().getPlayedAssistant().getMovements()+game.getDashboard().getAdditionalMNMovements());
-            //game.getDashboard().moveMotherNature(num_steps);
-            //if (!(game.getDashboard().getIslands().get(num_steps).getNoEntry()==0)){
-                //game.getDashboard().getIslands().get(num_steps).useNoEntry();
-                //virtualview.sendMessage(CommunicationMessage.NO_ENTRY_TILE_ON_ISLAND);
+            game.getDashboard().moveMotherNature(steps);
+            if (!(game.getDashboard().getIslands().get(steps).getNoEntry()==0)){
+                game.getDashboard().getIslands().get(steps).useNoEntry();
+                notify(CommunicationMessage.NO_ENTRY_TILE_ON_ISLAND);
             //add back the No Entry Tile on the character
             //only in char5 this method has effect, in every other is only void
                 for (CharacterCard characterCard:game.getDashboard().getCharacters())
                 {
                     characterCard.addNoEntryTile();
                 }
-            //}
-            //else{
-            //notify the change to the view?
-            //resolveIsland(game.getDashboard().getIslands().get(num_steps));
-            //notify the change to the view?
-        // }
+            }
+            else{
+            resolveIsland(game.getDashboard().getIslands().get(steps));
+         }
             game.getDashboard().setAdditionalMNMovements(0);
+            notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard()));
         }
 
     @Override

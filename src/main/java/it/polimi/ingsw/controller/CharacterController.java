@@ -4,6 +4,7 @@ import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
+import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.characters.CharacterEnum;
@@ -109,6 +110,7 @@ public class CharacterController {
                     //Island island = virtualview.selectIslandfrom(game.getDashboard().getIslands());
                     //resolve the island
                     //controller.resolveIsland(island);
+                    //controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard()));
                     break;
                     //
                     //
