@@ -27,8 +27,6 @@ public class Cloud implements StudentDeposit {
     }
 
     public ArrayList<Color> getStudents(){
-        ArrayList<Color> temp = new ArrayList<>(students);
-        students.clear();
-        return temp;
+        return students;
     }
 }
