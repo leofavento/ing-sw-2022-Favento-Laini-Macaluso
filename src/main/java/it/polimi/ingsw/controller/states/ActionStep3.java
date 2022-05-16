@@ -13,6 +13,7 @@ import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ActionStep3 implements State {
@@ -23,6 +24,8 @@ public class ActionStep3 implements State {
     boolean movedStudents = false;
     boolean finished = false;
     ArrayList<String> missingAcks = new ArrayList<>();
+
+    private final List<Observer<Message>> observers = new ArrayList<>();
 
     public ActionStep3(Game game, Controller controller) {
         this.game = game;
@@ -83,7 +86,7 @@ public class ActionStep3 implements State {
         if (game.getOnlinePlayers().indexOf(game.getCurrentPlayer()) == (game.getNumberOfPlayers() - 1)) {
             notify(new EndOfRound(game.getRoundNumber()));
         }
-        notifyStatus(PlayerStatus.WAITING);
+        notifyStatus(PlayerStatus.END_MOVE_3);
         finished = true;
     }
 
@@ -117,11 +120,13 @@ public class ActionStep3 implements State {
 
     @Override
     public void addObserver(Observer<Message> observer) {
-
+        observers.add(observer);
     }
 
     @Override
     public void notify(Message message) {
-
+        for(Observer<Message> o : observers) {
+            o.update(message);
+        }
     }
 }
