@@ -135,7 +135,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
             resolveIsland(game.getDashboard().getIslands().get(steps));
          }
             game.getDashboard().setAdditionalMNMovements(0);
-            notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard()));
+            notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), null));
         }
 
     @Override

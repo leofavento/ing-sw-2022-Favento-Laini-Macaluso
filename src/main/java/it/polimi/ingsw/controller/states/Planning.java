@@ -71,6 +71,8 @@ public class Planning implements State {
                 if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
                     notifyStatus(PlayerStatus.PLANNING);
                 } else {
+                    controller.updateTurnOrder();
+                    notify(new UpdateBoard(null, null, game.getOnlinePlayers()));
                     notifyStatus(PlayerStatus.WAITING);
                 }
             } else {

@@ -19,12 +19,8 @@ public class Entrance implements StudentDeposit {
     }
 
     @Override
-    public void extractStudent(Color color) throws StudentNotExistingException {
-        if (! students.contains(color)) {
-            throw new StudentNotExistingException("There is no " + color.name() + " student in this entrance.");
-        } else {
-            students.remove(color);
-        }
+    public void extractStudent(Color color) {
+        students.remove(color);
     }
 
     public ArrayList<Color> getStudents() {

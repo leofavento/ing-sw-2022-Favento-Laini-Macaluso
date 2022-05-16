@@ -115,8 +115,8 @@ public class Setup implements State {
         missingAcks.addAll(game.getOnlinePlayers().stream()
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
-        notify(new UpdateBoard(null, game.getDashboard()));
         requestedAck = true;
+        notify(new UpdateBoard(null, game.getDashboard(), null));
     }
 
     @Override

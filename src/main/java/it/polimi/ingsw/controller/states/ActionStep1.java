@@ -1,18 +1,42 @@
 package it.polimi.ingsw.controller.states;
 
+import it.polimi.ingsw.controller.Action;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.exceptions.FullDiningRoomException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromClient.Ack;
+import it.polimi.ingsw.messages.fromClient.ChosenDestination;
+import it.polimi.ingsw.messages.fromClient.ChosenStudent;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
+import it.polimi.ingsw.model.Island;
+import it.polimi.ingsw.model.StudentDeposit;
+import it.polimi.ingsw.model.player.DiningRoom;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ActionStep1 implements State {
     Game game;
     Controller controller;
+    boolean requestedAck = false;
+    boolean requestedStudent = false;
+    boolean requestedDestination = false;
+    Map<Color, StudentDeposit> moveStudent = new HashMap<>();
+    ArrayList<String> missingAcks = new ArrayList<>();
+    int movedStudents = 0;
+    Color currStudent;
+
+    private final List<Observer<Message>> observers = new ArrayList<>();
 
     public ActionStep1(Game game, Controller controller) {
         this.game = game;
@@ -21,62 +45,112 @@ public class ActionStep1 implements State {
 
     @Override
     public void nextState() {
-        // TODO
+        controller.setState(new ActionStep2(game, controller));
+        controller.getState().execute();
     }
 
     @Override
     public void execute() {
-        int numStudent = 3;
-        if (game.getNumberOfPlayers() == 3) {
-            numStudent = 4;
-        }
-
-        for (int i = 0; i < numStudent; i++) {
-            // TODO ask currentPlayer to select a student from his
-            //  entrance and its destination (dining room or island)
-            Color chosenStudent = Color.PINK;
-            int destination = 4;
-
-            try {
-                checkIfValidDestination(destination, game.getDashboard().getIslands().size());
-                if (destination == 0) {
-                    checkIfFullDiningRoom(game.getCurrentPlayer(), chosenStudent);
-                    game.getCurrentPlayer().getSchoolBoard().getEntrance().extractStudent(chosenStudent);
-                    game.getCurrentPlayer().getSchoolBoard().getDiningRoom().addStudent(chosenStudent);
-                } else {
-                    game.getCurrentPlayer().getSchoolBoard().getEntrance().extractStudent(chosenStudent);
-                    game.getDashboard().getIslands().get(destination - 1).addStudent(chosenStudent);
-                }
-            } catch (InvalidInputException | StudentNotExistingException | FullDiningRoomException e) {
-                // TODO ask to enter student and entrance again
-            }
-        }
+        notify(new StartOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
+        notifyStatus(PlayerStatus.MOVE_1);
     }
 
     @Override
     public void receiveMessage(Message message, String sender) {
-
-    }
-
-    private void checkIfFullDiningRoom(Player player, Color student) throws FullDiningRoomException {
-        if (player.getSchoolBoard().getDiningRoom().getStudentsNumber(student) == 10) {
-            throw new FullDiningRoomException("The dining room is full for " + student.name() + " students.");
+        if (message instanceof Ack && requestedAck) {
+            receiveAck(sender);
+        } else if (message instanceof ChosenStudent && requestedStudent) {
+            receiveStudent((ChosenStudent) message);
+        } else if (message instanceof ChosenDestination && requestedDestination) {
+            receiveDestination((ChosenDestination) message);
         }
     }
 
-    private void checkIfValidDestination(int destination, int islandsSize) throws InvalidInputException {
-        if (destination < 0 || destination > islandsSize) {
-            throw new InvalidInputException("The destination value must be between 0 and " + islandsSize);
+    private void receiveAck(String sender) {
+        missingAcks.remove(sender);
+        if (missingAcks.isEmpty()) {
+            requestedAck = false;
+            checkStudents();
         }
+    }
+
+    private void checkStudents() {
+        int movableStudents = (game.getNumberOfPlayers() == 3) ? 4 : 3;
+        if (movedStudents < movableStudents) {
+            requestedStudent = true;
+            notify(new MovableStudents(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
+        } else {
+            nextState();
+        }
+    }
+
+    private void receiveStudent(ChosenStudent message) {
+        Color student = message.getStudent();
+        if (! game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(student)) {
+            notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
+        } else {
+            requestedStudent = false;
+            currStudent = student;
+            requestedDestination = true;
+            notify(new WhereToMove(true, game.getDashboard().getIslands().size()));
+        }
+    }
+
+    private void receiveDestination(ChosenDestination message) {
+        try {
+            if (message.getDestination() instanceof DiningRoom) {
+                Action.moveFromEntranceToDining(currStudent, game.getCurrentPlayer().getSchoolBoard());
+                game.updateProfessors();
+            } else if (message.getDestination() instanceof Island) {
+                Action.moveFromEntranceToIsland(currStudent,
+                        game.getCurrentPlayer().getSchoolBoard().getEntrance(),
+                        (Island) message.getDestination());
+            }
+            notify(CommunicationMessage.SUCCESS); // ha senso?
+            movedStudents++;
+            missingAcks.addAll(game.getOnlinePlayers().stream()
+                    .map(Player::getNickname)
+                    .collect(Collectors.toList()));
+            requestedAck = true;
+            notify(new UpdateBoard(null, game.getDashboard(), game.getOnlinePlayers()));
+            if (movedStudents == ((game.getNumberOfPlayers() == 3) ? 4 : 3)) {
+                notifyEndMove();
+            }
+        } catch (FullDiningRoomException e) {
+            notify(ErrorMessage.FULL_DINING_ROOM);
+        }
+    }
+
+    private void notifyStatus(PlayerStatus currPlayerStatus) {
+        requestedAck = true;
+        missingAcks.addAll(game.getOnlinePlayers().stream()
+                .map(Player::getNickname)
+                .collect(Collectors.toList()));
+        setStatus(currPlayerStatus);
+        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+    }
+
+    private void setStatus(PlayerStatus currPlayerStatus) {
+        for (Player player : game.getOnlinePlayers()) {
+            player.setStatus(PlayerStatus.WAITING);
+        }
+        game.getCurrentPlayer().setStatus(currPlayerStatus);
+    }
+
+    private void notifyEndMove() {
+        setStatus(PlayerStatus.END_MOVE_1);
+        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
     }
 
     @Override
     public void addObserver(Observer<Message> observer) {
-
+        observers.add(observer);
     }
 
     @Override
     public void notify(Message message) {
-
+        for(Observer<Message> o : observers) {
+            o.update(message);
+        }
     }
 }
