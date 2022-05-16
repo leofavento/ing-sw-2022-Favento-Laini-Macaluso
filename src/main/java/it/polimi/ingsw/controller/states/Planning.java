@@ -6,10 +6,7 @@ import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.PlayAssistant;
-import it.polimi.ingsw.messages.fromServer.AvailableAssistants;
-import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
-import it.polimi.ingsw.messages.fromServer.PlayerStatusMessage;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
 import it.polimi.ingsw.model.Game;
@@ -70,7 +67,7 @@ public class Planning implements State {
                 game.getCurrentPlayer().playAssistant(assistant);
                 requestedAssistant = false;
                 playedAssistants.put(game.getCurrentPlayer(), assistant);
-                notify(CommunicationMessage.SUCCESS);
+                notify(new PlayedAssistant(assistant, game.getCurrentPlayer().getNickname()));
                 game.setNextPlayer();
                 if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
                     notifyStatus(PlayerStatus.PLANNING);
