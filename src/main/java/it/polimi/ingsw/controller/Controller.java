@@ -3,10 +3,7 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.controller.states.Setup;
 import it.polimi.ingsw.controller.states.State;
 import it.polimi.ingsw.messages.Message;
-import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
-import it.polimi.ingsw.messages.fromServer.MotherNatureSteps;
-import it.polimi.ingsw.messages.fromServer.UpdateBoard;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Tower;
@@ -86,6 +83,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
                         island.setTowers(maxTowers.get(0));
                         //remove tower1 from team1 SchoolBoard
                         game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
+                        notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
                         checkMerge(island);
                     }
                 } else {

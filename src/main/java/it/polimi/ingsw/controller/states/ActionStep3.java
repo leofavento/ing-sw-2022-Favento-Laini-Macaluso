@@ -37,8 +37,17 @@ public class ActionStep3 implements State {
         if (game.getFinalRound() && (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1)))){
             controller.getEndGameController().check();
         }
-        controller.setState(new Planning(game, controller));
-        controller.getState().execute();
+        else{
+            if (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1))){
+                game.setNextPlayer();
+                controller.setState(new Planning(game, controller));
+                controller.getState().execute();}
+            else{
+                game.setNextPlayer();
+                controller.setState(new ActionStep1(game, controller));
+                controller.getState().execute();}
+        }
+
     }
 
     @Override
@@ -70,6 +79,7 @@ public class ActionStep3 implements State {
             missingAcks.addAll(game.getOnlinePlayers().stream()
                     .map(Player::getNickname)
                     .collect(Collectors.toList()));
+            game.getCurrentPlayer().setStatus(PlayerStatus.WAITING);
             notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
         }
     }
