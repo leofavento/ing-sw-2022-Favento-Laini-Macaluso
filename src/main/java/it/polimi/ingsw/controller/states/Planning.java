@@ -45,7 +45,14 @@ public class Planning implements State {
     @Override
     public void execute() {
         game.newRound();
-        initializeStudentsToClouds();
+        int studentsPerCloud = (game.getNumberOfPlayers() == 3) ? 4 : 3;
+        int necessaryStudents = studentsPerCloud * game.getDashboard().getClouds().size();
+        if (game.getDashboard().getBag().getStudentsLeft() <= necessaryStudents) {
+            game.setFinalRound();
+        }
+        if (game.getDashboard().getBag().getStudentsLeft() >= necessaryStudents) {
+            initializeStudentsToClouds(studentsPerCloud);
+        }
         notifyStatus(PlayerStatus.PLANNING);
     }
 
@@ -93,21 +100,9 @@ public class Planning implements State {
         }
     }
 
-    private void initializeStudentsToClouds() {
+    private void initializeStudentsToClouds(int numOfStudents) {
         for (Cloud cloud : game.getDashboard().getClouds()) {
-            switch (game.getNumberOfPlayers()) {
-                case (2):
-                case (4):
-                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
-                            cloud,
-                            3);
-                    break;
-                case (3):
-                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
-                            cloud,
-                            4);
-                    break;
-            }
+            Action.moveFromBagToDeposit(game.getDashboard().getBag(), cloud, numOfStudents);
         }
     }
 

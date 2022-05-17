@@ -79,7 +79,6 @@ public class ActionStep3 implements State {
             missingAcks.addAll(game.getOnlinePlayers().stream()
                     .map(Player::getNickname)
                     .collect(Collectors.toList()));
-            game.getCurrentPlayer().setStatus(PlayerStatus.WAITING);
             notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
         }
     }
@@ -88,8 +87,12 @@ public class ActionStep3 implements State {
         if (! movedStudents) {
             ArrayList<Cloud> availableClouds = new ArrayList<>(game.getDashboard().getClouds());
             availableClouds.removeIf(c -> c.getStudents().isEmpty());
-            requestedCloud = true;
-            notify(new SelectCloud(availableClouds));
+            if (availableClouds.isEmpty()) { // happens only in the last turn if there aren't enough students
+                nextState();
+            } else {
+                requestedCloud = true;
+                notify(new SelectCloud(availableClouds));
+            }
         } else {
             checkLastPlayer();
         }
@@ -99,7 +102,7 @@ public class ActionStep3 implements State {
         if (game.getOnlinePlayers().indexOf(game.getCurrentPlayer()) == (game.getNumberOfPlayers() - 1)) {
             notify(new EndOfRound(game.getRoundNumber()));
         }
-        notifyStatus(PlayerStatus.END_MOVE_3);
+        notifyStatus(PlayerStatus.WAITING);
         finished = true;
     }
 
