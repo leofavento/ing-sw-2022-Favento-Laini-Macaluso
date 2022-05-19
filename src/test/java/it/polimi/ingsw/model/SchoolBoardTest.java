@@ -46,22 +46,13 @@ class SchoolBoardTest {
 
         assertEquals(3, schoolBoard.getEntrance().getStudents().size());
         schoolBoard.getDiningRoom().addStudent(schoolBoard.getEntrance().getStudents().get(0));
-        try {
-            schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
-        } catch (StudentNotExistingException ignored) {
-        }
+        schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
         assertEquals(2, schoolBoard.getEntrance().getStudents().size());
         schoolBoard.getDiningRoom().addStudent(schoolBoard.getEntrance().getStudents().get(0));
-        try {
-            schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
-        } catch (StudentNotExistingException ignored) {
-        }
+        schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
         assertEquals(1, schoolBoard.getEntrance().getStudents().size());
         schoolBoard.getDiningRoom().addStudent(schoolBoard.getEntrance().getStudents().get(0));
-        try {
-            schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
-        } catch (StudentNotExistingException ignored) {
-        }
+        schoolBoard.getEntrance().extractStudent(schoolBoard.getEntrance().getStudents().get(0));
         assertEquals(0, schoolBoard.getEntrance().getStudents().size());
     }
 }

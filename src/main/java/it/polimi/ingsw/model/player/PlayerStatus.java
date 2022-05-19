@@ -8,7 +8,6 @@ public enum PlayerStatus {
     MOVE_2,
     END_MOVE_2,
     MOVE_3,
-    END_MOVE_3,
     WIN,
     LOSE
 }

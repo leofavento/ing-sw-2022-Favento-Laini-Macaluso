@@ -68,10 +68,8 @@ class GameTest {
 
         while (player.getSchoolBoard().getEntrance().getStudents().size() > 0) {
             player.getSchoolBoard().getDiningRoom().addStudent(player.getSchoolBoard().getEntrance().getStudents().get(0));
-            try {
-                player.getSchoolBoard().getEntrance().extractStudent(player.getSchoolBoard().getEntrance().getStudents().get(0));
-            } catch (StudentNotExistingException ignored) {
-            }
+            player.getSchoolBoard().getEntrance().extractStudent(player.getSchoolBoard().getEntrance().getStudents().get(0));
+
         }
 
         assertEquals(1, player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.GREEN));
@@ -95,10 +93,7 @@ class GameTest {
         p1.getSchoolBoard().getEntrance().addStudent(Color.RED);
         while (p1.getSchoolBoard().getEntrance().getStudents().size() > 0) {
             p1.getSchoolBoard().getDiningRoom().addStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
-            try {
-                p1.getSchoolBoard().getEntrance().extractStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
-            } catch (StudentNotExistingException ignored) {
-            }
+            p1.getSchoolBoard().getEntrance().extractStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
         }
 
         p2.getSchoolBoard().getEntrance().addStudent(Color.RED);
@@ -107,10 +102,7 @@ class GameTest {
         p2.getSchoolBoard().getEntrance().addStudent(Color.GREEN);
         while (p2.getSchoolBoard().getEntrance().getStudents().size() > 0) {
             p2.getSchoolBoard().getDiningRoom().addStudent(p2.getSchoolBoard().getEntrance().getStudents().get(0));
-            try {
-                p2.getSchoolBoard().getEntrance().extractStudent(p2.getSchoolBoard().getEntrance().getStudents().get(0));
-            } catch (StudentNotExistingException ignored) {
-            }
+            p2.getSchoolBoard().getEntrance().extractStudent(p2.getSchoolBoard().getEntrance().getStudents().get(0));
         }
 
         game.updateProfessors();
@@ -131,10 +123,7 @@ class GameTest {
         p1.getSchoolBoard().getEntrance().addStudent(Color.PINK);
         while (p1.getSchoolBoard().getEntrance().getStudents().size() > 0) {
             p1.getSchoolBoard().getDiningRoom().addStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
-            try {
-                p1.getSchoolBoard().getEntrance().extractStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
-            } catch (StudentNotExistingException ignored){
-            }
+            p1.getSchoolBoard().getEntrance().extractStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
         }
         game.updateProfessors();
 
