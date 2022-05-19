@@ -53,14 +53,25 @@ public class Controller implements Observer<Message>, Observable<Message> {
 
     public void resolveIsland(Island island) {
             HashMap<Tower, Integer> tempHash = new HashMap<>();
-            if ((!game.getDashboard().getDoNotCountTowers())) {
+
+            //If character9 effect is active
+            if ((game.getDashboard().getDoNotCountColor())!=null) {
                 for (Tower tower : game.getTeams()) {
-                    tempHash.put(tower, island.countInfluence(game.getTeamFromTower(tower)));
+                    tempHash.put(tower, island.noColorInfluence(game.getTeamFromTower(tower), game.getDashboard().getDoNotCountColor()));
                 }
             }
-            else{
+
+            //If character6 effect is active
+            else if(game.getDashboard().getDoNotCountTowers()){
                 for (Tower tower : game.getTeams()) {
                     tempHash.put(tower, island.noTowerInfluence(game.getTeamFromTower(tower)));
+                }
+            }
+
+            //In a normal case
+            else {
+                for (Tower tower : game.getTeams()) {
+                    tempHash.put(tower, island.countInfluence(game.getTeamFromTower(tower)));
                 }
             }
 
@@ -78,9 +89,9 @@ public class Controller implements Observer<Message>, Observable<Message> {
                             //put existing tower in team SchoolBoard
                             game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();
                         }
-                        //add tower1
+                        //add new tower
                         island.setTowers(maxTowers.get(0));
-                        //remove tower1 from team1 SchoolBoard
+                        //remove new tower from the right team SchoolBoard
                         game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
                         notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
                         checkMerge(island);
