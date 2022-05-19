@@ -16,6 +16,7 @@ public class Dashboard {
     private int motherNaturePosition;
     private int additionalMNMovements;
     private boolean doNotCountTowers=false;
+    private Color doNotCountColor=null;
 
     public Dashboard(){
         this.islands= new ArrayList<>();
@@ -123,6 +124,18 @@ public class Dashboard {
 
     public void disableDoNotCountTowers(){
         doNotCountTowers=false;
+    }
+
+    public Color getDoNotCountColor(){
+        return doNotCountColor;
+    }
+
+    public void setDoNotCountColor(Color color){
+        this.doNotCountColor=color;
+    }
+
+    public void resetDoNotCountColor(){
+        this.doNotCountColor=null;
     }
 
     public ArrayList<CharacterCard> getPlayedCharacters() {

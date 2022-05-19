@@ -108,11 +108,15 @@ public class ActionStep3 implements State {
     }
 
     public void cleanAll(){
+        //Reset character6 effect
         game.getDashboard().disableDoNotCountTowers();
+
+        //Reset character 8 effect
         for (Island island : game.getDashboard().getIslands()) {
             island.resetExtraInfluences();
         }
 
+        //Put back in the right place the Professor moved with the character 2
         for (CharacterCard character: game.getDashboard().getCharacters()){
             character.setInactive();
         }
@@ -124,6 +128,8 @@ public class ActionStep3 implements State {
                 }
             }
         }
+        //Reset character9 effect
+        game.getDashboard().resetDoNotCountColor();
     }
 
     private void receiveAck(String sender) {
