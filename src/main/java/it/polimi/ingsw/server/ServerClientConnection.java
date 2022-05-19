@@ -9,8 +9,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.messages.fromClient.JoinAvailableGame;
 import it.polimi.ingsw.messages.fromClient.LoginMessage;
+import it.polimi.ingsw.messages.fromClient.RequestGames;
 import it.polimi.ingsw.messages.fromClient.SetGame;
+import it.polimi.ingsw.messages.fromServer.AvailableGames;
 import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.observer.Observer;
@@ -24,6 +27,8 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
     private ObjectOutputStream output;
     private boolean active;
     private GameHandler gameHandler;
+    private boolean requestedNickname;
+    private boolean isPlaying;
 
     private final List<Observer<Message>> observers = new ArrayList<>();
 
@@ -73,43 +78,63 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
     }
 
     public void readMessage(Message message) {
-        if (message instanceof LoginMessage || message instanceof SetGame) {
-            readSetupMessage(message);
-        } else {
-            gameHandler.readMessage(nickname, message);
-        }
-    }
-
-    public void readSetupMessage(Message message) {
-        if (message instanceof LoginMessage) {
+        if (message instanceof LoginMessage && requestedNickname) {
             LoginMessage loginMessage = (LoginMessage) message;
             if (server.checkNickname(loginMessage.getNickname())) {
+                requestedNickname = false;
                 nickname = loginMessage.getNickname();
                 server.registerUser(this);
             } else {
                 sendMessage(ErrorMessage.TAKEN_NICKNAME);
             }
-        } else if (message instanceof SetGame) {
+        } else if (message instanceof SetGame && !isPlaying) {
             SetGame setGame = (SetGame) message;
+            createGame(setGame);
+        } else if (message instanceof RequestGames) {
+            sendMessage(new AvailableGames(server.getAvailableGames()));
+        } else if (message instanceof JoinAvailableGame) {
+            JoinAvailableGame joinAvailableGame = (JoinAvailableGame) message;
+            joinAvailableGame(joinAvailableGame);
+        } else if (isPlaying) {
+            gameHandler.readMessage(nickname, message);
+        }
+    }
+
+    private void createGame(SetGame setGame) {
+        if (setGame.getNumberOfPlayers() >= 2 && setGame.getNumberOfPlayers() <= 4) {
+            gameHandler = server.createRoom(this, setGame.getNumberOfPlayers(), setGame.getExpertMode());
+        } else {
+            sendMessage(ErrorMessage.INVALID_SETTINGS);
+        }
+    }
+
+    private void joinAvailableGame(JoinAvailableGame joinAvailableGame) {
+        int gameID = joinAvailableGame.getGameID();
+        if (server.getStartingGameByID(gameID) != null) {
+            server.getStartingGameByID(gameID).joinGame(this);
+        } else {
+            sendMessage(ErrorMessage.INVALID_INPUT);
         }
     }
 
     public synchronized void close() {
         try {
+            input.close();
+        } catch (IOException ignored) {
+        }
+        try {
+            output.close();
+        } catch (IOException ignored) {
+        }
+        try {
             socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
     }
 
     public void askNickname() {
         sendMessage(CommunicationMessage.ENTER_NICKNAME);
-        // TODO start timer
-    }
-
-    public void askNewGame() {
-        sendMessage(CommunicationMessage.NEW_GAME);
-        // TODO start timer
+        requestedNickname = true;
     }
 
     public String getNickname() {

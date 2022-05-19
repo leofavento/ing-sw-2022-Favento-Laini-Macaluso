@@ -11,25 +11,72 @@ import it.polimi.ingsw.observer.Observer;
 import java.util.ArrayList;
 
 public class GameHandler implements Observer<Message> {
-    private final Game game;
-    private final Controller controller;
-
+    private final Server server;
+    private final ServerClientConnection host;
     private final int gameID;
-    private final boolean expertMode;
     private final int numberOfPlayers;
-
+    private final boolean expertMode;
     private final ArrayList<ServerClientConnection> players;
 
-    public GameHandler(int gameID, ArrayList<ServerClientConnection> players, boolean expertMode, int numOfPlayers) {
-        this.gameID = gameID;
-        this.players = players;
-        this.expertMode = expertMode;
-        this.numberOfPlayers = numOfPlayers;
+    private Game game;
+    private Controller controller;
 
+    public GameHandler(Server server, int gameID, ServerClientConnection host, boolean expertMode, int numberOfPlayers) {
+        this.server = server;
+        this.gameID = gameID;
+        this.host = host;
+        this.numberOfPlayers = numberOfPlayers;
+        this.expertMode = expertMode;
+        players = new ArrayList<>();
+        players.add(host);
+        host.sendMessage(new WaitingForPlayers());
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public boolean isExpertMode() {
+        return expertMode;
+    }
+
+    public boolean isHost(ServerClientConnection player) {
+        return host == player;
+    }
+
+    private void createGame() {
         game = new Game(gameID, numberOfPlayers, expertMode);
         controller = new Controller(game);
         controller.addObserver(this);
         controller.getState().execute();
+    }
+
+    public void joinGame(ServerClientConnection player) {
+        if (!isFull()) {
+            players.add(player);
+            player.setGame(this);
+            player.sendMessage(new JoinAlreadyExistingGame(gameID, players.size(), numberOfPlayers, expertMode));
+            sendToAllExcept(player.getNickname(), new UpdateLobby(gameID, players.size(), numberOfPlayers, expertMode));
+            updateRoom();
+        } else {
+            player.sendMessage(ErrorMessage.FULL_GAME);
+        }
+    }
+
+    private void updateRoom() {
+        if (isFull()) {
+            broadcastMessage(CommunicationMessage.NEW_GAME);
+            server.startGame(this);
+            createGame();
+        }
+    }
+
+    private boolean isFull() {
+        return players.size() == numberOfPlayers;
     }
 
     public ArrayList<ServerClientConnection> getPlayers() {

@@ -8,6 +8,7 @@ public enum ErrorMessage implements Message {
     ALREADY_RECEIVED("This message was already received."),
     NICKNAME_NOT_VALID("The selected nickname is not valid"),
     INVALID_SETTINGS("The desired settings are not valid"),
+    FULL_GAME("The selected game is already full"),
     TOWER_NOT_AVAILABLE("The chosen tower color is not available"),
     WIZARD_NOT_AVAILABLE("The chosen wizard is not available"),
     STUDENT_NOT_AVAILABLE("The chosen tower color is not available"),

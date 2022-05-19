@@ -1,8 +1,12 @@
 package it.polimi.ingsw.server;
 
+import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.JoinAlreadyExistingGame;
+import it.polimi.ingsw.model.Game;
+import it.polimi.ingsw.model.GameInfo;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -14,11 +18,10 @@ public class Server implements Runnable {
     private ServerClientConnection host;
     private final ArrayList<String> takenNicknames;
     private final ArrayList<GameHandler> activeGames;
+    private final ArrayList<GameHandler> startingGames;
     private final int SOCKET_TIMEOUT = 2000000;
 
-    private int gameID;
-    private int numberOfPlayers;
-    private boolean expertMode;
+    private int nextGameID;
 
     public Server(int socketPort) throws IOException {
         this.socketPort = socketPort;
@@ -26,9 +29,8 @@ public class Server implements Runnable {
         lobby = new ArrayList<>();
         takenNicknames = new ArrayList<>();
         activeGames = new ArrayList<>();
-        gameID = 1;
-        numberOfPlayers = 0;
-        expertMode = false;
+        startingGames = new ArrayList<>();
+        nextGameID = 1;
     }
 
     public int getSocketPort() {
@@ -68,47 +70,34 @@ public class Server implements Runnable {
     }
 
     public void registerUser(ServerClientConnection client) {
-        if (! lobby.contains(client)) {
-            lobby.add(client);
-            takenNicknames.add(client.getNickname());
-            updateLobby();
-        }
+        takenNicknames.add(client.getNickname());
+        client.sendMessage(CommunicationMessage.SUCCESS);
     }
 
-    public void updateLobby() {
-        if (lobby.size() == 1) {
-            host = lobby.get(0);
-            host.askNewGame();
-        } else {
-            for (ServerClientConnection client : lobby) {
-                client.sendMessage(
-                        new JoinAlreadyExistingGame(gameID, lobby.size(), numberOfPlayers, expertMode));
-            }
+    public ArrayList<GameInfo> getAvailableGames() {
+        ArrayList<GameInfo> availableGames = new ArrayList<>();
+        for (GameHandler game : startingGames) {
+            availableGames.add(new GameInfo(game.getGameID(),
+                    game.getPlayers().size(),
+                    game.getNumberOfPlayers(),
+                    game.isExpertMode()));
         }
-        if (lobby.size() >= numberOfPlayers && numberOfPlayers != 0) {
-            ArrayList<ServerClientConnection> players = new ArrayList<>();
-            for (int i = 0; i < numberOfPlayers; i++) {
-                players.add(lobby.remove(0));
-            }
-            GameHandler gameHandler = new GameHandler(gameID, players, expertMode, numberOfPlayers);
-            gameID++;
-            expertMode = false;
-            numberOfPlayers = 0;
-            for (ServerClientConnection player : players) {
-                player.setGame(gameHandler);
-            }
-            activeGames.add(gameHandler);
-        }
+        return availableGames;
     }
 
-    public GameHandler getGameByNickname(String nickname) {
-        for(GameHandler game : activeGames) {
-            for (ServerClientConnection player : game.getPlayers()) {
-                if (player.getNickname().equals(nickname)) {
-                    return game;
-                }
-            }
-        }
-        return null;
+    public GameHandler createRoom(ServerClientConnection host, int numberOfPlayers, boolean expertMode) {
+        GameHandler room = new GameHandler(this, nextGameID, host, expertMode, numberOfPlayers);
+        nextGameID++;
+        startingGames.add(room);
+        return room;
+    }
+
+    public GameHandler getStartingGameByID(int gameID) {
+        return startingGames.stream().filter(game -> game.getGameID() == gameID).findAny().orElse(null);
+    }
+
+    public void startGame(GameHandler game) {
+        startingGames.remove(game);
+        activeGames.add(game);
     }
 }
