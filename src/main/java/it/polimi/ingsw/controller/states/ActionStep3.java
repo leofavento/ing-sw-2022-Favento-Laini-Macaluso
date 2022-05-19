@@ -5,9 +5,8 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.messages.fromServer.*;
-import it.polimi.ingsw.model.Cloud;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Game;
+import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observer;
@@ -34,8 +33,10 @@ public class ActionStep3 implements State {
 
     @Override
     public void nextState() {
+            cleanAll();
+
         if (game.getFinalRound() && (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1)))){
-            controller.getEndGameController().check();
+            controller.check();
         }
         else{
             if (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1))){
@@ -104,6 +105,25 @@ public class ActionStep3 implements State {
         }
         notifyStatus(PlayerStatus.WAITING);
         finished = true;
+    }
+
+    public void cleanAll(){
+        game.getDashboard().disableDoNotCountTowers();
+        for (Island island : game.getDashboard().getIslands()) {
+            island.resetExtraInfluences();
+        }
+
+        for (CharacterCard character: game.getDashboard().getCharacters()){
+            character.setInactive();
+        }
+        for (Player player: game.getOnlinePlayers()) {
+            for (Professor professor:player.getSchoolBoard().getProfessors()) {
+                if (!(professor.getOwner()==player)) {
+                    professor.getOwner().getSchoolBoard().addProfessor(professor);
+                    player.getSchoolBoard().removeProfessor(professor);
+                }
+            }
+        }
     }
 
     private void receiveAck(String sender) {

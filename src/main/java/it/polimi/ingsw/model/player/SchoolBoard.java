@@ -13,7 +13,7 @@ public class SchoolBoard {
     private final ArrayList<Professor> professors;
 
     public SchoolBoard(){
-        diningRoom = new DiningRoom();
+        diningRoom = new DiningRoom(this);
         numTower = 0;
         coins = 0;
         entrance = new Entrance();

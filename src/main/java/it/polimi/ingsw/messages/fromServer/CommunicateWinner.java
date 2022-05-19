@@ -1,21 +1,24 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.Message;
 
-public class CommunicateWinner implements Message {
-    private final String nickname;
-    private final String winReason;
+import java.util.ArrayList;
 
-    public CommunicateWinner(String nickname, String winReason){
-        this.nickname = nickname;
+public class CommunicateWinner implements Message {
+    private final ArrayList<String> nicknames;
+    private final EndOfGameReason winReason;
+
+    public CommunicateWinner(ArrayList<String> nicknames, EndOfGameReason winReason){
+        this.nicknames = nicknames;
         this.winReason = winReason;
     }
 
-    public String getNickname() {
-        return nickname;
+    public ArrayList<String> getNicknames() {
+        return nicknames;
     }
 
-    public String getWinReason() {
+    public EndOfGameReason getWinReason() {
         return winReason;
     }
 }

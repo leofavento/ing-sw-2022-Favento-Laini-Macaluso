@@ -59,7 +59,7 @@ class GameTest {
     }
 
     @Test
-    public void testDealStudents() {
+    public void testDealStudents() throws StudentNotExistingException {
         Game game = new Game(3, 2, true);
         Player player = new Player("Player");
 
@@ -80,7 +80,7 @@ class GameTest {
     }
 
     @Test
-    public void testUpdateProfessors() {
+    public void testUpdateProfessors() throws StudentNotExistingException {
         Game game = new Game(5, 2, false);
         Player p1 = new Player("Player1");
         Player p2 = new Player("Player2");

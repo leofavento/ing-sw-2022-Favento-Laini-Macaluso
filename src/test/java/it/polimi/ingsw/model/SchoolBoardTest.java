@@ -37,7 +37,7 @@ class SchoolBoardTest {
     }
 
     @Test
-    public void testEntrance() {
+    public void testEntrance() throws StudentNotExistingException {
         SchoolBoard schoolBoard = new SchoolBoard();
 
         schoolBoard.getEntrance().addStudent(Color.BLUE);

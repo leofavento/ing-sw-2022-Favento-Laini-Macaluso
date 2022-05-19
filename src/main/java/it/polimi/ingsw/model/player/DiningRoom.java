@@ -8,8 +8,10 @@ import java.util.EnumMap;
 
 public class DiningRoom implements StudentDeposit {
     private final EnumMap<Color, Integer> students;
+    private SchoolBoard schoolBoard;
 
-    public DiningRoom() {
+    public DiningRoom(SchoolBoard schoolBoard) {
+        this.schoolBoard=schoolBoard;
         this.students = new EnumMap<>(Color.class);
         students.put(Color.YELLOW, 0);
         students.put(Color.BLUE, 0);
@@ -19,7 +21,12 @@ public class DiningRoom implements StudentDeposit {
     }
 
     @Override
-    public void addStudent(Color color) {students.put(color, students.get(color) + 1);}
+    public void addStudent(Color color) {
+        students.put(color, students.get(color) + 1);
+        if (students.get(color)%3==0){
+            schoolBoard.addCoin();
+        }
+    }
 
     @Override
     public void extractStudent(Color color) throws StudentNotExistingException {

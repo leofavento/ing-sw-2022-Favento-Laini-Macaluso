@@ -19,6 +19,7 @@ public class Game {
     private int roundNumber;
     private final EnumMap<Tower, ArrayList<Player>> teams;
     private boolean finalRound=false;
+    private ArrayList<Player> winners;
 
     public Game(int id, int numberOfPlayers, boolean expertGame){
         ID = id;
@@ -138,6 +139,16 @@ public class Game {
         return new ArrayList<>(teams.keySet());
     }
 
+    public ArrayList<Player> getTeamFromPlayer(Player player){
+        ArrayList<Player> selectedTeam = new ArrayList<>();
+        for (ArrayList<Player> a: teams.values()) {
+            if (a.contains(player)){
+                selectedTeam=a;
+            }
+        }
+        return selectedTeam;
+    }
+
     public void newRound() {
         roundNumber++;
     }
@@ -153,4 +164,15 @@ public class Game {
     public void setFinalRound(){
         this.finalRound=true;
     }
+
+    public ArrayList<Player> getWinners(){
+        return winners;
+    }
+
+    public void setWinners(Player player1, Player player2){
+        this.winners.add(player1);
+        if (player2!=null){
+        this.winners.add(player2);}
+    }
+
 }

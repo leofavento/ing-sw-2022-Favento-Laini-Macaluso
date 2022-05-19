@@ -118,6 +118,8 @@ public class ActionStep1 implements State {
             }
         } catch (FullDiningRoomException e) {
             notify(ErrorMessage.FULL_DINING_ROOM);
+        } catch (StudentNotExistingException e) {
+            notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
         }
     }
 

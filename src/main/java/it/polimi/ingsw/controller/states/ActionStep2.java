@@ -43,9 +43,9 @@ public class ActionStep2 implements State{
     @Override
     public void execute() {
         setStatus(PlayerStatus.MOVE_2);
+        notifyStatus(PlayerStatus.MOVE_2);
         requestedSteps=true;
         notify(new MotherNatureSteps(game.getCurrentPlayer().getPlayedAssistant().getMovements()+game.getDashboard().getAdditionalMNMovements()));
-        notifyStatus(PlayerStatus.MOVE_2);
     }
 
     @Override
@@ -97,6 +97,7 @@ public class ActionStep2 implements State{
     private void notifyEndMove() {
         setStatus(PlayerStatus.END_MOVE_2);
         notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+        nextState();
     }
 
     @Override
