@@ -98,6 +98,7 @@ public class Island implements StudentDeposit {
             influence += getExtraInfluence(p);
         }
         colors.remove(c);
+        //
 
         for (Color s : students) {
             if (colors.contains(s)) {
