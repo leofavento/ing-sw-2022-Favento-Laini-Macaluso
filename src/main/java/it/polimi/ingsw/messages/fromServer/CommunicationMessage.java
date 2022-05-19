@@ -11,7 +11,8 @@ public enum CommunicationMessage implements Message {
     NO_ENTRY_TILE_ON_ISLAND("Island was not resolved because of No Entry Tile"),
     NEW_GAME("The game is starting..."),
     LAST_ROUND("This will be the last round of this game"),
-    CLOSING_GAME("The game is closed");
+    CLOSING_GAME("The game is closed"),
+    HOST_LEFT("The host left, you're being disconnected...");
 
 
     private final String message;

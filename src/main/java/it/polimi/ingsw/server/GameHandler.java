@@ -17,6 +17,7 @@ public class GameHandler implements Observer<Message> {
     private final int numberOfPlayers;
     private final boolean expertMode;
     private final ArrayList<ServerClientConnection> players;
+    private boolean hasStarted;
 
     private Game game;
     private Controller controller;
@@ -27,6 +28,7 @@ public class GameHandler implements Observer<Message> {
         this.host = host;
         this.numberOfPlayers = numberOfPlayers;
         this.expertMode = expertMode;
+        hasStarted = false;
         players = new ArrayList<>();
         players.add(host);
         host.sendMessage(new WaitingForPlayers());
@@ -48,7 +50,35 @@ public class GameHandler implements Observer<Message> {
         return host == player;
     }
 
+    public void disconnect(ServerClientConnection player) {
+        if (hasStarted) {
+            broadcastMessage(new PlayerDisconnected(player.getNickname()));
+            endGame();
+        } else {
+            if (isHost(player)) {
+                endGame(player);
+            } else {
+                players.remove(player);
+                sendToAllExcept(player.getNickname(), new UpdateLobby(gameID, players.size(), numberOfPlayers, expertMode));
+            }
+        }
+    }
+
+    private void endGame(ServerClientConnection disconnectedPlayer) {
+        broadcastMessage(CommunicationMessage.HOST_LEFT);
+        while (! players.isEmpty()) {
+            players.get(0).close();
+        }
+    }
+
+    private void endGame() {
+        while (! players.isEmpty()) {
+            players.get(0).close();
+        }
+    }
+
     private void createGame() {
+        hasStarted = true;
         game = new Game(gameID, numberOfPlayers, expertMode);
         controller = new Controller(game);
         controller.addObserver(this);

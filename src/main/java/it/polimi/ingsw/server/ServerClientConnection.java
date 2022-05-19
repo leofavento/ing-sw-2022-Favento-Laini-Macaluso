@@ -9,10 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.messages.fromClient.JoinAvailableGame;
-import it.polimi.ingsw.messages.fromClient.LoginMessage;
-import it.polimi.ingsw.messages.fromClient.RequestGames;
-import it.polimi.ingsw.messages.fromClient.SetGame;
+import it.polimi.ingsw.messages.fromClient.*;
 import it.polimi.ingsw.messages.fromServer.AvailableGames;
 import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
@@ -58,7 +55,9 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
                 readMessage(received);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            gameHandler.disconnect(this);
+            close();
+            System.err.println(e.getMessage());
         } catch (ClassNotFoundException e) {
             System.err.println("Invalid stream from object");
         }
@@ -78,7 +77,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
     }
 
     public void readMessage(Message message) {
-        if (message instanceof LoginMessage && requestedNickname) {
+        if (message instanceof Disconnect) {
+            gameHandler.disconnect(this);
+            close();
+        } else if (message instanceof LoginMessage && requestedNickname) {
             LoginMessage loginMessage = (LoginMessage) message;
             if (server.checkNickname(loginMessage.getNickname())) {
                 requestedNickname = false;
@@ -118,6 +120,8 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
     }
 
     public synchronized void close() {
+        gameHandler.getPlayers().remove(this);
+        server.unregisterUser(this);
         try {
             input.close();
         } catch (IOException ignored) {

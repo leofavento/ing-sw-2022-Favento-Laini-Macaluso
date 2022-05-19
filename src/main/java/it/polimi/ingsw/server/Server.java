@@ -74,6 +74,10 @@ public class Server implements Runnable {
         client.sendMessage(CommunicationMessage.SUCCESS);
     }
 
+    public void unregisterUser(ServerClientConnection client) {
+        takenNicknames.remove(client.getNickname());
+    }
+
     public ArrayList<GameInfo> getAvailableGames() {
         ArrayList<GameInfo> availableGames = new ArrayList<>();
         for (GameHandler game : startingGames) {
