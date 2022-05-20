@@ -9,10 +9,8 @@ import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
-import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ActionStep3 implements State {
@@ -23,8 +21,6 @@ public class ActionStep3 implements State {
     boolean movedStudents = false;
     boolean finished = false;
     ArrayList<String> missingAcks = new ArrayList<>();
-
-    private final List<Observer<Message>> observers = new ArrayList<>();
 
     public ActionStep3(Game game, Controller controller) {
         this.game = game;
@@ -68,7 +64,7 @@ public class ActionStep3 implements State {
     private void receiveCloud(ChosenCloud message) {
         Cloud chosenCloud = message.getCloud();
         if (chosenCloud.getStudents().isEmpty()) {
-            notify(ErrorMessage.INVALID_INPUT);
+            controller.notify(ErrorMessage.INVALID_INPUT);
         } else {
             requestedCloud = false;
             for (Color student : chosenCloud.getStudents()) {
@@ -80,7 +76,7 @@ public class ActionStep3 implements State {
             missingAcks.addAll(game.getOnlinePlayers().stream()
                     .map(Player::getNickname)
                     .collect(Collectors.toList()));
-            notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
+            controller.notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
         }
     }
 
@@ -92,7 +88,7 @@ public class ActionStep3 implements State {
                 nextState();
             } else {
                 requestedCloud = true;
-                notify(new SelectCloud(availableClouds));
+                controller.notify(new SelectCloud(availableClouds));
             }
         } else {
             checkLastPlayer();
@@ -101,7 +97,7 @@ public class ActionStep3 implements State {
 
     private void checkLastPlayer() {
         if (game.getOnlinePlayers().indexOf(game.getCurrentPlayer()) == (game.getNumberOfPlayers() - 1)) {
-            notify(new EndOfRound(game.getRoundNumber()));
+            controller.notify(new EndOfRound(game.getRoundNumber()));
         }
         notifyStatus(PlayerStatus.WAITING);
         finished = true;
@@ -150,7 +146,7 @@ public class ActionStep3 implements State {
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
         setStatus(currPlayerStatus);
-        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+        controller.notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
     }
 
     private void setStatus(PlayerStatus currPlayerStatus) {
@@ -158,17 +154,5 @@ public class ActionStep3 implements State {
             player.setStatus(PlayerStatus.WAITING);
         }
         game.getCurrentPlayer().setStatus(currPlayerStatus);
-    }
-
-    @Override
-    public void addObserver(Observer<Message> observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notify(Message message) {
-        for(Observer<Message> o : observers) {
-            o.update(message);
-        }
     }
 }

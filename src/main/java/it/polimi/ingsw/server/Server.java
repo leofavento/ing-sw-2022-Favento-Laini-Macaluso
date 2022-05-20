@@ -1,12 +1,9 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
-import it.polimi.ingsw.messages.fromServer.JoinAlreadyExistingGame;
-import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.GameInfo;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -14,8 +11,6 @@ import java.util.ArrayList;
 public class Server implements Runnable {
     private final int socketPort;
     private final ServerSocket socket;
-    private final ArrayList<ServerClientConnection> lobby;
-    private ServerClientConnection host;
     private final ArrayList<String> takenNicknames;
     private final ArrayList<GameHandler> activeGames;
     private final ArrayList<GameHandler> startingGames;
@@ -26,7 +21,6 @@ public class Server implements Runnable {
     public Server(int socketPort) throws IOException {
         this.socketPort = socketPort;
         socket = new ServerSocket(socketPort);
-        lobby = new ArrayList<>();
         takenNicknames = new ArrayList<>();
         activeGames = new ArrayList<>();
         startingGames = new ArrayList<>();

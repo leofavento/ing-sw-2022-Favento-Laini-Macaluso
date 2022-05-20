@@ -12,11 +12,9 @@ import it.polimi.ingsw.model.Cloud;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
-import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -27,8 +25,6 @@ public class Planning implements State {
     boolean requestedAssistant = false;
     Map<Player, Assistant> playedAssistants = new HashMap<>();
     ArrayList<String> missingAcks = new ArrayList<>();
-
-    private final List<Observer<Message>> observers = new ArrayList<>();
 
     public Planning(Game game, Controller controller) {
         this.game = game;
@@ -74,27 +70,27 @@ public class Planning implements State {
                 game.getCurrentPlayer().playAssistant(assistant);
                 requestedAssistant = false;
                 playedAssistants.put(game.getCurrentPlayer(), assistant);
-                notify(new PlayedAssistant(assistant, game.getCurrentPlayer().getNickname()));
+                controller.notify(new PlayedAssistant(assistant, game.getCurrentPlayer().getNickname()));
                 game.setNextPlayer();
                 if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
                     notifyStatus(PlayerStatus.PLANNING);
                 } else {
                     controller.updateTurnOrder();
-                    notify(new UpdateBoard(null, null, game.getOnlinePlayers()));
+                    controller.notify(new UpdateBoard(null, null, game.getOnlinePlayers()));
                     notifyStatus(PlayerStatus.WAITING);
                 }
             } else {
-                notify(ErrorMessage.INVALID_ASSISTANT);
+                controller.notify(ErrorMessage.INVALID_ASSISTANT);
             }
         } catch (AlreadyPlayedAssistant e) {
-            notify(ErrorMessage.UNAVAILABLE_ASSISTANT);
+            controller.notify(ErrorMessage.UNAVAILABLE_ASSISTANT);
         }
     }
 
     private void checkAssistants() {
         if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
             requestedAssistant = true;
-            notify(new AvailableAssistants(game.getCurrentPlayer().getAvailableAssistants(), playedAssistants));
+            controller.notify(new AvailableAssistants(game.getCurrentPlayer().getAvailableAssistants(), playedAssistants));
         } else {
             nextState();
         }
@@ -120,7 +116,7 @@ public class Planning implements State {
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
         setStatus(currPlayerStatus);
-        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+        controller.notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
     }
 
     private void setStatus(PlayerStatus currPlayerStatus) {
@@ -128,17 +124,5 @@ public class Planning implements State {
             player.setStatus(PlayerStatus.WAITING);
         }
         game.getCurrentPlayer().setStatus(currPlayerStatus);
-    }
-
-    @Override
-    public void addObserver(Observer<Message> observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notify(Message message) {
-        for(Observer<Message> o : observers) {
-            o.update(message);
-        }
     }
 }

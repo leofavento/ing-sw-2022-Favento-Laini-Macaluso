@@ -25,8 +25,6 @@ public class ActionStep2 implements State{
     boolean requestedAck = false;
     ArrayList<String> missingAcks = new ArrayList<>();
 
-    private final List<Observer<Message>> observers = new ArrayList<>();
-
     public ActionStep2(Game game, Controller controller) {
         this.game = game;
         this.controller = controller;
@@ -45,13 +43,13 @@ public class ActionStep2 implements State{
         setStatus(PlayerStatus.MOVE_2);
         notifyStatus(PlayerStatus.MOVE_2);
         requestedSteps=true;
-        notify(new MotherNatureSteps(game.getCurrentPlayer().getPlayedAssistant().getMovements()+game.getDashboard().getAdditionalMNMovements()));
+        controller.notify(new MotherNatureSteps(game.getCurrentPlayer().getPlayedAssistant().getMovements()+game.getDashboard().getAdditionalMNMovements()));
     }
 
     @Override
     public void receiveMessage(Message message, String sender) {
         if ((! sender.equals(game.getCurrentPlayer().getNickname())) && ! requestedAck) {
-            notify(ErrorMessage.WRONG_TURN);
+            controller.notify(ErrorMessage.WRONG_TURN);
         } else if (message instanceof ChosenSteps && requestedSteps) {
             receiveSteps((ChosenSteps) message);
         } else if (message instanceof Ack && requestedAck) {
@@ -67,7 +65,7 @@ public class ActionStep2 implements State{
         notifyEndMove();
         }
         else{
-            notify(ErrorMessage.INVALID_INPUT);
+            controller.notify(ErrorMessage.INVALID_INPUT);
         }
     }
 
@@ -84,7 +82,7 @@ public class ActionStep2 implements State{
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
         setStatus(currPlayerStatus);
-        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+        controller.notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
     }
 
     private void setStatus(PlayerStatus currPlayerStatus) {
@@ -96,19 +94,7 @@ public class ActionStep2 implements State{
 
     private void notifyEndMove() {
         setStatus(PlayerStatus.END_MOVE_2);
-        notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+        controller.notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
         nextState();
-    }
-
-    @Override
-    public void addObserver(Observer<Message> observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notify(Message message) {
-        for(Observer<Message> o : observers) {
-            o.update(message);
-        }
     }
 }

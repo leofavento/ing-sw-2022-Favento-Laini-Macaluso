@@ -85,7 +85,7 @@ public class GameHandler implements Observer<Message> {
         controller.getState().execute();
     }
 
-    public void joinGame(ServerClientConnection player) {
+    public synchronized void joinGame(ServerClientConnection player) {
         if (!isFull()) {
             players.add(player);
             player.setGame(this);
@@ -165,6 +165,9 @@ public class GameHandler implements Observer<Message> {
         } else if (message instanceof PlayedAssistant) {
             sendMessageByNickname(nickCurrentPlayer, CommunicationMessage.SUCCESS);
             sendToAllExcept(nickCurrentPlayer, message);
+        } else if (message instanceof CommunicateWinner) {
+            broadcastMessage(message);
+            endGame();
         }
     }
 }

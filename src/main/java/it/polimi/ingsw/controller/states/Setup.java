@@ -10,7 +10,6 @@ import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
-import it.polimi.ingsw.observer.Observer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,8 +24,6 @@ public class Setup implements State {
     Map<Tower, Integer> availableTowers = new HashMap<>();
     ArrayList<Integer> availableWizards = new ArrayList<>();
     ArrayList<String> missingAcks = new ArrayList<>();
-
-    private final List<Observer<Message>> observers = new ArrayList<>();
 
     public Setup(Game game, Controller controller) {
         this.game = game;
@@ -68,7 +65,7 @@ public class Setup implements State {
         availableWizards = (ArrayList<Integer>) IntStream.range(1, 5).boxed().collect(Collectors.toList());
 
         requestedTower = true;
-        notify(new AvailableTowers(availableTowers));
+        controller.notify(new AvailableTowers(availableTowers));
     
     }
     
@@ -80,19 +77,19 @@ public class Setup implements State {
         for (Integer i : availableTowers.values()) {
             if (i > 0) {
                 requestedTower = true;
-                notify(new AvailableTowers(availableTowers));
+                controller.notify(new AvailableTowers(availableTowers));
                 return;
             }
         }
         game.initialTowersDeal();
         requestedWizardID = true;
-        notify(new AvailableWizards(availableWizards));
+        controller.notify(new AvailableWizards(availableWizards));
     }
 
     private void checkWizards() {
         if (game.getOnlinePlayers().stream().anyMatch(player -> player.getWizardID() == 0)) {
             requestedWizardID = true;
-            notify(new AvailableWizards(availableWizards));
+            controller.notify(new AvailableWizards(availableWizards));
             return;
         }
         for (Player player : game.getOnlinePlayers()) {
@@ -116,7 +113,7 @@ public class Setup implements State {
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
         requestedAck = true;
-        notify(new UpdateBoard(null, game.getDashboard(), null));
+        controller.notify(new UpdateBoard(null, game.getDashboard(), null));
     }
 
     @Override
@@ -145,15 +142,15 @@ public class Setup implements State {
                 availableTowers.put(chosenTower, availableTowers.get(chosenTower) - 1);
                 game.addPlayerToTeam(chosenTower, game.getCurrentPlayer());
                 game.getCurrentPlayer().getSchoolBoard().setTowerColor(chosenTower);
-                notify(CommunicationMessage.SUCCESS);
+                controller.notify(CommunicationMessage.SUCCESS);
                 game.setNextPlayer();
                 checkTowers();
             } else {
-                notify(ErrorMessage.TOWER_NOT_AVAILABLE);
-                notify(new AvailableTowers(availableTowers));
+                controller.notify(ErrorMessage.TOWER_NOT_AVAILABLE);
+                controller.notify(new AvailableTowers(availableTowers));
             }
         } else {
-            notify(ErrorMessage.ALREADY_RECEIVED);
+            controller.notify(ErrorMessage.ALREADY_RECEIVED);
         }
     }
 
@@ -164,15 +161,15 @@ public class Setup implements State {
                 requestedWizardID = false;
                 availableWizards.remove(chosenWizard);
                 game.getCurrentPlayer().setWizardID(chosenWizard);
-                notify(CommunicationMessage.SUCCESS);
+                controller.notify(CommunicationMessage.SUCCESS);
                 game.setNextPlayer();
                 checkWizards();
             } else {
-                notify(ErrorMessage.WIZARD_NOT_AVAILABLE);
-                notify(new AvailableTowers(availableTowers));
+                controller.notify(ErrorMessage.WIZARD_NOT_AVAILABLE);
+                controller.notify(new AvailableTowers(availableTowers));
             }
         } else {
-            notify(ErrorMessage.ALREADY_RECEIVED);
+            controller.notify(ErrorMessage.ALREADY_RECEIVED);
         }
     }
 
@@ -180,18 +177,6 @@ public class Setup implements State {
         missingAcks.remove(sender);
         if (missingAcks.isEmpty()) {
             nextState();
-        }
-    }
-
-    @Override
-    public void addObserver(Observer<Message> observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notify(Message message) {
-        for(Observer<Message> o : observers) {
-            o.update(message);
         }
     }
 }

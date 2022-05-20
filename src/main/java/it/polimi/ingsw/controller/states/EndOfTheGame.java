@@ -5,7 +5,6 @@ import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.CommunicateWinner;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
 
@@ -37,16 +36,6 @@ public class EndOfTheGame implements State {
 
     @Override
     public void receiveMessage(Message message, String sender) {
-
-    }
-
-    @Override
-    public void addObserver(Observer<Message> observer) {
-
-    }
-
-    @Override
-    public void notify(Message message) {
 
     }
 }
