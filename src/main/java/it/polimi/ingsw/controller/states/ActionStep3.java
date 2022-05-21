@@ -115,6 +115,7 @@ public class ActionStep3 implements ResumableState {
         //Put back in the right place the Professor moved with the character 2
         for (CharacterCard character: game.getDashboard().getCharacters()){
             character.setInactive();
+            character.resetUsedBy();
         }
         for (Player player: game.getOnlinePlayers()) {
             for (Professor professor:player.getSchoolBoard().getProfessors()) {

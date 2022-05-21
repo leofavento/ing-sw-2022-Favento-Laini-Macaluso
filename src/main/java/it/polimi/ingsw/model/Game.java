@@ -15,7 +15,7 @@ public class Game {
     private Player currentPlayer;
     private final Dashboard dashboard;
     private final int numberOfPlayers;
-    private final boolean expertGame;
+    private boolean expertGame;
     private int roundNumber;
     private final EnumMap<Tower, ArrayList<Player>> teams;
     private boolean finalRound=false;
@@ -171,6 +171,13 @@ public class Game {
 
     public void setWinners(ArrayList<Player> winners){
         this.winners.addAll(winners);
+    }
+
+    public boolean getExpertGame(){
+        return expertGame;
+    }
+    public void setExpertGame(){
+        this.expertGame=true;
     }
 
 }

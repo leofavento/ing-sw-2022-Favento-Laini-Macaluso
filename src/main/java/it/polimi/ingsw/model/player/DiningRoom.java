@@ -9,6 +9,7 @@ import java.util.EnumMap;
 public class DiningRoom implements StudentDeposit {
     private final EnumMap<Color, Integer> students;
     private SchoolBoard schoolBoard;
+    private boolean enableCoins=false;
 
     public DiningRoom(SchoolBoard schoolBoard) {
         this.schoolBoard=schoolBoard;
@@ -23,7 +24,7 @@ public class DiningRoom implements StudentDeposit {
     @Override
     public void addStudent(Color color) {
         students.put(color, students.get(color) + 1);
-        if (students.get(color)%3==0){
+        if (enableCoins && students.get(color)%3==0){
             schoolBoard.addCoin();
         }
     }
@@ -39,5 +40,9 @@ public class DiningRoom implements StudentDeposit {
 
     public int getStudentsNumber(Color color) {
         return students.get(color);
+    }
+
+    public void setEnableCoins(){
+        enableCoins=true;
     }
 }

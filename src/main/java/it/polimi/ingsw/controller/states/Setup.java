@@ -65,6 +65,13 @@ public class Setup implements State {
         availableWizards = (ArrayList<Integer>) IntStream.range(1, 5).boxed().collect(Collectors.toList());
 
         requestedTower = true;
+
+        if (game.getExpertGame()){
+            controller.getCharacterController().generateCharacters(game.getDashboard());
+            for (Player p:game.getOnlinePlayers()) {
+                p.getSchoolBoard().getDiningRoom().setEnableCoins();
+            }
+        }
         controller.notify(new AvailableTowers(availableTowers));
     
     }
