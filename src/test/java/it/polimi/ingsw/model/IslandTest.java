@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
@@ -69,6 +70,8 @@ class IslandTest {
             island1.addNoEntry();
         }
 
+        assertEquals(2, island1.getNoEntry());
+
         for (int i = 0; i < 2; i++) {
             assertTrue(island1.useNoEntry());
         }
@@ -87,5 +90,25 @@ class IslandTest {
         }
 
         assertFalse(island1.useNoEntry());
+    }
+
+    @Test
+    public void testAddRemoveStudents() {
+        Island island = new Island();
+
+        for (Color color : Color.values()) {
+            assertThrows(StudentNotExistingException.class, () -> island.extractStudent(color));
+        }
+
+        island.addStudent(Color.GREEN);
+        island.addStudent(Color.GREEN);
+        island.addStudent(Color.BLUE);
+
+        assertDoesNotThrow(() -> island.extractStudent(Color.GREEN));
+        assertDoesNotThrow(() -> island.extractStudent(Color.GREEN));
+        assertThrows(StudentNotExistingException.class, () -> island.extractStudent(Color.GREEN));
+
+        assertDoesNotThrow(() -> island.extractStudent(Color.BLUE));
+        assertThrows(StudentNotExistingException.class, () -> island.extractStudent(Color.BLUE));
     }
 }

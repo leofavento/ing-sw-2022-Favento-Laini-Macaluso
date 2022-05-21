@@ -8,7 +8,7 @@ import java.util.EnumMap;
 
 public class DiningRoom implements StudentDeposit {
     private final EnumMap<Color, Integer> students;
-    private SchoolBoard schoolBoard;
+    private final SchoolBoard schoolBoard;
     private boolean enableCoins=false;
 
     public DiningRoom(SchoolBoard schoolBoard) {

@@ -82,10 +82,6 @@ public class Dashboard {
         return professors;
     }
 
-    public Professor getProfessorwithindex(Integer i){
-        return professors[i];
-    }
-
     public Bag getBag() {
         return bag;
     }

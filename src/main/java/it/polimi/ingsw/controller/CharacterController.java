@@ -108,14 +108,14 @@ public class CharacterController {
         //during this turn, you take control of any number of Professors even if you have
         //the same number of students as the player who currently controls them
         for (int i=0; i<5; i++) {
-            if (!(game.getDashboard().getProfessorwithindex(i).getOwner()==game.getCurrentPlayer())){
-                Professor p= game.getDashboard().getProfessorwithindex(i);
+            if (!(game.getDashboard().getProfessors()[i].getOwner()==game.getCurrentPlayer())){
+                Professor p= game.getDashboard().getProfessors()[i];
                 int temp;
-                Color color= game.getDashboard().getProfessorwithindex(i).getColor();
-                temp=game.getDashboard().getProfessorwithindex(i).getOwner().getSchoolBoard().getDiningRoom().getStudentsNumber(color);
+                Color color= game.getDashboard().getProfessors()[i].getColor();
+                temp=game.getDashboard().getProfessors()[i].getOwner().getSchoolBoard().getDiningRoom().getStudentsNumber(color);
                 if (temp==game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(color)){
                     game.getCurrentPlayer().getSchoolBoard().addProfessor(p);
-                    game.getDashboard().getProfessorwithindex(i).getOwner().getSchoolBoard().removeProfessor(p);
+                    game.getDashboard().getProfessors()[i].getOwner().getSchoolBoard().removeProfessor(p);
                 }
             }
             //remember to modify the controller method to assign professors to the player

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.characters.Char1;
 import it.polimi.ingsw.model.characters.Char5;
 import it.polimi.ingsw.model.characters.Char9;
@@ -59,6 +60,10 @@ class DashboardTest {
 
         assertArrayEquals(new Color[]{student1, student2, student3}, dashboard.getClouds().get(0).getStudents().toArray());
         assertArrayEquals(new Color[]{student4, student5}, dashboard.getClouds().get(1).getStudents().toArray());
+
+        assertThrows(StudentNotExistingException.class, () -> dashboard.getClouds().get(0).extractStudent(Color.YELLOW));
+        assertDoesNotThrow(() -> dashboard.getClouds().get(0).extractStudent(Color.PINK));
+        assertArrayEquals(new Color[]{student1, Color.PINK}, dashboard.getClouds().get(0).getStudents().toArray());
     }
 
     @Test

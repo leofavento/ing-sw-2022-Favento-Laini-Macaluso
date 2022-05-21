@@ -130,4 +130,36 @@ class GameTest {
         assertTrue(p1.getSchoolBoard().getProfessors().contains(game.getDashboard().getProfessors()[Color.PINK.ordinal()]));
         assertFalse(p2.getSchoolBoard().getProfessors().contains(game.getDashboard().getProfessors()[Color.PINK.ordinal()]));
     }
+
+    @Test
+    public void testTowersDeal() {
+        Game game = new Game(3, 2, false);
+
+        Player p1 = new Player("Player1");
+        Player p2 = new Player("Player2");
+        Player p3 = new Player("Player3");
+        Player p4 = new Player("Player4");
+
+        game.addNewPlayer(p1);
+        game.addNewPlayer(p2);
+        game.addNewPlayer(p3);
+        game.addNewPlayer(p4);
+        game.addPlayerToTeam(Tower.BLACK, p1);
+        game.addPlayerToTeam(Tower.WHITE, p2);
+        game.addPlayerToTeam(Tower.BLACK, p3);
+        game.addPlayerToTeam(Tower.WHITE, p4);
+
+        assertEquals(p1, game.getTeamFromTower(Tower.BLACK).get(0));
+        assertEquals(game.getTeamFromTower(Tower.WHITE), game.getTeamFromPlayer(p4));
+
+        for (Player player : game.getOnlinePlayers()) {
+            assertEquals(0, player.getSchoolBoard().getTowersNumber());
+        }
+        game.initialTowersDeal();
+
+        for (Tower tower : game.getTeams()) {
+            assertEquals(8, game.getTeamFromTower(tower).get(0).getSchoolBoard().getTowersNumber());
+            assertEquals(0, game.getTeamFromTower(tower).get(1).getSchoolBoard().getTowersNumber());
+        }
+    }
 }

@@ -5,6 +5,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
+import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observer;
 
@@ -82,6 +83,9 @@ public class GameHandler implements Observer<Message> {
     private void createGame() {
         hasStarted = true;
         game = new Game(gameID, numberOfPlayers, expertMode);
+        for (ServerClientConnection player : players) {
+            game.addNewPlayer(new Player(player.getNickname()));
+        }
         controller = new Controller(game);
         controller.addObserver(this);
         controller.getState().execute();
