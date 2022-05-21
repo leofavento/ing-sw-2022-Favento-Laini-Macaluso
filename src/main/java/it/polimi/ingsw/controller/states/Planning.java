@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Planning implements State {
+public class Planning implements ResumableState {
     Game game;
     Controller controller;
     boolean requestedAck = false;
@@ -33,7 +33,9 @@ public class Planning implements State {
 
     @Override
     public void nextState() {
-        controller.isFinalRound();
+        if (! game.getFinalRound()) {
+            controller.isFinalRound();
+        }
         controller.setState(new ActionStep1(game, controller));
         controller.getState().execute();
     }
@@ -43,8 +45,10 @@ public class Planning implements State {
         game.newRound();
         int studentsPerCloud = (game.getNumberOfPlayers() == 3) ? 4 : 3;
         int necessaryStudents = studentsPerCloud * game.getDashboard().getClouds().size();
-        if (game.getDashboard().getBag().getStudentsLeft() <= necessaryStudents) {
+        if (game.getDashboard().getBag().getStudentsLeft() <= necessaryStudents
+                || game.getCurrentPlayer().getAvailableAssistants().size() == 1) {
             game.setFinalRound();
+            controller.notify(CommunicationMessage.LAST_ROUND);
         }
         if (game.getDashboard().getBag().getStudentsLeft() >= necessaryStudents) {
             initializeStudentsToClouds(studentsPerCloud);
@@ -112,6 +116,7 @@ public class Planning implements State {
 
     private void notifyStatus(PlayerStatus currPlayerStatus) {
         requestedAck = true;
+        missingAcks.clear();
         missingAcks.addAll(game.getOnlinePlayers().stream()
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
@@ -124,5 +129,10 @@ public class Planning implements State {
             player.setStatus(PlayerStatus.WAITING);
         }
         game.getCurrentPlayer().setStatus(currPlayerStatus);
+    }
+
+    @Override
+    public void resume() {
+        checkAssistants();
     }
 }

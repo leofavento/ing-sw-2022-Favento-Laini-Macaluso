@@ -12,17 +12,14 @@ import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.StudentDeposit;
 import it.polimi.ingsw.model.player.DiningRoom;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ActionStep1 implements State {
+public class ActionStep1 implements ResumableState {
     Game game;
     Controller controller;
     boolean requestedAck = false;
@@ -86,7 +83,8 @@ public class ActionStep1 implements State {
             requestedStudent = false;
             currStudent = student;
             requestedDestination = true;
-            controller.notify(new WhereToMove(true, game.getDashboard().getIslands().size()));
+            controller.notify(new WhereToMove(game.getCurrentPlayer().getSchoolBoard().getDiningRoom(),
+                    game.getDashboard().getIslands()));
         }
     }
 
@@ -108,7 +106,7 @@ public class ActionStep1 implements State {
             requestedAck = true;
             controller.notify(new UpdateBoard(null, game.getDashboard(), game.getOnlinePlayers()));
             if (movedStudents == ((game.getNumberOfPlayers() == 3) ? 4 : 3)) {
-                notifyEndMove();
+                notifyStatus(PlayerStatus.END_MOVE_1);
             }
         } catch (FullDiningRoomException e) {
             controller.notify(ErrorMessage.FULL_DINING_ROOM);
@@ -119,6 +117,7 @@ public class ActionStep1 implements State {
 
     private void notifyStatus(PlayerStatus currPlayerStatus) {
         requestedAck = true;
+        missingAcks.clear();
         missingAcks.addAll(game.getOnlinePlayers().stream()
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
@@ -133,8 +132,8 @@ public class ActionStep1 implements State {
         game.getCurrentPlayer().setStatus(currPlayerStatus);
     }
 
-    private void notifyEndMove() {
-        setStatus(PlayerStatus.END_MOVE_1);
-        controller.notify(new PlayerStatusMessage(game.getCurrentPlayer().getStatus()));
+    @Override
+    public void resume() {
+        checkStudents();
     }
 }

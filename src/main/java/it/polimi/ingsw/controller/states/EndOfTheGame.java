@@ -5,8 +5,10 @@ import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.CommunicateWinner;
 import it.polimi.ingsw.model.Game;
+import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class EndOfTheGame implements State {
     Game game;
@@ -26,12 +28,9 @@ public class EndOfTheGame implements State {
 
     @Override
     public void execute() {
-        winnerNicknames.add(game.getWinners().get(0).getNickname());
-        winnerNicknames.add(game.getWinners().get(1).getNickname());
+        winnerNicknames.addAll(game.getWinners().stream().map(Player::getNickname).collect(Collectors.toList()));
 
         controller.notify(new CommunicateWinner(winnerNicknames, this.reason));
-
-        //TODO close connection with all the clients
     }
 
     @Override

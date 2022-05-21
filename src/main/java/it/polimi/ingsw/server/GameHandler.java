@@ -65,6 +65,7 @@ public class GameHandler implements Observer<Message> {
     }
 
     private void endGame(ServerClientConnection disconnectedPlayer) {
+        server.getStartingGames().remove(this);
         broadcastMessage(CommunicationMessage.HOST_LEFT);
         while (! players.isEmpty()) {
             players.get(0).close();
@@ -72,6 +73,7 @@ public class GameHandler implements Observer<Message> {
     }
 
     private void endGame() {
+        server.getActiveGames().remove(this);
         while (! players.isEmpty()) {
             players.get(0).close();
         }
@@ -159,12 +161,30 @@ public class GameHandler implements Observer<Message> {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message == CommunicationMessage.SUCCESS) {
             sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message == CommunicationMessage.LAST_ROUND) {
+            broadcastMessage(message);
+        } else if (message == CommunicationMessage.NO_ENTRY_TILE_ON_ISLAND) {
+            broadcastMessage(message);
         } else if (message instanceof PlayerStatusMessage) {
             sendMessageByNickname(nickCurrentPlayer, message);
             sendToAllExcept(nickCurrentPlayer, new PlayerStatusMessage(PlayerStatus.WAITING));
+        } else if (message instanceof AvailableAssistants) {
+            sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof PlayedAssistant) {
             sendMessageByNickname(nickCurrentPlayer, CommunicationMessage.SUCCESS);
             sendToAllExcept(nickCurrentPlayer, message);
+        } else if (message instanceof UpdateBoard) {
+            broadcastMessage(message);
+        } else if (message instanceof StartOfPlayerRound) {
+            broadcastMessage(message);
+        } else if (message instanceof MovableStudents) {
+            sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message instanceof WhereToMove) {
+            sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message instanceof MotherNatureSteps) {
+            sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message instanceof IslandOwner) {
+            broadcastMessage(message);
         } else if (message instanceof CommunicateWinner) {
             broadcastMessage(message);
             endGame();

@@ -52,17 +52,31 @@ public class Island implements StudentDeposit {
     }
 
     /**
-     * This method calculates the influence of a team over the island
+     * Calculates the influence of a team over the island
      * @param team contains the players belonging to a team. The method doesn't check if the players
      *             have actually the same tower color.
      * @return an integer representing the influence over the island
      */
-    public int countInfluence(ArrayList<Player> team){
+    public int countInfluence(ArrayList<Player> team) {
+        return countInfluence(team, false, null);
+    }
+
+    /**
+     * Calculates the influence of a team over the island
+     * @param team contains the players belonging to a team. The method doesn't check if the players
+     *             have actually the same tower color.
+     * @param ignoreTowers if true, the towers number doesn't add any value
+     * @param ignoredColor the selected color won't be considered in the computation
+     * @return an integer representing the influence over the island
+     */
+    public int countInfluence(ArrayList<Player> team, boolean ignoreTowers, Color ignoredColor) {
         int influence = 0;
         ArrayList<Color> colors = new ArrayList<>();
         Tower tower = team.get(0).getSchoolBoard().getTowerColor();
 
-        influence += (tower == towerColor) ? numUnits : 0;
+        if (! ignoreTowers) {
+            influence += (tower == towerColor) ? numUnits : 0;
+        }
 
         for (Player p : team) {
             colors.addAll(p.getSchoolBoard()
@@ -74,65 +88,13 @@ public class Island implements StudentDeposit {
         }
 
         for (Color s : students) {
-            if (colors.contains(s)) {
+            if (colors.contains(s) && s != ignoredColor) {
                 influence++;
             }
         }
 
         return influence;
     }
-
-    public int noColorInfluence(ArrayList<Player> team, Color c){
-        int influence = 0;
-        ArrayList<Color> colors = new ArrayList<>();
-        Tower tower = team.get(0).getSchoolBoard().getTowerColor();
-
-        influence += (tower == towerColor) ? numUnits : 0;
-
-        for (Player p : team) {
-            colors.addAll(p.getSchoolBoard()
-                    .getProfessors()
-                    .stream()
-                    .map(Professor::getColor)
-                    .collect(Collectors.toList()));
-            influence += getExtraInfluence(p);
-        }
-        colors.remove(c);
-        //
-
-        for (Color s : students) {
-            if (colors.contains(s)) {
-                influence++;
-            }
-        }
-
-        return influence;
-    }
-
-    public int noTowerInfluence(ArrayList<Player> team){
-        int influence = 0;
-        ArrayList<Color> colors = new ArrayList<>();
-
-        for (Player p : team) {
-            colors.addAll(p.getSchoolBoard()
-                    .getProfessors()
-                    .stream()
-                    .map(Professor::getColor)
-                    .collect(Collectors.toList()));
-            influence += getExtraInfluence(p);
-        }
-
-        for (Color s : students) {
-            if (colors.contains(s)) {
-                influence++;
-            }
-        }
-
-        return influence;
-
-    }
-
-
 
     public Tower getTowerColor(){
         return towerColor;

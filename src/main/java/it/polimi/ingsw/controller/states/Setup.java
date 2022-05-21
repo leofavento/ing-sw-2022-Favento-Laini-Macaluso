@@ -113,7 +113,7 @@ public class Setup implements State {
                 .map(Player::getNickname)
                 .collect(Collectors.toList()));
         requestedAck = true;
-        controller.notify(new UpdateBoard(null, game.getDashboard(), null));
+        controller.notify(new UpdateBoard(null, game.getDashboard(), game.getOnlinePlayers()));
     }
 
     @Override

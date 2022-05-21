@@ -83,6 +83,14 @@ public class Server implements Runnable {
         return availableGames;
     }
 
+    public ArrayList<GameHandler> getActiveGames() {
+        return activeGames;
+    }
+
+    public ArrayList<GameHandler> getStartingGames() {
+        return startingGames;
+    }
+
     public GameHandler createRoom(ServerClientConnection host, int numberOfPlayers, boolean expertMode) {
         GameHandler room = new GameHandler(this, nextGameID, host, expertMode, numberOfPlayers);
         nextGameID++;

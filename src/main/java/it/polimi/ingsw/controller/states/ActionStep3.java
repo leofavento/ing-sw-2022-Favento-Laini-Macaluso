@@ -13,7 +13,7 @@ import it.polimi.ingsw.model.player.PlayerStatus;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class ActionStep3 implements State {
+public class ActionStep3 implements ResumableState {
     Game game;
     Controller controller;
     boolean requestedAck = false;
@@ -29,7 +29,7 @@ public class ActionStep3 implements State {
 
     @Override
     public void nextState() {
-            cleanAll();
+        cleanAll();
 
         if (game.getFinalRound() && (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1)))){
             controller.check();
@@ -154,5 +154,10 @@ public class ActionStep3 implements State {
             player.setStatus(PlayerStatus.WAITING);
         }
         game.getCurrentPlayer().setStatus(currPlayerStatus);
+    }
+
+    @Override
+    public void resume() {
+        checkClouds();
     }
 }

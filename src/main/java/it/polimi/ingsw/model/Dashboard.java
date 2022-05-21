@@ -70,10 +70,12 @@ public class Dashboard {
 
     public void mergeIslands(Island a, Island ... merging) {
         for (Island t : merging) {
+            if (motherNaturePosition == islands.indexOf(t)) {
+                setMotherNature(a);
+            }
             a.addIsland(t);
             deleteIsland(t);
         }
-        setMotherNature(a);
     }
 
     public Professor[] getProfessors() {

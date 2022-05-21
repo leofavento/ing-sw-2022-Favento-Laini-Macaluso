@@ -169,10 +169,8 @@ public class Game {
         return winners;
     }
 
-    public void setWinners(Player player1, Player player2){
-        this.winners.add(player1);
-        if (player2!=null){
-        this.winners.add(player2);}
+    public void setWinners(ArrayList<Player> winners){
+        this.winners.addAll(winners);
     }
 
 }

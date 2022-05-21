@@ -1,21 +1,25 @@
 package it.polimi.ingsw.messages.fromServer;
 
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.model.Island;
+import it.polimi.ingsw.model.player.DiningRoom;
+
+import java.util.ArrayList;
 
 public class WhereToMove implements Message {
-    private final boolean diningRoom;
-    private final int islands;
+    private final DiningRoom diningRoom;
+    private final ArrayList<Island> islands;
 
-    public WhereToMove(boolean diningRoom, int islands){
+    public WhereToMove(DiningRoom diningRoom, ArrayList<Island> islands){
         this.diningRoom = diningRoom;
         this.islands = islands;
     }
 
-    public boolean isDiningRoom() {
+    public DiningRoom isDiningRoom() {
         return diningRoom;
     }
 
-    public int getIslands() {
+    public ArrayList<Island> getIslands() {
         return islands;
     }
 }
