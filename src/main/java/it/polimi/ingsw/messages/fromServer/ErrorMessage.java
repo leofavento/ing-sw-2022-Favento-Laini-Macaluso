@@ -16,6 +16,7 @@ public enum ErrorMessage implements Message {
     INVALID_ASSISTANT("The chosen assistant has already been played by another player"),
     UNAVAILABLE_ASSISTANT("You have already used this assistant in a previous turn."),
     INVALID_INPUT("Invalid input"),
+    ZERO_NO_ENTRY_TILES_LEFT("There are zero No Entry Tiles left on the Character5 card"),
     INVALID_ACTION("There's a time and a place for everything, but not now.");
 
     private final String message;

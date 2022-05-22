@@ -6,13 +6,13 @@ import it.polimi.ingsw.model.Color;
 import java.util.ArrayList;
 
 public class MovableStudents implements Message {
-    private final ArrayList<Color> entranceStudents;
+    private final ArrayList<Color> students;
 
-    public MovableStudents(ArrayList<Color> entranceStudents) {
-        this.entranceStudents = entranceStudents;
+    public MovableStudents(ArrayList<Color> students) {
+        this.students = students;
     }
 
-    public ArrayList<Color> getEntranceStudents() {
-        return entranceStudents;
+    public ArrayList<Color> getStudents() {
+        return students;
     }
 }

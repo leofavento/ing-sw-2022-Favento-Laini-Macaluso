@@ -1,13 +1,12 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.controller.states.*;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
-import it.polimi.ingsw.exceptions.StudentNotExistingException;
-import it.polimi.ingsw.messages.fromServer.UpdateBoard;
+import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.*;
-import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.server.VirtualView;
 
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class CharacterController {
         }
     }
 
-    public void applyEffect(CharacterCard c) throws NotEnoughCoinsException, InvalidInputException, NoEntryTilesLeftException, StudentNotExistingException {
+    public void applyEffect(CharacterCard c) throws NotEnoughCoinsException, InvalidInputException{
         if (c==null) throw new InvalidInputException("The input is not a Character");
         //Check if player has enough coins
         if (!verifyCoins(c)){
@@ -83,25 +82,13 @@ public class CharacterController {
                 activate((Char11) c);}
             if (c instanceof Char12){
                 activate((Char12) c);}
-            c.setInactive();
-            c.setUsedBy(null);
         }
     }
 
     public void activate(Char1 c) {
-        //pick a student on this card
-        //Color color = virtualview.selectStudentFrom(c.getStudents());
-        //choose an island to move student on
-        //Island island = virtualview.selectIsland(game.getDashboard().getIslands());
-        //put the student on the island
-        //island.addStudent(color);
-        //c.removeStudent(color);
-        //draw a new student from the bag
-        //c.addStudent(game.getDashboard().getBag().drawStudent());
-        //virtualview.done();
-        //set the character to inactive
-        //c.setInactive();
-        //c.setUsedBy=null;
+        //take 1 student from this card and place it on an Island
+        ResumableState previousState= (ResumableState) controller.getState();
+        controller.setState(new EffectChar1(game, controller, previousState, c));
     }
 
     public void activate(Char2 c){
@@ -118,19 +105,13 @@ public class CharacterController {
                     game.getDashboard().getProfessors()[i].getOwner().getSchoolBoard().removeProfessor(p);
                 }
             }
-            //remember to modify the controller method to assign professors to the player
-            //at the end of the player turn, remember to verify if the professor owner is the same as the player who currently has it on the schoolboard
         }
-
     }
 
     public void activate(Char3 c) {
         //resolve an island as if Mother Nature has ended her movement here
-        //ask the player to select the island
-        //Island island = virtualview.selectIslandfrom(game.getDashboard().getIslands());
-        //resolve the island
-        //controller.resolveIsland(island);
-        //controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard()));
+        ResumableState previousState= (ResumableState) controller.getState();
+        controller.setState(new EffectChar3(game, controller, previousState, c));
     }
 
     public void activate(Char4 c) {
@@ -140,13 +121,14 @@ public class CharacterController {
 
     public void activate(Char5 c) {
         //place a No Entry tile on an Island of your choice
-        //The first time mother nature ends her movement there, put the No Entry tile back onto this card
-        //remove No Entry Tile from the character card
-        //c.useNoEntryTile();
-        //select the Island
-        //Island island = virtualview.selectIsland(game.getDashboard().getIslands());
-        //place No Entry Tile on selected island
-        //island.addNoEntry();
+        try {
+            c.useNoEntryTile();
+        } catch (NoEntryTilesLeftException e) {
+            controller.notify(ErrorMessage.ZERO_NO_ENTRY_TILES_LEFT);
+        }
+
+        ResumableState previousState= (ResumableState) controller.getState();
+        controller.setState(new EffectChar5(game, controller, previousState, c));
         }
 
         public void activate (Char6 c){
@@ -156,7 +138,8 @@ public class CharacterController {
 
         public void activate(Char7 c){
             //You may take up to 3 students from this card and replace them with the same number of students from your entrance
-            //TODO
+            ResumableState previousState= (ResumableState) controller.getState();
+            controller.setState(new EffectChar7(game, controller, previousState, c));
         }
 
         public void activate(Char8 c){
@@ -168,48 +151,33 @@ public class CharacterController {
 
         public void activate(Char9 c){
             //Choose a color of Student: during the influence calculation this turn, that color adds no influence
-            ArrayList<Color> colors=new ArrayList<>();
-            Collections.addAll(colors, Color.values());
-            //Color color= virtualview.chooseColor(colors);
-            //game.getDashboard().setDoNotCountColor(color);
+            ResumableState previousState= (ResumableState) controller.getState();
+            controller.setState(new EffectChar9(game, controller, previousState, c));
         }
 
         public void activate(Char10 c){
             //You may exchange up to 2 Students between your Entrance and your Dining Room
-            //TODO
+            ResumableState previousState= (ResumableState) controller.getState();
+            controller.setState(new EffectChar10(game, controller, previousState, c));
         }
 
         public void activate(Char11 c){
             //Take 1 student from this card and place it in your Dining Room
-            //Color color= virtualview.selectStudentFrom(c.getStudents());
-            //add to dining room
-            //game.getCurrentPlayer().getSchoolBoard().getDiningRoom().addStudent(color);
-            //remove from this card
-            //c.removeStudent(color);
-            //draw a new student from the bag and place it on this card
-            c.addStudent(game.getDashboard().getBag().drawStudent());
+            ResumableState previousState= (ResumableState) controller.getState();
+            controller.setState(new EffectChar11(game, controller, previousState, c));
         }
 
         public void activate(Char12 c){
             //Choose a type of student: every player (including the current player) must return
             // 3 students of that type from their dining room to the bag
-            //choose color
-            //ArrayList<Color> colors=new ArrayList<>();
-            //Collections.addAll(colors, Color.values());
-            //Color color= virtualview.chooseColor(colors);
-            //every player must return 3 student of this color to the bag
-            //for (Player player: game.getOnlinePlayers()) {
-            //for (int i=0; i<3; i++) {
-            //player.getSchoolBoard().getDiningRoom().extractStudent(color);
-            //game.getDashboard().getBag().addStudent(color);
-            //}
-            //}
+            ResumableState previousState= (ResumableState) controller.getState();
+            controller.setState(new EffectChar12(game, controller, previousState, c));
         }
 
 
 
 
-    public boolean verifyCoins(CharacterCard c) throws NotEnoughCoinsException {
+    public boolean verifyCoins(CharacterCard c){
             if((game.getCurrentPlayer().getSchoolBoard().getCoins())>=(c.getCost())){
                 game.getCurrentPlayer().getSchoolBoard().spendCoins(c.getCost());
                 return true;
