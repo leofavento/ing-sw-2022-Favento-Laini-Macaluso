@@ -86,6 +86,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
                 requestedNickname = false;
                 nickname = loginMessage.getNickname();
                 server.registerUser(this);
+                sendMessage(CommunicationMessage.SUCCESS);
             } else {
                 sendMessage(ErrorMessage.TAKEN_NICKNAME);
             }
