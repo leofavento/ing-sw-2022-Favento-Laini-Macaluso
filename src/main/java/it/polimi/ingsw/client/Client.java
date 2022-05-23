@@ -1,6 +1,5 @@
 package it.polimi.ingsw.client;
 
-import it.polimi.ingsw.exceptions.TimedOutException;
 import it.polimi.ingsw.messages.Message;
 
 import java.io.IOException;
@@ -29,8 +28,10 @@ public class Client {
     }
 
 
-    public void startConnection(int port, String IP_address, String nickname) throws IOException {
+    public void startConnection(int port, String IP_address) throws IOException {
         clientSocket = new Socket(IP_address, port);
+        System.out.println("Client: started");
+        System.out.println("Client socket: " + clientSocket);
 
         output = new ObjectOutputStream(clientSocket.getOutputStream());
         input = new ObjectInputStream(clientSocket.getInputStream());
@@ -48,9 +49,6 @@ public class Client {
         }
     }
 
-    public void sendAndWait(Message message, int timeoutSeconds) throws TimedOutException{
-        //TODO
-    }
 
     public void closeConnection(){
         try {
@@ -77,8 +75,5 @@ public class Client {
         this.nickname = nickname;
     }
 
-    public static void main(String[] args) {
-        //TODO
-    }
 
 }
