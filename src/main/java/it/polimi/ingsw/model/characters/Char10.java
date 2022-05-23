@@ -1,15 +1,17 @@
 package it.polimi.ingsw.model.characters;
 
+import it.polimi.ingsw.controller.CharacterController;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.player.DiningRoom;
 import it.polimi.ingsw.model.player.Entrance;
 
-public class Char10 extends CharacterCard{
+public class Char10 extends CharacterCard {
 
-    public Char10(){
-        value= CharacterEnum.valueOf(("Char10"));
-        this.cost=1;}
+    public Char10() {
+        value = CharacterEnum.valueOf(("Char10"));
+        this.cost = 1;
+    }
 
     //You may exchange up to 2 students between your Entrance and your dining room
 
@@ -22,4 +24,8 @@ public class Char10 extends CharacterCard{
         entrance.addStudent(c2);
     }*/
 
+    @Override
+    public void activate(CharacterController controller) {
+        controller.activate(this);
+    }
 }

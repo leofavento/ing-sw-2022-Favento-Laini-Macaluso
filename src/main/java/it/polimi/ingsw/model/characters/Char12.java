@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.characters;
 
+import it.polimi.ingsw.controller.CharacterController;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
@@ -20,4 +21,8 @@ public class Char12 extends CharacterCard{
         }
     }*/
 
+    @Override
+    public void activate(CharacterController controller) {
+        controller.activate(this);
+    }
 }

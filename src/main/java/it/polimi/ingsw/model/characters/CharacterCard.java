@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model.characters;
 
+import it.polimi.ingsw.controller.CharacterController;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
@@ -10,59 +11,82 @@ import java.util.ArrayList;
 
 public abstract class CharacterCard {
 
-    CharacterEnum value=null;
+    CharacterEnum value = null;
     int cost;
-    boolean isActive=false;
-    String UsedBy=null;
+    boolean isActive = false;
+    String UsedBy = null;
     ArrayList<Color> students;
-    int noEntryTiles=0;
+    int noEntryTiles = 0;
     Color color;
 
-    public int getCost(){return cost;}
+    public int getCost() {
+        return cost;
+    }
 
-    public void increaseCost(){
+    public void increaseCost() {
         this.cost++;
     }
 
-    public void setActive(){
-        this.isActive=true;
+    public void setActive() {
+        this.isActive = true;
     }
 
-    public void setInactive(){
-        this.isActive=false;
+    public void setInactive() {
+        this.isActive = false;
     }
 
-    public boolean getActive(){return isActive;}
-
-    public void setUsedBy(String nickname){
-        this.UsedBy=nickname;
+    public boolean getActive() {
+        return isActive;
     }
 
-    public void resetUsedBy(){this.UsedBy=null;}
+    public void setUsedBy(String nickname) {
+        this.UsedBy = nickname;
+    }
 
-    public String getUsedBy(){return UsedBy;}
+    public void resetUsedBy() {
+        this.UsedBy = null;
+    }
 
-    public CharacterEnum getValue(){return value;}
+    public String getUsedBy() {
+        return UsedBy;
+    }
 
-    public void setUp (Bag bag){}
+    public CharacterEnum getValue() {
+        return value;
+    }
 
-    public void addStudent(Color c){}
+    public void setUp(Bag bag) {
+    }
 
-    public ArrayList<Color> getStudents(){return students;}
+    public void addStudent(Color c) {
+    }
 
-    public void removeStudent(Color c){}
+    public ArrayList<Color> getStudents() {
+        return students;
+    }
 
-    public int getNoEntryTiles(){
+    public void removeStudent(Color c) {
+    }
+
+    public int getNoEntryTiles() {
         return noEntryTiles;
     }
 
-    public void addNoEntryTile(){}
+    public void addNoEntryTile() {
+    }
 
-    public void useNoEntryTile() throws NoEntryTilesLeftException {}
+    public void useNoEntryTile() throws NoEntryTilesLeftException {
+    }
 
-    public Color getColor(){return color;}
+    public Color getColor() {
+        return color;
+    }
 
-    public void setColor(Color c){}
+    public void setColor(Color c) {
+    }
 
-    public void resetColor(){}
+    public void resetColor() {
+    }
+
+    public abstract void activate(CharacterController controller);
 }
