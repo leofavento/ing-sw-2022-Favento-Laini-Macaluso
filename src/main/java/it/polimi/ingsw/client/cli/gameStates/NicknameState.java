@@ -4,10 +4,10 @@ import it.polimi.ingsw.client.cli.CLI;
 
 import java.io.IOException;
 
-public class NicknameState extends State{
+public class NicknameState implements State{
 
     @Override
-    public void doAction(CLI cli) throws IOException {
+    public void doAction(CLI cli) {
         //TODO
     }
 }

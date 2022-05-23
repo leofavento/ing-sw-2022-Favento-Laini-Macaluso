@@ -4,6 +4,6 @@ import it.polimi.ingsw.client.cli.CLI;
 
 import java.io.IOException;
 
-public abstract class State {
-    public abstract void doAction(CLI cli) throws IOException;
+public interface State {
+    void doAction(CLI cli);
 }

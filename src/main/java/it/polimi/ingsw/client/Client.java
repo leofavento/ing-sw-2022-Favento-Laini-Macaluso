@@ -7,12 +7,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Client {
+public class Client implements Runnable {
 
     private Socket clientSocket;
     private ObjectInputStream input;
     private ObjectOutputStream output;
     private String nickname;
+    private boolean active;
 
 
     /*@param cli true --> cli
@@ -36,7 +37,7 @@ public class Client {
         output = new ObjectOutputStream(clientSocket.getOutputStream());
         input = new ObjectInputStream(clientSocket.getInputStream());
 
-
+        active = true;
     }
 
     public void sendMessage(Message message) {
@@ -46,6 +47,7 @@ public class Client {
             output.flush();
         } catch (IOException e) {
             e.printStackTrace();
+            active = false;
         }
     }
 
@@ -75,5 +77,15 @@ public class Client {
         this.nickname = nickname;
     }
 
-
+    @Override
+    public void run() {
+        while(active) {
+            try {
+                Message received = (Message) input.readObject();
+                //readMessage(received);
+            } catch (IOException | ClassNotFoundException e) {
+                System.err.println("Connection closed from server.");
+            }
+        }
+    }
 }
