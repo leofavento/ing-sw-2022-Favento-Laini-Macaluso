@@ -5,6 +5,9 @@ import it.polimi.ingsw.client.cli.gameStates.GameSetupState;
 import it.polimi.ingsw.client.cli.gameStates.NicknameState;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.*;
+import it.polimi.ingsw.model.Tower;
+
+import java.util.HashMap;
 
 public class MessageReceiver {
     private final CLI cli;
@@ -28,6 +31,12 @@ public class MessageReceiver {
             receiveMessage((WaitingForPlayers) message);
         } else if (message instanceof UpdateLobby) {
             receiveMessage((UpdateLobby) message);
+        } else if (message instanceof AvailableTowers) {
+            receiveMessage((AvailableTowers) message);
+        }
+        // TOGLIERE
+        if (cli.getGameState() instanceof GameSetupState) {
+            System.out.println(message);
         }
     }
 
@@ -88,6 +97,13 @@ public class MessageReceiver {
         if (remaining == 0){
             cli.setSuccess(true);
         }
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
+    }
+
+    public void receiveMessage(AvailableTowers message) {
+        cli.getView().setAvailableTowers(message.getAvailableTowers());
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }

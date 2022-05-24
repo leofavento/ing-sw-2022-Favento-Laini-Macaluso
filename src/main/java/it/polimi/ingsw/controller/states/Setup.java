@@ -21,7 +21,7 @@ public class Setup implements State {
     boolean requestedTower = false;
     boolean requestedWizardID = false;
     boolean requestedAck = false;
-    Map<Tower, Integer> availableTowers = new HashMap<>();
+    HashMap<Tower, Integer> availableTowers = new HashMap<>();
     ArrayList<Integer> availableWizards = new ArrayList<>();
     ArrayList<String> missingAcks = new ArrayList<>();
 

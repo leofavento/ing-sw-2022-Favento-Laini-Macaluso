@@ -2,6 +2,7 @@ package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Dashboard;
+import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class View {
     private HashMap<String, Assistant> playedAssistants;
     private int roundNumber;
     private boolean expertMode;
+    private HashMap<Tower, Integer> availableTowers;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -61,5 +63,13 @@ public class View {
 
     public boolean isExpertMode() {
         return expertMode;
+    }
+
+    public HashMap<Tower, Integer> getAvailableTowers() {
+        return availableTowers;
+    }
+
+    public void setAvailableTowers(HashMap<Tower, Integer> availableTowers) {
+        this.availableTowers = availableTowers;
     }
 }
