@@ -43,6 +43,7 @@ public class JoinGameState implements State {
                     System.out.println("This option is not valid.");
                 } else if (choice == -1) {
                     cli.setGameState(new LobbyState(cli));
+                    break;
                 } else if (choice > 0) {
                     cli.getClient().sendMessage(new JoinAvailableGame(choice));
                     try {

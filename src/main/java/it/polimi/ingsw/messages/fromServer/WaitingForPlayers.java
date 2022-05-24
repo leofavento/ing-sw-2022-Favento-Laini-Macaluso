@@ -10,7 +10,6 @@ public class WaitingForPlayers implements Message {
     }
 
     public String getMessage() {
-        return String.format("The game (ID = %d) has been successfully created.\n" +
-                "Waiting for other players to join the game...", gameID);
+        return String.format("The game (ID = %d) has been successfully created.", gameID);
     }
 }

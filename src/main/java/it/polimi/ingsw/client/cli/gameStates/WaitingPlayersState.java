@@ -11,7 +11,19 @@ public class WaitingPlayersState implements State {
 
     @Override
     public void run() {
-        // TODO
-        System.out.println("Ok");
+        while (!cli.isSuccess()) {
+            System.out.println("Waiting for more players to join...");
+            try {
+                synchronized (this) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (cli.isSuccess()) {
+            cli.setSuccess(false);
+        }
     }
 }

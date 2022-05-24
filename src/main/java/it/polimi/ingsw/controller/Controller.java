@@ -23,7 +23,7 @@ import static java.util.Comparator.comparing;
 public class Controller implements Observer<Message>, Observable<Message> {
     private final Game game;
     private State state;
-    private CharacterController characterController;
+    private final CharacterController characterController;
     //VirtualView virtualView;
 
     private final List<Observer<Message>> observers = new ArrayList<>();
@@ -31,6 +31,8 @@ public class Controller implements Observer<Message>, Observable<Message> {
     public Controller(Game game) {
         //this.virtualView=v;
         this.game = game;
+        game.setCurrentPlayer(game.getOnlinePlayers().get(0));
+        characterController = new CharacterController(this, game, null);
         setState(new Setup(game, this));
     }
 

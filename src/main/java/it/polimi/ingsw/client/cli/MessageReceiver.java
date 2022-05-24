@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli;
 
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.cli.gameStates.GameSetupState;
 import it.polimi.ingsw.client.cli.gameStates.NicknameState;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.*;
@@ -25,6 +26,8 @@ public class MessageReceiver {
             receiveMessage((JoinAlreadyExistingGame) message);
         } else if (message instanceof WaitingForPlayers) {
             receiveMessage((WaitingForPlayers) message);
+        } else if (message instanceof UpdateLobby) {
+            receiveMessage((UpdateLobby) message);
         }
     }
 
@@ -37,6 +40,9 @@ public class MessageReceiver {
         } else if (message == CommunicationMessage.ENTER_NICKNAME) {
             System.out.println(message.getMessage());
             cli.setGameState(new NicknameState(cli));
+        } else if (message == CommunicationMessage.NEW_GAME) {
+            System.out.println(message.getMessage());
+            cli.setGameState(new GameSetupState(cli));
         }
     }
 
@@ -66,6 +72,19 @@ public class MessageReceiver {
     public void receiveMessage(WaitingForPlayers message) {
         System.out.println(message.getMessage());
         cli.setSuccess(true);
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
+    }
+
+    public void receiveMessage(UpdateLobby message) {
+        int remaining = message.getGameInfo().getNumOfTotalPlayers() - message.getGameInfo().getNumOfWaitingPlayers();
+        String s = String.format("A new player joined. %d more players needed...", remaining);
+        System.out.println(s);
+
+        if (remaining == 0){
+            cli.setSuccess(true);
+        }
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }
