@@ -3,12 +3,13 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-public class Island implements StudentDeposit {
+public class Island implements StudentDeposit, Serializable {
     private int numUnits;
     private final ArrayList<Color> students;
     private Tower towerColor;

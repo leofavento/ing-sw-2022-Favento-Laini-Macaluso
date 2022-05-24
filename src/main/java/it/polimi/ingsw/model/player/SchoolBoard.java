@@ -2,9 +2,10 @@ package it.polimi.ingsw.model.player;
 import it.polimi.ingsw.model.Professor;
 import it.polimi.ingsw.model.Tower;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SchoolBoard {
+public class SchoolBoard implements Serializable {
     private final DiningRoom diningRoom;
     private int numTower;
     private Tower towerColor;

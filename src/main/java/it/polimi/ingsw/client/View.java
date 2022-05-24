@@ -17,7 +17,11 @@ public class View {
     private int roundNumber;
     private boolean expertMode;
     private HashMap<Tower, Integer> availableTowers;
+    private ArrayList<Integer> availableWizards;
     private ArrayList<Assistant> availableAssistants;
+    private int totalPlayers;
+    private int activePlayers;
+    private boolean isHost;
     private ArrayList<Color> movableStudents;
 
 
@@ -83,6 +87,38 @@ public class View {
 
     public void setAvailableAssistants(ArrayList<Assistant> availableAssistants){
         this.availableAssistants = availableAssistants;
+    }
+
+    public ArrayList<Integer> getAvailableWizards() {
+        return availableWizards;
+    }
+
+    public void setAvailableWizards(ArrayList<Integer> availableWizards) {
+        this.availableWizards = availableWizards;
+    }
+
+    public int getActivePlayers() {
+        return activePlayers;
+    }
+
+    public void setActivePlayers(int activePlayers) {
+        this.activePlayers = activePlayers;
+    }
+
+    public int getTotalPlayers() {
+        return totalPlayers;
+    }
+
+    public void setTotalPlayers(int totalPlayers) {
+        this.totalPlayers = totalPlayers;
+    }
+
+    public boolean isHost() {
+        return isHost;
+    }
+
+    public void setHost(boolean host) {
+        isHost = host;
     }
 
     public ArrayList<Color> getMovableStudents() {

@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.GameInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class CLI implements Runnable {
@@ -51,6 +52,11 @@ public class CLI implements Runnable {
 
     public void setAvailableGames(ArrayList<GameInfo> availableGames) {
         this.availableGames = availableGames;
+    }
+
+    public boolean isLastPlayer() {
+        return Objects.equals(view.getPlayers().get(view.getPlayers().size() - 1).getNickname(),
+                client.getNickname());
     }
 
     @Override

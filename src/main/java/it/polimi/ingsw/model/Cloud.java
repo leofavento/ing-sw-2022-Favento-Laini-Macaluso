@@ -2,9 +2,10 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Cloud implements StudentDeposit {
+public class Cloud implements StudentDeposit, Serializable {
 
     private final ArrayList<Color> students;
 

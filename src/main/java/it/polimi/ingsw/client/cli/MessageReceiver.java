@@ -1,11 +1,16 @@
 package it.polimi.ingsw.client.cli;
 
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
+import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
+import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.client.cli.gameStates.GameSetupState;
 import it.polimi.ingsw.client.cli.gameStates.NicknameState;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Tower;
+import it.polimi.ingsw.model.player.Player;
 
 import java.util.HashMap;
 
@@ -33,6 +38,12 @@ public class MessageReceiver {
             receiveMessage((UpdateLobby) message);
         } else if (message instanceof AvailableTowers) {
             receiveMessage((AvailableTowers) message);
+        } else if (message instanceof AvailableWizards) {
+            receiveMessage((AvailableWizards) message);
+        } else if (message instanceof UpdateBoard) {
+            receiveMessage((UpdateBoard) message);
+        } else if (message instanceof PlayerStatusMessage) {
+            receiveMessage((PlayerStatusMessage) message);
         }
     }
 
@@ -70,6 +81,10 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(JoinAlreadyExistingGame message) {
+        cli.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
+        cli.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
+        cli.getView().setExpertMode(message.getGameInfo().isExpertGame());
+        cli.getView().setHost(false);
         cli.setSuccess(true);
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
@@ -86,9 +101,11 @@ public class MessageReceiver {
 
     public void receiveMessage(UpdateLobby message) {
         int remaining = message.getGameInfo().getNumOfTotalPlayers() - message.getGameInfo().getNumOfWaitingPlayers();
-        String s = String.format("A new player joined. %d more players needed...", remaining);
-        System.out.println(s);
+
+        cli.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
+        cli.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
         cli.getView().setExpertMode(message.getGameInfo().isExpertGame());
+        cli.getView().setHost(false);
 
         if (remaining == 0){
             cli.setSuccess(true);
@@ -103,5 +120,27 @@ public class MessageReceiver {
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }
+    }
+
+    public void receiveMessage(AvailableWizards message) {
+        cli.getView().setAvailableWizards(message.getAvailableWizards());
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
+    }
+
+    public void receiveMessage(UpdateBoard message) {
+        cli.getView().setDashboard(message.getDashboard());
+        cli.getView().setPlayers(message.getPlayers());
+        CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
+        IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
+        for (Player player : cli.getView().getPlayers()) {
+            SchoolBoardRenderer.renderSchoolBoard(player);
+        }
+        cli.getClient().sendMessage(new Ack());
+    }
+
+    public void receiveMessage(PlayerStatusMessage message) {
+        //TODO
     }
 }

@@ -12,7 +12,12 @@ public class WaitingPlayersState implements State {
     @Override
     public void run() {
         while (!cli.isSuccess()) {
-            System.out.println("Waiting for more players to join...");
+            if (cli.getView().getActivePlayers() < cli.getView().getTotalPlayers()) {
+                System.out.printf("%d player%s currently connected. Waiting for %d more...%n",
+                        cli.getView().getActivePlayers(),
+                        cli.getView().getActivePlayers() > 1 ? "s" : "",
+                        cli.getView().getTotalPlayers() - cli.getView().getActivePlayers());
+            }
             try {
                 synchronized (this) {
                     wait();

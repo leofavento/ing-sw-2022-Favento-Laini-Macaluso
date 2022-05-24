@@ -7,9 +7,10 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class CharacterCard {
+public abstract class CharacterCard implements Serializable {
 
     CharacterEnum value = null;
     int cost;

@@ -37,6 +37,10 @@ public class CreateGameState implements State {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            cli.getView().setHost(true);
+            cli.getView().setTotalPlayers(numOfPlayers);
+            cli.getView().setActivePlayers(1);
+            cli.getView().setExpertMode(Character.toLowerCase(expertMode.charAt(0)) == 'y');
         }
 
         if (cli.isSuccess()) {

@@ -2,7 +2,9 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.player.Player;
 
-public class Professor {
+import java.io.Serializable;
+
+public class Professor implements Serializable {
     private final Color color;
     private Player owner;
 

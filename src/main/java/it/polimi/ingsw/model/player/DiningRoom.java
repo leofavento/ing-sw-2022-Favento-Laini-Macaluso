@@ -4,9 +4,10 @@ import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.StudentDeposit;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 
-public class DiningRoom implements StudentDeposit {
+public class DiningRoom implements StudentDeposit, Serializable {
     private final EnumMap<Color, Integer> students;
     private final SchoolBoard schoolBoard;
     private boolean enableCoins=false;

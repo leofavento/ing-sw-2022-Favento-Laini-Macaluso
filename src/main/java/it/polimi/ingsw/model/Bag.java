@@ -1,12 +1,13 @@
 package it.polimi.ingsw.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Bag {
+public class Bag implements Serializable {
 
-    private final ArrayList<Color> students;  /*students may be final*/
+    private final ArrayList<Color> students;
 
     public Bag(){
         students = new ArrayList<>();

@@ -4,9 +4,10 @@ import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.StudentDeposit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Entrance implements StudentDeposit {
+public class Entrance implements StudentDeposit, Serializable {
     private final ArrayList<Color> students;
 
     public Entrance() {

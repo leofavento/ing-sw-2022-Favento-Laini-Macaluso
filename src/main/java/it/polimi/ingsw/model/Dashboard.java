@@ -2,11 +2,12 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.characters.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Dashboard {
+public class Dashboard implements Serializable {
     private final ArrayList<Island> islands;
     private final ArrayList<CharacterCard> playedCharacters;
     private final CharacterCard[] characters;

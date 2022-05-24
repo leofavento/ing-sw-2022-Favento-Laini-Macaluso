@@ -2,9 +2,12 @@ package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
+import it.polimi.ingsw.messages.fromClient.ChosenWizard;
 import it.polimi.ingsw.model.Tower;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class GameSetupState implements State {
@@ -20,6 +23,11 @@ public class GameSetupState implements State {
         int choice;
         Tower chosenTower = null;
 
+        System.out.printf("Game settings: %d players, expert mode %s.%n",
+                cli.getView().getTotalPlayers(),
+                cli.getView().isExpertMode() ? "enabled" : "disabled");
+        System.out.println();
+
         try {
             synchronized (this) {
                 wait();
@@ -30,6 +38,7 @@ public class GameSetupState implements State {
         while (!cli.isSuccess()) {
             System.out.println("Pick a tower to enter a team:");
             printAvailableTowers();
+            in.reset();
             choice = in.nextInt();
             for (Tower tower : Tower.values()) {
                 if (tower.ordinal() == choice) {
@@ -47,8 +56,36 @@ public class GameSetupState implements State {
         }
         if (cli.isSuccess()) {
             cli.setSuccess(false);
+            System.out.println("Waiting for the other players to make their decision...");
         }
-        // richiesta wizard id
+
+        try {
+            synchronized (this) {
+                wait();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        while(!cli.isSuccess()) {
+            System.out.println("Enter the number of your desired Wizard:");
+            printAvailableWizards();
+            in.reset();
+            choice = in.nextInt();
+            cli.getClient().sendMessage(new ChosenWizard(choice));
+            try {
+                synchronized (this) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if (cli.isSuccess()) {
+            cli.setSuccess(false);
+            //if (cli.isLastPlayer()) {
+                System.out.println("Waiting for the other players to make their decision...");
+            //}
+        }
     }
 
     private void printAvailableTowers() {
@@ -64,6 +101,19 @@ public class GameSetupState implements State {
         for (Tower tower : Tower.values()) {
             if (availableTowers.containsKey(tower)) {
                 System.out.printf("Enter %d for team %s%n", tower.ordinal(), tower);
+            }
+        }
+    }
+
+    private void printAvailableWizards() {
+        ArrayList<Integer> availableWizards = cli.getView().getAvailableWizards();
+        System.out.print("Available wizards: ");
+        for(Integer i : availableWizards) {
+            System.out.printf("%d", i);
+            if (availableWizards.indexOf(i) == availableWizards.size() - 1) {
+                System.out.println();
+            } else {
+                System.out.print(", ");
             }
         }
     }

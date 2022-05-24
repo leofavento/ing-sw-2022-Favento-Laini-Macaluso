@@ -4,12 +4,12 @@ import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Player {
+public class Player implements Serializable {
     private final String nickname;
-    private boolean isOnline;
     private int wizardID;
     private final ArrayList<Assistant> availableAssistants;
     private Assistant playedAssistant;
