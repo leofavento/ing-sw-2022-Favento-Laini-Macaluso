@@ -34,10 +34,6 @@ public class MessageReceiver {
         } else if (message instanceof AvailableTowers) {
             receiveMessage((AvailableTowers) message);
         }
-        // TOGLIERE
-        if (cli.getGameState() instanceof GameSetupState) {
-            System.out.println(message);
-        }
     }
 
     public void receiveMessage(CommunicationMessage message) {

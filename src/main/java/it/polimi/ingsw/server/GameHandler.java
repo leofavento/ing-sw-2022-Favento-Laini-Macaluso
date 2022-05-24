@@ -86,6 +86,7 @@ public class GameHandler implements Observer<Message> {
         game = new Game(gameID, numberOfPlayers, expertMode);
         for (ServerClientConnection player : players) {
             game.addNewPlayer(new Player(player.getNickname()));
+            player.setPlaying(true);
         }
         controller = new Controller(game);
         controller.addObserver(this);

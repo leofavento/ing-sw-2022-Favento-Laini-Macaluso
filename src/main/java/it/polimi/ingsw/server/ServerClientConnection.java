@@ -53,6 +53,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             while (isActive()) {
                 Message received = (Message) input.readObject();
                 readMessage(received);
+                System.out.printf("From %s: %s%n", nickname, received);
             }
         } catch (IOException e) {
             if (gameHandler != null) {
@@ -73,6 +74,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             output.reset();
             output.writeObject(message);
             output.flush();
+            System.out.printf("To %s: %s%n", nickname, message);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -119,6 +121,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         } else {
             sendMessage(ErrorMessage.INVALID_INPUT);
         }
+    }
+
+    public void setPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
     }
 
     public synchronized void close() {
