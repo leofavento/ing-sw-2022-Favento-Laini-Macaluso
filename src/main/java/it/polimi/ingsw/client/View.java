@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.model.Assistant;
+import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
@@ -17,6 +18,7 @@ public class View {
     private boolean expertMode;
     private HashMap<Tower, Integer> availableTowers;
     private ArrayList<Assistant> availableAssistants;
+    private ArrayList<Color> movableStudents;
 
 
     public ArrayList<Player> getPlayers() {
@@ -81,5 +83,13 @@ public class View {
 
     public void setAvailableAssistants(ArrayList<Assistant> availableAssistants){
         this.availableAssistants = availableAssistants;
+    }
+
+    public ArrayList<Color> getMovableStudents() {
+        return movableStudents;
+    }
+
+    public void setMovableStudents(ArrayList<Color> movableStudents) {
+        this.movableStudents = movableStudents;
     }
 }
