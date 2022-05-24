@@ -137,4 +137,8 @@ public class Island implements StudentDeposit {
     public void resetExtraInfluences() {
         extraInfluence.clear();
     }
+
+    public ArrayList<Color> getStudents() {
+        return students;
+    }
 }
