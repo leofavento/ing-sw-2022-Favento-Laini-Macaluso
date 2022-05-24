@@ -16,6 +16,8 @@ public class View {
     private int roundNumber;
     private boolean expertMode;
     private HashMap<Tower, Integer> availableTowers;
+    private ArrayList<Assistant> availableAssistants;
+
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -71,5 +73,13 @@ public class View {
 
     public void setAvailableTowers(HashMap<Tower, Integer> availableTowers) {
         this.availableTowers = availableTowers;
+    }
+
+    public ArrayList<Assistant> getAvailableAssistants(){
+        return availableAssistants;
+    }
+
+    public void setAvailableAssistants(ArrayList<Assistant> availableAssistants){
+        this.availableAssistants = availableAssistants;
     }
 }

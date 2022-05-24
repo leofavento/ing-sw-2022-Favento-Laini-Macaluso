@@ -5,6 +5,11 @@ import it.polimi.ingsw.model.player.*;
 
 public class SchoolBoardRenderer {
 
+    /**
+     * This method prints to command line the SchoolBoard of a requested Player, containing all the details
+     * about the Entrance, the Dining Room and the Professors
+     * @param player SchoolBoard owner
+     */
     public static  void renderSchoolBoard(Player player){
         System.out.println("|--------------------------\n" +
                 player.getNickname() + "\n" +

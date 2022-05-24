@@ -4,6 +4,11 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Dashboard;
 
 public class CloudsRenderer {
+
+    /**
+     * This method prints to command line all the clouds and the students on them
+     * @param dashboard the game dashboard
+     */
     public static void cloudRenderer(Dashboard dashboard){
         System.out.println("|-----------------------------");
         for(int i=0; i<dashboard.getClouds().size(); i++){
