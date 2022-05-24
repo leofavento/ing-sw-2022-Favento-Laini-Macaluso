@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli;
 
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.View;
 import it.polimi.ingsw.client.cli.gameStates.State;
 import it.polimi.ingsw.model.GameInfo;
 
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class CLI implements Runnable {
     private State gameState;
     private Client client;
+    private View view;
     private boolean success;
     private ArrayList<GameInfo> availableGames;
 
@@ -29,6 +31,10 @@ public class CLI implements Runnable {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public View getView() {
+        return view;
     }
 
     public boolean isSuccess() {
@@ -60,6 +66,7 @@ public class CLI implements Runnable {
         int port = in.nextInt();
 
         client = new Client(true);
+        view = new View();
         try {
             client.startConnection(port, ip);
             client.setMessageReceiver(new MessageReceiver(this, client));

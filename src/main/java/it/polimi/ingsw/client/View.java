@@ -13,6 +13,7 @@ public class View {
     private ArrayList<Player> players;
     private HashMap<String, Assistant> playedAssistants;
     private int roundNumber;
+    private boolean expertMode;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -52,5 +53,13 @@ public class View {
 
     public HashMap<String, Assistant> getPlayedAssistants() {
         return playedAssistants;
+    }
+
+    public void setExpertMode(boolean expertMode) {
+        this.expertMode = expertMode;
+    }
+
+    public boolean isExpertMode() {
+        return expertMode;
     }
 }

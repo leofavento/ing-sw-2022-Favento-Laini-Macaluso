@@ -66,6 +66,7 @@ public class GameHandler implements Observer<Message> {
     }
 
     private void endGame(ServerClientConnection disconnectedPlayer) {
+        players.remove(disconnectedPlayer);
         server.getStartingGames().remove(this);
         broadcastMessage(CommunicationMessage.HOST_LEFT);
         while (!players.isEmpty()) {

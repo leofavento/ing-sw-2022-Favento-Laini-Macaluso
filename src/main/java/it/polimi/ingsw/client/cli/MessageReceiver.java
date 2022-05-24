@@ -32,16 +32,18 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(CommunicationMessage message) {
+        if (message != CommunicationMessage.SUCCESS) {
+            System.out.println(message.getMessage());
+        }
+
         if (message == CommunicationMessage.SUCCESS) {
             cli.setSuccess(true);
             synchronized (cli.getGameState()) {
                 cli.getGameState().notifyAll();
             }
         } else if (message == CommunicationMessage.ENTER_NICKNAME) {
-            System.out.println(message.getMessage());
             cli.setGameState(new NicknameState(cli));
         } else if (message == CommunicationMessage.NEW_GAME) {
-            System.out.println(message.getMessage());
             cli.setGameState(new GameSetupState(cli));
         }
     }
@@ -81,6 +83,7 @@ public class MessageReceiver {
         int remaining = message.getGameInfo().getNumOfTotalPlayers() - message.getGameInfo().getNumOfWaitingPlayers();
         String s = String.format("A new player joined. %d more players needed...", remaining);
         System.out.println(s);
+        cli.getView().setExpertMode(message.getGameInfo().isExpertGame());
 
         if (remaining == 0){
             cli.setSuccess(true);
