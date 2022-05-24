@@ -7,15 +7,19 @@ import it.polimi.ingsw.model.Tower;
 
 public class IslandsRenderer {
 
-    /* This method prints to command line all the islands on the dashboard and their students.
+    /**
+     * This method prints to command line all the islands on the dashboard and their students.
      * If an island has Mother Nature on it, this method prints "+ M" next to the respective island
-     * If an island has a No Entry tile on it, this method prints "+ NO ENTRY" next to the respective island*/
-    public void islandsRenderer(Dashboard dashboard){
+     * If an island has a No Entry tile on it, this method prints "+ NO ENTRY" next to the respective island
+     *
+     * @param dashboard the game dashboard
+     */
+    public static void islandsRenderer(Dashboard dashboard){
 
         System.out.println("|-----------------------------");
 
         for(int i=0; i<dashboard.getIslands().size(); i++){
-            System.out.print("Island " + dashboard.getIslands().get(i));
+            System.out.print("Island " + i+1);
 
             if(i == dashboard.getMotherNaturePosition()){
                 System.out.print("+ M");
@@ -26,20 +30,17 @@ public class IslandsRenderer {
             }
             System.out.print(":\n");
 
-            System.out.println("Green students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.GREEN));
-            System.out.println("Red students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.RED));
-            System.out.println("Yellow students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.YELLOW));
-            System.out.println("Pink students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.PINK));
-            System.out.println("Blue students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.BLUE));
+            System.out.println("Green students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.GREEN).count());
+            System.out.println("Red students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.RED).count());
+            System.out.println("Yellow students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.YELLOW).count());
+            System.out.println("Pink students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.PINK).count());
+            System.out.println("Blue students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.BLUE).count());
 
 
             if(dashboard.getIslands().get(i).hasTower()){
                 Tower towerColor = dashboard.getIslands().get(i).getTowerColor();
                 System.out.println( towerColor.toString() + " towers: " + dashboard.getIslands().get(i).getNumUnits());
             }
-
-
-
 
             System.out.println("|-----------------------------");
         }
