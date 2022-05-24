@@ -32,7 +32,7 @@ public class GameHandler implements Observer<Message> {
         hasStarted = false;
         players = new ArrayList<>();
         players.add(host);
-        host.sendMessage(new WaitingForPlayers());
+        host.sendMessage(new WaitingForPlayers(gameID));
     }
 
     public int getGameID() {
@@ -68,14 +68,14 @@ public class GameHandler implements Observer<Message> {
     private void endGame(ServerClientConnection disconnectedPlayer) {
         server.getStartingGames().remove(this);
         broadcastMessage(CommunicationMessage.HOST_LEFT);
-        while (! players.isEmpty()) {
+        while (!players.isEmpty()) {
             players.get(0).close();
         }
     }
 
     private void endGame() {
         server.getActiveGames().remove(this);
-        while (! players.isEmpty()) {
+        while (!players.isEmpty()) {
             players.get(0).close();
         }
     }
@@ -124,7 +124,7 @@ public class GameHandler implements Observer<Message> {
     }
 
     public void readMessage(String nickname, Message message) {
-        if (! nickname.equals(game.getCurrentPlayer().getNickname()) && ! (message instanceof Ack)) {
+        if (!nickname.equals(game.getCurrentPlayer().getNickname()) && !(message instanceof Ack)) {
             sendMessageByNickname(nickname, ErrorMessage.WRONG_TURN);
         } else {
             controller.getState().receiveMessage(message, nickname);
@@ -147,7 +147,7 @@ public class GameHandler implements Observer<Message> {
 
     public void sendToAllExcept(String nickname, Message message) {
         for (ServerClientConnection player : players) {
-            if (! player.getNickname().equals(nickname)) {
+            if (!player.getNickname().equals(nickname)) {
                 sendMessageByNickname(player.getNickname(), message);
             }
         }

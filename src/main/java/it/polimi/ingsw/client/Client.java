@@ -19,13 +19,12 @@ public class Client implements Runnable {
 
 
     /*@param cli true --> cli
-    *            false --> gui*/
-    public Client(Boolean cli){
+     *            false --> gui*/
+    public Client(Boolean cli) {
 
-        if(cli){
+        if (cli) {
             //TODO
-        }
-        else {
+        } else {
             //TODO
         }
     }
@@ -57,10 +56,10 @@ public class Client implements Runnable {
     }
 
 
-    public void closeConnection(){
+    public void closeConnection() {
         try {
             clientSocket.close();
-        } catch (IOException e){
+        } catch (IOException e) {
         }
         try {
             input.close();
@@ -74,22 +73,23 @@ public class Client implements Runnable {
         }
     }
 
-    public String getNickname(){
+    public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname){
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
     @Override
     public void run() {
-        while(active) {
+        while (active) {
             try {
                 Message received = (Message) input.readObject();
                 messageReceiver.receiveMessage(received);
             } catch (IOException | ClassNotFoundException e) {
                 System.err.println("Connection closed from server.");
+                active = false;
             }
         }
     }

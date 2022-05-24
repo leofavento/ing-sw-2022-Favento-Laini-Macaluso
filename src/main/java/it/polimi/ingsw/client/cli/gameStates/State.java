@@ -4,6 +4,6 @@ import it.polimi.ingsw.client.cli.CLI;
 
 import java.io.IOException;
 
-public interface State {
-    void doAction(CLI cli);
+public interface State extends Runnable {
+
 }

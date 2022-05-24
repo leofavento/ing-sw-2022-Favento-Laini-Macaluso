@@ -2,18 +2,21 @@ package it.polimi.ingsw.client.cli;
 
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.cli.gameStates.State;
+import it.polimi.ingsw.model.GameInfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CLI implements Runnable {
     private State gameState;
     private Client client;
     private boolean success;
+    private ArrayList<GameInfo> availableGames;
 
-    public void setGameState(State gameState){
+    public void setGameState(State gameState) {
         this.gameState = gameState;
-        gameState.doAction(this);
+        new Thread(gameState).start();
     }
 
     public State getGameState() {
@@ -36,6 +39,14 @@ public class CLI implements Runnable {
         this.success = success;
     }
 
+    public ArrayList<GameInfo> getAvailableGames() {
+        return availableGames;
+    }
+
+    public void setAvailableGames(ArrayList<GameInfo> availableGames) {
+        this.availableGames = availableGames;
+    }
+
     @Override
     public void run() {
         Scanner in = new Scanner(System.in);
@@ -53,7 +64,7 @@ public class CLI implements Runnable {
             client.startConnection(port, ip);
             client.setMessageReceiver(new MessageReceiver(this, client));
             new Thread(client).start();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("The client can't connect to the specified server.");
         }
     }

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.messages.fromClient;
 
-public class JoinAvailableGame {
+import it.polimi.ingsw.messages.Message;
+
+public class JoinAvailableGame implements Message {
     private final int gameID;
 
     public JoinAvailableGame(int gameID) {

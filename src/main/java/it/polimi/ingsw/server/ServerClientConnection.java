@@ -50,14 +50,16 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             output = new ObjectOutputStream(socket.getOutputStream());
 
             askNickname();
-            while(isActive()) {
+            while (isActive()) {
                 Message received = (Message) input.readObject();
                 readMessage(received);
             }
         } catch (IOException e) {
-            gameHandler.disconnect(this);
+            if (gameHandler != null) {
+                gameHandler.disconnect(this);
+            }
             close();
-            System.err.println(e.getMessage());
+            System.err.println(nickname + " disconnected.");
         } catch (ClassNotFoundException e) {
             System.err.println("Invalid stream from object");
         }
@@ -86,7 +88,6 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
                 requestedNickname = false;
                 nickname = loginMessage.getNickname();
                 server.registerUser(this);
-                sendMessage(CommunicationMessage.SUCCESS);
             } else {
                 sendMessage(ErrorMessage.TAKEN_NICKNAME);
             }
@@ -121,7 +122,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
     }
 
     public synchronized void close() {
-        gameHandler.getPlayers().remove(this);
+        try {
+            gameHandler.getPlayers().remove(this);
+        } catch (NullPointerException ignored) {
+        }
         server.unregisterUser(this);
         try {
             input.close();

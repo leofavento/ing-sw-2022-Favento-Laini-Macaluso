@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model;
 
-public class GameInfo {
+import java.io.Serializable;
+
+public class GameInfo implements Serializable {
     private final int gameID;
     private int numOfWaitingPlayers;
     private final int numOfTotalPlayers;
