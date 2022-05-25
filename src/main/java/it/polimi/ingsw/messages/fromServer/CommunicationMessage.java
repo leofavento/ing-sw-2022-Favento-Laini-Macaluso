@@ -7,6 +7,7 @@ public enum CommunicationMessage implements FromServerMessage {
     PING("Ping!"),
     ENTER_NICKNAME("Please enter your nickname: "),
     SUCCESS("Success"),
+    STUDENT_MOVED("The student has been moved."),
     UNIFIED_ISLANDS("Some islands have been unified"),
     NO_CHANGES("Influence resulted in a draw. No tower change."),
     NO_ENTRY_TILE_ON_ISLAND("Island was not resolved because of No Entry Tile"),

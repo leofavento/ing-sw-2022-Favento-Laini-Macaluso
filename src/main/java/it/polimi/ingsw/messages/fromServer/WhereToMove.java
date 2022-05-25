@@ -16,7 +16,7 @@ public class WhereToMove implements FromServerMessage {
         this.islands = islands;
     }
 
-    public DiningRoom isDiningRoom() {
+    public DiningRoom getDiningRoom() {
         return diningRoom;
     }
 

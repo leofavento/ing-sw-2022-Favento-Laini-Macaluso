@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.StateManager;
 import it.polimi.ingsw.client.cli.utilities.PrintableStrings;
 import it.polimi.ingsw.model.Color;
 
@@ -41,9 +42,9 @@ public class LobbyState implements State {
         } while (invalidChoice(choice));
 
         if (choice == 0) {
-            cli.setGameState(new JoinGameState(cli));
+            new Thread(new StateManager(cli, new JoinGameState(cli))).start();
         } else if (choice == 1) {
-            cli.setGameState(new CreateGameState(cli));
+            new Thread(new StateManager(cli, new CreateGameState(cli))).start();
         }
     }
 }

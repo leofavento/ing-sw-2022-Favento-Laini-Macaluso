@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.StateManager;
 import it.polimi.ingsw.messages.fromClient.LoginMessage;
 
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class NicknameState implements State {
         if (cli.isSuccess()) {
             cli.getClient().setNickname(nickname);
             cli.setSuccess(false);
-            cli.setGameState(new LobbyState(cli));
+            new Thread(new StateManager(cli, new LobbyState(cli))).start();
         }
     }
 }

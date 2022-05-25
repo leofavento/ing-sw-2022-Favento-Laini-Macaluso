@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.model.Color;
@@ -21,6 +22,7 @@ public class ActionStep1State implements State{
     @Override
     public void run(){
 
+        cli.getClient().sendMessage(new Ack());
         try{
             synchronized (this){
                 wait();

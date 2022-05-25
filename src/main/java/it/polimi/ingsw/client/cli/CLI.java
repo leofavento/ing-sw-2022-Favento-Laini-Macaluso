@@ -16,10 +16,18 @@ public class CLI implements Runnable {
     private View view;
     private boolean success;
     private ArrayList<GameInfo> availableGames;
+    private Thread currentThread;
 
     public void setGameState(State gameState) {
         this.gameState = gameState;
-        new Thread(gameState).start();
+    }
+
+    public Thread getCurrentThread() {
+        return currentThread;
+    }
+
+    public void setCurrentThread(Thread currentThread) {
+        this.currentThread = currentThread;
     }
 
     public State getGameState() {
@@ -56,6 +64,11 @@ public class CLI implements Runnable {
 
     public boolean isLastPlayer() {
         return Objects.equals(view.getPlayers().get(view.getPlayers().size() - 1).getNickname(),
+                client.getNickname());
+    }
+
+    public boolean isFirstPlayer() {
+        return Objects.equals(view.getPlayers().get(0).getNickname(),
                 client.getNickname());
     }
 

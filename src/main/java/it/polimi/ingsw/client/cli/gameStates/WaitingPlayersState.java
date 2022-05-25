@@ -11,7 +11,7 @@ public class WaitingPlayersState implements State {
 
     @Override
     public void run() {
-        while (!cli.isSuccess()) {
+        while (cli.getView().getActivePlayers() < cli.getView().getTotalPlayers()) {
             if (cli.getView().getActivePlayers() < cli.getView().getTotalPlayers()) {
                 System.out.printf("%d player%s currently connected. Waiting for %d more...%n",
                         cli.getView().getActivePlayers(),
@@ -25,10 +25,6 @@ public class WaitingPlayersState implements State {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-
-        if (cli.isSuccess()) {
-            cli.setSuccess(false);
         }
     }
 }

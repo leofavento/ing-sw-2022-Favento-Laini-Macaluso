@@ -42,9 +42,11 @@ public class Setup implements State {
         game.getDashboard().setMotherNature(game.getDashboard().getIslands().get(0));
         game.getDashboard().getBag().refill(2);
         for (int i = 0; i < 12; i++) {
-            if (i == game.getDashboard().getMotherNaturePosition()
-                    || i == (game.getDashboard().getMotherNaturePosition() + 6) % 12) {
-                game.getDashboard().getIslands().get(i).addStudent(game.getDashboard().getBag().drawStudent());
+            if (i != game.getDashboard().getMotherNaturePosition()
+                    && i != (game.getDashboard().getMotherNaturePosition() + 6) % 12) {
+                Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                        game.getDashboard().getIslands().get(i),
+                        1);
             }
         }
         game.getDashboard().getBag().refill(24);

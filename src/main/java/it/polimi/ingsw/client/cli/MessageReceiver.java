@@ -1,18 +1,13 @@
 package it.polimi.ingsw.client.cli;
 
 import it.polimi.ingsw.client.Client;
-import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
-import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
-import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
+import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.gameStates.*;
-import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
-import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
-import java.util.HashMap;
+import java.util.Objects;
 
 public class MessageReceiver {
     private final CLI cli;
@@ -34,7 +29,11 @@ public class MessageReceiver {
                 cli.getGameState().notifyAll();
             }
         } else if (message == CommunicationMessage.ENTER_NICKNAME) {
-            cli.setGameState(new NicknameState(cli));
+            new Thread(new StateManager(cli, new NicknameState(cli))).start();
+        } else if (message == CommunicationMessage.STUDENT_MOVED) {
+            synchronized (cli.getGameState()) {
+                cli.getGameState().notifyAll();
+            }
         }
     }
 
@@ -74,16 +73,11 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(UpdateLobby message) {
-        int remaining = message.getGameInfo().getNumOfTotalPlayers() - message.getGameInfo().getNumOfWaitingPlayers();
-
         cli.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
         cli.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
         cli.getView().setExpertMode(message.getGameInfo().isExpertGame());
         cli.getView().setHost(false);
 
-        if (remaining == 0){
-            cli.setSuccess(true);
-        }
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }
@@ -92,7 +86,10 @@ public class MessageReceiver {
     public void receiveMessage(MatchStarted message) {
         System.out.println(message.getMessage());
         cli.getView().setPlayers(message.getPlayers());
-        cli.setGameState(new GameSetupState(cli));
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
+        new Thread(new StateManager(cli, new GameSetupState(cli))).start();
     }
 
     public void receiveMessage(AvailableTowers message) {
@@ -112,25 +109,23 @@ public class MessageReceiver {
     public void receiveMessage(UpdateBoard message) {
         cli.getView().setDashboard(message.getDashboard());
         cli.getView().setPlayers(message.getPlayers());
-        CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
-        IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
-        for (Player player : cli.getView().getPlayers()) {
-            SchoolBoardRenderer.renderSchoolBoard(player);
-        }
         cli.getClient().sendMessage(new Ack());
     }
 
     public void receiveMessage(PlayerStatusMessage message) {
         PlayerStatus playerStatus= message.getPlayerStatus();
 
+        System.out.println(message.getPlayerStatus());
         if (playerStatus == PlayerStatus.WAITING) {
-            cli.setGameState(new WaitingState(cli));
+            new Thread(new StateManager(cli, new WaitingState(cli))).start();
         } else if (playerStatus == PlayerStatus.PLANNING) {
-            cli.setGameState(new PlanningState(cli));
+            new Thread(new StateManager(cli, new PlanningState(cli))).start();
+        } else if (playerStatus == PlayerStatus.END_PLANNING) {
+            System.out.println("You have completed your Planning phase decisions. Please wait a moment...");
+            cli.getClient().sendMessage(new Ack());
         } else if (playerStatus == PlayerStatus.MOVE_1) {
-            cli.setGameState(new ActionStep1State(cli));
+            new Thread(new StateManager(cli, new ActionStep1State(cli))).start();
         }
-        cli.getClient().sendMessage(new Ack());
     }
 
     public void receiveMessage(AvailableAssistants message) {
@@ -152,6 +147,15 @@ public class MessageReceiver {
 
     public void receiveMessage(StartOfPlayerRound message) {
         cli.getView().setRoundNumber(message.getRoundNumber());
+        cli.getView().setCurrentPlayer(message.getNickname());
+        System.out.println("Starting round number " + message.getRoundNumber() + ".");
+        System.out.println("Players order for this round:");
+        PlayersOrderRenderer.playersOrderRenderer(cli.getView().getPlayers());
+        if (Objects.equals(message.getNickname(), cli.getClient().getNickname())) {
+            System.out.println("It's your turn!");
+        } else {
+            System.out.println("It is " + message.getNickname() + "'s turn.");
+        }
     }
 
     public void receiveMessage(AvailableCharacters message) {
@@ -179,7 +183,11 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(MovableStudents message) {
-        //TODO
+        cli.getView().setMovableStudents(message.getStudents());
+
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
     }
 
     public void receiveMessage(PlayerDisconnected message) {
@@ -195,6 +203,9 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(WhereToMove message) {
-        //TODO
+        // forse dovrebbe settare isole e dining room nella view ma non ha senso (ActionStep1 fa UpdateBoard)
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
     }
 }

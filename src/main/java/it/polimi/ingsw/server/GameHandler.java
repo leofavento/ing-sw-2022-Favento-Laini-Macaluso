@@ -171,6 +171,8 @@ public class GameHandler implements Observer<Message> {
             broadcastMessage(message);
         } else if (message == CommunicationMessage.NO_ENTRY_TILE_ON_ISLAND) {
             broadcastMessage(message);
+        } else if (message == CommunicationMessage.STUDENT_MOVED) {
+            sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof PlayerStatusMessage) {
             sendMessageByNickname(nickCurrentPlayer, message);
             sendToAllExcept(nickCurrentPlayer, new PlayerStatusMessage(PlayerStatus.WAITING));

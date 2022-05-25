@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.StateManager;
 import it.polimi.ingsw.messages.fromClient.SetGame;
 
 import java.util.Scanner;
@@ -45,7 +46,7 @@ public class CreateGameState implements State {
 
         if (cli.isSuccess()) {
             cli.setSuccess(false);
-            cli.setGameState(new WaitingPlayersState(cli));
+            new Thread(new StateManager(cli, new WaitingPlayersState(cli))).start();
         }
     }
 }

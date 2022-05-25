@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.StateManager;
 import it.polimi.ingsw.client.cli.utilities.PrintableStrings;
 import it.polimi.ingsw.messages.fromClient.JoinAvailableGame;
 import it.polimi.ingsw.messages.fromClient.RequestGames;
@@ -42,7 +43,7 @@ public class JoinGameState implements State {
                 if (choice < -1) {
                     System.out.println("This option is not valid.");
                 } else if (choice == -1) {
-                    cli.setGameState(new LobbyState(cli));
+                    new Thread(new StateManager(cli, new LobbyState(cli))).start();
                     break;
                 } else if (choice > 0) {
                     cli.getClient().sendMessage(new JoinAvailableGame(choice));
@@ -63,7 +64,7 @@ public class JoinGameState implements State {
 
         if (cli.isSuccess()) {
             cli.setSuccess(false);
-            cli.setGameState(new WaitingPlayersState(cli));
+            new Thread(new StateManager(cli, new WaitingPlayersState(cli))).start();
         }
     }
 
