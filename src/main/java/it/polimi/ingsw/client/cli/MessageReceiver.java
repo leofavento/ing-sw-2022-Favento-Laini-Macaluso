@@ -4,13 +4,13 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
-import it.polimi.ingsw.client.cli.gameStates.GameSetupState;
-import it.polimi.ingsw.client.cli.gameStates.NicknameState;
+import it.polimi.ingsw.client.cli.gameStates.*;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.HashMap;
 
@@ -36,6 +36,8 @@ public class MessageReceiver {
             receiveMessage((WaitingForPlayers) message);
         } else if (message instanceof UpdateLobby) {
             receiveMessage((UpdateLobby) message);
+        } else if (message instanceof NewGame) {
+            receiveMessage((NewGame) message);
         } else if (message instanceof AvailableTowers) {
             receiveMessage((AvailableTowers) message);
         } else if (message instanceof AvailableWizards) {
@@ -44,6 +46,14 @@ public class MessageReceiver {
             receiveMessage((UpdateBoard) message);
         } else if (message instanceof PlayerStatusMessage) {
             receiveMessage((PlayerStatusMessage) message);
+        } else if (message instanceof AvailableAssistants) {
+            receiveMessage((AvailableAssistants) message);
+        } else if (message instanceof PlayedAssistant) {
+            receiveMessage((PlayedAssistant) message);
+        } else if (message instanceof StartOfPlayerRound) {
+            receiveMessage((StartOfPlayerRound) message);
+        } else {
+            System.out.println("THIS MESSAGE WAS IGNORED:" + message);
         }
     }
 
@@ -59,8 +69,6 @@ public class MessageReceiver {
             }
         } else if (message == CommunicationMessage.ENTER_NICKNAME) {
             cli.setGameState(new NicknameState(cli));
-        } else if (message == CommunicationMessage.NEW_GAME) {
-            cli.setGameState(new GameSetupState(cli));
         }
     }
 
@@ -115,6 +123,12 @@ public class MessageReceiver {
         }
     }
 
+    public void receiveMessage(NewGame message) {
+        System.out.println(message.getMessage());
+        cli.getView().setPlayers(message.getPlayers());
+        cli.setGameState(new GameSetupState(cli));
+    }
+
     public void receiveMessage(AvailableTowers message) {
         cli.getView().setAvailableTowers(message.getAvailableTowers());
         synchronized (cli.getGameState()) {
@@ -141,6 +155,36 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(PlayerStatusMessage message) {
-        //TODO
+        PlayerStatus playerStatus= message.getPlayerStatus();
+
+        if (playerStatus == PlayerStatus.WAITING) {
+            cli.setGameState(new WaitingState(cli));
+        } else if (playerStatus == PlayerStatus.PLANNING) {
+            cli.setGameState(new PlanningState(cli));
+        } else if (playerStatus == PlayerStatus.MOVE_1) {
+            cli.setGameState(new ActionStep1State(cli));
+        }
+        cli.getClient().sendMessage(new Ack());
+    }
+
+    public void receiveMessage(AvailableAssistants message) {
+        cli.getView().setAvailableAssistants(message.getAvailableAssistants());
+        cli.getView().setPlayedAssistants(message.getPlayedAssistants());
+
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
+    }
+
+    public void receiveMessage(PlayedAssistant message) {
+        System.out.printf("%s played %s (%d value, %d movement)%n",
+                message.getPlayer(),
+                message.getAssistant(),
+                message.getAssistant().getValue(),
+                message.getAssistant().getMovements());
+    }
+
+    public void receiveMessage(StartOfPlayerRound message) {
+        cli.getView().setRoundNumber(message.getRoundNumber());
     }
 }

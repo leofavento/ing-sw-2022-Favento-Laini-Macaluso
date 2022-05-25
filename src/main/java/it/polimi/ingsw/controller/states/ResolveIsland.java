@@ -101,7 +101,7 @@ public class ResolveIsland implements State {
                     .collect(Collectors.toList()));
             requestedAck = true;
             controller.notify(CommunicationMessage.UNIFIED_ISLANDS);
-            controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         } else {
             nextState();
         }

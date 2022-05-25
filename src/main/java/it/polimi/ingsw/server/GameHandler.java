@@ -88,6 +88,7 @@ public class GameHandler implements Observer<Message> {
             game.addNewPlayer(new Player(player.getNickname()));
             player.setPlaying(true);
         }
+        broadcastMessage(new NewGame(game.getOnlinePlayers()));
         controller = new Controller(game);
         controller.addObserver(this);
         controller.getState().execute();
@@ -107,7 +108,6 @@ public class GameHandler implements Observer<Message> {
 
     private void updateRoom() {
         if (isFull()) {
-            broadcastMessage(CommunicationMessage.NEW_GAME);
             server.startGame(this);
             createGame();
         }

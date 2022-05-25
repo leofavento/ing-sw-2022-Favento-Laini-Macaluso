@@ -8,18 +8,12 @@ import it.polimi.ingsw.model.player.Player;
 import java.util.ArrayList;
 
 public class UpdateBoard implements Message {
-    private final ArrayList<CharacterCard> playedCharacters;
     private final Dashboard dashboard;
     private final ArrayList<Player> players;
 
-    public UpdateBoard(ArrayList<CharacterCard> playedCharacters, Dashboard dashboard, ArrayList<Player> players) {
-        this.playedCharacters = playedCharacters;
+    public UpdateBoard(Dashboard dashboard, ArrayList<Player> players) {
         this.dashboard = dashboard;
         this.players = players;
-    }
-
-    public ArrayList<CharacterCard> getPlayedCharacters() {
-        return playedCharacters;
     }
 
     public Dashboard getDashboard() {

@@ -77,7 +77,7 @@ public class EffectChar7 implements ResumableState{
         }
         else {
             requestedAck=true;
-            controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
     }
 

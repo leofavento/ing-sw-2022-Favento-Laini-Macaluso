@@ -54,7 +54,7 @@ public class EffectChar9 implements ResumableState{
             game.getDashboard().setDoNotCountColor(color);
             requestedColor=false;
             requestedAck=true;
-            controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
         if (message instanceof Ack && requestedAck){
             requestedAck=false;

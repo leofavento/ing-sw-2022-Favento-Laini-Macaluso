@@ -53,7 +53,7 @@ public class EffectChar5 implements ResumableState {
                 island = (Island) ((ChosenDestination) message).getDestination();
                 island.addNoEntry();
                 requestedAck = true;
-                controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+                controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
             } else {
                 controller.notify(ErrorMessage.INVALID_INPUT);
             }

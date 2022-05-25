@@ -82,9 +82,10 @@ public class GameSetupState implements State {
         }
         if (cli.isSuccess()) {
             cli.setSuccess(false);
-            //if (cli.isLastPlayer()) {
+            if (!cli.isLastPlayer()) {
                 System.out.println("Waiting for the other players to make their decision...");
-            //}
+            }
+            cli.getView().setRoundNumber(0);
         }
     }
 

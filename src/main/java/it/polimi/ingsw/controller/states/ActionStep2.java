@@ -120,7 +120,7 @@ public class ActionStep2 implements ResumableState {
             if (finished) {
                 nextState();
             } else {
-                controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), null));
+                controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
                 notifyStatus(PlayerStatus.END_MOVE_2);
                 finished = true;
             }

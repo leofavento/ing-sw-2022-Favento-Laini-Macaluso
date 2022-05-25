@@ -92,7 +92,7 @@ public class EffectChar1 implements ResumableState {
             char1.addStudent(game.getDashboard().getBag().drawStudent());
             //Send the updated board
             requestedAck=true;
-            controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
     }
 

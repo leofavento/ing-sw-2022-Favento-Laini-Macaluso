@@ -8,12 +8,13 @@ import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class View {
     private String currentPlayer;
     private Dashboard dashboard;
     private ArrayList<Player> players;
-    private HashMap<String, Assistant> playedAssistants;
+    private final HashMap<String, Assistant> playedAssistants = new HashMap<>();
     private int roundNumber;
     private boolean expertMode;
     private HashMap<Tower, Integer> availableTowers;
@@ -57,8 +58,11 @@ public class View {
         return roundNumber;
     }
 
-    public void setPlayedAssistant(String nickname, Assistant playedAssistant) {
-        playedAssistants.put(nickname, playedAssistant);
+    public void setPlayedAssistants(Map<Player, Assistant> playedAssistants) {
+        this.playedAssistants.clear();
+        for (Player player : playedAssistants.keySet()) {
+            this.playedAssistants.put(player.getNickname(), playedAssistants.get(player));
+        }
     }
 
     public HashMap<String, Assistant> getPlayedAssistants() {

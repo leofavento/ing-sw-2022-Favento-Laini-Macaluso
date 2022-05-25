@@ -80,7 +80,7 @@ public class Planning implements ResumableState {
                     notifyStatus(PlayerStatus.PLANNING);
                 } else {
                     controller.updateTurnOrder();
-                    controller.notify(new UpdateBoard(null, null, game.getOnlinePlayers()));
+                    controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
                     notifyStatus(PlayerStatus.WAITING);
                 }
             } else {

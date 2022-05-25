@@ -32,7 +32,7 @@ public class EffectChar3 implements ResumableState {
     @Override
     public void resume() {
         requestedAck=true;
-        controller.notify(new UpdateBoard(game.getDashboard().getPlayedCharacters(), game.getDashboard(), game.getOnlinePlayers()));
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     @Override

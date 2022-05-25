@@ -104,7 +104,7 @@ public class ActionStep1 implements ResumableState {
                     .map(Player::getNickname)
                     .collect(Collectors.toList()));
             requestedAck = true;
-            controller.notify(new UpdateBoard(null, game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
             if (movedStudents == ((game.getNumberOfPlayers() == 3) ? 4 : 3)) {
                 notifyStatus(PlayerStatus.END_MOVE_1);
             }
