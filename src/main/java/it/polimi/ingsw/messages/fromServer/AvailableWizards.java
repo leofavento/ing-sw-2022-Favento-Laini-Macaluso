@@ -1,10 +1,11 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 import java.util.ArrayList;
 
-public class AvailableWizards implements Message {
+public class AvailableWizards implements FromServerMessage {
     private final ArrayList<Integer> availableWizards;
 
     public AvailableWizards(ArrayList<Integer> availableWizards) {
@@ -13,5 +14,10 @@ public class AvailableWizards implements Message {
 
     public ArrayList<Integer> getAvailableWizards() {
         return availableWizards;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

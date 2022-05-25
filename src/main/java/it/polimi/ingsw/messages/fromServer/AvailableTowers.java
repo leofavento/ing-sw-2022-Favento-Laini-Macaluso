@@ -1,12 +1,13 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Tower;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AvailableTowers implements Message {
+public class AvailableTowers implements FromServerMessage {
     private final HashMap<Tower, Integer> availableTowers;
 
     public AvailableTowers(HashMap<Tower, Integer> availableTowers) {
@@ -15,5 +16,10 @@ public class AvailableTowers implements Message {
 
     public HashMap<Tower, Integer> getAvailableTowers() {
         return availableTowers;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

@@ -1,9 +1,10 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Assistant;
 
-public class PlayedAssistant implements Message {
+public class PlayedAssistant implements FromServerMessage {
     private final Assistant assistant;
     private final String player;
 
@@ -18,5 +19,10 @@ public class PlayedAssistant implements Message {
 
     public String getPlayer() {
         return player;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

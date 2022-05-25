@@ -1,13 +1,13 @@
 package it.polimi.ingsw.messages.fromServer;
 
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class AvailableAssistants implements Message {
+public class AvailableAssistants implements FromServerMessage {
     private final ArrayList<Assistant> availableAssistants;
     private final Map<Player, Assistant> playedAssistants;
 
@@ -22,5 +22,10 @@ public class AvailableAssistants implements Message {
 
     public Map<Player, Assistant> getPlayedAssistants() {
         return playedAssistants;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

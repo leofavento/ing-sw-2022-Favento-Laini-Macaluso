@@ -1,8 +1,9 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
-public enum ErrorMessage implements Message {
+public enum ErrorMessage implements FromServerMessage {
     TAKEN_NICKNAME("This nickname is already taken, please choose another one."),
     WRONG_TURN("This is not your turn."),
     ALREADY_RECEIVED("This message was already received."),
@@ -27,5 +28,10 @@ public enum ErrorMessage implements Message {
 
     public String getMessage(){
         return message;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

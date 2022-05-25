@@ -1,16 +1,29 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.GameInfo;
+import it.polimi.ingsw.model.player.Player;
 
-public class MatchStarted implements Message {
-    private final GameInfo gameInfo;
+import java.util.ArrayList;
 
-    public MatchStarted(GameInfo gameInfo){
-        this.gameInfo = gameInfo;
+public class MatchStarted implements FromServerMessage {
+    private final ArrayList<Player> players;
+
+    public MatchStarted(ArrayList<Player> players) {
+        this.players = players;
     }
 
-    public GameInfo getGameInfo() {
-        return gameInfo;
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public String getMessage() {
+        return "The game is starting...";
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.characters.CharacterCard;
@@ -7,7 +8,7 @@ import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 
-public class UpdateBoard implements Message {
+public class UpdateBoard implements FromServerMessage {
     private final Dashboard dashboard;
     private final ArrayList<Player> players;
 
@@ -22,5 +23,10 @@ public class UpdateBoard implements Message {
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

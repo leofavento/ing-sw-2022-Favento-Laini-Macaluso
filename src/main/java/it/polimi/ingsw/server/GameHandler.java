@@ -88,7 +88,7 @@ public class GameHandler implements Observer<Message> {
             game.addNewPlayer(new Player(player.getNickname()));
             player.setPlaying(true);
         }
-        broadcastMessage(new NewGame(game.getOnlinePlayers()));
+        broadcastMessage(new MatchStarted(game.getOnlinePlayers()));
         controller = new Controller(game);
         controller.addObserver(this);
         controller.getState().execute();

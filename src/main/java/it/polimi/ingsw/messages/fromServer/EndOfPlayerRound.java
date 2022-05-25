@@ -1,8 +1,9 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
-public class EndOfPlayerRound implements Message {
+public class EndOfPlayerRound implements FromServerMessage {
     private final int roundNumber;
     private final String nickname;
 
@@ -17,5 +18,10 @@ public class EndOfPlayerRound implements Message {
 
     public String getNickname() {
         return nickname;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

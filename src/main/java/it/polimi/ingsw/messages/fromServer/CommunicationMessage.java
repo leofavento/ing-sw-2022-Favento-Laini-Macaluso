@@ -1,8 +1,9 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
-public enum CommunicationMessage implements Message {
+public enum CommunicationMessage implements FromServerMessage {
     PING("Ping!"),
     ENTER_NICKNAME("Please enter your nickname: "),
     SUCCESS("Success"),
@@ -22,5 +23,10 @@ public enum CommunicationMessage implements Message {
 
     public String getMessage() {
         return message;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

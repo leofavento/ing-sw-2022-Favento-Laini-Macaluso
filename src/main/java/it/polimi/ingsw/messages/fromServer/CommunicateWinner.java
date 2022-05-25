@@ -1,11 +1,12 @@
 package it.polimi.ingsw.messages.fromServer;
 
+import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.Message;
 
 import java.util.ArrayList;
 
-public class CommunicateWinner implements Message {
+public class CommunicateWinner implements FromServerMessage {
     private final ArrayList<String> nicknames;
     private final EndOfGameReason winReason;
 
@@ -20,5 +21,10 @@ public class CommunicateWinner implements Message {
 
     public EndOfGameReason getWinReason() {
         return winReason;
+    }
+
+    @Override
+    public void receiveMessage(MessageReceiver messageReceiver) {
+        messageReceiver.receiveMessage(this);
     }
 }

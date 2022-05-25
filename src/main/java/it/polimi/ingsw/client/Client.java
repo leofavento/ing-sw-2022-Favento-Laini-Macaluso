@@ -2,6 +2,7 @@ package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.fromServer.FromServerMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -85,8 +86,8 @@ public class Client implements Runnable {
     public void run() {
         while (active) {
             try {
-                Message received = (Message) input.readObject();
-                messageReceiver.receiveMessage(received);
+                FromServerMessage received = (FromServerMessage) input.readObject();
+                received.receiveMessage(messageReceiver);
             } catch (IOException | ClassNotFoundException e) {
                 System.err.println("Connection closed from server.");
                 active = false;

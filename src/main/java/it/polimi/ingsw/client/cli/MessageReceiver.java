@@ -23,40 +23,6 @@ public class MessageReceiver {
         this.client = client;
     }
 
-    public void receiveMessage(Message message) {
-        if (message instanceof CommunicationMessage) {
-            receiveMessage((CommunicationMessage) message);
-        } else if (message instanceof ErrorMessage) {
-            receiveMessage((ErrorMessage) message);
-        } else if (message instanceof AvailableGames) {
-            receiveMessage((AvailableGames) message);
-        } else if (message instanceof JoinAlreadyExistingGame) {
-            receiveMessage((JoinAlreadyExistingGame) message);
-        } else if (message instanceof WaitingForPlayers) {
-            receiveMessage((WaitingForPlayers) message);
-        } else if (message instanceof UpdateLobby) {
-            receiveMessage((UpdateLobby) message);
-        } else if (message instanceof NewGame) {
-            receiveMessage((NewGame) message);
-        } else if (message instanceof AvailableTowers) {
-            receiveMessage((AvailableTowers) message);
-        } else if (message instanceof AvailableWizards) {
-            receiveMessage((AvailableWizards) message);
-        } else if (message instanceof UpdateBoard) {
-            receiveMessage((UpdateBoard) message);
-        } else if (message instanceof PlayerStatusMessage) {
-            receiveMessage((PlayerStatusMessage) message);
-        } else if (message instanceof AvailableAssistants) {
-            receiveMessage((AvailableAssistants) message);
-        } else if (message instanceof PlayedAssistant) {
-            receiveMessage((PlayedAssistant) message);
-        } else if (message instanceof StartOfPlayerRound) {
-            receiveMessage((StartOfPlayerRound) message);
-        } else {
-            System.out.println("THIS MESSAGE WAS IGNORED:" + message);
-        }
-    }
-
     public void receiveMessage(CommunicationMessage message) {
         if (message != CommunicationMessage.SUCCESS) {
             System.out.println(message.getMessage());
@@ -123,7 +89,7 @@ public class MessageReceiver {
         }
     }
 
-    public void receiveMessage(NewGame message) {
+    public void receiveMessage(MatchStarted message) {
         System.out.println(message.getMessage());
         cli.getView().setPlayers(message.getPlayers());
         cli.setGameState(new GameSetupState(cli));
@@ -186,5 +152,49 @@ public class MessageReceiver {
 
     public void receiveMessage(StartOfPlayerRound message) {
         cli.getView().setRoundNumber(message.getRoundNumber());
+    }
+
+    public void receiveMessage(AvailableCharacters message) {
+        //TODO
+    }
+
+    public void receiveMessage(CommunicateWinner message) {
+        //TODO
+    }
+
+    public void receiveMessage(EndOfPlayerRound message) {
+        //TODO
+    }
+
+    public void receiveMessage(EndOfRound message) {
+        //TODO
+    }
+
+    public void receiveMessage(IslandOwner message) {
+        //TODO
+    }
+
+    public void receiveMessage(MotherNatureSteps message) {
+        //TODO
+    }
+
+    public void receiveMessage(MovableStudents message) {
+        //TODO
+    }
+
+    public void receiveMessage(PlayerDisconnected message) {
+        //TODO
+    }
+
+    public void receiveMessage(SelectCloud message) {
+        //TODO
+    }
+
+    public void receiveMessage(SelectColor message) {
+        //TODO
+    }
+
+    public void receiveMessage(WhereToMove message) {
+        //TODO
     }
 }
