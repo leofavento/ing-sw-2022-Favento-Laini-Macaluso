@@ -19,7 +19,8 @@ public class IslandsRenderer {
         System.out.println("|-----------------------------");
 
         for(int i=0; i<dashboard.getIslands().size(); i++){
-            System.out.print("Island " + i+1);
+            int x = i+1;
+            System.out.print("Island " + x);
 
             if(i == dashboard.getMotherNaturePosition()){
                 System.out.print("+ M");
