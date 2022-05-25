@@ -31,12 +31,11 @@ public class IslandsRenderer {
             }
             System.out.print(":\n");
 
-            System.out.println("Green students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.GREEN).count());
-            System.out.println("Red students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.RED).count());
-            System.out.println("Yellow students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.YELLOW).count());
-            System.out.println("Pink students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.PINK).count());
-            System.out.println("Blue students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.BLUE).count());
-
+            System.out.println("Green students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.GREEN).count() +
+                            ", red students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.RED).count() +
+                            ", yellow students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.YELLOW).count() +
+                            "pink students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.PINK).count() +
+                            ", blue students: " + dashboard.getIslands().get(i).getStudents().stream().filter(a->a == Color.BLUE).count());
 
             if(dashboard.getIslands().get(i).hasTower()){
                 Tower towerColor = dashboard.getIslands().get(i).getTowerColor();

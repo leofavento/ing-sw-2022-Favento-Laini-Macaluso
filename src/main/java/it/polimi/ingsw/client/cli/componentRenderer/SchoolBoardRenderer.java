@@ -12,30 +12,30 @@ public class SchoolBoardRenderer {
      */
     public static  void renderSchoolBoard(Player player){
         System.out.println("|--------------------------\n" +
-                player.getNickname() + "\n" +
-                "|---------ENTRANCE---------\n" +
-                "|Green: " + "\n" + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.GREEN).count() +
-                "|Red: " + "\n" + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.RED).count() +
-                "|Yellow: " + "\n" + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.YELLOW).count() +
-                "|Pink: " + "\n" + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.PINK).count() +
-                "|Blue: " + "\n" + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.BLUE).count() +
+                player.getNickname() + "'s SchoolBoard:\n" +
+                "|Entrance: " +
+                "green: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.GREEN).count() +
+                ", red: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.RED).count() +
+                ", yellow: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.YELLOW).count() +
+                ", pink: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.PINK).count() +
+                ", blue: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.BLUE).count() + "\n" +
                 "|--------------------------\n" +
-                "|--------DINING ROOM------- " + "\n" +
-                "|Green: " + "\n" + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.GREEN) +
-                "|Red: " + "\n" + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.RED) +
-                "|Yellow: " + "\n" + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.YELLOW) +
-                "|Pink: " + "\n" + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.PINK) +
-                "|Blue: " + "\n" + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.BLUE) +
+                "|Dining Room: " +
+                "green: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.GREEN) +
+                ", red: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.RED) +
+                ", yellow: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.YELLOW) +
+                ", pink: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.PINK) +
+                ", blue: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.BLUE) + "\n" +
                 "|--------------------------\n" +
-                "|--------PROFESSORS-------- ");
+                "|Professors: ");
 
         for(int i=0; i<player.getSchoolBoard().getProfessors().size(); i++){
-            System.out.println("|" + player.getSchoolBoard().getProfessors().get(i).toString());
+            System.out.print(player.getSchoolBoard().getProfessors().get(i).toString() + " ");
         }
 
         System.out.println("|--------------------------\n" +
-                            "|----------TOWERS---------- " + "\n" +
-                            "|" + player.getSchoolBoard().getTowersNumber() +
+                            "|Towers: " +
+                            player.getSchoolBoard().getTowersNumber() +
                             "|--------------------------\n");
     }
 }
