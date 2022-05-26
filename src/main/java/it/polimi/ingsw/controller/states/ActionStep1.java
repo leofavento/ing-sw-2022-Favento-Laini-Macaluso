@@ -51,7 +51,11 @@ public class ActionStep1 implements ResumableState {
         if (message instanceof Ack && requestedAck) {
             receiveAck(sender);
         } else if (message instanceof ChosenStudent && requestedStudent) {
-            receiveStudent((ChosenStudent) message);
+            if (!(((ChosenStudent) message).getStudent()==null)){
+                receiveStudent((ChosenStudent) message);}
+            else {
+                controller.notify(ErrorMessage.INVALID_INPUT);
+            }
         } else if (message instanceof ChosenDestination && requestedDestination) {
             receiveDestination((ChosenDestination) message);
         }

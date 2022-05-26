@@ -140,6 +140,7 @@ public class CharacterController {
         //You may exchange up to 2 Students between your Entrance and your Dining Room
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar10(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char11 c) {

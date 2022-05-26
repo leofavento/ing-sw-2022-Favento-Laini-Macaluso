@@ -60,7 +60,7 @@ public class EffectChar10 implements ResumableState{
             else {
                 i=2;
                 requestedEntranceStudent=false;
-                nextState();
+                chooseStudentFromEntrance();
             }
         }
         if (message instanceof ChosenStudent && requestedDiningRoomStudent){
@@ -76,8 +76,8 @@ public class EffectChar10 implements ResumableState{
     }
 
     private void chooseStudentFromEntrance(){
-        requestedEntranceStudent=true;
         if (i<2){
+            requestedEntranceStudent=true;
             controller.notify(new MovableStudents(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
         }
         else {
@@ -88,13 +88,13 @@ public class EffectChar10 implements ResumableState{
 
     private void chooseStudentFromDiningRoom(){
         requestedDiningRoomStudent=true;
-        ArrayList<Color> entranceStudentsList = new ArrayList<>();
+        ArrayList<Color> diningStudentsList = new ArrayList<>();
         for (Color color: Color.values()) {
-            for (int i=0; i<game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(color); i++) {
-                entranceStudentsList.add(color);
+            for (int z=0; z<game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(color); z++) {
+                diningStudentsList.add(color);
             }
         }
-        controller.notify(new MovableStudents(entranceStudentsList));
+        controller.notify(new MovableStudents(diningStudentsList));
     }
 
     private void swapStudents(){
