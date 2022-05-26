@@ -24,6 +24,7 @@ public class View {
     private int activePlayers;
     private boolean isHost;
     private ArrayList<Color> movableStudents;
+    private int motherNatureSteps;
 
 
     public ArrayList<Player> getPlayers() {
@@ -132,4 +133,13 @@ public class View {
     public void setMovableStudents(ArrayList<Color> movableStudents) {
         this.movableStudents = movableStudents;
     }
+
+    public int getMotherNatureSteps(){
+        return motherNatureSteps;
+    }
+
+    public void setMotherNatureSteps(int motherNatureSteps){
+        this.motherNatureSteps = motherNatureSteps;
+    }
+
 }
