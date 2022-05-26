@@ -11,7 +11,7 @@ import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.characters.Char5;
 
-public class EffectChar5 implements ResumableState {
+public class EffectChar5 implements State {
 
     Game game;
     Controller controller;
@@ -26,11 +26,6 @@ public class EffectChar5 implements ResumableState {
         this.controller = controller;
         this.previousState = previousState;
         this.char5 = char5;
-    }
-
-    @Override
-    public void resume() {
-
     }
 
     @Override

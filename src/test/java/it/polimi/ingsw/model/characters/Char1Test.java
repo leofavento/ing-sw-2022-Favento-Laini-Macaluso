@@ -90,6 +90,8 @@ class Char1Test {
         assertTrue(char1.getActive());
         assertTrue(game.getDashboard().getIslands().get(0).getStudents().contains(Color.PINK));
 
+        controller.getState().receiveMessage(new Ack(), "Player1");
+
 
         //end of Char1 testing
 

@@ -84,10 +84,10 @@ class Char7Test {
         Color c2 = char7.getStudents().get(1);
 
 
-        controller.getState().receiveMessage(new ChosenStudent(char7.getStudents().get(0)), "Player1");
+        controller.getState().receiveMessage(new ChosenStudent(c1), "Player1");
         controller.getState().receiveMessage(new ChosenStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0)), "Player1");
 
-        controller.getState().receiveMessage(new ChosenStudent(char7.getStudents().get(0)), "Player1");
+        controller.getState().receiveMessage(new ChosenStudent(c2), "Player1");
         controller.getState().receiveMessage(new ChosenStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0)), "Player1");
 
         controller.getState().receiveMessage(new ChosenStudent(null), "Player1");

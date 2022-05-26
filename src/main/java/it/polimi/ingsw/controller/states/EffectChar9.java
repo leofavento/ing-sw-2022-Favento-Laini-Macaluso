@@ -13,7 +13,7 @@ import it.polimi.ingsw.model.characters.Char9;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class EffectChar9 implements ResumableState{
+public class EffectChar9 implements State{
 
     Game game;
     Controller controller;
@@ -28,10 +28,6 @@ public class EffectChar9 implements ResumableState{
         this.controller = controller;
         this.previousState = previousState;
         this.char9 = char9;
-    }
-    @Override
-    public void resume() {
-
     }
 
     @Override

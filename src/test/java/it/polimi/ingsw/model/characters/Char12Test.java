@@ -17,9 +17,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Char10Test {
+class Char12Test {
+
     @Test
-    public void testChar10() throws NotEnoughCoinsException, InvalidInputException {
+    public void testChar12() throws NotEnoughCoinsException, InvalidInputException {
         Game game = new Game(1, 2, true);
         Player p1 = new Player("Player1");
         Player p2 = new Player("Player2");
@@ -31,8 +32,8 @@ class Char10Test {
 
         CharacterController characterController = new CharacterController(controller, game, null);
 
-        controller.getState().receiveMessage(new ChosenTower(Tower.BLACK),"Player1");
-        controller.getState().receiveMessage(new ChosenTower(Tower.WHITE),"Player2");
+        controller.getState().receiveMessage(new ChosenTower(Tower.BLACK), "Player1");
+        controller.getState().receiveMessage(new ChosenTower(Tower.WHITE), "Player2");
 
         controller.getState().receiveMessage(new ChosenWizard(1), "Player1");
         controller.getState().receiveMessage(new ChosenWizard(2), "Player2");
@@ -63,6 +64,8 @@ class Char10Test {
         game.updateProfessors();
         p2.getSchoolBoard().getDiningRoom().addStudent(Color.RED);
         game.updateProfessors();
+        p2.getSchoolBoard().getDiningRoom().addStudent(Color.RED);
+        game.updateProfessors();
         p2.getSchoolBoard().getDiningRoom().addStudent(Color.YELLOW);
         game.updateProfessors();
         p2.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
@@ -73,22 +76,23 @@ class Char10Test {
 
         game.setCurrentPlayer(p1);
         controller.setState(new ActionStep1(game, controller));
-        //Char10 testing
-        CharacterCard char10 = new Char10();
-        characterController.applyEffect(char10);
-        assertTrue(char10.getActive());
 
-        controller.getState().receiveMessage(new ChosenStudent(Color.BLUE), "Player1");
-        controller.getState().receiveMessage(new ChosenStudent(Color.GREEN), "Player1");
+        //Char12 testing
+        CharacterCard char12 = new Char12();
+        characterController.applyEffect(char12);
+        assertTrue(char12.getActive());
 
-        controller.getState().receiveMessage(new ChosenStudent(null), "Player1");
+        characterController.applyEffect(char12);
+
+        controller.getState().receiveMessage(new ChosenStudent(Color.RED), "Player1");
 
         controller.getState().receiveMessage(new Ack(), "Player1");
 
-        assertEquals(0, game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(Color.GREEN));
-        assertEquals(2, game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(Color.BLUE));
+        assertEquals(0, p1.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.RED));
+        assertEquals(0, p2.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.RED));
 
-        assertTrue(p1.getSchoolBoard().getEntrance().getStudents().contains(Color.GREEN));
+        //end of Char12 testing
 
     }
+
 }

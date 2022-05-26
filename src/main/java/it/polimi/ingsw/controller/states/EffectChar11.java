@@ -28,10 +28,6 @@ public class EffectChar11 implements ResumableState{
         this.previousState = previousState;
         this.char11 = char11;
     }
-    @Override
-    public void resume() {
-
-    }
 
     @Override
     public void nextState() {
@@ -68,5 +64,10 @@ public class EffectChar11 implements ResumableState{
             requestedAck=true;
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
+    }
+
+    @Override
+    public void resume() {
+
     }
 }

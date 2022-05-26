@@ -33,9 +33,6 @@ public class EffectChar12 implements ResumableState{
     }
 
     @Override
-    public void resume() {}
-
-    @Override
     public void nextState() {
         controller.setState(previousState);
         previousState.resume();
@@ -77,4 +74,8 @@ public class EffectChar12 implements ResumableState{
     }
 
 
+    @Override
+    public void resume() {
+
+    }
 }

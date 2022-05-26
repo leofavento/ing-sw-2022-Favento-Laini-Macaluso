@@ -14,7 +14,7 @@ import it.polimi.ingsw.model.characters.Char10;
 
 import java.util.ArrayList;
 
-public class EffectChar10 implements ResumableState{
+public class EffectChar10 implements State{
 
     Game game;
     Controller controller;
@@ -33,10 +33,6 @@ public class EffectChar10 implements ResumableState{
         this.char10 = char10;
     }
 
-
-    @Override
-    public void resume() {
-    }
 
     @Override
     public void nextState() {
@@ -63,7 +59,7 @@ public class EffectChar10 implements ResumableState{
                 chooseStudentFromEntrance();
             }
         }
-        if (message instanceof ChosenStudent && requestedDiningRoomStudent){
+        else if (message instanceof ChosenStudent && requestedDiningRoomStudent){
             this.DiningRoomStudent=((ChosenStudent) message).getStudent();
             requestedDiningRoomStudent=false;
             swapStudents();
