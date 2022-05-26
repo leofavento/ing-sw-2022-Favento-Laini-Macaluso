@@ -44,19 +44,19 @@ public class EffectChar3 implements ResumableState {
     @Override
     public void execute() {
         requestedIsland = true;
-        controller.notify(new WhereToMove(null, game.getDashboard().getIslands()));
+        controller.notify(new WhereToMove());
     }
 
     @Override
     public void receiveMessage(Message message, String sender) {
         if (message instanceof ChosenDestination && requestedIsland) {
-            if (((ChosenDestination) message).getDestination() instanceof Island) {
-                requestedIsland=false;
-                island= (Island) ((ChosenDestination) message).getDestination();
+            try {
+                island = game.getDashboard().getIslands().get((((ChosenDestination) message).getDestination() - 1));
+                requestedIsland = false;
                 ResumableState thisState = this;
                 controller.setState(new ResolveIsland(game, controller, island, thisState));
-            }
-            else {
+                controller.getState().execute();
+            } catch (IndexOutOfBoundsException e) {
                 controller.notify(ErrorMessage.INVALID_INPUT);
             }
         }

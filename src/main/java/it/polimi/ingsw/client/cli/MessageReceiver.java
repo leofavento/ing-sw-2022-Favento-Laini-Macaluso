@@ -203,7 +203,6 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(WhereToMove message) {
-        // forse dovrebbe settare isole e dining room nella view ma non ha senso (ActionStep1 fa UpdateBoard)
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }

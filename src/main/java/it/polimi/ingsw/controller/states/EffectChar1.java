@@ -74,18 +74,15 @@ public class EffectChar1 implements ResumableState {
             requestedStudent=false;
             requestedIsland=true;
             //choose an island to move student on
-            controller.notify(new WhereToMove(null, game.getDashboard().getIslands()));
+            controller.notify(new WhereToMove());
         }
     }
 
     private void receiveIsland(ChosenDestination message){
-        if (!(message.getDestination() instanceof Island)){
-            controller.notify(ErrorMessage.INVALID_INPUT);
-        }
-        else {
+        try {
             requestedIsland=false;
             //put the student on the island
-            message.getDestination().addStudent(color);
+            game.getDashboard().getIslands().get(message.getDestination() - 1).addStudent(color);
             //remove student from Char1
             char1.removeStudent(color);
             //draw a new student from the bag and place it on Char1
@@ -93,6 +90,8 @@ public class EffectChar1 implements ResumableState {
             //Send the updated board
             requestedAck=true;
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+        } catch (IndexOutOfBoundsException e) {
+            controller.notify(ErrorMessage.INVALID_INPUT);
         }
     }
 

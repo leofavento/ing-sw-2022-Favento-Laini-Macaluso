@@ -23,17 +23,18 @@ public class ActionStep1State implements State{
     public void run(){
 
         cli.getClient().sendMessage(new Ack());
-        try{
-            synchronized (this){
-                wait();
-            }
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
 
         while(!cli.isSuccess()){
             Scanner in = new Scanner(System.in);
             String c;
+
+            try{
+                synchronized (this){
+                    wait();
+                }
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
 
             ArrayList<Color> movableStudents = cli.getView().getMovableStudents();
 
@@ -85,7 +86,7 @@ public class ActionStep1State implements State{
                 in.reset();
                 selection = in.nextInt();
 
-                cli.getClient().sendMessage(new ChosenDestination(cli.getView().getDashboard().getIslands().get(selection-1)));
+                cli.getClient().sendMessage(new ChosenDestination(selection));
 
                 try{
                     synchronized (this){

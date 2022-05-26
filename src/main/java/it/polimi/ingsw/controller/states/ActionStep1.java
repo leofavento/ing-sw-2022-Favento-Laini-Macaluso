@@ -83,20 +83,19 @@ public class ActionStep1 implements ResumableState {
             requestedStudent = false;
             currStudent = student;
             requestedDestination = true;
-            controller.notify(new WhereToMove(game.getCurrentPlayer().getSchoolBoard().getDiningRoom(),
-                    game.getDashboard().getIslands()));
+            controller.notify(new WhereToMove());
         }
     }
 
     private void receiveDestination(ChosenDestination message) {
         try {
-            if (message.getDestination() instanceof DiningRoom) {
+            if (message.getDestination() == 0) {
                 Action.moveFromEntranceToDining(currStudent, game.getCurrentPlayer().getSchoolBoard());
                 game.updateProfessors();
-            } else if (message.getDestination() instanceof Island) {
+            } else if (message.getDestination() != 0) {
                 Action.moveFromEntranceToIsland(currStudent,
                         game.getCurrentPlayer().getSchoolBoard().getEntrance(),
-                        (Island) message.getDestination());
+                        game.getDashboard().getIslands().get(message.getDestination() - 1));
             }
             movedStudents++;
             missingAcks.addAll(game.getOnlinePlayers().stream()
@@ -114,6 +113,8 @@ public class ActionStep1 implements ResumableState {
             controller.notify(ErrorMessage.FULL_DINING_ROOM);
         } catch (StudentNotExistingException e) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
+        } catch (IndexOutOfBoundsException e) {
+            controller.notify(ErrorMessage.INVALID_INPUT);
         }
     }
 

@@ -6,24 +6,13 @@ import it.polimi.ingsw.model.StudentDeposit;
 import it.polimi.ingsw.model.player.DiningRoom;
 
 public class ChosenDestination implements Message {
-    private final DiningRoom diningRoom;
-    private final Island island;
+    private final int destination;
 
-    public ChosenDestination(DiningRoom diningRoom) {
-        this.diningRoom = diningRoom;
-        this.island = null;
+    public ChosenDestination(int destination) {
+        this.destination = destination;
     }
 
-    public ChosenDestination(Island island) {
-        this.island = island;
-        diningRoom = null;
-    }
-
-    public StudentDeposit getDestination() {
-        if (island == null) {
-            return diningRoom;
-        } else {
-            return island;
-        }
+    public int getDestination() {
+        return destination;
     }
 }
