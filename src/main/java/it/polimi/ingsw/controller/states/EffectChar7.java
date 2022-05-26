@@ -56,7 +56,7 @@ public class EffectChar7 implements ResumableState{
             else{
                 i=3;
                 requestedCharStudent=false;
-                nextState();
+                chooseStudentFromChar();
             }
         }
         if (message instanceof ChosenStudent && requestedEntranceStudent){
@@ -78,6 +78,7 @@ public class EffectChar7 implements ResumableState{
         else {
             requestedAck=true;
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+            nextState();
         }
     }
 

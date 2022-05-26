@@ -1,12 +1,17 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.player.DiningRoom;
 
 import java.util.ArrayList;
 
+/**
+ * this Character allows the player to take 1 student from this card and to place it in his Dining Room
+ */
 public class Char11 extends CharacterCard {
 
     public Char11() {
@@ -15,7 +20,6 @@ public class Char11 extends CharacterCard {
         students = new ArrayList<>();
     }
 
-    //In setup draw 4 students and place them on this card
     @Override
     public void setUp(Bag bag) {
         while (students.size() < 4) {
@@ -28,14 +32,8 @@ public class Char11 extends CharacterCard {
         this.students.add(c);
     }
 
-    //Take 1 student from this card and place it on your DiningRoom
-    /*public void effect(Color c, DiningRoom diningRoom){
-        this.students.remove(c);
-        diningRoom.addStudent(c);
-    }*/
-
     @Override
-    public void activate(CharacterController controller) {
+    public void activate(CharacterController controller){
         controller.activate(this);
     }
 }

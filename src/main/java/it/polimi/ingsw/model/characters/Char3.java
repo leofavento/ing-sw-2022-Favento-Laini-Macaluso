@@ -1,7 +1,12 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 
+/**
+ * this Character allows the player to choose an Island and resolve it as if Mother Nature ended her movement there
+ */
 public class Char3 extends CharacterCard {
 
     public Char3() {
@@ -9,9 +14,8 @@ public class Char3 extends CharacterCard {
         this.cost = 3;
     }
 
-    //Choose an island and resolve the island as if Mother Nature had ended her movement here.
     @Override
-    public void activate(CharacterController controller) {
+    public void activate(CharacterController controller){
         controller.activate(this);
     }
 }

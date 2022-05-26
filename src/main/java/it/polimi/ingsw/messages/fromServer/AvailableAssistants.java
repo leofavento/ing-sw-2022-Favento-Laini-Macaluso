@@ -7,6 +7,9 @@ import it.polimi.ingsw.model.player.Player;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Message sent by server to a specific player, containing the list of assistants still not played.
+ */
 public class AvailableAssistants implements FromServerMessage {
     private final ArrayList<Assistant> availableAssistants;
     private final Map<Player, Assistant> playedAssistants;

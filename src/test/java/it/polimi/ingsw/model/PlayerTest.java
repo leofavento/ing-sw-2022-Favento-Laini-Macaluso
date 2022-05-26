@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.model.player.PlayerStatus;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,8 +20,11 @@ class PlayerTest {
 
         try {
             player.playAssistant(Assistant.DOG);
-        } catch (Exception ignored) {
-        }
+        } catch (AlreadyPlayedAssistant ignored) {}
+
+        try {
+            player.playAssistant(Assistant.DOG);
+        } catch (AlreadyPlayedAssistant ignored) {}
 
         assertEquals(9, player.getAvailableAssistants().size());
         assertFalse(player.getAvailableAssistants().contains(Assistant.DOG));
@@ -44,5 +49,31 @@ class PlayerTest {
             player.getSchoolBoard().getEntrance().addStudent(student);
         }
         assertEquals(3, player.getSchoolBoard().getEntrance().getStudents().size());
+    }
+
+    @Test
+    public void testStatus(){
+        Player player = new Player("Player1");
+
+        player.setStatus(PlayerStatus.WAITING);
+        assertSame(player.getStatus(), PlayerStatus.WAITING);
+
+        player.setStatus(PlayerStatus.PLANNING);
+        assertSame(player.getStatus(), PlayerStatus.PLANNING);
+
+        player.setStatus(PlayerStatus.MOVE_1);
+        assertSame(player.getStatus(), PlayerStatus.MOVE_1);
+
+        player.setStatus(PlayerStatus.MOVE_2);
+        assertSame(player.getStatus(), PlayerStatus.MOVE_2);
+
+        player.setStatus(PlayerStatus.MOVE_3);
+        assertSame(player.getStatus(), PlayerStatus.MOVE_3);
+
+        player.setStatus(PlayerStatus.END_MOVE_1);
+        assertSame(player.getStatus(), PlayerStatus.END_MOVE_1);
+
+        player.setStatus(PlayerStatus.END_MOVE_2);
+        assertSame(player.getStatus(), PlayerStatus.END_MOVE_2);
     }
 }

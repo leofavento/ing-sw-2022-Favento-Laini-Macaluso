@@ -7,6 +7,9 @@ import it.polimi.ingsw.model.player.DiningRoom;
 
 import java.util.ArrayList;
 
+/**
+ * Message sent by server to ask the client where to move the student.
+ */
 public class WhereToMove implements FromServerMessage {
     @Override
     public void receiveMessage(MessageReceiver messageReceiver) {

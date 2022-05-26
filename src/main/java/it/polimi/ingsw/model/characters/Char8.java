@@ -1,7 +1,12 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 
+/**
+ * this Character allows the player to count as having 2 more influence during this turn
+ */
 public class Char8 extends CharacterCard {
 
     public Char8() {
@@ -9,9 +14,8 @@ public class Char8 extends CharacterCard {
         cost = 2;
     }
 
-    //During the influence calculation this turn, you count as having 2 more influence
     @Override
-    public void activate(CharacterController controller) {
+    public void activate(CharacterController controller){
         controller.activate(this);
     }
 }

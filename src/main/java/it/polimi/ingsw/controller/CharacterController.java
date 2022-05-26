@@ -65,6 +65,7 @@ public class CharacterController {
         //take 1 student from this card and place it on an Island
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar1(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char2 c) {
@@ -88,6 +89,7 @@ public class CharacterController {
         //resolve an island as if Mother Nature has ended her movement here
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar3(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char4 c) {
@@ -105,17 +107,19 @@ public class CharacterController {
 
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar5(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char6 c) {
         //when resolving a conquering on an island, towers do not count towards influence
-        game.getDashboard().enableDoNotCountTowers();
+        game.getDashboard().setDoNotCountTowers(true);
     }
 
     public void activate(Char7 c) {
         //You may take up to 3 students from this card and replace them with the same number of students from your entrance
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar7(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char8 c) {
@@ -129,6 +133,7 @@ public class CharacterController {
         //Choose a color of Student: during the influence calculation this turn, that color adds no influence
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar9(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char10 c) {
@@ -141,6 +146,7 @@ public class CharacterController {
         //Take 1 student from this card and place it in your Dining Room
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar11(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
     public void activate(Char12 c) {
@@ -148,6 +154,7 @@ public class CharacterController {
         // 3 students of that type from their dining room to the bag
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar12(game, controller, previousState, c));
+        controller.getState().execute();
     }
 
 

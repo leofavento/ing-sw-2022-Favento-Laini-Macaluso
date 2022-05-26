@@ -4,6 +4,8 @@ import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
@@ -16,6 +18,7 @@ class GameTest {
         game.addNewPlayer(player1);
         game.addNewPlayer(player2);
 
+        assertEquals(2, game.getNumberOfPlayers());
         assertEquals(player1, game.getPlayer("Player1"));
         assertEquals(player2, game.getPlayer("Player2"));
         assertNotEquals(player1, game.getPlayer("Player2"));
@@ -77,6 +80,20 @@ class GameTest {
         assertEquals(1, player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.PINK));
         assertEquals(1, player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.BLUE));
         assertEquals(1, player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.YELLOW));
+
+        try{
+            player.getSchoolBoard().getDiningRoom().extractStudent(Color.GREEN);
+        }
+        catch  (StudentNotExistingException ignored){}
+        try{
+            player.getSchoolBoard().getDiningRoom().extractStudent(Color.GREEN);
+        }
+        catch  (StudentNotExistingException ignored){}
+
+        player.getSchoolBoard().getDiningRoom().setEnableCoins();
+        for (int i=0; i<4; i++){
+        player.getSchoolBoard().getDiningRoom().addStudent(Color.PINK);}
+        assertEquals(1, player.getSchoolBoard().getCoins());
     }
 
     @Test
@@ -120,6 +137,9 @@ class GameTest {
         assertTrue(p2.getSchoolBoard().getProfessors().contains(game.getDashboard().getProfessors()[Color.PINK.ordinal()]));
 
         p1.getSchoolBoard().getEntrance().addStudent(Color.PINK);
+        try{
+        p1.getSchoolBoard().getEntrance().extractStudent(Color.GREEN);}
+        catch (StudentNotExistingException ignored){}
         p1.getSchoolBoard().getEntrance().addStudent(Color.PINK);
         while (p1.getSchoolBoard().getEntrance().getStudents().size() > 0) {
             p1.getSchoolBoard().getDiningRoom().addStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
@@ -161,5 +181,60 @@ class GameTest {
             assertEquals(8, game.getTeamFromTower(tower).get(0).getSchoolBoard().getTowersNumber());
             assertEquals(0, game.getTeamFromTower(tower).get(1).getSchoolBoard().getTowersNumber());
         }
+
+        Game game2= new Game(5, 3, false);
+
+        Player p5 = new Player("Player5");
+        Player p6 = new Player("Player6");
+        Player p7 = new Player("Player7");
+
+        game2.addNewPlayer(p5);
+        game2.addNewPlayer(p6);
+        game2.addNewPlayer(p7);
+
+        game2.addPlayerToTeam(Tower.BLACK, p5);
+        game2.addPlayerToTeam(Tower.WHITE, p6);
+        game2.addPlayerToTeam(Tower.GREY, p7);
+
+        assertEquals(p5, game2.getTeamFromTower(Tower.BLACK).get(0));
+
+        for (Player player : game2.getOnlinePlayers()) {
+            assertEquals(0, player.getSchoolBoard().getTowersNumber());
+        }
+        game2.initialTowersDeal();
+
+        for (Tower tower : game2.getTeams()) {
+            assertEquals(6, game2.getTeamFromTower(tower).get(0).getSchoolBoard().getTowersNumber());
+        }
+    }
+
+    @Test
+    public void roundTest(){
+        Game game = new Game(10,2,false);
+
+        assertFalse(game.getExpertGame());
+        game.setExpertGame();
+        assertTrue(game.getExpertGame());
+
+        assertEquals(0, game.getRoundNumber());
+        game.newRound();
+        assertEquals(1, game.getRoundNumber());
+
+        game.setFinalRound();
+        assertTrue(game.getFinalRound());
+
+        Player p1 = new Player("Player 1");
+        Player p2 = new Player("Player 2");
+
+        game.addNewPlayer(p1);
+        game.addNewPlayer(p2);
+        ArrayList<Player> winners = new ArrayList<>();
+        winners.add(p1);
+
+        assertEquals(0, game.getWinners().size());
+
+        game.setWinners(winners);
+        assertTrue(game.getWinners().contains(p1));
+
     }
 }

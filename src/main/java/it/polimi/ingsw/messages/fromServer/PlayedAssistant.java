@@ -4,6 +4,9 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Assistant;
 
+/**
+ * Message by the server to communicate the assistant played and the corresponding player.
+ */
 public class PlayedAssistant implements FromServerMessage {
     private final Assistant assistant;
     private final String player;

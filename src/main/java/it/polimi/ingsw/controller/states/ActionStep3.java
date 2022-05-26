@@ -105,7 +105,7 @@ public class ActionStep3 implements ResumableState {
 
     public void cleanAll(){
         //Reset character6 effect
-        game.getDashboard().disableDoNotCountTowers();
+        game.getDashboard().setDoNotCountTowers(false);
 
         //Reset character 8 effect
         for (Island island : game.getDashboard().getIslands()) {

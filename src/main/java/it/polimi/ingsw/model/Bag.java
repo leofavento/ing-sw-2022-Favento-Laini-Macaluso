@@ -13,6 +13,10 @@ public class Bag implements Serializable {
         students = new ArrayList<>();
     }
 
+    /**
+     * method used to fill the bag in the setup phase
+     * @param studentsNum the number of students for each color
+     */
     public void refill(int studentsNum){
         for (int i=0; i < studentsNum; i++) {
             students.addAll(Arrays.asList(Color.values()));
@@ -20,15 +24,27 @@ public class Bag implements Serializable {
         Collections.shuffle(students);
     }
 
+    /**
+     *
+     * @return the number of students left in the bag
+     */
     public int getStudentsLeft() {
         return students.size();
     }
 
+    /**
+     *
+     * @param student the student to add back in the bag
+     */
     public void addStudent(Color student) {
         students.add(student);
         Collections.shuffle(students);
     }
 
+    /**
+     *
+     * @return a random student from the bag
+     */
     public Color drawStudent() {
         Color t = students.get(0);
         students.remove(0);

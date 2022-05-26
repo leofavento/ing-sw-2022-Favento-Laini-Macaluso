@@ -6,6 +6,9 @@ import it.polimi.ingsw.model.characters.CharacterCard;
 
 import java.util.ArrayList;
 
+/**
+ * Message sent by server to communicate the list of Characters available in the game (only in ExpertMode).
+ */
 public class AvailableCharacters implements FromServerMessage {
     private final ArrayList<CharacterCard> characters;
 

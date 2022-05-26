@@ -1,7 +1,12 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 
+/**
+ * this Character allows the player to move Mother Nature up to 2 additional steps
+ */
 public class Char4 extends CharacterCard {
 
     public Char4() {
@@ -9,9 +14,8 @@ public class Char4 extends CharacterCard {
         this.cost = 1;
     }
 
-    //You may move mother nature up to 2 additional islands
     @Override
-    public void activate(CharacterController controller) {
+    public void activate(CharacterController controller){
         controller.activate(this);
     }
 }

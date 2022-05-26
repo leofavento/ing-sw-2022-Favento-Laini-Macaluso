@@ -15,6 +15,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Setup is the first phase of the game. This initializes the main components of the game.
+ */
 public class Setup implements State {
     Game game;
     Controller controller;
@@ -30,12 +33,19 @@ public class Setup implements State {
         this.controller = controller;
     }
 
+    /**
+     * method used when the setup is ended, to set the phase to Planning phase
+     */
     @Override
     public void nextState() {
         controller.setState(new Planning(game, controller));
         controller.getState().execute();
     }
 
+    /**
+     * method used to create islands, to set Mother Nature initial position, to refill the bag,
+     * to place cloud tiles, to initialize towers, to generate characters and to enable coins (last two only if Expert Mode is selected)
+     */
     @Override
     public void execute() {
         game.getDashboard().placeIslands();
@@ -79,7 +89,7 @@ public class Setup implements State {
     }
     
     /**
-     * Checks if every tower has been chosen. If there are still towers left the current player
+     * method used to check if every tower has been chosen. If there are still towers left the current player
      * is asked to enter his desired tower color, otherwise the method proceeds in the setup
      */
     private void checkTowers() {
@@ -95,6 +105,11 @@ public class Setup implements State {
         controller.notify(new AvailableWizards(availableWizards));
     }
 
+    /**
+     * method used to check if a player has already selected the wizard, otherwise it makes him select one.
+     * Then this method adds the right number of Students to every player entrance.
+     * In the end it randomly chooses the first player.
+     */
     private void checkWizards() {
         if (game.getOnlinePlayers().stream().anyMatch(player -> player.getWizardID() == 0)) {
             requestedWizardID = true;
@@ -125,6 +140,14 @@ public class Setup implements State {
         controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
+    /**
+     * method used to receive a message from the player.
+     * If the server asked for the tower and the message contains a tower, it calls the receiveTower method
+     * If the server asked for a wizard and the message contains a wizard, it calls the receiveWizard method
+     * If the server requires and Acknowledgment message, it calls the receiveAck method
+     * @param message the instance of message
+     * @param sender the nickname of the sender
+     */
     @Override
     public void receiveMessage(Message message, String sender) {
         if (message instanceof ChosenTower && requestedTower) {
@@ -137,6 +160,7 @@ public class Setup implements State {
     }
 
     /**
+     * method used after the server received the tower preference from the player.
      * If the player hasn't already chosen a tower color before and the selected tower choice is
      * still available, the player gets added to the team and the setup proceeds.
      * If the player had already chosen a color or the tower color wasn't available, the server
@@ -168,6 +192,13 @@ public class Setup implements State {
         }
     }
 
+    /**
+     * method used after the server received the wizard preference from the player.
+     * @param message the message containing the selected wizard
+     * If the player has not selected a wizard before, the method sets the correct wizard (if it's available).
+     * Otherwise, the server notifies that the player had already selected the wizard.
+     *
+     */
     private void receiveWizard(ChosenWizard message) {
         Integer chosenWizard = message.getChosenWizard();
         if (game.getCurrentPlayer().getWizardID() == 0) {
@@ -180,13 +211,17 @@ public class Setup implements State {
                 checkWizards();
             } else {
                 controller.notify(ErrorMessage.WIZARD_NOT_AVAILABLE);
-                controller.notify(new AvailableTowers(availableTowers));
+                controller.notify(new AvailableWizards(availableWizards));
             }
         } else {
             controller.notify(ErrorMessage.ALREADY_RECEIVED);
         }
     }
 
+    /**
+     * method used to remove the ack request for a player
+     * @param sender the nickname of the player who sent the Ack
+     */
     private void receiveAck(String sender) {
         missingAcks.remove(sender);
         if (missingAcks.isEmpty()) {

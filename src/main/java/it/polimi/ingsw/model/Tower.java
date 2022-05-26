@@ -1,6 +1,8 @@
 package it.polimi.ingsw.model;
 
-import java.util.ArrayList;
+/**
+ * Colors assumed by towers.
+ */
 
 public enum Tower {
     BLACK,

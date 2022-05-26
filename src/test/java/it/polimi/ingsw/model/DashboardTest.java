@@ -36,6 +36,9 @@ class DashboardTest {
         assertEquals(3, dashboard.getMotherNaturePosition());
         dashboard.moveMotherNature(11);
         assertEquals(4, dashboard.getMotherNaturePosition());
+
+        dashboard.setAdditionalMNMovements(2);
+        assertEquals(2, dashboard.getAdditionalMNMovements());
     }
 
     @Test
@@ -83,6 +86,9 @@ class DashboardTest {
 
         dashboard.getIslands().get(3).setTowers(Tower.GREY);
         assertEquals(1, dashboard.countTowers(tower));
+
+        dashboard.setDoNotCountTowers(true);
+        assertTrue(dashboard.getDoNotCountTowers());
     }
 
     @Test
@@ -102,5 +108,18 @@ class DashboardTest {
         assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[1]);
         assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[2]);
         assertNotEquals(dashboard.getCharacters()[1], dashboard.getCharacters()[2]);
+
+        c3.setActive();
+        assertTrue(dashboard.getPlayedCharacters().contains(c3));
+    }
+
+    @Test
+    public void DoNotCountColorTest(){
+        Dashboard dashboard = new Dashboard();
+
+        dashboard.setDoNotCountColor(Color.BLUE);
+        assertNotSame(dashboard.getDoNotCountColor(), Color.PINK);
+        dashboard.resetDoNotCountColor();
+        assertNull(dashboard.getDoNotCountColor());
     }
 }

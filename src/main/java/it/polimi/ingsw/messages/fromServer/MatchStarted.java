@@ -7,6 +7,9 @@ import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 
+/**
+ * Message sent by server to all the players communicating the start of the game.
+ */
 public class MatchStarted implements FromServerMessage {
     private final ArrayList<Player> players;
 

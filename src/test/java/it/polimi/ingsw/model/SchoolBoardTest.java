@@ -19,6 +19,11 @@ class SchoolBoardTest {
 
         assertEquals(Tower.GREY, schoolBoard.getTowerColor());
         assertEquals(6, schoolBoard.getTowersNumber());
+
+        schoolBoard.addTower();
+        assertEquals(7, schoolBoard.getTowersNumber());
+        schoolBoard.removeTower();
+        assertEquals(6, schoolBoard.getTowersNumber());
     }
 
     @Test

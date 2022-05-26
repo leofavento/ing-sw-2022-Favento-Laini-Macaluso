@@ -1,8 +1,12 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
-import it.polimi.ingsw.model.Color;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 
+/**
+ * this Character allows the player to select a color. During the influence calculation this turn, that color adds no Influence
+ */
 public class Char9 extends CharacterCard {
 
     public Char9() {
@@ -10,19 +14,9 @@ public class Char9 extends CharacterCard {
         cost = 3;
     }
 
-    @Override
-    public void setColor(Color c) {
-        this.color = c;
-    }
 
     @Override
-    public void resetColor() {
-        this.color = null;
-    }
-
-    //Choose a color of Student: during the influence calculation this turn, that color adds no influence
-    @Override
-    public void activate(CharacterController controller) {
+    public void activate(CharacterController controller){
         controller.activate(this);
     }
 }

@@ -4,6 +4,11 @@ public class CharacterFactory {
 
     public CharacterFactory(){}
 
+    /**
+     * method able to generate a Character based on the type in input
+     * @param type the number of the Character
+     * @return the generated Character
+     */
     public CharacterCard getCharacter(CharacterEnum type){
         CharacterCard ch= null;
         switch (type){
@@ -36,6 +41,7 @@ public class CharacterFactory {
                 break;
             case Char10:
                 ch=new Char10();
+                break;
             case Char11:
                 ch=new Char11();
                 break;

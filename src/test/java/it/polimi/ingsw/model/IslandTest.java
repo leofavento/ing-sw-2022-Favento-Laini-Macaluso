@@ -111,4 +111,20 @@ class IslandTest {
         assertDoesNotThrow(() -> island.extractStudent(Color.BLUE));
         assertThrows(StudentNotExistingException.class, () -> island.extractStudent(Color.BLUE));
     }
+
+    @Test
+    public void testGetStudents(){
+        Island island=new Island();
+
+        island.addStudent(Color.PINK);
+        island.addStudent(Color.GREEN);
+
+        ArrayList<Color> students= island.getStudents();
+
+        assertTrue(students.contains(Color.PINK));
+        assertTrue(students.contains(Color.GREEN));
+        assertFalse(students.contains(Color.BLUE));
+        assertFalse(students.contains(Color.RED));
+        assertFalse(students.contains(Color.YELLOW));
+    }
 }

@@ -7,6 +7,9 @@ import it.polimi.ingsw.model.Color;
 
 import java.util.ArrayList;
 
+/**
+ * Message sent by server to the player to select a color.
+ */
 public class SelectColor implements FromServerMessage {
     private final ArrayList<Color> colors;
 

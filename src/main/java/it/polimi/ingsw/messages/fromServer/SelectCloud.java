@@ -6,6 +6,9 @@ import it.polimi.ingsw.model.Cloud;
 
 import java.util.ArrayList;
 
+/**
+ * Message sent by server to the player to select a cloud.
+ */
 public class SelectCloud implements FromServerMessage {
     private final ArrayList<Cloud> availableClouds;
 

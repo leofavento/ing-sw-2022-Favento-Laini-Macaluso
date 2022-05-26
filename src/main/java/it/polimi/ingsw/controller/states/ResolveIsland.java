@@ -14,6 +14,10 @@ import it.polimi.ingsw.model.player.Player;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * State created to calculate influence on an Island and to set up the Tower on it.
+ *
+ */
 public class ResolveIsland implements State {
     Game game;
     Controller controller;
@@ -30,20 +34,34 @@ public class ResolveIsland implements State {
         this.previousState = previousState;
     }
 
+    /**
+     * method used to change state to the previous one interrupted for resolving the Island
+     */
     @Override
     public void nextState() {
         controller.setState(previousState);
         previousState.resume();
     }
 
+    /**
+     * method used to calculate the influence of each team on the Island.
+     * It calls the countInfluence method in the Island class for every team. Then the results are filled
+     * in the HashMap.
+     * If the HashMap has only a max value, the corresponding Tower is the dominating one.
+     * Then the method checks if the Island has already a tower placed on it, and proceed to set up the new one.
+     * In case of new Tower, the server sends the updated board to all the players and checks if a Player or
+     * Team has won the game.
+     * In case of no changes, the server communicates that to all the players.
+     *
+     */
     @Override
     public void execute() {
         HashMap<Tower, Integer> teamsInfluence = new HashMap<>();
 
         for (Tower tower : game.getTeams()) {
             teamsInfluence.put(tower, island.countInfluence(game.getTeamFromTower(tower),
-                    game.getDashboard().getDoNotCountTowers(), // true if Char6 is active
-                    game.getDashboard().getDoNotCountColor())); // color determined by Char9
+                    game.getDashboard().getDoNotCountTowers(), //true if Char6 effect is active
+                    game.getDashboard().getDoNotCountColor())); // not null only if Char9 effect is active
         }
 
         Integer max = Collections.max(teamsInfluence.values());
@@ -77,6 +95,13 @@ public class ResolveIsland implements State {
         }
     }
 
+    /**
+     * method used to check for merge the Island with the adjacent one.
+     * The method checks if the Tower in the previous or the successive Island has the same color
+     * comparing with the Tower on the just resolved Island.
+     * If this happens, the method proceeds to unify the Islands.
+     * @param island the just resolved Island
+     */
     private void checkMerge(Island island) {
         int islandIndex = game.getDashboard().getIslands().indexOf(island);
         int previousIsland = (islandIndex - 1 >= 0)
@@ -108,6 +133,11 @@ public class ResolveIsland implements State {
         verifiedMerge = true;
     }
 
+    /**
+     * method used to distinguish the received message and to trigger the right action.
+     * @param message the message received
+     * @param sender the sender nickname
+     */
     @Override
     public void receiveMessage(Message message, String sender) {
         if (message instanceof Ack && requestedAck) {
@@ -115,6 +145,13 @@ public class ResolveIsland implements State {
         }
     }
 
+    /**
+     * method used to check for the acknowledgment message from the players.
+     * The first player acknowledgment is received after resolving the Island.
+     * The second is received after the mergeIslands method.
+     * In the end the method checks if a Player or a Team has won the game.
+     * @param sender the sender nickname
+     */
     private void receiveAck(String sender) {
         missingAcks.remove(sender);
         if (missingAcks.isEmpty()) {

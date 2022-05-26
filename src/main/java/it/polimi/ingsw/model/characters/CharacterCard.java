@@ -1,7 +1,9 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
@@ -18,12 +20,18 @@ public abstract class CharacterCard implements Serializable {
     String UsedBy = null;
     ArrayList<Color> students;
     int noEntryTiles = 0;
-    Color color;
 
+    /**
+     *
+     * @return the number of coins required to activate effect
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     * method used to increase the cost of activation, after a player has trigger the effect
+     */
     public void increaseCost() {
         this.cost++;
     }
@@ -52,10 +60,18 @@ public abstract class CharacterCard implements Serializable {
         return UsedBy;
     }
 
+    /**
+     *
+     * @return the type of the Character, contained in the enum list
+     */
     public CharacterEnum getValue() {
         return value;
     }
 
+    /**
+     * method used to fill the Character with students (only in Character 1, 7 and 11)
+     * @param bag the current bag
+     */
     public void setUp(Bag bag) {
     }
 
@@ -69,25 +85,19 @@ public abstract class CharacterCard implements Serializable {
     public void removeStudent(Color c) {
     }
 
-    public int getNoEntryTiles() {
-        return noEntryTiles;
-    }
-
+    /**
+     * method used to add back the No Entry Tile on the Character (only in Character 5)
+     */
     public void addNoEntryTile() {
     }
 
     public void useNoEntryTile() throws NoEntryTilesLeftException {
     }
 
-    public Color getColor() {
-        return color;
-    }
 
-    public void setColor(Color c) {
-    }
-
-    public void resetColor() {
-    }
-
+    /**
+     * method used to trigger the Character effect
+     * @param controller the Character controller
+     */
     public abstract void activate(CharacterController controller);
 }

@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model.characters;
 
+/**
+ * Character list of all possible types.
+ */
 public enum CharacterEnum {
     Char1,
     Char2,

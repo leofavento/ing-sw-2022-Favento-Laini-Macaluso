@@ -1,9 +1,14 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.Island;
 
+/**
+ * this Character allows the player to place a No Entry Tile on a selected Island. The first time Mother Nature ends her movement on this Island remove the Tile and do not apply influence.
+ */
 public class Char5 extends CharacterCard {
 
     public Char5() {
@@ -27,7 +32,7 @@ public class Char5 extends CharacterCard {
     }
 
     @Override
-    public void activate(CharacterController controller) {
+    public void activate(CharacterController controller){
         controller.activate(this);
     }
 }

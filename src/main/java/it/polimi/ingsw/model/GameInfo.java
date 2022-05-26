@@ -7,6 +7,7 @@ public class GameInfo implements Serializable {
     private int numOfWaitingPlayers;
     private final int numOfTotalPlayers;
     private final boolean expertGame;
+    private static final long serialVersionUID = -1285064980659081382L;
 
     public GameInfo(int gameID, int numOfWaitingPlayers, int numOfTotalPlayers, boolean expertGame) {
         this.gameID = gameID;

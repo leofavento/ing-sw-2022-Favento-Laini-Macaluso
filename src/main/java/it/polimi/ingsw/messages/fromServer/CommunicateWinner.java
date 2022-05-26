@@ -6,6 +6,9 @@ import it.polimi.ingsw.messages.Message;
 
 import java.util.ArrayList;
 
+/**
+ * Message sent by server to all clients to communicate the winner of the game.
+ */
 public class CommunicateWinner implements FromServerMessage {
     private final ArrayList<String> nicknames;
     private final EndOfGameReason winReason;

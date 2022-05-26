@@ -19,7 +19,7 @@ public class Game {
     private int roundNumber;
     private final EnumMap<Tower, ArrayList<Player>> teams;
     private boolean finalRound=false;
-    private ArrayList<Player> winners;
+    private ArrayList<Player> winners = new ArrayList<>();
 
     public Game(int id, int numberOfPlayers, boolean expertGame){
         ID = id;
