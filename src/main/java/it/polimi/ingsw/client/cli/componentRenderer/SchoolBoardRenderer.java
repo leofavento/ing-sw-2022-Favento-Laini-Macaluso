@@ -19,23 +19,20 @@ public class SchoolBoardRenderer {
                 ", yellow: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.YELLOW).count() +
                 ", pink: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.PINK).count() +
                 ", blue: " + player.getSchoolBoard().getEntrance().getStudents().stream().filter(a->a==Color.BLUE).count() + "\n" +
-                "|--------------------------\n" +
                 "|Dining Room: " +
                 "green: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.GREEN) +
                 ", red: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.RED) +
                 ", yellow: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.YELLOW) +
                 ", pink: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.PINK) +
                 ", blue: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.BLUE) + "\n" +
-                "|--------------------------\n" +
                 "|Professors: ");
 
         for(int i=0; i<player.getSchoolBoard().getProfessors().size(); i++){
             System.out.print(player.getSchoolBoard().getProfessors().get(i).toString() + " ");
         }
 
-        System.out.println("|--------------------------\n" +
-                            "|Towers: " +
+        System.out.println("|Towers: " +
                             player.getSchoolBoard().getTowersNumber() +
-                            "|--------------------------\n");
+                            "\n|--------------------------\n");
     }
 }

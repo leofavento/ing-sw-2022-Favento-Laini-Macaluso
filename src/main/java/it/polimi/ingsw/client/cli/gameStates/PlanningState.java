@@ -11,6 +11,7 @@ import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PlanningState implements State{
@@ -49,10 +50,18 @@ public class PlanningState implements State{
                         "           " + availableAssistants.get(i).getMovements());
             }
             System.out.println("|----------------------------------");
+            for (String player : cli.getView().getPlayedAssistants().keySet()) {
+                System.out.printf("%s played %s (%d value, %d movement)%n",
+                        player,
+                        cli.getView().getPlayedAssistants().get(player),
+                        cli.getView().getPlayedAssistants().get(player).getValue(),
+                        cli.getView().getPlayedAssistants().get(player).getMovements());
+            }
             System.out.println("Insert the number of the assistant you want to play: ");
             in.reset();
-            selection = in.nextInt() - 1;
+
             try {
+                selection = in.nextInt() - 1;
                 selectedAssistant = availableAssistants.get(selection);
 
                 cli.getClient().sendMessage(new PlayAssistant(selectedAssistant));
@@ -65,6 +74,9 @@ public class PlanningState implements State{
                 }
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("This choice is not available.");
+            } catch (InputMismatchException e) {
+                System.out.println("You have to enter a number according to your choice.");
+                in.next();
             }
 
 

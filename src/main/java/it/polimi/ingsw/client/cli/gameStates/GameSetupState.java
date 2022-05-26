@@ -5,10 +5,7 @@ import it.polimi.ingsw.messages.fromClient.ChosenTower;
 import it.polimi.ingsw.messages.fromClient.ChosenWizard;
 import it.polimi.ingsw.model.Tower;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameSetupState implements State {
     private final CLI cli;
@@ -39,19 +36,24 @@ public class GameSetupState implements State {
             System.out.println("Pick a tower to enter a team:");
             printAvailableTowers();
             in.reset();
-            choice = in.nextInt();
-            for (Tower tower : Tower.values()) {
-                if (tower.ordinal() == choice) {
-                    chosenTower = tower;
-                }
-            }
-            cli.getClient().sendMessage(new ChosenTower(chosenTower));
             try {
-                synchronized (this) {
-                    wait();
+                choice = in.nextInt();
+                for (Tower tower : cli.getView().getAvailableTowers().keySet()) {
+                    if (tower.ordinal() == choice) {
+                        chosenTower = tower;
+                    }
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                cli.getClient().sendMessage(new ChosenTower(chosenTower));
+                try {
+                    synchronized (this) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter the number of your chosen tower.");
+                in.next();
             }
         }
         if (cli.isSuccess()) {
@@ -70,14 +72,19 @@ public class GameSetupState implements State {
             System.out.println("Enter the number of your desired Wizard:");
             printAvailableWizards();
             in.reset();
-            choice = in.nextInt();
-            cli.getClient().sendMessage(new ChosenWizard(choice));
             try {
-                synchronized (this) {
-                    wait();
+                choice = in.nextInt();
+                cli.getClient().sendMessage(new ChosenWizard(choice));
+                try {
+                    synchronized (this) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter the number of your chosen wizard.");
+                in.next();
             }
         }
         if (cli.isSuccess()) {
@@ -99,10 +106,8 @@ public class GameSetupState implements State {
                     color.toString(), availableTowers.get(color));
         }
         System.out.println("+--------------------------------------------+");
-        for (Tower tower : Tower.values()) {
-            if (availableTowers.containsKey(tower)) {
-                System.out.printf("Enter %d for team %s%n", tower.ordinal(), tower);
-            }
+        for (Tower tower : availableTowers.keySet()) {
+            System.out.printf("Enter %d for team %s%n", tower.ordinal(), tower);
         }
     }
 

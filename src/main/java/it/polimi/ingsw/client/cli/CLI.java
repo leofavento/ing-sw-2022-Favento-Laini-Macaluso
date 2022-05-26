@@ -7,6 +7,7 @@ import it.polimi.ingsw.model.GameInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -75,14 +76,25 @@ public class CLI implements Runnable {
     @Override
     public void run() {
         Scanner in = new Scanner(System.in);
+        int port = 0;
 
         System.out.println("Insert the server IP address you want to connect to: ");
         in.reset();
         String ip = in.next();
 
-        System.out.println("Insert the server port: ");
-        in.reset();
-        int port = in.nextInt();
+        do {
+            System.out.println("Insert the server port: ");
+            try {
+                in.reset();
+                port = in.nextInt();
+                if (port < 1024 || port > 65535) {
+                    System.out.println("The server port must be a number between 1024 and 65535.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("The server port must be a number between 1024 and 65535.");
+                in.next();
+            }
+        } while (port < 1024 || port > 65535);
 
         client = new Client(true);
         view = new View();

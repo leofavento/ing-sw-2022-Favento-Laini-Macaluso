@@ -19,7 +19,15 @@ public class ServerApp {
             if (isDefault(input)) {
                 port = 25565;
             } else {
-                port = Integer.parseInt(input);
+                try {
+                    port = Integer.parseInt(input);
+                    if (invalidPort(port)) {
+                        System.out.println("The server port has to be a number between 1024 and 65535.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("The server port has to be a number between 1024 and 65535.");
+                    port = 0;
+                }
             }
         } while (invalidPort(port));
 

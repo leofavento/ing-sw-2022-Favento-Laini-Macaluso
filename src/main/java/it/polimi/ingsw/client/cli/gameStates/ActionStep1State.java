@@ -6,9 +6,9 @@ import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
-import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ActionStep1State implements State{
@@ -47,22 +47,27 @@ public class ActionStep1State implements State{
             System.out.println("5 --> Blue: " + movableStudents.stream().filter(a->a == Color.BLUE).count());
 
             in.reset();
-            selection = in.nextInt();
+            try {
+                selection = in.nextInt();
 
-            if(selection == 1){
-                cli.getClient().sendMessage(new ChosenStudent(Color.GREEN));
-            }
-            if(selection == 2){
-                cli.getClient().sendMessage(new ChosenStudent(Color.RED));
-            }
-            if(selection == 3){
-                cli.getClient().sendMessage(new ChosenStudent(Color.YELLOW));
-            }
-            if(selection == 4){
-                cli.getClient().sendMessage(new ChosenStudent(Color.PINK));
-            }
-            if(selection == 5){
-                cli.getClient().sendMessage(new ChosenStudent(Color.BLUE));
+                if (selection == 1) {
+                    cli.getClient().sendMessage(new ChosenStudent(Color.GREEN));
+                } else if (selection == 2) {
+                    cli.getClient().sendMessage(new ChosenStudent(Color.RED));
+                } else if (selection == 3) {
+                    cli.getClient().sendMessage(new ChosenStudent(Color.YELLOW));
+                } else if (selection == 4) {
+                    cli.getClient().sendMessage(new ChosenStudent(Color.PINK));
+                } else if (selection == 5) {
+                    cli.getClient().sendMessage(new ChosenStudent(Color.BLUE));
+                } else {
+                    cli.getClient().sendMessage(new ChosenStudent(null));
+                    continue;
+                }
+            } catch (InputMismatchException e) {
+                in.next();
+                cli.getClient().sendMessage(new ChosenStudent(null));
+                continue;
             }
 
             try {

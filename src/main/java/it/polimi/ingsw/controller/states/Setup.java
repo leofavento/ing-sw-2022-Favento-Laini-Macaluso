@@ -146,15 +146,20 @@ public class Setup implements State {
     private void receiveTower(ChosenTower message) {
         Tower chosenTower = message.getColor();
         if (game.getCurrentPlayer().getSchoolBoard().getTowerColor() == null) {
-            if (availableTowers.get(chosenTower) > 0) {
-                requestedTower = false;
-                availableTowers.put(chosenTower, availableTowers.get(chosenTower) - 1);
-                game.addPlayerToTeam(chosenTower, game.getCurrentPlayer());
-                game.getCurrentPlayer().getSchoolBoard().setTowerColor(chosenTower);
-                controller.notify(CommunicationMessage.SUCCESS);
-                game.setNextPlayer();
-                checkTowers();
-            } else {
+            try {
+                if (availableTowers.get(chosenTower) > 0) {
+                    requestedTower = false;
+                    availableTowers.put(chosenTower, availableTowers.get(chosenTower) - 1);
+                    game.addPlayerToTeam(chosenTower, game.getCurrentPlayer());
+                    game.getCurrentPlayer().getSchoolBoard().setTowerColor(chosenTower);
+                    controller.notify(CommunicationMessage.SUCCESS);
+                    game.setNextPlayer();
+                    checkTowers();
+                } else {
+                    controller.notify(ErrorMessage.TOWER_NOT_AVAILABLE);
+                    controller.notify(new AvailableTowers(availableTowers));
+                }
+            } catch (NullPointerException e) {
                 controller.notify(ErrorMessage.TOWER_NOT_AVAILABLE);
                 controller.notify(new AvailableTowers(availableTowers));
             }
