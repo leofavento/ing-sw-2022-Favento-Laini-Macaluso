@@ -53,7 +53,11 @@ public class Controller implements Observer<Message>, Observable<Message> {
         return characterController;
     }
 
-    public void check() {
+    /**
+     * Checks if the game is finishing
+     * @return true if any of the match ending conditions are met, false if the game has to continue
+     */
+    public boolean check() {
         //Check if a player has no tower left in his SchoolBoard
         ArrayList<Player> ListOfWinners = new ArrayList<>();
         Map<Player, Integer> towersMap = new HashMap<>();
@@ -74,7 +78,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
 
             setState(new EndOfTheGame(game, this, EndOfGameReason.LAST_TOWER_BUILD));
             getState().execute();
-            return;
+            return true;
         }
 
         //Check if there are only 3 groups of Islands or if this is last round
@@ -98,6 +102,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
                     setState(new EndOfTheGame(game, this, EndOfGameReason.LAST_ROUND_TOWER));
                     getState().execute();
                 }
+                return true;
             }
             //Tie: check for the player with the max number of professors
             else {
@@ -122,6 +127,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
                         setState(new EndOfTheGame(game, this, EndOfGameReason.LAST_ROUND_PROFESSOR));
                         getState().execute();
                     }
+                    return true;
                 }
 
                 //In case of tie the game ends with no winner
@@ -133,10 +139,11 @@ public class Controller implements Observer<Message>, Observable<Message> {
                         setState(new EndOfTheGame(game, this, EndOfGameReason.LAST_ROUND_TIE));
                         getState().execute();
                     }
-
                 }
             }
+            return true;
         }
+        return false;
     }
 
     public void isFinalRound() {

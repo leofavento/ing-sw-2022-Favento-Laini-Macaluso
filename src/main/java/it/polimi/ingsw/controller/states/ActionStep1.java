@@ -51,11 +51,7 @@ public class ActionStep1 implements ResumableState {
         if (message instanceof Ack && requestedAck) {
             receiveAck(sender);
         } else if (message instanceof ChosenStudent && requestedStudent) {
-            if (!(((ChosenStudent) message).getStudent()==null)){
-                receiveStudent((ChosenStudent) message);}
-            else {
-                controller.notify(ErrorMessage.INVALID_INPUT);
-            }
+            receiveStudent((ChosenStudent) message);
         } else if (message instanceof ChosenDestination && requestedDestination) {
             receiveDestination((ChosenDestination) message);
         }
@@ -83,6 +79,7 @@ public class ActionStep1 implements ResumableState {
         Color student = message.getStudent();
         if (! game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(student)) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
+            controller.notify(new MovableStudents(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
         } else {
             requestedStudent = false;
             currStudent = student;

@@ -125,7 +125,7 @@ public class GameHandler implements Observer<Message> {
         return controller;
     }
 
-    public void readMessage(String nickname, Message message) {
+    public synchronized void readMessage(String nickname, Message message) {
         if (!nickname.equals(game.getCurrentPlayer().getNickname()) && !(message instanceof Ack)) {
             sendMessageByNickname(nickname, ErrorMessage.WRONG_TURN);
         } else {

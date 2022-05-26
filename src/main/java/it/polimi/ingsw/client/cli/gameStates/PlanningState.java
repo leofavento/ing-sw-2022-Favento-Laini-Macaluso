@@ -91,9 +91,7 @@ public class PlanningState implements State{
     private void printCompleteBoard() {
         CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
         IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
-        for (Player player : cli.getView().getPlayers()) {
-            SchoolBoardRenderer.renderSchoolBoard(player);
-        }
+        SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers());
         System.out.println("The order for the first round was extracted randomly:");
         if (cli.isFirstPlayer()) {
             PlayersOrderRenderer.playersOrderRenderer(cli.getView().getPlayers());

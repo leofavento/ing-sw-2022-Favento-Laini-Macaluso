@@ -125,6 +125,17 @@ public class MessageReceiver {
             cli.getClient().sendMessage(new Ack());
         } else if (playerStatus == PlayerStatus.MOVE_1) {
             new Thread(new StateManager(cli, new ActionStep1State(cli))).start();
+        } else if (playerStatus == PlayerStatus.END_MOVE_1) {
+            synchronized (cli.getGameState()) {
+                cli.getGameState().notifyAll();
+            }
+        } else if (playerStatus == PlayerStatus.MOVE_2) {
+            new Thread(new StateManager(cli, new ActionStep2State(cli))).start();
+        } else if (playerStatus == PlayerStatus.END_MOVE_2) {
+            cli.setSuccess(true);
+            synchronized (cli.getGameState()) {
+                cli.getGameState().notifyAll();
+            }
         }
     }
 
@@ -175,11 +186,16 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(IslandOwner message) {
-        //TODO
+        System.out.println(message.getNickname() + " now owns this island!");
+        cli.getClient().sendMessage(new Ack());
     }
 
     public void receiveMessage(MotherNatureSteps message) {
-        //TODO
+        cli.getView().setMotherNatureSteps(message.getMaxStepsAllowed());
+
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
     }
 
     public void receiveMessage(MovableStudents message) {

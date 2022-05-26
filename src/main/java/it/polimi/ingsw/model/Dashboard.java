@@ -10,7 +10,7 @@ import java.util.Collections;
 /**
  * This is the equivalent of the table in the physical game
  */
-public class Dashboard {
+public class Dashboard implements Serializable {
     private final ArrayList<Island> islands;
     private final ArrayList<CharacterCard> playedCharacters;
     private final CharacterCard[] characters;

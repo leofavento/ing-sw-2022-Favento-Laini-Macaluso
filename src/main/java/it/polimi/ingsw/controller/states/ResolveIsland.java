@@ -88,7 +88,6 @@ public class ResolveIsland implements State {
                 requestedAck = true;
                 controller.notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
             }
-            controller.check();
         } else {
             controller.notify(CommunicationMessage.NO_CHANGES);
             nextState();
@@ -121,15 +120,13 @@ public class ResolveIsland implements State {
 
         if (mergingIslands.size() > 0) {
             game.getDashboard().mergeIslands(island, mergingIslands.toArray(Island[]::new));
-            missingAcks.addAll(game.getOnlinePlayers().stream()
+            controller.notify(CommunicationMessage.UNIFIED_ISLANDS);
+        }
+        missingAcks.addAll(game.getOnlinePlayers().stream()
                     .map(Player::getNickname)
                     .collect(Collectors.toList()));
-            requestedAck = true;
-            controller.notify(CommunicationMessage.UNIFIED_ISLANDS);
-            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
-        } else {
-            nextState();
-        }
+        requestedAck = true;
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         verifiedMerge = true;
     }
 
@@ -159,8 +156,9 @@ public class ResolveIsland implements State {
             if (! verifiedMerge) {
                 checkMerge(island);
             } else {
-                controller.check();
-                nextState();
+                if (!controller.check()) {
+                    nextState();
+                }
             }
         }
     }
