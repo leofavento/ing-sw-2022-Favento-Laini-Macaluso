@@ -109,6 +109,7 @@ public class ActionStep3 implements ResumableState {
     }
 
     public void cleanAll(){
+        if (game.getExpertGame()){
         //Reset character6 effect
         game.getDashboard().setDoNotCountTowers(false);
 
@@ -131,7 +132,7 @@ public class ActionStep3 implements ResumableState {
             }
         }
         //Reset character9 effect
-        game.getDashboard().resetDoNotCountColor();
+        game.getDashboard().resetDoNotCountColor();}
     }
 
     private void receiveAck(String sender) {

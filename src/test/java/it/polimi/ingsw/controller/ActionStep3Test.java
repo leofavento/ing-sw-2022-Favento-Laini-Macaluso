@@ -3,12 +3,10 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.controller.states.ActionStep3;
 import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
 import it.polimi.ingsw.messages.fromClient.Ack;
+import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
 import it.polimi.ingsw.messages.fromClient.ChosenWizard;
-import it.polimi.ingsw.model.Assistant;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Tower;
+import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
@@ -39,9 +37,6 @@ class ActionStep3Test {
             p2.playAssistant(Assistant.OSTRICH);}
         catch (AlreadyPlayedAssistant ignored){}
 
-        p1.getSchoolBoard().getEntrance().addStudent(Color.BLUE);
-        p1.getSchoolBoard().getEntrance().addStudent(Color.RED);
-        p1.getSchoolBoard().getEntrance().addStudent(Color.GREEN);
 
         controller.updateTurnOrder();
 
@@ -49,6 +44,30 @@ class ActionStep3Test {
         controller.setState(new ActionStep3(game, controller));
         controller.getState().execute();
 
-        //TODO
+        Color c1 = game.getDashboard().getClouds().get(0).getStudents().get(0);
+        Color c2 = game.getDashboard().getClouds().get(0).getStudents().get(1);
+        Color c3 = game.getDashboard().getClouds().get(0).getStudents().get(2);
+
+        //Acks for getting state
+        controller.getState().receiveMessage(new Ack(), "Player1");
+        controller.getState().receiveMessage(new Ack(), "Player2");
+
+        //chose cloud
+        controller.getState().receiveMessage(new ChosenCloud(0), "Player1");
+
+        controller.getState().receiveMessage(new Ack(), "Player1");
+        controller.getState().receiveMessage(new Ack(), "Player2");
+
+        assertEquals(0, game.getDashboard().getClouds().get(0).getStudents().size());
+        assertEquals(10, game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().size());
+        assertSame(c1, game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().get(7));
+        assertSame(c2, game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().get(8));
+        assertSame(c3, game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().get(9));
+
+        controller.getState().receiveMessage(new Ack(), "Player1");
+
+        controller.getState().receiveMessage(new Ack(), "Player1");
+        controller.getState().receiveMessage(new Ack(), "Player2");
+
     }
 }

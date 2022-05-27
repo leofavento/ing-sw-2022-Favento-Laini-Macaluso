@@ -41,7 +41,7 @@ class ActionStep1Test {
         p1.getSchoolBoard().getEntrance().addStudent(Color.RED);
         p1.getSchoolBoard().getEntrance().addStudent(Color.GREEN);
 
-        controller.updateTurnOrder();
+       game.setCurrentPlayer(p1);
         controller.setState(new ActionStep1(game, controller));
         controller.getState().execute();
 

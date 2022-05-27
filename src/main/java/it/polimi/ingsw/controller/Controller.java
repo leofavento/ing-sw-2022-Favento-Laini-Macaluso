@@ -80,7 +80,6 @@ public class Controller implements Observer<Message>, Observable<Message> {
             getState().execute();
             return true;
         }
-
         //Check if there are only 3 groups of Islands or if this is last round
         if (game.getDashboard().getIslands().size() < 4 || game.getFinalRound()) {
             //The player who has built the most Towers on Islands wins the game

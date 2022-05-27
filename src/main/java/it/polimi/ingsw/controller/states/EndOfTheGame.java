@@ -44,6 +44,7 @@ public class EndOfTheGame implements State {
             }
             System.out.println();
         } catch (IndexOutOfBoundsException | NullPointerException e) {
+            System.out.println(e);
             winnerTeam = null;
             System.out.println("End of game %d. It's a tie, congratulations to everyone that played!");
         }
