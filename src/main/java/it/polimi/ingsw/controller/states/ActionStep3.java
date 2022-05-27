@@ -62,21 +62,26 @@ public class ActionStep3 implements ResumableState {
     }
 
     private void receiveCloud(ChosenCloud message) {
-        Cloud chosenCloud = message.getCloud();
-        if (chosenCloud.getStudents().isEmpty()) {
-            controller.notify(ErrorMessage.INVALID_INPUT);
-        } else {
-            requestedCloud = false;
-            for (Color student : chosenCloud.getStudents()) {
-                game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(student);
+        int choice = message.getCloud();
+        try {
+            Cloud chosenCloud = game.getDashboard().getClouds().get(choice);
+            if (chosenCloud.getStudents().isEmpty()) {
+                controller.notify(ErrorMessage.EMPTY_CLOUD);
+            } else {
+                requestedCloud = false;
+                for (Color student : chosenCloud.getStudents()) {
+                    game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(student);
+                }
+                chosenCloud.getStudents().clear();
+                movedStudents = true;
+                requestedAck = true;
+                missingAcks.addAll(game.getOnlinePlayers().stream()
+                        .map(Player::getNickname)
+                        .collect(Collectors.toList()));
+                controller.notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
             }
-            chosenCloud.getStudents().clear();
-            movedStudents = true;
-            requestedAck = true;
-            missingAcks.addAll(game.getOnlinePlayers().stream()
-                    .map(Player::getNickname)
-                    .collect(Collectors.toList()));
-            controller.notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
+        } catch (IndexOutOfBoundsException e) {
+            controller.notify(ErrorMessage.INVALID_INPUT);
         }
     }
 
@@ -88,7 +93,7 @@ public class ActionStep3 implements ResumableState {
                 nextState();
             } else {
                 requestedCloud = true;
-                controller.notify(new SelectCloud(availableClouds));
+                controller.notify(new SelectCloud());
             }
         } else {
             checkLastPlayer();

@@ -5,9 +5,12 @@ import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.gameStates.*;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
+import it.polimi.ingsw.model.Tower;
+import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class MessageReceiver {
     private final CLI cli;
@@ -136,6 +139,8 @@ public class MessageReceiver {
             synchronized (cli.getGameState()) {
                 cli.getGameState().notifyAll();
             }
+        } else if (playerStatus == PlayerStatus.MOVE_3) {
+            new Thread(new StateManager(cli, new ActionStep3State(cli))).start();
         }
     }
 
@@ -174,15 +179,29 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(CommunicateWinner message) {
-        //TODO
+        cli.getView().setWinnerTeam(message.getTeam());
+        cli.getView().setEndOfGameReason(message.getWinReason());
+        cli.getView().setWinners(message.getNicknames());
+        new Thread(new EndOfGameState(cli)).start();
     }
 
     public void receiveMessage(EndOfPlayerRound message) {
-        //TODO
+        if (Objects.equals(message.getNickname(), cli.getClient().getNickname())) {
+            System.out.println("Your round finished.");
+            cli.setSuccess(true);
+            synchronized (cli.getGameState()) {
+                notifyAll();
+            }
+        } else {
+            System.out.println("The round of " + message.getNickname() + " finished.");
+        }
+        cli.getClient().sendMessage(new Ack());
     }
 
     public void receiveMessage(EndOfRound message) {
-        //TODO
+        System.out.printf("End of the %d%s round.%n",
+                message.getRoundNumber(),
+                message.getRoundNumber() % 10 == 1 ? "st" : message.getRoundNumber() % 10 == 2 ? "nd" : "th");
     }
 
     public void receiveMessage(IslandOwner message) {
@@ -207,11 +226,13 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(PlayerDisconnected message) {
-        //TODO
+        System.out.println(message.getNickname() + " disconnected. The server is closing your game...");
     }
 
     public void receiveMessage(SelectCloud message) {
-        //TODO
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
     }
 
     public void receiveMessage(SelectColor message) {

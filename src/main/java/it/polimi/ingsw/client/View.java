@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client;
 
+import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.player.Player;
 
@@ -22,7 +23,9 @@ public class View {
     private boolean isHost;
     private ArrayList<Color> movableStudents;
     private int motherNatureSteps;
-    private ArrayList<Cloud> availableClouds;
+    private Tower winnerTeam;
+    private ArrayList<String> winners;
+    private EndOfGameReason endOfGameReason;
 
 
     public ArrayList<Player> getPlayers() {
@@ -140,11 +143,27 @@ public class View {
         this.motherNatureSteps = motherNatureSteps;
     }
 
-    public ArrayList<Cloud> getAvailableClouds() {
-        return availableClouds;
+    public Tower getWinnerTeam() {
+        return winnerTeam;
     }
 
-    public void setAvailableClouds(ArrayList<Cloud> availableClouds) {
-        this.availableClouds = availableClouds;
+    public void setWinnerTeam(Tower team) {
+        winnerTeam = team;
+    }
+
+    public void setWinners(ArrayList<String> winners) {
+        this.winners = winners;
+    }
+
+    public ArrayList<String> getWinners() {
+        return winners;
+    }
+
+    public EndOfGameReason getEndOfGameReason() {
+        return endOfGameReason;
+    }
+
+    public void setEndOfGameReason(EndOfGameReason endOfGameReason) {
+        this.endOfGameReason = endOfGameReason;
     }
 }

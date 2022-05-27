@@ -14,9 +14,9 @@ public enum CommunicationMessage implements FromServerMessage {
     STUDENT_MOVED("The student has been moved."),
     UNIFIED_ISLANDS("Some islands have been unified"),
     NO_CHANGES("Influence resulted in a draw. No tower change."),
-    NO_ENTRY_TILE_ON_ISLAND("Island was not resolved because of No Entry Tile"),
-    LAST_ROUND("This will be the last round of this game"),
-    CLOSING_GAME("The game is closed"),
+    NO_ENTRY_TILE_ON_ISLAND("Island was not resolved because of No Entry Tile."),
+    LAST_ROUND("This will be the last round of this game."),
+    CLOSING_GAME("The game is closed."),
     HOST_LEFT("The host left, you're being disconnected...");
 
 

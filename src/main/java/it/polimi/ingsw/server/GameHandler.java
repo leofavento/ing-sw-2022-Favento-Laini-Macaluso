@@ -1,6 +1,7 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.Controller;
+import it.polimi.ingsw.controller.states.EndOfTheGame;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
@@ -52,6 +53,7 @@ public class GameHandler implements Observer<Message> {
     }
 
     public void disconnect(ServerClientConnection player) {
+        players.remove(player);
         if (hasStarted) {
             broadcastMessage(new PlayerDisconnected(player.getNickname()));
             endGame();
@@ -59,7 +61,6 @@ public class GameHandler implements Observer<Message> {
             if (isHost(player)) {
                 endGame(player);
             } else {
-                players.remove(player);
                 sendToAllExcept(player.getNickname(), new UpdateLobby(gameID, players.size(), numberOfPlayers, expertMode));
             }
         }
@@ -185,12 +186,18 @@ public class GameHandler implements Observer<Message> {
             broadcastMessage(message);
         } else if (message instanceof StartOfPlayerRound) {
             broadcastMessage(message);
+        } else if (message instanceof SelectCloud) {
+            sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof MovableStudents) {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof WhereToMove) {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof MotherNatureSteps) {
             sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message instanceof EndOfPlayerRound) {
+            broadcastMessage(message);
+        } else if (message instanceof EndOfRound) {
+            broadcastMessage(message);
         } else if (message instanceof IslandOwner) {
             broadcastMessage(message);
         } else if (message instanceof CommunicateWinner) {

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
 import it.polimi.ingsw.controller.states.ActionStep3;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
@@ -35,25 +36,17 @@ public class ActionStep3State implements State{
 
         while (!cli.isSuccess()){
             Scanner in = new Scanner(System.in);
-            int i=1;
 
-            availableClouds = cli.getView().getAvailableClouds();
+            CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
 
             System.out.println("These are the available clouds, choose the one you want to get the students from: ");
-            for(Cloud cloud : availableClouds){
-                System.out.println("Cloud " + i +" --> " + "green: " + cloud.getStudents().stream().filter(a->a == Color.GREEN).count() +
-                                    ", red: " + cloud.getStudents().stream().filter(a->a == Color.RED).count() +
-                                    ", yellow: " + cloud.getStudents().stream().filter(a->a == Color.YELLOW).count() +
-                                    ", pink: " + cloud.getStudents().stream().filter(a->a == Color.PINK).count() +
-                                    ", blue: " + cloud.getStudents().stream().filter(a->a == Color.BLUE).count());
-                i++;
-            }
+            CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
 
             try{
                 in.reset();
                 selection = in.nextInt();
 
-                cli.getClient().sendMessage(new ChosenCloud(availableClouds.get(selection-1)));
+                cli.getClient().sendMessage(new ChosenCloud(selection-1));
 
                 try{
                     synchronized (this) {
@@ -63,7 +56,7 @@ public class ActionStep3State implements State{
                     e.printStackTrace();
                 }
             } catch (InputMismatchException e){
-                System.out.println("Please enter a valid number");
+                System.out.println("Please enter a valid number.");
             }
         }
 

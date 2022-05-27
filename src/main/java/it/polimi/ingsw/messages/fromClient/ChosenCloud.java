@@ -8,13 +8,13 @@ import it.polimi.ingsw.model.Cloud;
  */
 
 public class ChosenCloud implements Message {
-    private final Cloud cloud;
+    private final int cloud;
 
-    public ChosenCloud(Cloud cloud){
+    public ChosenCloud(int cloud){
         this.cloud = cloud;
     }
 
-    public Cloud getCloud() {
+    public int getCloud() {
         return cloud;
     }
 }

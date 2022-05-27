@@ -60,17 +60,15 @@ public class Client implements Runnable {
     public void closeConnection() {
         try {
             clientSocket.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
         try {
             input.close();
-        } catch (IOException e) {
-
+        } catch (IOException ignored) {
         }
         try {
             output.close();
-        } catch (IOException e) {
-
+        } catch (IOException ignored) {
         }
     }
 
@@ -91,6 +89,7 @@ public class Client implements Runnable {
             } catch (IOException | ClassNotFoundException e) {
                 System.err.println("Connection closed from server.");
                 active = false;
+                closeConnection();
             }
         }
     }
