@@ -9,6 +9,7 @@ import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class EndOfTheGame implements State {
@@ -29,9 +30,9 @@ public class EndOfTheGame implements State {
 
     @Override
     public void execute() {
-        winnerNicknames.addAll(game.getWinners().stream().map(Player::getNickname).collect(Collectors.toList()));
         Tower winnerTeam;
         try {
+            winnerNicknames.addAll(game.getWinners().stream().map(Player::getNickname).collect(Collectors.toList()));
             winnerTeam = game.getWinners().get(0).getSchoolBoard().getTowerColor();
             System.out.printf("End of game %d. %s team won, congratulations ",
                     game.getRoundNumber(),
@@ -42,7 +43,7 @@ public class EndOfTheGame implements State {
                         winnerNicknames.indexOf(winner) == winnerNicknames.size() - 1 ? "!" : ", ");
             }
             System.out.println();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
             winnerTeam = null;
             System.out.println("End of game %d. It's a tie, congratulations to everyone that played!");
         }

@@ -54,6 +54,10 @@ public class JoinGameState implements State {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    if (cli.getView().getLastErrorMessage() != null) {
+                        System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                        cli.getView().setLastErrorMessage(null);
+                    }
                 }
             } catch (InputMismatchException e) {
                 System.out.println("You have to enter an integer.");

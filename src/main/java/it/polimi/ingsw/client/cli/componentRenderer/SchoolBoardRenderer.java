@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.componentRenderer;
 
 import it.polimi.ingsw.model.Color;
+import it.polimi.ingsw.model.Professor;
 import it.polimi.ingsw.model.player.*;
 
 import java.util.ArrayList;
@@ -34,8 +35,10 @@ public class SchoolBoardRenderer {
                 ", blue: " + player.getSchoolBoard().getDiningRoom().getStudentsNumber(Color.BLUE) + "\n" +
                 "|Professors: ");
 
-        for(int i=0; i<player.getSchoolBoard().getProfessors().size(); i++){
-            System.out.print(player.getSchoolBoard().getProfessors().get(i).getColor() + "%n");
+        for (Professor professor : player.getSchoolBoard().getProfessors()) {
+            System.out.printf("%s%s",
+                    professor.getColor(),
+                    player.getSchoolBoard().getProfessors().indexOf(professor) == player.getSchoolBoard().getProfessors().size() - 1 ? "%n" : ", ");
         }
 
         System.out.println("|Towers: " +

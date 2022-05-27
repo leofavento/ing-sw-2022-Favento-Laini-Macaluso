@@ -21,7 +21,6 @@ public class ActionStep3State implements State{
 
     @Override
     public void run(){
-        ArrayList<Cloud> availableClouds;
         int selection;
 
         cli.getClient().sendMessage(new Ack());

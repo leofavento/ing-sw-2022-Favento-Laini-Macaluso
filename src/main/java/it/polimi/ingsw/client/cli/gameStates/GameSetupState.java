@@ -25,14 +25,21 @@ public class GameSetupState implements State {
                 cli.getView().isExpertMode() ? "enabled" : "disabled");
         System.out.println();
 
-        try {
-            synchronized (this) {
-                wait();
+        if (cli.getView().getAvailableTowers() == null) {
+            try {
+                synchronized (this) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+
         while (!cli.isSuccess()) {
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
             System.out.println("Pick a tower to enter a team:");
             printAvailableTowers();
             in.reset();
@@ -59,16 +66,23 @@ public class GameSetupState implements State {
         if (cli.isSuccess()) {
             cli.setSuccess(false);
             System.out.println("Waiting for the other players to make their decision...");
+            cli.getView().setAvailableTowers(null);
         }
 
-        try {
-            synchronized (this) {
-                wait();
+        if (cli.getView().getAvailableWizards() == null) {
+            try {
+                synchronized (this) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         while(!cli.isSuccess()) {
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
             System.out.println("Enter the number of your desired Wizard:");
             printAvailableWizards();
             in.reset();
@@ -93,6 +107,7 @@ public class GameSetupState implements State {
                 System.out.println("Waiting for the other players to make their decision...");
             }
             cli.getView().setRoundNumber(0);
+            cli.getView().setAvailableWizards(null);
         }
     }
 

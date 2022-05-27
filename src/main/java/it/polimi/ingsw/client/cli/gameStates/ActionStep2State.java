@@ -24,12 +24,14 @@ public class ActionStep2State implements State{
 
         cli.getClient().sendMessage(new Ack());
 
-        try{
-            synchronized (this){
-                wait();
+        if (cli.getView().getMotherNatureSteps() == 0) {
+            try {
+                synchronized (this) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e){
-            e.printStackTrace();
         }
 
         while (!cli.isSuccess()){
@@ -61,6 +63,7 @@ public class ActionStep2State implements State{
         }
         if (cli.isSuccess()) {
             cli.setSuccess(false);
+            cli.getView().setMotherNatureSteps(0);
         }
         System.out.println("These are the islands after Move 2:");
         IslandsRenderer.islandsRenderer(cli.getView().getDashboard());

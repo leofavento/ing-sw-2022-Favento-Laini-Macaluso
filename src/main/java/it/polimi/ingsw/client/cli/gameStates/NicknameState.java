@@ -32,6 +32,10 @@ public class NicknameState implements State {
 
         boolean firstLoop = true;
         while (!cli.isSuccess()) {
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
             if (!firstLoop) {
                 System.out.println("Enter your nickname: ");
             }

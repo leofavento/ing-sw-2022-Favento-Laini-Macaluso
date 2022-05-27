@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.controller.EndOfGameReason;
+import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.player.Player;
 
@@ -26,7 +27,7 @@ public class View {
     private Tower winnerTeam;
     private ArrayList<String> winners;
     private EndOfGameReason endOfGameReason;
-
+    private ErrorMessage lastErrorMessage;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -165,5 +166,13 @@ public class View {
 
     public void setEndOfGameReason(EndOfGameReason endOfGameReason) {
         this.endOfGameReason = endOfGameReason;
+    }
+
+    public void setLastErrorMessage(ErrorMessage errorMessage) {
+        lastErrorMessage = errorMessage;
+    }
+
+    public ErrorMessage getLastErrorMessage() {
+        return lastErrorMessage;
     }
 }

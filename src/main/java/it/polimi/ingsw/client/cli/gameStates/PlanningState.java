@@ -37,9 +37,13 @@ public class PlanningState implements State{
         printCompleteBoard();
 
         while(!cli.isSuccess()){
-
             int selection;
             Assistant selectedAssistant;
+
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
 
             ArrayList<Assistant> availableAssistants = cli.getView().getAvailableAssistants();
             System.out.println("These are the available assistants");

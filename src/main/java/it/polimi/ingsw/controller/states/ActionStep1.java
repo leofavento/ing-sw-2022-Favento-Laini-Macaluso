@@ -79,7 +79,6 @@ public class ActionStep1 implements ResumableState {
         Color student = message.getStudent();
         if (! game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(student)) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
-            controller.notify(new MovableStudents(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
         } else {
             requestedStudent = false;
             currStudent = student;
@@ -112,10 +111,16 @@ public class ActionStep1 implements ResumableState {
             }
         } catch (FullDiningRoomException e) {
             controller.notify(ErrorMessage.FULL_DINING_ROOM);
+            requestedDestination = false;
+            requestedStudent = true;
         } catch (StudentNotExistingException e) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
+            requestedDestination = false;
+            requestedStudent = true;
         } catch (IndexOutOfBoundsException e) {
             controller.notify(ErrorMessage.INVALID_INPUT);
+            requestedDestination = false;
+            requestedStudent = true;
         }
     }
 

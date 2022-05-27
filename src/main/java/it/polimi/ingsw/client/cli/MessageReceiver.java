@@ -5,12 +5,9 @@ import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.gameStates.*;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromServer.*;
-import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class MessageReceiver {
     private final CLI cli;
@@ -34,6 +31,7 @@ public class MessageReceiver {
         } else if (message == CommunicationMessage.ENTER_NICKNAME) {
             new Thread(new StateManager(cli, new NicknameState(cli))).start();
         } else if (message == CommunicationMessage.STUDENT_MOVED) {
+            cli.getView().setMovableStudents(null);
             synchronized (cli.getGameState()) {
                 cli.getGameState().notifyAll();
             }
@@ -41,7 +39,7 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(ErrorMessage message) {
-        System.out.println(message.getMessage());
+        cli.getView().setLastErrorMessage(message);
 
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();

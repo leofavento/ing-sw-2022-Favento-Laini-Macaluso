@@ -30,7 +30,7 @@ public class ActionStep1State implements State {
         String c;
 
         while (!cli.isSuccess()) {
-            while (cli.getView().getMovableStudents() == null) {
+            if (cli.getView().getMovableStudents() == null) {
                 try {
                     synchronized (this) {
                         wait();
@@ -44,6 +44,11 @@ public class ActionStep1State implements State {
             SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers());
 
             ArrayList<Color> movableStudents = cli.getView().getMovableStudents();
+
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
 
             System.out.println("Select a student to move, these are the movable students (type the corresponding color number): ");
             for (Color color : Color.values()) {
@@ -63,15 +68,12 @@ public class ActionStep1State implements State {
                 }
                 if (cli.getView().getMovableStudents().contains(chosenStudent)) {
                     cli.getClient().sendMessage(new ChosenStudent(chosenStudent));
-                    cli.getView().setMovableStudents(null);
                 } else {
-                    cli.getView().setMovableStudents(null);
                     cli.getClient().sendMessage(new ChosenStudent(null));
                     continue;
                 }
             } catch (InputMismatchException e) {
                 in.next();
-                cli.getView().setMovableStudents(null);
                 cli.getClient().sendMessage(new ChosenStudent(null));
                 continue;
             }
@@ -120,6 +122,7 @@ public class ActionStep1State implements State {
 
         if (cli.isSuccess()) {
             cli.setSuccess(false);
+            cli.getView().setMovableStudents(null);
         }
 
         System.out.println("End of Move 1.");
