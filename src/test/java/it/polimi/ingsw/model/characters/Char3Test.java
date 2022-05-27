@@ -97,6 +97,9 @@ class Char3Test {
         controller.getState().receiveMessage(new Ack(), "Player2");
 
         controller.getState().receiveMessage(new Ack(), "Player1");
+        controller.getState().receiveMessage(new Ack(), "Player2");
+
+        controller.getState().receiveMessage(new Ack(), "Player1");
 
         assertTrue(game.getDashboard().getIslands().get(0).hasTower());
         assertSame(Tower.BLACK, game.getDashboard().getIslands().get(0).getTowerColor());

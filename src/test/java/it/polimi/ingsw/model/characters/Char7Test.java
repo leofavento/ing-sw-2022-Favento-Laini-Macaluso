@@ -72,6 +72,7 @@ class Char7Test {
         p1.getSchoolBoard().getEntrance().addStudent(Color.BLUE);
 
 
+        game.setCurrentPlayer(p1);
         controller.setState(new ActionStep1(game, controller));
         //Char7 testing
         CharacterCard char7 = new Char7();

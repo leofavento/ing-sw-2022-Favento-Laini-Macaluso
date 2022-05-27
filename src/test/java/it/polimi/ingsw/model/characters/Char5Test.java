@@ -80,6 +80,8 @@ class Char5Test {
 
         assertEquals(1, game.getDashboard().getIslands().get(0).getNoEntry());
 
+        controller.getState().receiveMessage(new Ack(), "Player1");
+
         char5.addNoEntryTile();
 
         for (int i=0; i<6; i++){

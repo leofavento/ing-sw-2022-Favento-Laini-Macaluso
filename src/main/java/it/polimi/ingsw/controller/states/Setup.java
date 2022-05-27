@@ -28,6 +28,11 @@ public class Setup implements State {
     ArrayList<Integer> availableWizards = new ArrayList<>();
     ArrayList<String> missingAcks = new ArrayList<>();
 
+    /**
+     * constructor method
+     * @param game the current game
+     * @param controller the controller
+     */
     public Setup(Game game, Controller controller) {
         this.game = game;
         this.controller = controller;
@@ -118,17 +123,12 @@ public class Setup implements State {
         }
         for (Player player : game.getOnlinePlayers()) {
             switch (game.getNumberOfPlayers()) {
-                case (2):
-                case (4):
-                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
-                            player.getSchoolBoard().getEntrance(),
-                            7);
-                    break;
-                case (3):
-                    Action.moveFromBagToDeposit(game.getDashboard().getBag(),
-                            player.getSchoolBoard().getEntrance(),
-                            9);
-                    break;
+                case (2), (4) -> Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                        player.getSchoolBoard().getEntrance(),
+                        7);
+                case (3) -> Action.moveFromBagToDeposit(game.getDashboard().getBag(),
+                        player.getSchoolBoard().getEntrance(),
+                        9);
             }
         }
         Collections.shuffle(game.getOnlinePlayers());
@@ -220,7 +220,7 @@ public class Setup implements State {
 
     /**
      * method used to remove the ack request for a player
-     * @param sender the nickname of the player who sent the Ack
+     * @param sender the nickname of the sender
      */
     private void receiveAck(String sender) {
         missingAcks.remove(sender);
