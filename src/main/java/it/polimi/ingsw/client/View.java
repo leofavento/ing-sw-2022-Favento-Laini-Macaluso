@@ -1,9 +1,6 @@
 package it.polimi.ingsw.client;
 
-import it.polimi.ingsw.model.Assistant;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Dashboard;
-import it.polimi.ingsw.model.Tower;
+import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
@@ -25,6 +22,7 @@ public class View {
     private boolean isHost;
     private ArrayList<Color> movableStudents;
     private int motherNatureSteps;
+    private ArrayList<Cloud> availableClouds;
 
 
     public ArrayList<Player> getPlayers() {
@@ -142,4 +140,11 @@ public class View {
         this.motherNatureSteps = motherNatureSteps;
     }
 
+    public ArrayList<Cloud> getAvailableClouds() {
+        return availableClouds;
+    }
+
+    public void setAvailableClouds(ArrayList<Cloud> availableClouds) {
+        this.availableClouds = availableClouds;
+    }
 }
