@@ -43,7 +43,7 @@ public class Island implements StudentDeposit, Serializable {
     }
 
     public void addIsland(Island isl){
-        numUnits += 1;
+        numUnits += isl.numUnits;
         for (Color s : isl.students) { // visibility error?
             addStudent(s);
         }
