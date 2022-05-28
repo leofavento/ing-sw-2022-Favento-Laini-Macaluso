@@ -2,6 +2,7 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.controller.states.EndOfTheGame;
+import it.polimi.ingsw.exceptions.AlreadyPlayedCharacterException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.messages.Message;
@@ -139,6 +140,9 @@ public class GameHandler implements Observer<Message> {
                 sendMessageByNickname(nickname, ErrorMessage.NOT_ENOUGH_COINS);
             } catch (InvalidInputException e) {
                 sendMessageByNickname(nickname, ErrorMessage.INVALID_INPUT);
+            }
+            catch (AlreadyPlayedCharacterException e){
+                sendMessageByNickname(nickname, ErrorMessage.ALREADY_PLAYED_CHARACTER);
             }
         } else {
             controller.getState().receiveMessage(message, nickname);

@@ -11,7 +11,6 @@ import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.messages.fromServer.WhereToMove;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.characters.Char1;
 
 

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model.player;
 
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Cloud;
 
@@ -45,9 +45,9 @@ public class Player implements Serializable {
         return availableAssistants;
     }
 
-    public void playAssistant(Assistant assistant) throws AlreadyPlayedAssistant {
+    public void playAssistant(Assistant assistant) throws AlreadyPlayedAssistantException {
         if (! availableAssistants.contains(assistant)) {
-            throw new AlreadyPlayedAssistant("This assistant was already played.");
+            throw new AlreadyPlayedAssistantException("This assistant was already played.");
         } else {
             availableAssistants.remove(assistant);
             playedAssistant = assistant;

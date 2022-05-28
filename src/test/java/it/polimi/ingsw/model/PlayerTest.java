@@ -1,6 +1,6 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 import org.junit.jupiter.api.Test;
@@ -20,11 +20,11 @@ class PlayerTest {
 
         try {
             player.playAssistant(Assistant.DOG);
-        } catch (AlreadyPlayedAssistant ignored) {}
+        } catch (AlreadyPlayedAssistantException ignored) {}
 
         try {
             player.playAssistant(Assistant.DOG);
-        } catch (AlreadyPlayedAssistant ignored) {}
+        } catch (AlreadyPlayedAssistantException ignored) {}
 
         assertEquals(9, player.getAvailableAssistants().size());
         assertFalse(player.getAvailableAssistants().contains(Assistant.DOG));
