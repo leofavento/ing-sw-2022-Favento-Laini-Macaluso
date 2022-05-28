@@ -214,6 +214,8 @@ public class GameHandler implements Observer<Message> {
         } else if (message instanceof CommunicateWinner) {
             broadcastMessage(message);
             endGame();
+        } else if (message instanceof PlayedCharacter) {
+            broadcastMessage(message);
         }
     }
 }

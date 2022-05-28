@@ -5,13 +5,9 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
-import it.polimi.ingsw.messages.fromServer.MovableStudents;
-import it.polimi.ingsw.messages.fromServer.UpdateBoard;
-import it.polimi.ingsw.messages.fromServer.WhereToMove;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.characters.Char1;
 
 
@@ -85,6 +81,7 @@ public class EffectChar1 implements State {
             //Send the updated board
             requestedAck=true;
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(CommunicationMessage.SUCCESS);
         } catch (IndexOutOfBoundsException e) {
             controller.notify(ErrorMessage.INVALID_INPUT);
         }

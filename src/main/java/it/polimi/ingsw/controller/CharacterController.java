@@ -4,8 +4,8 @@ import it.polimi.ingsw.controller.states.*;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
-import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
+import it.polimi.ingsw.messages.fromServer.PlayedCharacter;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.*;
 import it.polimi.ingsw.server.VirtualView;
@@ -63,6 +63,7 @@ public class CharacterController {
         else if (!verifyCoins(selectedCard)) {
             throw new NotEnoughCoinsException("You don't have enough coins");
         } else {
+            controller.notify(new PlayedCharacter(c, game.getCurrentPlayer().getNickname()));
             selectedCard.increaseCost();
             selectedCard.setActive();
             selectedCard.setUsedBy(game.getCurrentPlayer().getNickname());
