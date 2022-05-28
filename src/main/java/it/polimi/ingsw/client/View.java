@@ -28,6 +28,7 @@ public class View {
     private ArrayList<String> winners;
     private EndOfGameReason endOfGameReason;
     private ErrorMessage lastErrorMessage;
+    private boolean requiredDestination;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -174,5 +175,13 @@ public class View {
 
     public ErrorMessage getLastErrorMessage() {
         return lastErrorMessage;
+    }
+
+    public void setRequiredDestination(boolean requiredDestination) {
+        this.requiredDestination = requiredDestination;
+    }
+
+    public boolean getRequiredDestination() {
+        return requiredDestination;
     }
 }

@@ -15,10 +15,10 @@ public class Char1State {
         int selection;
         Scanner in = new Scanner(System.in);
 
-        while (!cli.isSuccess()) {
+        while (!cli.getView().getRequiredDestination()) {
             if (cli.getView().getMovableStudents() == null) {
                 try {
-                    synchronized (this) {
+                    synchronized (cli.getGameState()) {
                         wait();
                     }
                 } catch (InterruptedException e) {
@@ -39,7 +39,7 @@ public class Char1State {
             for (Color color : Color.values()) {
                 System.out.printf("%d --> %s: " + movableStudents.stream().filter(a -> a == color).count() + "%n",
                         color.ordinal() + 1,
-                        color.toString().substring(0,1).toUpperCase() + color.toString().substring(1));
+                        color.toString().substring(0, 1).toUpperCase() + color.toString().substring(1));
             }
 
             try {
@@ -62,16 +62,25 @@ public class Char1State {
                 cli.getClient().sendMessage(new ChosenStudent(null));
                 continue;
             }
-
-            try {
-                synchronized (this) {
-                    wait();
+            if (!cli.getView().getRequiredDestination()) {
+                try {
+                    synchronized (cli.getGameState()) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            }
+        }
+        cli.getView().setRequiredDestination(false);
+        while (!cli.isSuccess()) {
+            IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
+
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
             }
 
-            IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
             System.out.println("Type the number of the island where you want to move the selected student:");
             try {
                 in.reset();
@@ -83,7 +92,7 @@ public class Char1State {
             }
 
             try {
-                synchronized (this) {
+                synchronized (cli.getGameState()) {
                     wait();
                 }
             } catch (InterruptedException e) {

@@ -234,6 +234,7 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(WhereToMove message) {
+        cli.getView().setRequiredDestination(true);
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }

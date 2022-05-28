@@ -78,12 +78,14 @@ public class ActionStep1State implements State {
                 continue;
             }
 
-            try {
-                synchronized (this) {
-                    wait();
+            if (!cli.getView().getRequiredDestination()) {
+                try {
+                    synchronized (this) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
 
             System.out.println("Do you want to move the selected student to an island or to the dining room?");
@@ -123,6 +125,7 @@ public class ActionStep1State implements State {
         if (cli.isSuccess()) {
             cli.setSuccess(false);
             cli.getView().setMovableStudents(null);
+            cli.getView().setRequiredDestination(false);
         }
 
         System.out.println("End of Move 1.");
