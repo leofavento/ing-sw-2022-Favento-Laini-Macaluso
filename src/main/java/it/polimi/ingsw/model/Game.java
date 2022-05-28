@@ -71,17 +71,16 @@ public class Game {
     }
 
     public void initialTowersDeal(){
-        switch(numberOfPlayers) {
-            case(2):
-            case(4):
+        switch (numberOfPlayers) {
+            case (2), (4) -> {
                 teams.get(Tower.BLACK).get(0).getSchoolBoard().setTowersNumber(8);
                 teams.get(Tower.WHITE).get(0).getSchoolBoard().setTowersNumber(8);
-                break;
-            case(3):
+            }
+            case (3) -> {
                 teams.get(Tower.BLACK).get(0).getSchoolBoard().setTowersNumber(6);
                 teams.get(Tower.WHITE).get(0).getSchoolBoard().setTowersNumber(6);
                 teams.get(Tower.GREY).get(0).getSchoolBoard().setTowersNumber(6);
-                break;
+            }
         }
     }
 
@@ -180,4 +179,5 @@ public class Game {
         this.expertGame=true;
     }
 
+    public int getID(){return ID;}
 }
