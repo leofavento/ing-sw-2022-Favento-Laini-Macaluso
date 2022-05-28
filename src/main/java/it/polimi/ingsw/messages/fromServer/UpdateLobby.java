@@ -5,7 +5,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.GameInfo;
 
 /**
- * Message sent by server to communicate the lobby status after the last event.
+ * Message sent by the server to communicate the lobby status after the last event.
  */
 public class UpdateLobby implements FromServerMessage {
     private final GameInfo gameInfo;

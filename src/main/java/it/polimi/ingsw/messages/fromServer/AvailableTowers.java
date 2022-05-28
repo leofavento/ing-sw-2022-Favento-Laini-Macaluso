@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Message sent by server so that the client can see which tower colors are still available
+ * Message sent by the server so that the client can see which tower colors are still available.
  */
 public class AvailableTowers implements FromServerMessage {
     private final HashMap<Tower, Integer> availableTowers;

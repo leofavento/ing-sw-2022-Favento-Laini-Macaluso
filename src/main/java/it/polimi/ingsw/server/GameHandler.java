@@ -56,6 +56,10 @@ public class GameHandler implements Observer<Message> {
         return host == player;
     }
 
+    /**
+     * method used to disconnect a player from the game
+     * @param player a player to disconnect
+     */
     public void disconnect(ServerClientConnection player) {
         players.remove(player);
         if (hasStarted) {
@@ -70,6 +74,10 @@ public class GameHandler implements Observer<Message> {
         }
     }
 
+    /**
+     * method used to end the game for a disconnected player
+     * @param disconnectedPlayer a disconnected player
+     */
     private void endGame(ServerClientConnection disconnectedPlayer) {
         players.remove(disconnectedPlayer);
         server.getStartingGames().remove(this);
@@ -79,6 +87,9 @@ public class GameHandler implements Observer<Message> {
         }
     }
 
+    /**
+     * method used to end the current game
+     */
     private void endGame() {
         server.getActiveGames().remove(this);
         while (!players.isEmpty()) {
@@ -86,6 +97,9 @@ public class GameHandler implements Observer<Message> {
         }
     }
 
+    /**
+     * method used to create a game
+     */
     private void createGame() {
         hasStarted = true;
         game = new Game(gameID, numberOfPlayers, expertMode);
@@ -99,6 +113,10 @@ public class GameHandler implements Observer<Message> {
         controller.getState().execute();
     }
 
+    /**
+     * method used to add a player to an existing game
+     * @param player the player to add
+     */
     public synchronized void joinGame(ServerClientConnection player) {
         if (!isFull()) {
             players.add(player);
@@ -130,6 +148,11 @@ public class GameHandler implements Observer<Message> {
         return controller;
     }
 
+    /**
+     * method used to read a message from a client
+     * @param nickname the nickname of the player who is sending the message
+     * @param message object of the message sent
+     */
     public synchronized void readMessage(String nickname, Message message) {
         if (!nickname.equals(game.getCurrentPlayer().getNickname()) && !(message instanceof Ack)) {
             sendMessageByNickname(nickname, ErrorMessage.WRONG_TURN);
@@ -149,6 +172,11 @@ public class GameHandler implements Observer<Message> {
         }
     }
 
+    /**
+     * method used to send a message to a specific player
+     * @param nickname the nickname of the desired player
+     * @param message object of the message to be sent
+     */
     public void sendMessageByNickname(String nickname, Message message) {
         for (ServerClientConnection player : players) {
             if (player.getNickname().equals(nickname)) {
@@ -157,12 +185,21 @@ public class GameHandler implements Observer<Message> {
         }
     }
 
+    /**
+     * method used to send a message to every player
+     * @param message object of the message to be sent
+     */
     public void broadcastMessage(Message message) {
         for (ServerClientConnection player : players) {
             sendMessageByNickname(player.getNickname(), message);
         }
     }
 
+    /**
+     * method used to send a message to every player except one
+     * @param nickname the nickname of the only player to which the message won't be sent
+     * @param message object of the message to be sent
+     */
     public void sendToAllExcept(String nickname, Message message) {
         for (ServerClientConnection player : players) {
             if (!player.getNickname().equals(nickname)) {

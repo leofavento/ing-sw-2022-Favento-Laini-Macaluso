@@ -8,7 +8,7 @@ import it.polimi.ingsw.model.Tower;
 import java.util.ArrayList;
 
 /**
- * Message sent by server to all clients to communicate the winner of the game.
+ * Message sent by the server to all the clients to communicate the winner of the game.
  */
 public class CommunicateWinner implements FromServerMessage {
     private final Tower team;

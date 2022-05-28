@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server to communicate that a player has disconnected from the game.
+ * Message sent by the server to communicate that a player has disconnected from the game.
  */
 public class PlayerDisconnected implements FromServerMessage {
 

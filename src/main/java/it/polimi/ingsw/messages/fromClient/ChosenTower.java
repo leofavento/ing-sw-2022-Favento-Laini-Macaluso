@@ -4,7 +4,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Tower;
 
 /**
- * Message sent by client to communicate the selected tower.
+ * Message sent by the client to communicate the selected tower.
  */
 
 public class ChosenTower implements Message {

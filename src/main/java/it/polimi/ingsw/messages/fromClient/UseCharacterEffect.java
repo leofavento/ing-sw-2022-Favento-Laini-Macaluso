@@ -4,7 +4,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.characters.CharacterEnum;
 
 /**
- * Message sent by client to communicate the intention to trigger the effect of a selected character.
+ * Message sent by the client to communicate the intention to trigger the effect of a selected character.
  */
 
 public class UseCharacterEffect implements Message {

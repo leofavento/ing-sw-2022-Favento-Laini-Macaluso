@@ -5,7 +5,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 /**
- * Message sent by server to communicate the status of a player.
+ * Message sent by the server to communicate the status of a player.
  */
 public class PlayerStatusMessage implements FromServerMessage {
     private final PlayerStatus playerStatus;

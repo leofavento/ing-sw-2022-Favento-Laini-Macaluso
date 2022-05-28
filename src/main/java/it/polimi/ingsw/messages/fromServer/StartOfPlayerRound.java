@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server to the player to communicate the start of his round
+ * Message sent by the server to the player to communicate the start of his round
  */
 public class StartOfPlayerRound implements FromServerMessage {
     private final int roundNumber;

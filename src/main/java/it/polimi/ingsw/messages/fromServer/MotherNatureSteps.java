@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server to the player to ask for Mother Nature movement.
+ * Message sent by the server to the player to ask for Mother Nature movement.
  */
 public class MotherNatureSteps implements FromServerMessage {
     private final int maxStepsAllowed;

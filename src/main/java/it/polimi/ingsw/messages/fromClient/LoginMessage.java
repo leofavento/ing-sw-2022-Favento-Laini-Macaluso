@@ -3,7 +3,7 @@ package it.polimi.ingsw.messages.fromClient;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by client after establishing a connection to create player session.
+ * Message sent by the client after establishing a connection to create player session.
  */
 
 public class LoginMessage implements Message {

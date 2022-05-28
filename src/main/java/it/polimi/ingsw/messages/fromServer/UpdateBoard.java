@@ -9,7 +9,7 @@ import it.polimi.ingsw.model.player.Player;
 import java.util.ArrayList;
 
 /**
- * Message sent by server to communicate the latest changes to the game board.
+ * Message sent by the server to communicate the latest changes to the game board.
  */
 public class UpdateBoard implements FromServerMessage {
     private final Dashboard dashboard;

@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server to communicate an error selected from an enum.
+ * Message sent by the server to communicate an error selected from an enum.
  */
 
 public enum ErrorMessage implements FromServerMessage {

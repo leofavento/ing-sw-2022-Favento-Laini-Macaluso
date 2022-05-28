@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server to inform the player about an event picked from an enum.
+ * Message sent by the server to inform the player about an event picked from an enum.
  */
 
 public enum CommunicationMessage implements FromServerMessage {

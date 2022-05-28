@@ -14,11 +14,20 @@ public class Entrance implements StudentDeposit, Serializable {
         students = new ArrayList<>();
     }
 
+    /**
+     * method used to add a student to the entrance
+     * @param color the color of the student to add to the entrance
+     */
     @Override
     public void addStudent(Color color) {
         students.add(color);
     }
 
+    /**
+     * method used to extract a student from the entrance
+     * @param color the color of the student to extract
+     * @throws StudentNotExistingException exception thrown when the selected student does not exist
+     */
     @Override
     public void extractStudent(Color color) throws StudentNotExistingException {
         if (!students.contains(color)){
@@ -29,6 +38,10 @@ public class Entrance implements StudentDeposit, Serializable {
         }
     }
 
+    /**
+     * method used to get the students from the entrance
+     * @return an arraylist containing the students present in the entrance
+     */
     public ArrayList<Color> getStudents() {
         return students;
     }

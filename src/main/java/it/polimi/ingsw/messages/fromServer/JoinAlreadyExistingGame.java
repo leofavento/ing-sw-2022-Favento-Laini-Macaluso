@@ -5,7 +5,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.GameInfo;
 
 /**
- * Message sent by server communicating the join of an already created game.
+ * Message sent by the server communicating the join of an already created game.
  */
 
 public class JoinAlreadyExistingGame implements FromServerMessage {

@@ -6,7 +6,7 @@ import it.polimi.ingsw.model.StudentDeposit;
 import it.polimi.ingsw.model.player.DiningRoom;
 
 /**
- * Message sent by client to select the destination from the list provided by the server.
+ * Message sent by the client to select the destination from the list provided by the server.
  */
 
 public class ChosenDestination implements Message {

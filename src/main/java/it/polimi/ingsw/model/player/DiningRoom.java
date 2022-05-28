@@ -22,6 +22,10 @@ public class DiningRoom implements StudentDeposit, Serializable {
         students.put(Color.PINK, 0);
     }
 
+    /**
+     * method used to add a student to the dining room
+     * @param color the color of the student to add
+     */
     @Override
     public void addStudent(Color color) {
         students.put(color, students.get(color) + 1);
@@ -30,6 +34,11 @@ public class DiningRoom implements StudentDeposit, Serializable {
         }
     }
 
+    /**
+     * method used to extract a student from the dining room
+     * @param color the color of the student to extract
+     * @throws StudentNotExistingException exception thrown when the selected student does not exist
+     */
     @Override
     public void extractStudent(Color color) throws StudentNotExistingException {
         if (students.get(color) == 0) {
@@ -39,10 +48,18 @@ public class DiningRoom implements StudentDeposit, Serializable {
         }
     }
 
+    /**
+     * method used to get the number of the students of a selected color
+     * @param color the color of the requested students
+     * @return the number of the requested students
+     */
     public int getStudentsNumber(Color color) {
         return students.get(color);
     }
 
+    /**
+     * method used to enable the coins in the dining room
+     */
     public void setEnableCoins(){
         enableCoins=true;
     }

@@ -6,7 +6,7 @@ import it.polimi.ingsw.messages.Message;
 import java.util.ArrayList;
 
 /**
- * Message sent by server to inform the client about wizards still available
+ * Message sent by the server to inform the client about the wizards which are still available
  */
 public class AvailableWizards implements FromServerMessage {
     private final ArrayList<Integer> availableWizards;

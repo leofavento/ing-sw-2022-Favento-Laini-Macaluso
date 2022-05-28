@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server when creating a new game. The server is waiting for other players to join the game.
+ * Message sent by the server when creating a new game. The server is waiting for other players to join the game.
  */
 
 public class WaitingForPlayers implements FromServerMessage {

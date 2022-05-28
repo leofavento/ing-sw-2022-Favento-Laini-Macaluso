@@ -7,7 +7,7 @@ import it.polimi.ingsw.model.GameInfo;
 import java.util.ArrayList;
 
 /**
- * Message sent by server containing information of all available games the player can join.
+ * Message sent by server containing information of all the available games a player can join.
  */
 public class AvailableGames implements FromServerMessage {
     private final ArrayList<GameInfo> availableGames;

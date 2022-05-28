@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.cli.MessageReceiver;
 import it.polimi.ingsw.messages.Message;
 
 /**
- * Message sent by server to communicate the end of the active player actions for the current round.
+ * Message sent by the server to communicate the end of the active player's actions for the current round.
  */
 public class EndOfPlayerRound implements FromServerMessage {
     private final int roundNumber;

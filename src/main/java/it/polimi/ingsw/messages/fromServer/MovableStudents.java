@@ -6,7 +6,7 @@ import it.polimi.ingsw.model.Color;
 import java.util.ArrayList;
 
 /**
- * Message sent by server to give the list of all movable students.
+ * Message sent by the server to give the list of all movable students.
  */
 public class MovableStudents implements FromServerMessage {
     private final ArrayList<Color> students;

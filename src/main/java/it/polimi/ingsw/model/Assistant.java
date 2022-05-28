@@ -1,5 +1,8 @@
 package it.polimi.ingsw.model;
 
+/**
+ * value and movements for every assistant card
+ */
 public enum Assistant {
     TIGER(1,1),
     OSTRICH(2,1),

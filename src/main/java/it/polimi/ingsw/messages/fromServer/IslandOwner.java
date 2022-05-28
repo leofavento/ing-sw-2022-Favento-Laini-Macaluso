@@ -5,7 +5,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Island;
 
 /**
- * Message sent by server to all the players to provide the nickname of the island owner after calculating the influence.
+ * Message sent by the server to all the players to provide the nickname of the island owner after calculating the influence.
  */
 public class IslandOwner implements FromServerMessage {
     private final Island island;

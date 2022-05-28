@@ -4,7 +4,7 @@ import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.model.Cloud;
 
 /**
- * Message sent by client to select the cloud from the list provided by the server.
+ * Message sent by the client to select the cloud from the list provided by the server.
  */
 
 public class ChosenCloud implements Message {
