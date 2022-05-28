@@ -172,10 +172,6 @@ public class MessageReceiver {
         }
     }
 
-    public void receiveMessage(AvailableCharacters message) {
-        //TODO
-    }
-
     public void receiveMessage(CommunicateWinner message) {
         cli.getView().setWinnerTeam(message.getTeam());
         cli.getView().setEndOfGameReason(message.getWinReason());

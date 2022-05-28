@@ -4,12 +4,14 @@ import it.polimi.ingsw.controller.states.*;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
+import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.*;
 import it.polimi.ingsw.server.VirtualView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class CharacterController {
@@ -48,16 +50,23 @@ public class CharacterController {
         }
     }
 
-    public void applyEffect(CharacterCard c) throws NotEnoughCoinsException, InvalidInputException {
-        if (c == null) throw new InvalidInputException("The input is not a Character");
+    public void applyEffect(CharacterEnum c) throws NotEnoughCoinsException, InvalidInputException {
+        CharacterCard selectedCard = Arrays
+                .stream(game.getDashboard().getCharacters())
+                .filter(card -> card.getValue() == c)
+                .findAny()
+                .orElse(null);
+        if (selectedCard == null) {
+            throw new InvalidInputException("The input is not a Character");
+        }
         //Check if player has enough coins
-        if (!verifyCoins(c)) {
+        else if (!verifyCoins(selectedCard)) {
             throw new NotEnoughCoinsException("You don't have enough coins");
         } else {
-            c.increaseCost();
-            c.setActive();
-            c.setUsedBy(game.getCurrentPlayer().getNickname());
-            c.activate(this);
+            selectedCard.increaseCost();
+            selectedCard.setActive();
+            selectedCard.setUsedBy(game.getCurrentPlayer().getNickname());
+            selectedCard.activate(this);
         }
     }
 

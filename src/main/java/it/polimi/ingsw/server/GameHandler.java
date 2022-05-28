@@ -2,8 +2,11 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.controller.states.EndOfTheGame;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
+import it.polimi.ingsw.messages.fromClient.UseCharacterEffect;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.player.Player;
@@ -129,6 +132,14 @@ public class GameHandler implements Observer<Message> {
     public synchronized void readMessage(String nickname, Message message) {
         if (!nickname.equals(game.getCurrentPlayer().getNickname()) && !(message instanceof Ack)) {
             sendMessageByNickname(nickname, ErrorMessage.WRONG_TURN);
+        } else if (message instanceof UseCharacterEffect) {
+            try {
+                controller.getCharacterController().applyEffect(((UseCharacterEffect) message).getCharacter());
+            } catch (NotEnoughCoinsException e) {
+                sendMessageByNickname(nickname, ErrorMessage.NOT_ENOUGH_COINS);
+            } catch (InvalidInputException e) {
+                sendMessageByNickname(nickname, ErrorMessage.INVALID_INPUT);
+            }
         } else {
             controller.getState().receiveMessage(message, nickname);
         }
@@ -174,7 +185,7 @@ public class GameHandler implements Observer<Message> {
             broadcastMessage(message);
         } else if (message == CommunicationMessage.STUDENT_MOVED) {
             sendMessageByNickname(nickCurrentPlayer, message);
-        } else if (message instanceof PlayerStatusMessage) {
+        }else if (message instanceof PlayerStatusMessage) {
             sendMessageByNickname(nickCurrentPlayer, message);
             sendToAllExcept(nickCurrentPlayer, new PlayerStatusMessage(PlayerStatus.WAITING));
         } else if (message instanceof AvailableAssistants) {

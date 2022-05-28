@@ -16,7 +16,7 @@ public class EndOfTheGame implements State {
     Game game;
     Controller controller;
     EndOfGameReason reason;
-    ArrayList<String> winnerNicknames;
+    ArrayList<String> winnerNicknames = new ArrayList<>();
 
     public EndOfTheGame(Game game, Controller controller, EndOfGameReason reason) {
         this.game = game;

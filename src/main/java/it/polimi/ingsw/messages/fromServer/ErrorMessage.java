@@ -21,6 +21,7 @@ public enum ErrorMessage implements FromServerMessage {
     INVALID_ASSISTANT("The chosen assistant has already been played by another player"),
     UNAVAILABLE_ASSISTANT("You have already used this assistant in a previous turn."),
     INVALID_INPUT("Invalid input"),
+    NOT_ENOUGH_COINS("You don't have enough coins to enable this character."),
     EMPTY_CLOUD("You can't select an empty cloud."),
     ZERO_NO_ENTRY_TILES_LEFT("There are zero No Entry Tiles left on the Character5 card"),
     INVALID_ACTION("There's a time and a place for everything, but not now.");
