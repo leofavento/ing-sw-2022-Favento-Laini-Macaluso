@@ -4,6 +4,7 @@ import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
+import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.messages.fromServer.WhereToMove;
@@ -62,6 +63,7 @@ public class EffectChar3 implements ResumableState {
         }
         if (message instanceof Ack && requestedAck){
             requestedAck=false;
+            controller.notify(CommunicationMessage.SUCCESS);
             nextState();
         }
     }

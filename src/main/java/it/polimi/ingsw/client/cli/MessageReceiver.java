@@ -243,6 +243,9 @@ public class MessageReceiver {
     public void receiveMessage(PlayedCharacter message) {
         if (Objects.equals(message.getPlayer(), cli.getClient().getNickname())) {
             cli.setSuccess(true);
+            synchronized (cli.getGameState()) {
+                cli.getGameState().notifyAll();
+            }
         } else {
             System.out.println(message.getPlayer() + " activated " + message.getCharacterEnum() + "!");
         }

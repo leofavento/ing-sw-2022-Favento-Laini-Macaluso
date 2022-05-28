@@ -7,7 +7,7 @@ import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Char3State {
+public class Char5State {
     public void run(CLI cli) {
         int selection;
         Scanner in = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class Char3State {
                 cli.getView().setLastErrorMessage(null);
             }
 
-            System.out.println("Select the island you want to resolve:");
+            System.out.println("Select the island where you wish to place a No Entry tile:");
             try {
                 in.reset();
                 selection = in.nextInt();
@@ -52,6 +52,6 @@ public class Char3State {
             cli.setSuccess(false);
             cli.getView().setRequiredDestination(false);
         }
-        System.out.println("You successfully activated Char3.");
+        System.out.println("You successfully activated Char5.");
     }
 }

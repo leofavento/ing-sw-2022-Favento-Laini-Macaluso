@@ -115,12 +115,12 @@ public class CharacterController {
         //place a No Entry tile on an Island of your choice
         try {
             c.useNoEntryTile();
+            ResumableState previousState = (ResumableState) controller.getState();
+            controller.setState(new EffectChar5(game, controller, previousState, c));
+            controller.getState().execute();
         } catch (NoEntryTilesLeftException e) {
             controller.notify(ErrorMessage.ZERO_NO_ENTRY_TILES_LEFT);
         }
-        ResumableState previousState = (ResumableState) controller.getState();
-        controller.setState(new EffectChar5(game, controller, previousState, c));
-        controller.getState().execute();
     }
 
     public void activate(Char6 c) {
