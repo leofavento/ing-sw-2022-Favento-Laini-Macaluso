@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.controller.states.ActionStep2;
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenSteps;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
@@ -39,7 +39,7 @@ class ActionStep2Test {
         try{
             p1.playAssistant(Assistant.TIGER);
             p2.playAssistant(Assistant.OSTRICH);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
         p1.getSchoolBoard().getEntrance().addStudent(Color.BLUE);
         p1.getSchoolBoard().getEntrance().addStudent(Color.RED);
@@ -96,7 +96,7 @@ class ActionStep2Test {
         try{
             p1.playAssistant(Assistant.TIGER);
             p2.playAssistant(Assistant.OSTRICH);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
         p1.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
         game.updateProfessors();
@@ -154,7 +154,7 @@ class ActionStep2Test {
         try{
             p1.playAssistant(Assistant.TIGER);
             p2.playAssistant(Assistant.OSTRICH);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
         p1.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
         game.updateProfessors();
@@ -212,7 +212,7 @@ class ActionStep2Test {
         try{
             p1.playAssistant(Assistant.ARCHER_CAT);
             p2.playAssistant(Assistant.DOG);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
         p1.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
         game.updateProfessors();

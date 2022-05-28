@@ -12,7 +12,7 @@ import java.util.Collections;
  */
 public class Dashboard implements Serializable {
     private final ArrayList<Island> islands;
-    private final ArrayList<CharacterCard> playedCharacters;
+    private CharacterCard playedCharacter;
     private final CharacterCard[] characters;
     private final ArrayList<Cloud> clouds;
     private final Professor[] professors;
@@ -25,7 +25,7 @@ public class Dashboard implements Serializable {
     public Dashboard(){
         this.islands= new ArrayList<>();
         this.clouds = new ArrayList<>();
-        this.playedCharacters= new ArrayList<>();
+        this.playedCharacter= null;
         this.characters= new CharacterCard[3];
         this.professors= new Professor[5];
         professors[Color.YELLOW.ordinal()] = new Professor(Color.YELLOW);
@@ -184,13 +184,11 @@ public class Dashboard implements Serializable {
      * @return the list of the active characters
      */
 
-    public ArrayList<CharacterCard> getPlayedCharacters() {
-        playedCharacters.clear();
-        for (CharacterCard c: characters) {
-            if (c.getActive()){
-                playedCharacters.add(c);
-            }
-        }
-        return playedCharacters;
+    public CharacterCard getPlayedCharacter() {
+        return playedCharacter;
+    }
+
+    public void setPlayedCharacter(CharacterCard c){
+        this.playedCharacter=c;
     }
 }

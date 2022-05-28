@@ -24,7 +24,8 @@ public enum ErrorMessage implements FromServerMessage {
     NOT_ENOUGH_COINS("You don't have enough coins to enable this character."),
     EMPTY_CLOUD("You can't select an empty cloud."),
     ZERO_NO_ENTRY_TILES_LEFT("There are zero No Entry Tiles left on the Character5 card"),
-    INVALID_ACTION("There's a time and a place for everything, but not now.");
+    INVALID_ACTION("There's a time and a place for everything, but not now."),
+    ALREADY_PLAYED_CHARACTER("You have already played a Character in this turn.");
 
     private final String message;
 

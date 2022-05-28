@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.controller.states.ActionStep1;
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.messages.fromClient.*;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Color;
@@ -35,7 +35,7 @@ class ActionStep1Test {
         try{
         p1.playAssistant(Assistant.TIGER);
         p2.playAssistant(Assistant.OSTRICH);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
         p1.getSchoolBoard().getEntrance().addStudent(Color.BLUE);
         p1.getSchoolBoard().getEntrance().addStudent(Color.RED);

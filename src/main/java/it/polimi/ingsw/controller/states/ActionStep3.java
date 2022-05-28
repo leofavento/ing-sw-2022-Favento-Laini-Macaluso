@@ -123,6 +123,8 @@ public class ActionStep3 implements ResumableState {
             character.setInactive();
             character.resetUsedBy();
         }
+        game.getDashboard().setPlayedCharacter(null);
+
         for (Player player: game.getOnlinePlayers()) {
             for (Professor professor:player.getSchoolBoard().getProfessors()) {
                 if (!(professor.getOwner()==player)) {

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.controller.states.ActionStep3;
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
@@ -35,7 +35,7 @@ class ActionStep3Test {
         try{
             p1.playAssistant(Assistant.TIGER);
             p2.playAssistant(Assistant.OSTRICH);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
 
         controller.updateTurnOrder();

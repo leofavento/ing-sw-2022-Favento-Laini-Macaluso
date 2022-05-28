@@ -1,11 +1,13 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.controller.states.*;
+import it.polimi.ingsw.exceptions.AlreadyPlayedCharacterException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.messages.fromServer.PlayedCharacter;
+import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.*;
 import it.polimi.ingsw.server.VirtualView;
@@ -42,15 +44,11 @@ public class CharacterController {
 
     public void setUpCharacter(CharacterCard c, Bag bag) {
         switch (c.getValue()) {
-            case Char1:
-            case Char7:
-            case Char11:
-                c.setUp(bag);
-                break;
+            case Char1, Char7, Char11 -> c.setUp(bag);
         }
     }
 
-    public void applyEffect(CharacterEnum c) throws NotEnoughCoinsException, InvalidInputException {
+    public void applyEffect(CharacterEnum c) throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {
         CharacterCard selectedCard = Arrays
                 .stream(game.getDashboard().getCharacters())
                 .filter(card -> card.getValue() == c)
@@ -61,12 +59,16 @@ public class CharacterController {
         }
         //Check if player has enough coins
         else if (!verifyCoins(selectedCard)) {
-            throw new NotEnoughCoinsException("You don't have enough coins");
+            throw new NotEnoughCoinsException("You don't have enough coins");}
+
+        else if(!(game.getDashboard().getPlayedCharacter()==null) ){
+            throw new AlreadyPlayedCharacterException("You have already played a Character in this turn");
         } else {
             controller.notify(new PlayedCharacter(c, game.getCurrentPlayer().getNickname()));
             selectedCard.increaseCost();
             selectedCard.setActive();
             selectedCard.setUsedBy(game.getCurrentPlayer().getNickname());
+            game.getDashboard().setPlayedCharacter(selectedCard);
             selectedCard.activate(this);
         }
     }
@@ -93,6 +95,7 @@ public class CharacterController {
                 }
             }
         }
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     public void activate(Char3 c) {
@@ -105,6 +108,7 @@ public class CharacterController {
     public void activate(Char4 c) {
         //you may move mother nature up to 2 additional islands
         game.getDashboard().setAdditionalMNMovements(2);
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     public void activate(Char5 c) {
@@ -114,7 +118,6 @@ public class CharacterController {
         } catch (NoEntryTilesLeftException e) {
             controller.notify(ErrorMessage.ZERO_NO_ENTRY_TILES_LEFT);
         }
-
         ResumableState previousState = (ResumableState) controller.getState();
         controller.setState(new EffectChar5(game, controller, previousState, c));
         controller.getState().execute();
@@ -123,6 +126,7 @@ public class CharacterController {
     public void activate(Char6 c) {
         //when resolving a conquering on an island, towers do not count towards influence
         game.getDashboard().setDoNotCountTowers(true);
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     public void activate(Char7 c) {
@@ -137,6 +141,7 @@ public class CharacterController {
         for (Island island : game.getDashboard().getIslands()) {
             island.setExtraInfluence(game.getCurrentPlayer(), 2);
         }
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     public void activate(Char9 c) {

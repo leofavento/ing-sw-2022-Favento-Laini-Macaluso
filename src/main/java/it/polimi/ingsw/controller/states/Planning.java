@@ -2,7 +2,7 @@ package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Action;
 import it.polimi.ingsw.controller.Controller;
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.PlayAssistant;
@@ -119,7 +119,7 @@ public class Planning implements ResumableState {
             } else {
                 controller.notify(ErrorMessage.INVALID_ASSISTANT);
             }
-        } catch (AlreadyPlayedAssistant e) {
+        } catch (AlreadyPlayedAssistantException e) {
             controller.notify(ErrorMessage.UNAVAILABLE_ASSISTANT);
         }
     }
