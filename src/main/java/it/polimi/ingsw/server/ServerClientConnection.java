@@ -8,11 +8,15 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import it.polimi.ingsw.messages.fromClient.*;
 import it.polimi.ingsw.messages.fromServer.AvailableGames;
 import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
+import it.polimi.ingsw.messages.fromServer.Ping;
 import it.polimi.ingsw.observer.Observer;
 import it.polimi.ingsw.observer.Observable;
 
@@ -45,6 +49,20 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
 
     @Override
     public void run() {
+        Runnable pingSender = () -> {
+            while (active) {
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (active) {
+                    sendMessage(new Ping());
+                }
+            }
+        };
+        new Thread(pingSender).start();
+
         try {
             input = new ObjectInputStream(socket.getInputStream());
             output = new ObjectOutputStream(socket.getOutputStream());

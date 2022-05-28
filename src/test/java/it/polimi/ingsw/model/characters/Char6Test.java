@@ -3,6 +3,7 @@ package it.polimi.ingsw.model.characters;
 import it.polimi.ingsw.controller.CharacterController;
 import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.controller.states.ActionStep1;
+import it.polimi.ingsw.exceptions.AlreadyPlayedCharacterException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.messages.fromClient.Ack;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Char6Test {
     @Test
-    public void testChar6() throws NotEnoughCoinsException, InvalidInputException {
+    public void testChar6() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {
         Game game = new Game(1, 2, true);
         Player p1 = new Player("Player1");
         Player p2 = new Player("Player2");
@@ -71,7 +72,7 @@ class Char6Test {
         //Char6 testing
         CharacterCard char6 = new Char6();
 
-        characterController.applyEffect(char6);
+        characterController.applyEffect(char6.getValue());
         assertTrue(char6.getActive());
         assertTrue(game.getDashboard().getDoNotCountTowers());
 

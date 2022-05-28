@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.gameStates.*;
 import it.polimi.ingsw.messages.fromClient.Ack;
+import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
@@ -258,5 +259,9 @@ public class MessageReceiver {
             cli.getGameState().notifyAll();
         }
 
+    }
+
+    public void receiveMessage(Ping message) {
+        cli.getClient().sendMessage(new Pong());
     }
 }

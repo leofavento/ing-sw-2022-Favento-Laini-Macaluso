@@ -110,7 +110,7 @@ class DashboardTest {
         assertNotEquals(dashboard.getCharacters()[1], dashboard.getCharacters()[2]);
 
         c3.setActive();
-        assertTrue(dashboard.getPlayedCharacters().contains(c3));
+        assertSame(dashboard.getPlayedCharacter(), c3);
     }
 
     @Test
