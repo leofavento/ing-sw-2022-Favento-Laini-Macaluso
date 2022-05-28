@@ -23,6 +23,7 @@ public class View {
     private int activePlayers;
     private boolean isHost;
     private ArrayList<Color> movableStudents;
+    private ArrayList<Color> movableStudentsChar;
     private int motherNatureSteps;
     private Tower winnerTeam;
     private ArrayList<String> winners;
@@ -184,4 +185,11 @@ public class View {
     public boolean getRequiredDestination() {
         return requiredDestination;
     }
+
+    public ArrayList<Color> getMovableStudentsChar() {
+        return movableStudentsChar;
+    }
+
+    public void setMovableStudentsChar(ArrayList<Color> movableStudentsChar) {this.movableStudentsChar = movableStudentsChar;}
+
 }

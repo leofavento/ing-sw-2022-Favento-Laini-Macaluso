@@ -250,4 +250,13 @@ public class MessageReceiver {
             System.out.println(message.getPlayer() + " activated " + message.getCharacterEnum() + "!");
         }
     }
+
+    public void receiveMessage(MovableStudentsChar message) {
+        cli.getView().setMovableStudentsChar(message.getStudents());
+
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
+
+    }
 }

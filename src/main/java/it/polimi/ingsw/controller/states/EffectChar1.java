@@ -40,7 +40,7 @@ public class EffectChar1 implements State {
     public void execute() {
         requestedStudent=true;
         //pick a student on this card
-        controller.notify(new MovableStudents(char1.getStudents()));
+        controller.notify(new MovableStudentsChar(char1.getStudents()));
     }
 
     @Override

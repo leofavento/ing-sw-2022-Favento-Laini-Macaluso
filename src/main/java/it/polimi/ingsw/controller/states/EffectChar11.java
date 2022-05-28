@@ -6,6 +6,7 @@ import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.messages.fromServer.MovableStudents;
+import it.polimi.ingsw.messages.fromServer.MovableStudentsChar;
 import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
@@ -39,7 +40,7 @@ public class EffectChar11 implements ResumableState{
     public void execute() {
         requestedStudent=true;
         //pick a student on this card
-        controller.notify(new MovableStudents(char11.getStudents()));
+        controller.notify(new MovableStudentsChar(char11.getStudents()));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.controller.states.ActionStep2;
-import it.polimi.ingsw.exceptions.AlreadyPlayedAssistant;
+import it.polimi.ingsw.exceptions.AlreadyPlayedAssistantException;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenSteps;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
@@ -14,7 +14,7 @@ import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-class EndOfTheGameTesting {
+class EndOfTheGameTest {
 
     @Test
     public void testEnding_case1(){
@@ -72,7 +72,7 @@ class EndOfTheGameTesting {
         try{
             p1.playAssistant(Assistant.TIGER);
             p2.playAssistant(Assistant.ARCHER_CAT);}
-        catch (AlreadyPlayedAssistant ignored){}
+        catch (AlreadyPlayedAssistantException ignored){}
 
         p1.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
         game.updateProfessors();

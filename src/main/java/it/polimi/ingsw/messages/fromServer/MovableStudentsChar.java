@@ -6,12 +6,13 @@ import it.polimi.ingsw.model.Color;
 import java.util.ArrayList;
 
 /**
- * Message sent by server to give the list of all movable students.
+ * Message sent by server when a character effect is active, to give the list of all movable students.
  */
-public class MovableStudents implements FromServerMessage {
+public class MovableStudentsChar implements FromServerMessage{
+
     private final ArrayList<Color> students;
 
-    public MovableStudents(ArrayList<Color> students) {
+    public MovableStudentsChar(ArrayList<Color> students) {
         this.students = students;
     }
 

@@ -7,6 +7,7 @@ import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.messages.fromServer.MovableStudents;
+import it.polimi.ingsw.messages.fromServer.MovableStudentsChar;
 import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
@@ -74,7 +75,7 @@ public class EffectChar10 implements State{
     private void chooseStudentFromEntrance(){
         if (i<2){
             requestedEntranceStudent=true;
-            controller.notify(new MovableStudents(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
+            controller.notify(new MovableStudentsChar(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
         }
         else {
             requestedAck=true;
@@ -90,7 +91,7 @@ public class EffectChar10 implements State{
                 diningStudentsList.add(color);
             }
         }
-        controller.notify(new MovableStudents(diningStudentsList));
+        controller.notify(new MovableStudentsChar(diningStudentsList));
     }
 
     private void swapStudents(){

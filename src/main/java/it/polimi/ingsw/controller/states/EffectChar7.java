@@ -5,10 +5,7 @@ import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
-import it.polimi.ingsw.messages.fromServer.CommunicationMessage;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
-import it.polimi.ingsw.messages.fromServer.MovableStudents;
-import it.polimi.ingsw.messages.fromServer.UpdateBoard;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char7;
@@ -70,7 +67,7 @@ public class EffectChar7 implements State {
     private void chooseStudentFromChar() {
         requestedCharStudent = true;
         if (i < 3) {
-            controller.notify(new MovableStudents(char7.getStudents()));
+            controller.notify(new MovableStudentsChar(char7.getStudents()));
         } else {
             requestedAck = true;
             controller.notify(CommunicationMessage.SUCCESS);
@@ -80,7 +77,7 @@ public class EffectChar7 implements State {
 
     private void chooseStudentFromEntrance() {
         requestedEntranceStudent = true;
-        controller.notify(new MovableStudents(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
+        controller.notify(new MovableStudentsChar(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents()));
     }
 
     private void swapStudents() {

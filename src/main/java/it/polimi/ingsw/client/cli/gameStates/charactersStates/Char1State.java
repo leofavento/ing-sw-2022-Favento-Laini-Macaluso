@@ -16,7 +16,7 @@ public class Char1State {
         Scanner in = new Scanner(System.in);
 
         while (!cli.getView().getRequiredDestination()) {
-            if (cli.getView().getMovableStudents() == null) {
+            if (cli.getView().getMovableStudentsChar() == null) {
                 try {
                     synchronized (cli.getGameState()) {
                         wait();
@@ -28,7 +28,7 @@ public class Char1State {
 
             IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
 
-            ArrayList<Color> movableStudents = cli.getView().getMovableStudents();
+            ArrayList<Color> movableStudentsChar = cli.getView().getMovableStudentsChar();
 
             if (cli.getView().getLastErrorMessage() != null) {
                 System.out.println(cli.getView().getLastErrorMessage().getMessage());
@@ -37,7 +37,7 @@ public class Char1State {
 
             System.out.println("Select a student to move from this character: ");
             for (Color color : Color.values()) {
-                System.out.printf("%d --> %s: " + movableStudents.stream().filter(a -> a == color).count() + "%n",
+                System.out.printf("%d --> %s: " + movableStudentsChar.stream().filter(a -> a == color).count() + "%n",
                         color.ordinal() + 1,
                         color.toString().substring(0, 1).toUpperCase() + color.toString().substring(1));
             }
@@ -51,7 +51,7 @@ public class Char1State {
                         chosenStudent = color;
                     }
                 }
-                if (cli.getView().getMovableStudents().contains(chosenStudent)) {
+                if (cli.getView().getMovableStudentsChar().contains(chosenStudent)) {
                     cli.getClient().sendMessage(new ChosenStudent(chosenStudent));
                 } else {
                     cli.getClient().sendMessage(new ChosenStudent(null));
@@ -102,7 +102,7 @@ public class Char1State {
 
         if (cli.isSuccess()) {
             cli.setSuccess(false);
-            cli.getView().setMovableStudents(null);
+            cli.getView().setMovableStudentsChar(null);
         }
 
         System.out.println("You successfully activated Char1.");
