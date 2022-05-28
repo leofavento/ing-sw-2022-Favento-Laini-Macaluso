@@ -63,7 +63,8 @@ public class ActivateCharactersState {
                     charState.run(cli);
                 }
                 case Char3 -> {
-
+                    Char3State charState = new Char3State();
+                    charState.run(cli);
                 }
                 case Char5 -> {
 
