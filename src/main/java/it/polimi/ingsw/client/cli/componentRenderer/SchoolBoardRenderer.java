@@ -38,9 +38,9 @@ public class SchoolBoardRenderer {
         for (Professor professor : player.getSchoolBoard().getProfessors()) {
             System.out.printf("%s%s",
                     professor.getColor(),
-                    player.getSchoolBoard().getProfessors().indexOf(professor) == player.getSchoolBoard().getProfessors().size() - 1 ? "%n" : ", ");
+                    player.getSchoolBoard().getProfessors().indexOf(professor) == player.getSchoolBoard().getProfessors().size() - 1 ? "" : ", ");
         }
-
+        System.out.println();
         System.out.println("|Towers: " +
                             player.getSchoolBoard().getTowersNumber() +
                             "\n|--------------------------\n");

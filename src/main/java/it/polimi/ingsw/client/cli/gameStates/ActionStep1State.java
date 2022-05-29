@@ -30,7 +30,7 @@ public class ActionStep1State implements State {
         String c;
 
         while (!cli.isSuccess()) {
-            if (cli.getView().getMovableStudents() == null) {
+            while (cli.getView().getMovableStudents() == null) {
                 try {
                     synchronized (this) {
                         wait();
@@ -129,12 +129,5 @@ public class ActionStep1State implements State {
         }
 
         System.out.println("End of Move 1.");
-        try {
-            synchronized (this) {
-                wait();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

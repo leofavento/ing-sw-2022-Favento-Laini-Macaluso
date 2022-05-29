@@ -21,7 +21,7 @@ public class EndOfGameState implements State {
                         System.out.print("It was the last round.");
             }
         } else {
-            System.out.println(cli.getView().getWinnerTeam() + "%s team won because ");
+            System.out.println(cli.getView().getWinnerTeam() + " team won because ");
             switch (cli.getView().getEndOfGameReason()) {
                 case LAST_TOWER_BUILD ->
                         System.out.println("they built their last tower.");

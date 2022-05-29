@@ -98,7 +98,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         }
     }
 
-    public void readMessage(Message message) {
+    public synchronized void readMessage(Message message) {
         if (message instanceof Disconnect) {
             gameHandler.disconnect(this);
             close();

@@ -45,10 +45,10 @@ public class Client implements Runnable {
         this.messageReceiver = messageReceiver;
     }
 
-    public void sendMessage(Message message) {
+    public synchronized void sendMessage(Message message) {
         try {
-            output.reset();
             output.writeObject(message);
+            output.reset();
             output.flush();
         } catch (IOException e) {
             e.printStackTrace();

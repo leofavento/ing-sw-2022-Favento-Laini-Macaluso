@@ -128,6 +128,7 @@ public class MessageReceiver {
         } else if (playerStatus == PlayerStatus.MOVE_1) {
             new Thread(new StateManager(cli, new ActionStep1State(cli))).start();
         } else if (playerStatus == PlayerStatus.END_MOVE_1) {
+            cli.setSuccess(true);
             synchronized (cli.getGameState()) {
                 cli.getGameState().notifyAll();
             }

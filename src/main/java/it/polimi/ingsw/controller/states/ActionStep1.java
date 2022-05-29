@@ -152,7 +152,6 @@ public class ActionStep1 implements ResumableState {
             requestedAck = true;
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
             if (movedStudents == ((game.getNumberOfPlayers() == 3) ? 4 : 3)) {
-                controller.notify(CommunicationMessage.SUCCESS);
                 notifyStatus(PlayerStatus.END_MOVE_1);
             } else {
                 controller.notify(CommunicationMessage.STUDENT_MOVED);
