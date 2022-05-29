@@ -39,7 +39,6 @@ public class ActionStep3State implements State{
             CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
 
             System.out.println("These are the available clouds, choose the one you want to get the students from: ");
-            CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
 
             try{
                 in.reset();

@@ -185,7 +185,7 @@ public class MessageReceiver {
             System.out.println("Your round finished.");
             cli.setSuccess(true);
             synchronized (cli.getGameState()) {
-                notifyAll();
+                cli.getGameState().notifyAll();
             }
         } else {
             System.out.println("The round of " + message.getNickname() + " finished.");
