@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Char10State {
-    public void run(CLI cli) {
+    public void run(CLI cli){
         Scanner in = new Scanner(System.in);
         int selection;
 

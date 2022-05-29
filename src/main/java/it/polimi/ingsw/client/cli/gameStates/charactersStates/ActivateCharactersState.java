@@ -75,10 +75,12 @@ public class ActivateCharactersState {
                     charState.run(cli);
                 }
                 case Char9 -> {
-
+                    Char9State charState = new Char9State();
+                    charState.run(cli);
                 }
                 case Char10 -> {
-
+                    Char10State charState = new Char10State();
+                    charState.run(cli);
                 }
                 case Char11 -> {
                     Char11State charState = new Char11State();

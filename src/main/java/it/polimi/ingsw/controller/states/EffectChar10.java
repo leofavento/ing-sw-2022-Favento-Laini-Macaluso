@@ -5,10 +5,7 @@ import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
-import it.polimi.ingsw.messages.fromServer.MovableStudents;
-import it.polimi.ingsw.messages.fromServer.MovableStudentsChar;
-import it.polimi.ingsw.messages.fromServer.UpdateBoard;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char10;
@@ -79,6 +76,7 @@ public class EffectChar10 implements State{
         }
         else {
             requestedAck=true;
+            controller.notify(CommunicationMessage.SUCCESS);
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
     }
