@@ -4,10 +4,7 @@ import it.polimi.ingsw.controller.Controller;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
-import it.polimi.ingsw.messages.fromServer.ErrorMessage;
-import it.polimi.ingsw.messages.fromServer.MovableStudents;
-import it.polimi.ingsw.messages.fromServer.MovableStudentsChar;
-import it.polimi.ingsw.messages.fromServer.UpdateBoard;
+import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char11;
@@ -63,6 +60,7 @@ public class EffectChar11 implements ResumableState{
             char11.removeStudent(color);
             char11.addStudent(game.getDashboard().getBag().drawStudent());
             requestedAck=true;
+            controller.notify(CommunicationMessage.SUCCESS);
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
     }

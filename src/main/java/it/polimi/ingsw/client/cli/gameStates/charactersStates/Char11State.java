@@ -14,18 +14,17 @@ public class Char11State {
         int selection;
         Scanner in = new Scanner(System.in);
 
-            if (cli.getView().getMovableStudentsChar() == null) {
-                try {
-                    synchronized (cli.getGameState()) {
-                        wait();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }}
-
-            while (!cli.isSuccess()) {
-            ArrayList<Color> movableStudentsChar = cli.getView().getMovableStudentsChar();
-
+        while (cli.getView().getMovableStudentsChar() == null) {
+            try {
+                synchronized (cli.getGameState()) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        ArrayList<Color> movableStudentsChar = cli.getView().getMovableStudentsChar();
+        while (!cli.isSuccess()) {
             if (cli.getView().getLastErrorMessage() != null) {
                 System.out.println(cli.getView().getLastErrorMessage().getMessage());
                 cli.getView().setLastErrorMessage(null);
@@ -52,11 +51,18 @@ public class Char11State {
                 } else {
                     cli.getClient().sendMessage(new ChosenStudent(null));
                 }
-                } catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 in.next();
                 cli.getClient().sendMessage(new ChosenStudent(null));
             }
+            if (!cli.isSuccess()) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+        }
 
         if (cli.isSuccess()) {
             cli.setSuccess(false);

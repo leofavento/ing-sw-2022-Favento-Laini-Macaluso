@@ -31,7 +31,7 @@ public class Char12State {
             for (Color color : colors) {
                 System.out.printf("%d --> %s %n",
                         color.ordinal() + 1,
-                        color.toString().substring(0,1).toUpperCase() + color.toString().substring(1));
+                        color.toString().substring(0, 1).toUpperCase() + color.toString().substring(1));
             }
             try {
                 in.reset();
@@ -43,15 +43,23 @@ public class Char12State {
                     }
                 }
 
-            if (cli.getView().getColors().contains(chosenColor)) {
-                cli.getView().setMovableStudentsChar(null);
-                cli.getClient().sendMessage(new ChosenStudent(chosenColor));
-            } else {
-                System.out.println("Please enter a valid student.");
-            }
+                if (cli.getView().getColors().contains(chosenColor)) {
+                    cli.getClient().sendMessage(new ChosenStudent(chosenColor));
+                } else {
+                    System.out.println("Please enter a valid student.");
+                }
             } catch (InputMismatchException e) {
-            in.next();
-            System.out.println("Please enter an integer according to your choice.");
+                in.next();
+                System.out.println("Please enter an integer according to your choice.");
+            }
+            if (!cli.isSuccess()) {
+                try {
+                    synchronized (cli.getView()) {
+                        wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
