@@ -47,7 +47,7 @@ public class EffectChar11 implements ResumableState{
     public void receiveMessage(Message message, String sender) {
         if (message instanceof ChosenStudent && requestedStudent) {
             receiveStudent((ChosenStudent) message);}
-        if (message instanceof Ack && requestedAck){
+        else if (message instanceof Ack && requestedAck){
             nextState();}
     }
 

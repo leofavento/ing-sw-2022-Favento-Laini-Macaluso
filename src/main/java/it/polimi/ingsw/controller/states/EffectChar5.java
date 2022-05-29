@@ -54,7 +54,7 @@ public class EffectChar5 implements State {
                 controller.notify(ErrorMessage.INVALID_INPUT);
             }
         }
-        if (message instanceof Ack && requestedAck) {
+        else if (message instanceof Ack && requestedAck) {
             requestedAck = false;
             controller.notify(CommunicationMessage.SUCCESS);
             nextState();

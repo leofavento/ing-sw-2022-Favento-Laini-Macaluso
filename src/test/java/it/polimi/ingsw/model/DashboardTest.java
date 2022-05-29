@@ -1,10 +1,19 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.controller.CharacterController;
+import it.polimi.ingsw.controller.Controller;
+import it.polimi.ingsw.exceptions.AlreadyPlayedCharacterException;
+import it.polimi.ingsw.exceptions.InvalidInputException;
+import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.exceptions.StudentNotExistingException;
+import it.polimi.ingsw.messages.fromClient.Ack;
+import it.polimi.ingsw.messages.fromClient.ChosenTower;
+import it.polimi.ingsw.messages.fromClient.ChosenWizard;
 import it.polimi.ingsw.model.characters.Char1;
 import it.polimi.ingsw.model.characters.Char5;
 import it.polimi.ingsw.model.characters.Char9;
 import it.polimi.ingsw.model.characters.CharacterCard;
+import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -93,24 +102,53 @@ class DashboardTest {
 
     @Test
     public void testCharactersInitialization() {
-        Dashboard dashboard = new Dashboard();
+        Game game = new Game(1, 2, true);
+        Player p1 = new Player("Player1");
+        Player p2 = new Player("Player2");
+        game.addNewPlayer(p1);
+        game.addNewPlayer(p2);
+
+        Controller controller = new Controller(game);
+        CharacterController characterController = new CharacterController(controller, game, null);
+
+        controller.getState().execute();
+
+        controller.getState().receiveMessage(new ChosenTower(Tower.BLACK),"Player1");
+        controller.getState().receiveMessage(new ChosenTower(Tower.WHITE),"Player2");
+
+        controller.getState().receiveMessage(new ChosenWizard(1), "Player1");
+        controller.getState().receiveMessage(new ChosenWizard(2), "Player2");
+
+        controller.getState().receiveMessage(new Ack(), "Player1");
+        controller.getState().receiveMessage(new Ack(), "Player2");
+
 
         ArrayList<CharacterCard> array = new ArrayList<>();
         CharacterCard c1 = new Char1();
         array.add(c1);
-        CharacterCard c2 = new Char9();
-        array.add(c2);
-        CharacterCard c3 = new Char5();
-        array.add(c3);
-        dashboard.setCharacters(array);
+        CharacterCard c9 = new Char9();
+        array.add(c9);
+        CharacterCard c5 = new Char5();
+        array.add(c5);
+        game.getDashboard().setCharacters(array);
 
-        assertEquals(3, dashboard.getCharacters().length);
-        assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[1]);
-        assertNotEquals(dashboard.getCharacters()[0], dashboard.getCharacters()[2]);
-        assertNotEquals(dashboard.getCharacters()[1], dashboard.getCharacters()[2]);
+        for (int i = 0; i < 7; i++) {
+            p1.getSchoolBoard().addCoin();
+            p2.getSchoolBoard().addCoin();
+        }
 
-        c3.setActive();
-        for (CharacterCard card : dashboard.getCharacters()) {
+        game.setCurrentPlayer(p1);
+
+        assertEquals(3, game.getDashboard().getCharacters().length);
+        assertNotEquals(game.getDashboard().getCharacters()[0], game.getDashboard().getCharacters()[1]);
+        assertNotEquals(game.getDashboard().getCharacters()[0], game.getDashboard().getCharacters()[2]);
+        assertNotEquals(game.getDashboard().getCharacters()[1], game.getDashboard().getCharacters()[2]);
+
+        try{
+        characterController.applyEffect(c5.getValue());}
+        catch (NotEnoughCoinsException | InvalidInputException | AlreadyPlayedCharacterException ignored){}
+
+        for (CharacterCard card : game.getDashboard().getCharacters()) {
             if (card instanceof Char5) {
                 assertTrue(card.getActive());
             } else {

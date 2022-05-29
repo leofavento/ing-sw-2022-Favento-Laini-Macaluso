@@ -52,7 +52,7 @@ public class EffectChar12 implements ResumableState{
             requestedColor=false;
             returnStudents();
         }
-        if (message instanceof Ack && requestedAck){
+        else if (message instanceof Ack && requestedAck){
             requestedAck=false;
             nextState();
         }

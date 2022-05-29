@@ -6,6 +6,7 @@ import it.polimi.ingsw.controller.states.ActionStep1;
 import it.polimi.ingsw.exceptions.AlreadyPlayedCharacterException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
+import it.polimi.ingsw.exceptions.StudentNotExistingException;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.messages.fromClient.ChosenTower;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Char7Test {
     @Test
-    public void testChar7() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {
+    public void testChar7() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException, StudentNotExistingException {
         Game game = new Game(1, 2, true);
         Player p1 = new Player("Player1");
         Player p2 = new Player("Player2");
@@ -54,22 +55,10 @@ class Char7Test {
             p1.getSchoolBoard().addCoin();
             p2.getSchoolBoard().addCoin();
         }
-        p1.getSchoolBoard().getDiningRoom().addStudent(Color.PINK);
-        game.updateProfessors();
-        p1.getSchoolBoard().getDiningRoom().addStudent(Color.PINK);
-        game.updateProfessors();
-        p1.getSchoolBoard().getDiningRoom().addStudent(Color.GREEN);
-        game.updateProfessors();
-        p1.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
-        game.updateProfessors();
-        p2.getSchoolBoard().getDiningRoom().addStudent(Color.RED);
-        game.updateProfessors();
-        p2.getSchoolBoard().getDiningRoom().addStudent(Color.RED);
-        game.updateProfessors();
-        p2.getSchoolBoard().getDiningRoom().addStudent(Color.YELLOW);
-        game.updateProfessors();
-        p2.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
-        game.updateProfessors();
+
+        for (int i=0; i<7; i++){
+            p1.getSchoolBoard().getEntrance().extractStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0));
+        }
 
         p1.getSchoolBoard().getEntrance().addStudent(Color.BLUE);
         p1.getSchoolBoard().getEntrance().addStudent(Color.BLUE);
@@ -84,14 +73,12 @@ class Char7Test {
         characterCards.add(null);
         characterCards.add(null);
         game.getDashboard().setCharacters(characterCards);
+        characterController.setUpCharacter(char7, game.getDashboard().getBag());
         characterController.applyEffect(char7.getValue());
         assertTrue(char7.getActive());
 
-        characterController.setUpCharacter(char7, game.getDashboard().getBag());
-
         Color c1 = char7.getStudents().get(0);
         Color c2 = char7.getStudents().get(1);
-
 
         controller.getState().receiveMessage(new ChosenStudent(c1), "Player1");
         controller.getState().receiveMessage(new ChosenStudent(p1.getSchoolBoard().getEntrance().getStudents().get(0)), "Player1");
@@ -103,8 +90,8 @@ class Char7Test {
 
         controller.getState().receiveMessage(new Ack(), "Player1");
 
-        assertTrue(p1.getSchoolBoard().getEntrance().getStudents().contains(c1));
-        assertTrue(p1.getSchoolBoard().getEntrance().getStudents().contains(c2));
+        assertTrue(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(c1));
+        assertTrue(game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(c2));
 
         //end of Char7 testing
 

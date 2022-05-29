@@ -76,12 +76,17 @@ public class ResolveIsland implements State {
                 //if Island has already a tower
                 if (island.hasTower()) {
                     //put existing tower in team SchoolBoard
-                    game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();
-                }
-                //add new tower
+                    for(int i=0; i<island.getNumUnits(); i++){
+                    game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();}}
                 island.setTowers(maxTowers.get(0));
-                //remove new tower from the right team SchoolBoard
-                game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
+                for (int z=0; z<island.getNumUnits(); z++){
+                    //remove new tower from the right team SchoolBoard
+                    game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
+                    if (game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().getTowersNumber()==0){
+                        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+                        controller.check();
+                        break;}
+                    }
                 missingAcks.addAll(game.getOnlinePlayers().stream()
                         .map(Player::getNickname)
                         .collect(Collectors.toList()));

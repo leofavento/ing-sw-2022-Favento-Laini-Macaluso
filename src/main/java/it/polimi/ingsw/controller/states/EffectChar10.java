@@ -65,7 +65,7 @@ public class EffectChar10 implements State{
             requestedDiningRoomStudent=false;
             swapStudents();
         }
-        if (message instanceof Ack && requestedAck){
+        else if (message instanceof Ack && requestedAck){
             requestedAck=false;
             nextState();
         }

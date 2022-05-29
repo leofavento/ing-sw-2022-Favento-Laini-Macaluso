@@ -42,7 +42,7 @@ public class EffectChar7 implements State {
 
     @Override
     public void receiveMessage(Message message, String sender) {
-        if (message instanceof ChosenStudent && requestedCharStudent) {
+        if (message instanceof ChosenStudent && requestedCharStudent &&!requestedEntranceStudent) {
             if (!(((ChosenStudent) message).getStudent() == null)) {
                 this.CharStudent = ((ChosenStudent) message).getStudent();
                 requestedCharStudent = false;
@@ -53,12 +53,12 @@ public class EffectChar7 implements State {
                 chooseStudentFromChar();
             }
         }
-        if (message instanceof ChosenStudent && requestedEntranceStudent) {
+        else if (message instanceof ChosenStudent && requestedEntranceStudent && !requestedCharStudent) {
             this.EntranceStudent = ((ChosenStudent) message).getStudent();
             requestedEntranceStudent = false;
             swapStudents();
         }
-        if (message instanceof Ack && requestedAck) {
+        else if (message instanceof Ack && requestedAck) {
             requestedAck = false;
             nextState();
         }

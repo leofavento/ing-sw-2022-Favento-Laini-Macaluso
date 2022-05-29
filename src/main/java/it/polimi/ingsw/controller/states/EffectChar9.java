@@ -52,7 +52,7 @@ public class EffectChar9 implements State{
             requestedAck=true;
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
-        if (message instanceof Ack && requestedAck){
+        else if (message instanceof Ack && requestedAck){
             requestedAck=false;
             nextState();
         }
