@@ -87,7 +87,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         close();
     }
 
-    public void sendMessage(Message message) {
+    public synchronized void sendMessage(Message message) {
         try {
             output.reset();
             output.writeObject(message);
@@ -119,6 +119,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         } else if (message instanceof JoinAvailableGame) {
             JoinAvailableGame joinAvailableGame = (JoinAvailableGame) message;
             joinAvailableGame(joinAvailableGame);
+        } else if (message instanceof Pong) {
         } else if (isPlaying) {
             gameHandler.readMessage(nickname, message);
         }
