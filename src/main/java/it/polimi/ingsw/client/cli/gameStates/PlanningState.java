@@ -14,29 +14,29 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class PlanningState implements State{
+public class PlanningState implements State {
     private final CLI cli;
 
-    public PlanningState(CLI cli){
+    public PlanningState(CLI cli) {
         this.cli = cli;
     }
 
     @Override
-    public void run(){
+    public void run() {
         Scanner in = new Scanner(System.in);
 
         cli.getClient().sendMessage(new Ack());
-        try{
-            synchronized (this){
+        try {
+            synchronized (this) {
                 wait();
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         printCompleteBoard();
 
-        while(!cli.isSuccess()){
+        while (!cli.isSuccess()) {
             int selection;
             Assistant selectedAssistant;
 
@@ -48,8 +48,8 @@ public class PlanningState implements State{
             ArrayList<Assistant> availableAssistants = cli.getView().getAvailableAssistants();
             System.out.println("These are the available assistants");
             System.out.println("|---NAME------VALUE----MOVEMENTS---");
-            for(int i=0; i<availableAssistants.size(); i++){
-                System.out.println(i+1 + ":   " + availableAssistants.get(i).toString() +
+            for (int i = 0; i < availableAssistants.size(); i++) {
+                System.out.println(i + 1 + ":   " + availableAssistants.get(i).toString() +
                         "           " + availableAssistants.get(i).getValue() +
                         "           " + availableAssistants.get(i).getMovements());
             }
@@ -84,9 +84,8 @@ public class PlanningState implements State{
             }
 
 
-
         }
-        if(cli.isSuccess()){
+        if (cli.isSuccess()) {
             cli.setSuccess(false);
             cli.getView().setRoundNumber(1);
         }
@@ -95,7 +94,7 @@ public class PlanningState implements State{
     private void printCompleteBoard() {
         CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
         IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
-        SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers());
+        SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers(), cli.getView().isExpertMode());
         System.out.println("The order for the first round was extracted randomly:");
         if (cli.isFirstPlayer()) {
             PlayersOrderRenderer.playersOrderRenderer(cli.getView().getPlayers());

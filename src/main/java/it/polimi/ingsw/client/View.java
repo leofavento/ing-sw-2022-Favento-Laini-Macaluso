@@ -4,6 +4,7 @@ import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,7 @@ public class View {
     private EndOfGameReason endOfGameReason;
     private ErrorMessage lastErrorMessage;
     private boolean requiredDestination;
+    private PlayerStatus currentStatus;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -195,4 +197,12 @@ public class View {
     public void setMovableStudentsChar(ArrayList<Color> movableStudentsChar) {this.movableStudentsChar = movableStudentsChar;}
 
     public ArrayList<Color> getColors(){return colors;}
+
+    public void setCurrentStatus(PlayerStatus currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
+    public PlayerStatus getCurrentStatus() {
+        return currentStatus;
+    }
 }

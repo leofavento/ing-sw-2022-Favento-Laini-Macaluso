@@ -153,21 +153,19 @@ public class ActionStep1 implements ResumableState {
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
             if (movedStudents == ((game.getNumberOfPlayers() == 3) ? 4 : 3)) {
                 notifyStatus(PlayerStatus.END_MOVE_1);
-            } else {
-                controller.notify(CommunicationMessage.STUDENT_MOVED);
             }
         } catch (FullDiningRoomException e) {
             controller.notify(ErrorMessage.FULL_DINING_ROOM);
             requestedDestination = false;
-            requestedStudent = true;
+            checkStudents();
         } catch (StudentNotExistingException e) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
             requestedDestination = false;
-            requestedStudent = true;
+            checkStudents();
         } catch (IndexOutOfBoundsException e) {
             controller.notify(ErrorMessage.INVALID_INPUT);
             requestedDestination = false;
-            requestedStudent = true;
+            checkStudents();
         }
     }
 

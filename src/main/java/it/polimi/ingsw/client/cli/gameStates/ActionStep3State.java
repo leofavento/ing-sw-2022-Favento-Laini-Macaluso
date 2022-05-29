@@ -7,6 +7,7 @@ import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.model.Cloud;
 import it.polimi.ingsw.model.Color;
+import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -22,7 +23,7 @@ public class ActionStep3State implements State{
     @Override
     public void run(){
         int selection;
-
+        cli.getView().setCurrentStatus(PlayerStatus.MOVE_3);
         cli.getClient().sendMessage(new Ack());
 
         try{
@@ -51,12 +52,14 @@ public class ActionStep3State implements State{
 
                 cli.getClient().sendMessage(new ChosenCloud(selection-1));
 
-                try{
-                    synchronized (this) {
-                        wait();
+                if (!cli.isSuccess()) {
+                    try {
+                        synchronized (this) {
+                            wait();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException e){
-                    e.printStackTrace();
                 }
             } catch (InputMismatchException e){
                 System.out.println("Please enter a valid number.");

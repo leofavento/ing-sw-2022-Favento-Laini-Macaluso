@@ -7,21 +7,23 @@ import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenSteps;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.player.Player;
+import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class ActionStep2State implements State{
+public class ActionStep2State implements State {
     private final CLI cli;
 
-    public ActionStep2State(CLI cli){
+    public ActionStep2State(CLI cli) {
         this.cli = cli;
     }
 
     @Override
-    public void run(){
+    public void run() {
         int steps;
 
+        cli.getView().setCurrentStatus(PlayerStatus.MOVE_2);
         cli.getClient().sendMessage(new Ack());
 
         if (cli.getView().getMotherNatureSteps() == 0) {
@@ -34,13 +36,18 @@ public class ActionStep2State implements State{
             }
         }
 
-        while (!cli.isSuccess()){
+        while (!cli.isSuccess()) {
             Scanner in = new Scanner(System.in);
 
             steps = cli.getView().getMotherNatureSteps();
 
-            SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers());
+            SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers(), cli.getView().isExpertMode());
             IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
+
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
 
             System.out.printf("How many steps do you want MotherNature to make? Choose a number between 1 and %d: \n", steps);
 
@@ -50,12 +57,14 @@ public class ActionStep2State implements State{
 
                 cli.getClient().sendMessage(new ChosenSteps(steps));
 
-                try {
-                    synchronized (this) {
-                        wait();
+                if (cli.getView().getCurrentStatus() == PlayerStatus.MOVE_2) {
+                    try {
+                        synchronized (this) {
+                            wait();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid number.");

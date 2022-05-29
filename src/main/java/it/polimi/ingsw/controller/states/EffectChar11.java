@@ -9,7 +9,7 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char11;
 
-public class EffectChar11 implements ResumableState{
+public class EffectChar11 implements State {
 
     Game game;
     Controller controller;
@@ -35,7 +35,7 @@ public class EffectChar11 implements ResumableState{
 
     @Override
     public void execute() {
-        requestedStudent=true;
+        requestedStudent = true;
         //pick a student on this card
         controller.notify(new MovableStudentsChar(char11.getStudents()));
     }
@@ -43,30 +43,25 @@ public class EffectChar11 implements ResumableState{
     @Override
     public void receiveMessage(Message message, String sender) {
         if (message instanceof ChosenStudent && requestedStudent) {
-            receiveStudent((ChosenStudent) message);}
-        else if (message instanceof Ack && requestedAck){
-            nextState();}
+            receiveStudent((ChosenStudent) message);
+        } else if (message instanceof Ack && requestedAck) {
+            nextState();
+        }
     }
 
     private void receiveStudent(ChosenStudent message) {
         Color student = message.getStudent();
         if (!(char11.getStudents().contains(student))) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
-        }
-        else {
-            this.color=student;
-            requestedStudent=false;
+        } else {
+            this.color = student;
+            requestedStudent = false;
             game.getCurrentPlayer().getSchoolBoard().getDiningRoom().addStudent(color);
             char11.removeStudent(color);
             char11.addStudent(game.getDashboard().getBag().drawStudent());
-            requestedAck=true;
+            requestedAck = true;
             controller.notify(CommunicationMessage.SUCCESS);
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
-    }
-
-    @Override
-    public void resume() {
-
     }
 }

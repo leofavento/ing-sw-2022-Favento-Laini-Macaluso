@@ -13,10 +13,7 @@ import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char12;
 import it.polimi.ingsw.model.player.Player;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-public class EffectChar12 implements ResumableState {
+public class EffectChar12 implements State {
 
     Game game;
     Controller controller;
@@ -71,11 +68,5 @@ public class EffectChar12 implements ResumableState {
         }
         requestedAck = true;
         controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
-    }
-
-
-    @Override
-    public void resume() {
-
     }
 }

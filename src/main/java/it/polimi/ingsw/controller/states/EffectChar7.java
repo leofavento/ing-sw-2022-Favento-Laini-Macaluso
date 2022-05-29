@@ -43,7 +43,7 @@ public class EffectChar7 implements State {
 
     @Override
     public void receiveMessage(Message message, String sender) {
-        if (message instanceof ChosenStudent && requestedCharStudent &&!requestedEntranceStudent) {
+        if (message instanceof ChosenStudent && requestedCharStudent && !requestedEntranceStudent) {
             if (((ChosenStudent) message).getStudent() != null) {
                 this.charStudent = ((ChosenStudent) message).getStudent();
                 requestedCharStudent = false;
@@ -53,13 +53,11 @@ public class EffectChar7 implements State {
                 requestedCharStudent = false;
                 chooseStudentFromChar();
             }
-        }
-        else if (message instanceof ChosenStudent && requestedEntranceStudent && !requestedCharStudent) {
+        } else if (message instanceof ChosenStudent && requestedEntranceStudent && !requestedCharStudent) {
             this.entranceStudent = ((ChosenStudent) message).getStudent();
             requestedEntranceStudent = false;
             swapStudents();
-        }
-        else if (message instanceof Ack && requestedAck) {
+        } else if (message instanceof Ack && requestedAck) {
             requestedAck = false;
             nextState();
         }
@@ -88,7 +86,6 @@ public class EffectChar7 implements State {
             char7.addStudent(entranceStudent);
             game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(charStudent);
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
-            controller.notify(CommunicationMessage.STUDENT_MOVED);
             i++;
         } catch (StudentNotExistingException e) {
             controller.notify(ErrorMessage.INVALID_INPUT);
