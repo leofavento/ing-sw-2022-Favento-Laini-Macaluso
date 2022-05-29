@@ -4,7 +4,6 @@ import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

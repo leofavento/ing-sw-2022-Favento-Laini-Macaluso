@@ -39,8 +39,7 @@ public class EffectChar9 implements State{
     @Override
     public void execute() {
         requestedColor=true;
-        ArrayList<Color> colors = new ArrayList<>(Arrays.asList(Color.values()));
-        controller.notify(new SelectColor(colors));
+        controller.notify(new SelectColor());
     }
 
     @Override

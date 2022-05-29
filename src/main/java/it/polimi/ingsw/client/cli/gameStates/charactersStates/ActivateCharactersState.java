@@ -84,7 +84,8 @@ public class ActivateCharactersState {
 
                 }
                 case Char12 -> {
-
+                    Char12State charState = new Char12State();
+                    charState.run(cli);
                 }
             }
         }

@@ -41,8 +41,7 @@ public class EffectChar12 implements ResumableState{
     @Override
     public void execute() {
         requestedColor=true;
-        ArrayList<Color> colors = new ArrayList<>(Arrays.asList(Color.values()));
-        controller.notify(new SelectColor(colors));
+        controller.notify(new SelectColor());
     }
 
     @Override

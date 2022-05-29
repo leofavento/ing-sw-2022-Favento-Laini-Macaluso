@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ public class View {
     private boolean isHost;
     private ArrayList<Color> movableStudents;
     private ArrayList<Color> movableStudentsChar;
+    private final ArrayList<Color> colors = new ArrayList<>(Arrays.asList(Color.values()));
     private int motherNatureSteps;
     private Tower winnerTeam;
     private ArrayList<String> winners;
@@ -192,4 +194,5 @@ public class View {
 
     public void setMovableStudentsChar(ArrayList<Color> movableStudentsChar) {this.movableStudentsChar = movableStudentsChar;}
 
+    public ArrayList<Color> getColors(){return colors;}
 }

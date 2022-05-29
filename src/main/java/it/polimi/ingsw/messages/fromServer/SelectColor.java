@@ -11,15 +11,8 @@ import java.util.ArrayList;
  * Message sent by the server to the player to select a color.
  */
 public class SelectColor implements FromServerMessage {
-    private final ArrayList<Color> colors;
 
-    public SelectColor(ArrayList<Color> colors) {
-        this.colors = colors;
-    }
-
-    public ArrayList<Color> getColors() {
-        return colors;
-    }
+    public SelectColor(){}
 
     @Override
     public void receiveMessage(MessageReceiver messageReceiver) {

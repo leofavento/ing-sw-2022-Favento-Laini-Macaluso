@@ -231,7 +231,9 @@ public class MessageReceiver {
     }
 
     public void receiveMessage(SelectColor message) {
-        //TODO
+        synchronized (cli.getGameState()) {
+            cli.getGameState().notifyAll();
+        }
     }
 
     public void receiveMessage(WhereToMove message) {
