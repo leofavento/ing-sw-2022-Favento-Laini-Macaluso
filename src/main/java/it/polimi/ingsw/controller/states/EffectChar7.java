@@ -20,7 +20,8 @@ public class EffectChar7 implements State {
     boolean requestedCharStudent = false;
     boolean requestedEntranceStudent = false;
     int i = 0;
-    Color CharStudent, EntranceStudent;
+    Color charStudent;
+    Color entranceStudent;
 
     public EffectChar7(Game game, Controller controller, ResumableState previousState, Char7 char7) {
         this.game = game;
@@ -43,8 +44,8 @@ public class EffectChar7 implements State {
     @Override
     public void receiveMessage(Message message, String sender) {
         if (message instanceof ChosenStudent && requestedCharStudent &&!requestedEntranceStudent) {
-            if (!(((ChosenStudent) message).getStudent() == null)) {
-                this.CharStudent = ((ChosenStudent) message).getStudent();
+            if (((ChosenStudent) message).getStudent() != null) {
+                this.charStudent = ((ChosenStudent) message).getStudent();
                 requestedCharStudent = false;
                 chooseStudentFromEntrance();
             } else {
@@ -54,7 +55,7 @@ public class EffectChar7 implements State {
             }
         }
         else if (message instanceof ChosenStudent && requestedEntranceStudent && !requestedCharStudent) {
-            this.EntranceStudent = ((ChosenStudent) message).getStudent();
+            this.entranceStudent = ((ChosenStudent) message).getStudent();
             requestedEntranceStudent = false;
             swapStudents();
         }
@@ -82,10 +83,12 @@ public class EffectChar7 implements State {
 
     private void swapStudents() {
         try {
-            game.getCurrentPlayer().getSchoolBoard().getEntrance().extractStudent(EntranceStudent);
-            char7.removeStudent(CharStudent);
-            char7.addStudent(EntranceStudent);
-            game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(CharStudent);
+            game.getCurrentPlayer().getSchoolBoard().getEntrance().extractStudent(entranceStudent);
+            char7.removeStudent(charStudent);
+            char7.addStudent(entranceStudent);
+            game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(charStudent);
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(CommunicationMessage.STUDENT_MOVED);
             i++;
         } catch (StudentNotExistingException e) {
             controller.notify(ErrorMessage.INVALID_INPUT);

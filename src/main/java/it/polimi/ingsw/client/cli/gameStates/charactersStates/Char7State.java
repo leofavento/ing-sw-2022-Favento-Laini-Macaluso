@@ -52,6 +52,13 @@ public class Char7State {
                 }
                 if (selection == 0) {
                     cli.getClient().sendMessage(new ChosenStudent(null));
+                    while (!cli.isSuccess()) {
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     break;
                 } else if (cli.getView().getMovableStudentsChar().contains(chosenStudent)) {
                     cli.getView().setMovableStudentsChar(null);
@@ -75,6 +82,12 @@ public class Char7State {
                     e.printStackTrace();
                 }
             }
+
+            SchoolBoardRenderer.renderSchoolBoard(Objects.requireNonNull(cli.getView().getPlayers()
+                    .stream()
+                    .filter(p -> Objects.equals(p.getNickname(), cli.getClient().getNickname()))
+                    .findAny()
+                    .orElse(null)));
 
             System.out.println("Select a student to move from your entrance to the Char card: ");
             for (Color color : Color.values()) {
@@ -103,7 +116,7 @@ public class Char7State {
                 System.out.println("Please enter an integer according to your choice.");
             }
 
-            if (cli.getView().getMovableStudentsChar() == null) {
+            if (cli.getView().getMovableStudentsChar() == null && !cli.isSuccess()) {
                 try {
                     synchronized (cli.getGameState()) {
                         wait();
