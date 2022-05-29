@@ -118,21 +118,12 @@ public class ActionStep3 implements ResumableState {
             island.resetExtraInfluences();
         }
 
-        //Put back in the right place the Professor moved with the character 2
         for (CharacterCard character: game.getDashboard().getCharacters()){
             character.setInactive();
             character.resetUsedBy();
         }
         game.getDashboard().setPlayedCharacter(null);
 
-        for (Player player: game.getOnlinePlayers()) {
-            for (Professor professor:player.getSchoolBoard().getProfessors()) {
-                if (!(professor.getOwner()==player)) {
-                    professor.getOwner().getSchoolBoard().addProfessor(professor);
-                    player.getSchoolBoard().removeProfessor(professor);
-                }
-            }
-        }
         //Reset character9 effect
         game.getDashboard().resetDoNotCountColor();}
     }

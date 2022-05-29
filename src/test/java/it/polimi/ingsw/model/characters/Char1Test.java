@@ -13,6 +13,8 @@ import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Char1Test {
@@ -69,6 +71,12 @@ class Char1Test {
 
         //Char1 testing
         CharacterCard char1 = new Char1();
+        ArrayList<CharacterCard> characterCards = new ArrayList<>();
+        characterCards.add(char1);
+        characterCards.add(null);
+        characterCards.add(null);
+        game.getDashboard().setCharacters(characterCards);
+
         game.getDashboard().getBag().refill(10);
 
         char1.setUp(game.getDashboard().getBag());

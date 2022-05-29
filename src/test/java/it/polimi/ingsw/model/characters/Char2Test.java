@@ -15,6 +15,8 @@ import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Char2Test {
@@ -68,20 +70,56 @@ class Char2Test {
         p2.getSchoolBoard().getDiningRoom().addStudent(Color.BLUE);
         game.updateProfessors();
 
+        assertEquals(1, p1.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.PINK)
+                .count());
+        assertEquals(1, p1.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.GREEN)
+                .count());
+        assertEquals(1, p1.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.BLUE)
+                .count());
+        assertEquals(1, p2.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.RED)
+                .count());
+        assertEquals(1, p2.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.YELLOW)
+                .count());
+
         game.setCurrentPlayer(p2);
 
         controller.setState(new ActionStep1(game, controller));
+
+        p2.getSchoolBoard().getDiningRoom().addStudent(Color.GREEN);
+        game.updateProfessors();
+        // char 2 not activated, so p2 doesn't control GREEN professor (both p1 and p2 have now 1 GREEN student)
+        assertEquals(1, p1.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.GREEN)
+                .count());
+        assertEquals(0, p2.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.GREEN)
+                .count());
         //Char2 testing
         CharacterCard char2 = new Char2();
-
+        ArrayList<CharacterCard> characterCards = new ArrayList<>();
+        characterCards.add(char2);
+        characterCards.add(null);
+        characterCards.add(null);
+        game.getDashboard().setCharacters(characterCards);
         characterController.applyEffect(char2.getValue());
         assertTrue(char2.getActive());
 
-        for (int i=0; i<5; i++){
-            if (game.getDashboard().getProfessors()[i].getColor()==Color.BLUE){
-                assertTrue(p2.getSchoolBoard().getProfessors().contains(game.getDashboard().getProfessors()[i]));
-            }
-        }
+        p2.getSchoolBoard().getDiningRoom().addStudent(Color.PINK);
+        game.updateProfessors();
+        p2.getSchoolBoard().getDiningRoom().addStudent(Color.PINK);
+        game.updateProfessors();
+        // p1 and p2 have both 2 PINK students but p2 activated Char2, so he controls PINK professor
+        assertEquals(1, p2.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.PINK)
+                .count());
+        assertEquals(0, p1.getSchoolBoard().getProfessors().stream()
+                .filter(p -> p.getColor() == Color.PINK)
+                .count());
 
         //end of Char2 testing
     }

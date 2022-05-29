@@ -16,6 +16,8 @@ import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Char12Test {
@@ -80,10 +82,13 @@ class Char12Test {
 
         //Char12 testing
         CharacterCard char12 = new Char12();
+        ArrayList<CharacterCard> characterCards = new ArrayList<>();
+        characterCards.add(char12);
+        characterCards.add(null);
+        characterCards.add(null);
+        game.getDashboard().setCharacters(characterCards);
         characterController.applyEffect(char12.getValue());
         assertTrue(char12.getActive());
-
-        characterController.applyEffect(char12.getValue());
 
         controller.getState().receiveMessage(new ChosenStudent(Color.RED), "Player1");
 

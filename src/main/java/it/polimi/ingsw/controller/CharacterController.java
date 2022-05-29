@@ -83,19 +83,6 @@ public class CharacterController {
     public void activate(Char2 c) {
         //during this turn, you take control of any number of Professors even if you have
         //the same number of students as the player who currently controls them
-        for (int i = 0; i < 5; i++) {
-            if (!(game.getDashboard().getProfessors()[i].getOwner() == game.getCurrentPlayer())) {
-                Professor p = game.getDashboard().getProfessors()[i];
-                int temp;
-                Color color = game.getDashboard().getProfessors()[i].getColor();
-                temp = game.getDashboard().getProfessors()[i].getOwner().getSchoolBoard().getDiningRoom().getStudentsNumber(color);
-                if (temp == game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(color)) {
-                    game.getCurrentPlayer().getSchoolBoard().addProfessor(p);
-                    game.getDashboard().getProfessors()[i].getOwner().getSchoolBoard().removeProfessor(p);
-                }
-            }
-        }
-        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     public void activate(Char3 c) {

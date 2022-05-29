@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.characters.CharacterEnum;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.EnumMap;
@@ -103,8 +104,23 @@ public class Game {
                     .filter(p -> p.getSchoolBoard().getDiningRoom().getStudentsNumber(color) == max)
                     .collect(Collectors.toList());
 
+            if (dashboard.getPlayedCharacter() != null
+                    && dashboard.getPlayedCharacter().getValue() == CharacterEnum.Char2
+                    && newOwners.contains(currentPlayer)
+                    && max > 0) {
+                if (dashboard.getProfessors()[color.ordinal()].getOwner() != null) {
+                    dashboard.getProfessors()[color.ordinal()]
+                            .getOwner()
+                            .getSchoolBoard()
+                            .removeProfessor(dashboard.getProfessors()[color.ordinal()]);
+                }
+                dashboard.getProfessors()[color.ordinal()]
+                        .changeOwner(currentPlayer);
+                currentPlayer.getSchoolBoard()
+                        .addProfessor(dashboard.getProfessors()[color.ordinal()]);
+            }
             // if the former owner of the professor is not in the list AND there is only one newOwner, proceed to change the owner
-            if (!newOwners.contains(dashboard.getProfessors()[color.ordinal()].getOwner()) && newOwners.size() == 1) {
+            else if (!newOwners.contains(dashboard.getProfessors()[color.ordinal()].getOwner()) && newOwners.size() == 1) {
                 // remove Professor from former owner's SchoolBoard
                 if (dashboard.getProfessors()[color.ordinal()].getOwner() != null) {
                     dashboard.getProfessors()[color.ordinal()]

@@ -110,7 +110,13 @@ class DashboardTest {
         assertNotEquals(dashboard.getCharacters()[1], dashboard.getCharacters()[2]);
 
         c3.setActive();
-        assertSame(dashboard.getPlayedCharacter(), c3);
+        for (CharacterCard card : dashboard.getCharacters()) {
+            if (card instanceof Char5) {
+                assertTrue(card.getActive());
+            } else {
+                assertFalse(card.getActive());
+            }
+        }
     }
 
     @Test

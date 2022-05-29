@@ -16,6 +16,8 @@ import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Char3Test {
@@ -89,6 +91,11 @@ class Char3Test {
 
         //Char3 testing
         CharacterCard char3 = new Char3();
+        ArrayList<CharacterCard> characterCards = new ArrayList<>();
+        characterCards.add(char3);
+        characterCards.add(null);
+        characterCards.add(null);
+        game.getDashboard().setCharacters(characterCards);
         characterController.applyEffect(char3.getValue());
         assertTrue(char3.getActive());
 
