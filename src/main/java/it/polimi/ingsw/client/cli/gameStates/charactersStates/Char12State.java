@@ -17,7 +17,7 @@ public class Char12State {
             if (cli.getView().getColors() == null) {
                 try {
                     synchronized (cli.getView()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -55,7 +55,7 @@ public class Char12State {
             if (!cli.isSuccess()) {
                 try {
                     synchronized (cli.getView()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

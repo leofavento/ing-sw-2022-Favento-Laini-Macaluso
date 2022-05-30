@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.cli.gameStates;
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
+import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenSteps;
 import it.polimi.ingsw.model.Assistant;
@@ -49,14 +50,28 @@ public class ActionStep2State implements State {
                 cli.getView().setLastErrorMessage(null);
             }
 
-            System.out.printf("How many steps do you want MotherNature to make? Choose a number between 1 and %d: \n", steps);
+            if (cli.getView().getDashboard().getAdditionalMNMovements() > 0) {
+                System.out.printf("How many steps do you want MotherNature to make? Choose a number between 1 and %d %s: %n",
+                        steps + cli.getView().getDashboard().getAdditionalMNMovements(),
+                        "(additional Mother Nature movements included)");
+            } else {
+                System.out.printf("How many steps do you want MotherNature to make? Choose a number between 1 and %d: %n", steps);
+            }
+            if (cli.getView().isExpertMode() && cli.getView().getDashboard().getPlayedCharacter() == null) {
+                System.out.println("Otherwise, type 0 to activate a character.");
+            }
 
             try {
                 in.reset();
                 steps = in.nextInt();
 
-                cli.getClient().sendMessage(new ChosenSteps(steps));
-
+                if (cli.getView().isExpertMode() && steps == 0 && cli.getView().getDashboard().getPlayedCharacter() == null) {
+                    ActivateCharactersState activateCharacters = new ActivateCharactersState();
+                    activateCharacters.run(cli);
+                    continue;
+                } else {
+                    cli.getClient().sendMessage(new ChosenSteps(steps));
+                }
                 if (cli.getView().getCurrentStatus() == PlayerStatus.MOVE_2) {
                     try {
                         synchronized (this) {

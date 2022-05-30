@@ -5,6 +5,7 @@ import it.polimi.ingsw.messages.fromClient.UseCharacterEffect;
 import it.polimi.ingsw.model.characters.CharacterEnum;
 
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ActivateCharactersState {
@@ -23,9 +24,13 @@ public class ActivateCharactersState {
 
             System.out.println("0 --> go back to your turn");
             for (int i = 0; i < 3; i++) {
-                System.out.printf("%d --> activate %s: " + (i + 1) + "%n",
-                        cli.getView().getDashboard().getCharacters()[i].getValue());
+                System.out.println((i+1) + " --> activate " +
+                        cli.getView().getDashboard().getCharacters()[i].getValue() +
+                        " (" + cli.getView().getDashboard().getCharacters()[i].getCost() + " coins required)");
             }
+            System.out.println("You have " + Objects.requireNonNull(cli.getView().getPlayers().stream()
+                    .filter(p -> Objects.equals(p.getNickname(), cli.getClient().getNickname()))
+                    .findAny().orElse(null)).getSchoolBoard().getCoins() + " coins.");
 
             try {
                 choice = in.nextInt();
@@ -38,14 +43,16 @@ public class ActivateCharactersState {
             } catch (InputMismatchException e) {
                 in.next();
                 System.out.println("You have to enter an integer.");
+                continue;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Please enter a valid number.");
+                continue;
             }
 
             if (!cli.isSuccess()) {
                 try {
                     synchronized (cli.getGameState()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

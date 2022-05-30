@@ -79,6 +79,7 @@ public class ActionStep3 implements ResumableState {
                         .map(Player::getNickname)
                         .collect(Collectors.toList()));
                 controller.notify(new EndOfPlayerRound(game.getRoundNumber(), game.getCurrentPlayer().getNickname()));
+                controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
             }
         } catch (IndexOutOfBoundsException e) {
             controller.notify(ErrorMessage.INVALID_INPUT);

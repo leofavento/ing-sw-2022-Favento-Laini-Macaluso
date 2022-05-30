@@ -70,6 +70,7 @@ public class CharacterController {
             selectedCard.setUsedBy(game.getCurrentPlayer().getNickname());
             game.getDashboard().setPlayedCharacter(selectedCard);
             selectedCard.activate(this);
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }
     }
 

@@ -19,7 +19,7 @@ public class Char1State {
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
                     synchronized (cli.getGameState()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -65,7 +65,7 @@ public class Char1State {
             if (!cli.getView().getRequiredDestination()) {
                 try {
                     synchronized (cli.getGameState()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -93,7 +93,7 @@ public class Char1State {
 
             try {
                 synchronized (cli.getGameState()) {
-                    wait();
+                    cli.getGameState().wait();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

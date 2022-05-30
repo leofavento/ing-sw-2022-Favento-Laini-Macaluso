@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
+import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
 import it.polimi.ingsw.controller.states.ActionStep3;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
@@ -45,12 +46,21 @@ public class ActionStep3State implements State{
             }
 
             System.out.println("These are the available clouds, choose the one you want to get the students from: ");
+            if (cli.getView().isExpertMode() && cli.getView().getDashboard().getPlayedCharacter() == null) {
+                System.out.println("Otherwise, type 0 to activate a character.");
+            }
 
             try{
                 in.reset();
                 selection = in.nextInt();
 
-                cli.getClient().sendMessage(new ChosenCloud(selection-1));
+                if (cli.getView().isExpertMode() && selection == 0 && cli.getView().getDashboard().getPlayedCharacter() == null) {
+                    ActivateCharactersState activateCharacters = new ActivateCharactersState();
+                    activateCharacters.run(cli);
+                    continue;
+                } else {
+                    cli.getClient().sendMessage(new ChosenCloud(selection - 1));
+                }
 
                 if (!cli.isSuccess()) {
                     try {

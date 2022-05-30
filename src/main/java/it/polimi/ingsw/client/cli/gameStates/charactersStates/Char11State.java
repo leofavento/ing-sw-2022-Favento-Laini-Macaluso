@@ -17,7 +17,7 @@ public class Char11State {
         while (cli.getView().getMovableStudentsChar() == null) {
             try {
                 synchronized (cli.getGameState()) {
-                    wait();
+                    cli.getGameState().wait();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -57,7 +57,7 @@ public class Char11State {
             }
             if (!cli.isSuccess()) {
                 try {
-                    wait();
+                    cli.getGameState().wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

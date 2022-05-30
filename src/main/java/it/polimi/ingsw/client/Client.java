@@ -45,7 +45,7 @@ public class Client implements Runnable {
         this.messageReceiver = messageReceiver;
     }
 
-    public void sendMessage(Message message) {
+    public synchronized void sendMessage(Message message) {
         try {
             synchronized (output) {
                 output.writeObject(message);

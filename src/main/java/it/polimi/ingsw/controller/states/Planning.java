@@ -107,6 +107,7 @@ public class Planning implements ResumableState {
                 requestedAssistant = false;
                 playedAssistants.put(game.getCurrentPlayer(), assistant);
                 controller.notify(new PlayedAssistant(assistant, game.getCurrentPlayer().getNickname()));
+                notifyStatus(PlayerStatus.END_PLANNING);
                 game.setNextPlayer();
                 if (! playedAssistants.containsKey(game.getCurrentPlayer())) {
                     notifyStatus(PlayerStatus.PLANNING);
@@ -114,7 +115,6 @@ public class Planning implements ResumableState {
                     controller.updateTurnOrder();
                     game.setCurrentPlayer(game.getOnlinePlayers().get(0));
                     controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
-                    notifyStatus(PlayerStatus.END_PLANNING);
                 }
             } else {
                 controller.notify(ErrorMessage.INVALID_ASSISTANT);
@@ -181,11 +181,7 @@ public class Planning implements ResumableState {
      */
     private void setStatus(PlayerStatus currPlayerStatus) {
         for (Player player : game.getOnlinePlayers()) {
-            if (playedAssistants.containsKey(player)) {
-                player.setStatus(PlayerStatus.END_PLANNING);
-            } else {
-                player.setStatus(PlayerStatus.WAITING);
-            }
+            player.setStatus(PlayerStatus.WAITING);
         }
         game.getCurrentPlayer().setStatus(currPlayerStatus);
     }

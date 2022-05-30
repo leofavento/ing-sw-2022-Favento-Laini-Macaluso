@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
+import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
@@ -51,6 +52,9 @@ public class ActionStep1State implements State {
             }
 
             System.out.println("Select a student to move, these are the movable students (type the corresponding color number): ");
+            if (cli.getView().isExpertMode() && cli.getView().getDashboard().getPlayedCharacter() == null) {
+                System.out.println("Otherwise, type 0 to activate a character.");
+            }
             for (Color color : Color.values()) {
                 System.out.printf("%d --> %s: " + movableStudents.stream().filter(a -> a == color).count() + "%n",
                         color.ordinal() + 1,
@@ -66,7 +70,11 @@ public class ActionStep1State implements State {
                         chosenStudent = color;
                     }
                 }
-                if (cli.getView().getMovableStudents().contains(chosenStudent)) {
+                if (cli.getView().isExpertMode() && selection == 0 && cli.getView().getDashboard().getPlayedCharacter() == null) {
+                    ActivateCharactersState activateCharacters = new ActivateCharactersState();
+                    activateCharacters.run(cli);
+                    continue;
+                } else if (cli.getView().getMovableStudents().contains(chosenStudent)) {
                     cli.getClient().sendMessage(new ChosenStudent(chosenStudent));
                 } else {
                     cli.getClient().sendMessage(new ChosenStudent(null));

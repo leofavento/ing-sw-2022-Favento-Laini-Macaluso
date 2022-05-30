@@ -232,7 +232,6 @@ public class GameHandler implements Observer<Message> {
         } else if (message instanceof AvailableAssistants) {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof PlayedAssistant) {
-            sendMessageByNickname(nickCurrentPlayer, CommunicationMessage.SUCCESS);
             sendToAllExcept(nickCurrentPlayer, message);
         } else if (message instanceof UpdateBoard) {
             broadcastMessage(message);

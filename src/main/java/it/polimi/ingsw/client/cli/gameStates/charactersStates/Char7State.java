@@ -19,7 +19,7 @@ public class Char7State {
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
                     synchronized (cli.getView()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -77,7 +77,7 @@ public class Char7State {
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
                     synchronized (cli.getView()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -121,7 +121,7 @@ public class Char7State {
             if (cli.getView().getMovableStudentsChar() == null && !cli.isSuccess()) {
                 try {
                     synchronized (cli.getGameState()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

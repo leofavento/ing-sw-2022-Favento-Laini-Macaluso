@@ -16,7 +16,7 @@ public class Char3State {
             if (!cli.getView().getRequiredDestination()) {
                 try {
                     synchronized (cli.getGameState()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -41,7 +41,7 @@ public class Char3State {
             if (!cli.isSuccess()) {
                 try {
                     synchronized (cli.getGameState()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

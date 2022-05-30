@@ -3,6 +3,7 @@ package it.polimi.ingsw.client;
 import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.fromServer.ErrorMessage;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 

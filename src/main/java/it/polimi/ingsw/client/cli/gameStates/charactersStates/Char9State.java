@@ -55,7 +55,7 @@ public class Char9State {
             if (!cli.isSuccess()) {
                 try {
                     synchronized (cli.getView()) {
-                        wait();
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

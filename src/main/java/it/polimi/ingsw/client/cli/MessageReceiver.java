@@ -123,6 +123,11 @@ public class MessageReceiver {
         } else if (playerStatus == PlayerStatus.PLANNING) {
             new Thread(new StateManager(cli, new PlanningState(cli))).start();
         } else if (playerStatus == PlayerStatus.END_PLANNING) {
+            synchronized (cli.getGameState()) {
+                cli.getView().setCurrentStatus(PlayerStatus.END_PLANNING);
+                cli.setSuccess(true);
+                cli.getGameState().notifyAll();
+            }
             System.out.println("You have completed your Planning phase decisions. Please wait a moment...");
             cli.getClient().sendMessage(new Ack());
         } else if (playerStatus == PlayerStatus.MOVE_1) {
@@ -193,7 +198,6 @@ public class MessageReceiver {
         } else {
             System.out.println("The round of " + message.getNickname() + " finished.");
         }
-        cli.getClient().sendMessage(new Ack());
     }
 
     public void receiveMessage(EndOfRound message) {
