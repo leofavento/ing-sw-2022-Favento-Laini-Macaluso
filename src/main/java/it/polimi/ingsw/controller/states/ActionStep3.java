@@ -31,18 +31,18 @@ public class ActionStep3 implements ResumableState {
     public void nextState() {
         cleanAll();
 
-        if (game.getFinalRound() && (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1)))){
+        if (game.getFinalRound() && (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers() - 1)))) {
             controller.check();
-        }
-        else{
-            if (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1))){
+        } else {
+            if (game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers() - 1))) {
                 game.setNextPlayer();
                 controller.setState(new Planning(game, controller));
-                controller.getState().execute();}
-            else{
+                controller.getState().execute();
+            } else {
                 game.setNextPlayer();
                 controller.setState(new ActionStep1(game, controller));
-                controller.getState().execute();}
+                controller.getState().execute();
+            }
         }
 
     }
@@ -87,7 +87,7 @@ public class ActionStep3 implements ResumableState {
     }
 
     private void checkClouds() {
-        if (! movedStudents) {
+        if (!movedStudents) {
             ArrayList<Cloud> availableClouds = new ArrayList<>(game.getDashboard().getClouds());
             availableClouds.removeIf(c -> c.getStudents().isEmpty());
             if (availableClouds.isEmpty()) { // happens only in the last turn if there aren't enough students
@@ -109,24 +109,26 @@ public class ActionStep3 implements ResumableState {
         finished = true;
     }
 
-    public void cleanAll(){
-        if (game.getExpertGame()){
-        //Reset character6 effect
-        game.getDashboard().setDoNotCountTowers(false);
+    public void cleanAll() {
+        if (game.getExpertGame()) {
+            //Reset character6 effect
+            game.getDashboard().setDoNotCountTowers(false);
 
-        //Reset character 8 effect
-        for (Island island : game.getDashboard().getIslands()) {
-            island.resetExtraInfluences();
+            //Reset character 8 effect
+            for (Island island : game.getDashboard().getIslands()) {
+                island.resetExtraInfluences();
+            }
+
+            for (CharacterCard character : game.getDashboard().getCharacters()) {
+                character.setInactive();
+                character.resetUsedBy();
+            }
+            game.getDashboard().setPlayedCharacter(null);
+
+            //Reset character9 effect
+            game.getDashboard().resetDoNotCountColor();
         }
-
-        for (CharacterCard character: game.getDashboard().getCharacters()){
-            character.setInactive();
-            character.resetUsedBy();
-        }
-        game.getDashboard().setPlayedCharacter(null);
-
-        //Reset character9 effect
-        game.getDashboard().resetDoNotCountColor();}
+        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
     }
 
     private void receiveAck(String sender) {

@@ -1,13 +1,9 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
-import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.player.Player;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,9 +16,9 @@ public abstract class CharacterCard implements Serializable {
     String UsedBy = null;
     ArrayList<Color> students;
     int noEntryTiles = 0;
+    String description;
 
     /**
-     *
      * @return the number of coins required to activate effect
      */
     public int getCost() {
@@ -61,7 +57,6 @@ public abstract class CharacterCard implements Serializable {
     }
 
     /**
-     *
      * @return the type of the Character, contained in the enum list
      */
     public CharacterEnum getValue() {
@@ -70,6 +65,7 @@ public abstract class CharacterCard implements Serializable {
 
     /**
      * method used to fill the Character with students (only in Character 1, 7 and 11)
+     *
      * @param bag the current bag
      */
     public void setUp(Bag bag) {
@@ -97,7 +93,12 @@ public abstract class CharacterCard implements Serializable {
 
     /**
      * method used to trigger the Character effect
+     *
      * @param controller the Character controller
      */
     public abstract void activate(CharacterController controller);
+
+    public String getDescription() {
+        return description;
+    }
 }

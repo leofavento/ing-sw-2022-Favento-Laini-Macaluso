@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.Controller;
-import it.polimi.ingsw.controller.states.EndOfTheGame;
 import it.polimi.ingsw.exceptions.AlreadyPlayedCharacterException;
 import it.polimi.ingsw.exceptions.InvalidInputException;
 import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
@@ -58,6 +57,7 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to disconnect a player from the game
+     *
      * @param player a player to disconnect
      */
     public void disconnect(ServerClientConnection player) {
@@ -76,6 +76,7 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to end the game for a disconnected player
+     *
      * @param disconnectedPlayer a disconnected player
      */
     private void endGame(ServerClientConnection disconnectedPlayer) {
@@ -115,6 +116,7 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to add a player to an existing game
+     *
      * @param player the player to add
      */
     public synchronized void joinGame(ServerClientConnection player) {
@@ -150,8 +152,9 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to read a message from a client
+     *
      * @param nickname the nickname of the player who is sending the message
-     * @param message object of the message sent
+     * @param message  object of the message sent
      */
     public synchronized void readMessage(String nickname, Message message) {
         if (!nickname.equals(game.getCurrentPlayer().getNickname()) && !(message instanceof Ack)) {
@@ -163,8 +166,7 @@ public class GameHandler implements Observer<Message> {
                 sendMessageByNickname(nickname, ErrorMessage.NOT_ENOUGH_COINS);
             } catch (InvalidInputException e) {
                 sendMessageByNickname(nickname, ErrorMessage.INVALID_INPUT);
-            }
-            catch (AlreadyPlayedCharacterException e){
+            } catch (AlreadyPlayedCharacterException e) {
                 sendMessageByNickname(nickname, ErrorMessage.ALREADY_PLAYED_CHARACTER);
             }
         } else {
@@ -174,8 +176,9 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to send a message to a specific player
+     *
      * @param nickname the nickname of the desired player
-     * @param message object of the message to be sent
+     * @param message  object of the message to be sent
      */
     public void sendMessageByNickname(String nickname, Message message) {
         for (ServerClientConnection player : players) {
@@ -187,6 +190,7 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to send a message to every player
+     *
      * @param message object of the message to be sent
      */
     public void broadcastMessage(Message message) {
@@ -197,8 +201,9 @@ public class GameHandler implements Observer<Message> {
 
     /**
      * method used to send a message to every player except one
+     *
      * @param nickname the nickname of the only player to which the message won't be sent
-     * @param message object of the message to be sent
+     * @param message  object of the message to be sent
      */
     public void sendToAllExcept(String nickname, Message message) {
         for (ServerClientConnection player : players) {
@@ -226,7 +231,7 @@ public class GameHandler implements Observer<Message> {
             broadcastMessage(message);
         } else if (message == CommunicationMessage.STUDENT_MOVED) {
             sendMessageByNickname(nickCurrentPlayer, message);
-        }else if (message instanceof PlayerStatusMessage) {
+        } else if (message instanceof PlayerStatusMessage) {
             sendMessageByNickname(nickCurrentPlayer, message);
             sendToAllExcept(nickCurrentPlayer, new PlayerStatusMessage(PlayerStatus.WAITING));
         } else if (message instanceof AvailableAssistants) {
@@ -240,6 +245,8 @@ public class GameHandler implements Observer<Message> {
         } else if (message instanceof SelectCloud) {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof MovableStudents) {
+            sendMessageByNickname(nickCurrentPlayer, message);
+        } else if (message instanceof MovableStudentsChar) {
             sendMessageByNickname(nickCurrentPlayer, message);
         } else if (message instanceof WhereToMove) {
             sendMessageByNickname(nickCurrentPlayer, message);

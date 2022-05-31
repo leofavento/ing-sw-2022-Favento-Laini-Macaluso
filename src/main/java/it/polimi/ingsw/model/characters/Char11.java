@@ -1,11 +1,8 @@
 package it.polimi.ingsw.model.characters;
 
 import it.polimi.ingsw.controller.CharacterController;
-import it.polimi.ingsw.exceptions.InvalidInputException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.player.DiningRoom;
 
 import java.util.ArrayList;
 
@@ -18,6 +15,8 @@ public class Char11 extends CharacterCard {
         value = CharacterEnum.valueOf(("Char11"));
         cost = 2;
         students = new ArrayList<>();
+        description = "Take 1 Student from this card and place it in your Dining Room. " +
+                "Then, draw a new Student from the Bag and place it on this card.";
     }
 
     @Override

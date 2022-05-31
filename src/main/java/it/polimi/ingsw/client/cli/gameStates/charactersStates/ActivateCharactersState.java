@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates.charactersStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.componentRenderer.CharacterRenderer;
 import it.polimi.ingsw.messages.fromClient.UseCharacterEffect;
 import it.polimi.ingsw.model.characters.CharacterEnum;
 
@@ -15,6 +16,8 @@ public class ActivateCharactersState {
         CharacterEnum selectedChar = null;
 
         while (!cli.isSuccess()) {
+            CharacterRenderer.renderAllCharacters(cli.getView().getDashboard().getCharacters());
+
             if (cli.getView().getLastErrorMessage() != null) {
                 System.out.println(cli.getView().getLastErrorMessage().getMessage());
                 cli.getView().setLastErrorMessage(null);
@@ -24,7 +27,7 @@ public class ActivateCharactersState {
 
             System.out.println("0 --> go back to your turn");
             for (int i = 0; i < 3; i++) {
-                System.out.println((i+1) + " --> activate " +
+                System.out.println((i + 1) + " --> activate " +
                         cli.getView().getDashboard().getCharacters()[i].getValue() +
                         " (" + cli.getView().getDashboard().getCharacters()[i].getCost() + " coins required)");
             }
@@ -64,7 +67,7 @@ public class ActivateCharactersState {
         }
 
         if (selectedChar != null) {
-            switch(selectedChar) {
+            switch (selectedChar) {
                 case Char1 -> {
                     Char1State charState = new Char1State();
                     charState.run(cli);

@@ -7,6 +7,12 @@ import it.polimi.ingsw.model.player.*;
 import java.util.ArrayList;
 
 public class SchoolBoardRenderer {
+    /**
+     * This method prints to command line the SchoolBoard of every requested player
+     *
+     * @param players list of the requested players
+     * @param expertMode expert mode enabled or not
+     */
     public static void renderAllSchoolBoards(ArrayList<Player> players, boolean expertMode) {
         for (Player player : players) {
             renderSchoolBoard(player, expertMode);
@@ -18,6 +24,7 @@ public class SchoolBoardRenderer {
      * about the Entrance, the Dining Room and the Professors
      *
      * @param player SchoolBoard owner
+     * @param expertMode expert mode enabled or not
      */
     public static void renderSchoolBoard(Player player, boolean expertMode) {
         System.out.print("|--------------------------\n" +

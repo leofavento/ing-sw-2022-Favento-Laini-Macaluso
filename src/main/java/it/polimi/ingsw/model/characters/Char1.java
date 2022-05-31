@@ -15,11 +15,14 @@ public class Char1 extends CharacterCard {
         value = CharacterEnum.valueOf(("Char1"));
         cost = 1;
         students = new ArrayList<>();
+        description = "Take 1 Student from this card and place it in an island of your choice. " +
+                "Then, draw a new student from the Bag and place it on this card.";
     }
 
 
     /**
      * method used to add 4 students on this card in the setup phase
+     *
      * @param bag the current bag
      */
     @Override
@@ -31,6 +34,7 @@ public class Char1 extends CharacterCard {
 
     /**
      * method used to add back a student to this card
+     *
      * @param c the student
      */
     @Override
@@ -40,6 +44,7 @@ public class Char1 extends CharacterCard {
 
     /**
      * method used to remove a selected student from this card
+     *
      * @param c the selected student
      */
     @Override
@@ -48,7 +53,7 @@ public class Char1 extends CharacterCard {
     }
 
     @Override
-    public void activate(CharacterController controller){
+    public void activate(CharacterController controller) {
         controller.activate(this);
     }
 }
