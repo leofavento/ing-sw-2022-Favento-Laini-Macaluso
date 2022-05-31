@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 /**
  * State created to calculate influence on an Island and to set up the Tower on it.
- *
  */
 public class ResolveIsland implements State {
     Game game;
@@ -52,7 +51,6 @@ public class ResolveIsland implements State {
      * In case of new Tower, the server sends the updated board to all the players and checks if a Player or
      * Team has won the game.
      * In case of no changes, the server communicates that to all the players.
-     *
      */
     @Override
     public void execute() {
@@ -71,28 +69,29 @@ public class ResolveIsland implements State {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
 
-        if (maxTowers.size() == 1) {
-            if (island.getTowerColor() != maxTowers.get(0)) {
-                //if Island has already a tower
-                if (island.hasTower()) {
-                    //put existing tower in team SchoolBoard
-                    for(int i=0; i<island.getNumUnits(); i++){
-                    game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();}}
-                island.setTowers(maxTowers.get(0));
-                for (int z=0; z<island.getNumUnits(); z++){
-                    //remove new tower from the right team SchoolBoard
-                    game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
-                    if (game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().getTowersNumber()==0){
-                        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
-                        controller.check();
-                        break;}
-                    }
-                missingAcks.addAll(game.getOnlinePlayers().stream()
-                        .map(Player::getNickname)
-                        .collect(Collectors.toList()));
-                requestedAck = true;
-                controller.notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
+        if (maxTowers.size() == 1 && island.getTowerColor() != maxTowers.get(0)) {
+            //if Island has already a tower
+            if (island.hasTower()) {
+                //put existing tower in team SchoolBoard
+                for (int i = 0; i < island.getNumUnits(); i++) {
+                    game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();
+                }
             }
+            island.setTowers(maxTowers.get(0));
+            for (int z = 0; z < island.getNumUnits(); z++) {
+                //remove new tower from the right team SchoolBoard
+                game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
+                if (game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().getTowersNumber() == 0) {
+                    controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+                    controller.check();
+                    break;
+                }
+            }
+            missingAcks.addAll(game.getOnlinePlayers().stream()
+                    .map(Player::getNickname)
+                    .collect(Collectors.toList()));
+            requestedAck = true;
+            controller.notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
         } else {
             controller.notify(CommunicationMessage.NO_CHANGES);
             nextState();
@@ -104,6 +103,7 @@ public class ResolveIsland implements State {
      * The method checks if the Tower in the previous or the successive Island has the same color
      * comparing with the Tower on the just resolved Island.
      * If this happens, the method proceeds to unify the Islands.
+     *
      * @param island the just resolved Island
      */
     private void checkMerge(Island island) {
@@ -128,8 +128,8 @@ public class ResolveIsland implements State {
             controller.notify(CommunicationMessage.UNIFIED_ISLANDS);
         }
         missingAcks.addAll(game.getOnlinePlayers().stream()
-                    .map(Player::getNickname)
-                    .collect(Collectors.toList()));
+                .map(Player::getNickname)
+                .collect(Collectors.toList()));
         requestedAck = true;
         controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         verifiedMerge = true;
@@ -137,8 +137,9 @@ public class ResolveIsland implements State {
 
     /**
      * method used to distinguish the received message and to trigger the right action.
+     *
      * @param message the message received
-     * @param sender the sender nickname
+     * @param sender  the sender nickname
      */
     @Override
     public void receiveMessage(Message message, String sender) {
@@ -152,13 +153,14 @@ public class ResolveIsland implements State {
      * The first player acknowledgment is received after resolving the Island.
      * The second is received after the mergeIslands method.
      * In the end the method checks if a Player or a Team has won the game.
+     *
      * @param sender the sender nickname
      */
     private void receiveAck(String sender) {
         missingAcks.remove(sender);
         if (missingAcks.isEmpty()) {
             requestedAck = false;
-            if (! verifiedMerge) {
+            if (!verifiedMerge) {
                 checkMerge(island);
             } else {
                 if (!controller.check()) {

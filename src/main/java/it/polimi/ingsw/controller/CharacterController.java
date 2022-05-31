@@ -29,13 +29,12 @@ public class CharacterController {
 
     public void generateCharacters(Dashboard dashboard) {
         ArrayList<CharacterEnum> allCharacters = new ArrayList<>();
-        CharacterFactory factory = new CharacterFactory();
         ArrayList<CharacterCard> gameCharacters = new ArrayList<>();
 
         Collections.addAll(allCharacters, CharacterEnum.values());
         Collections.shuffle(allCharacters);
         for (int i = 0; i < 3; i++) {
-            gameCharacters.add(factory.getCharacter(allCharacters.get(i)));
+            gameCharacters.add(CharacterFactory.getCharacter(allCharacters.get(i)));
             setUpCharacter(gameCharacters.get(i), dashboard.getBag());
         }
         dashboard.setCharacters(gameCharacters);
@@ -59,16 +58,16 @@ public class CharacterController {
         }
         //Check if player has enough coins
         else if (!verifyCoins(selectedCard)) {
-            throw new NotEnoughCoinsException("You don't have enough coins");}
-
-        else if(!(game.getDashboard().getPlayedCharacter()==null) ){
+            throw new NotEnoughCoinsException("You don't have enough coins");
+        } else if (game.getDashboard().getPlayedCharacter() != null) {
             throw new AlreadyPlayedCharacterException("You have already played a Character in this turn");
         } else {
-            controller.notify(new PlayedCharacter(c, game.getCurrentPlayer().getNickname()));
             selectedCard.increaseCost();
             selectedCard.setActive();
             selectedCard.setUsedBy(game.getCurrentPlayer().getNickname());
             game.getDashboard().setPlayedCharacter(selectedCard);
+            controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(new PlayedCharacter(c, game.getCurrentPlayer().getNickname()));
             selectedCard.activate(this);
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
         }

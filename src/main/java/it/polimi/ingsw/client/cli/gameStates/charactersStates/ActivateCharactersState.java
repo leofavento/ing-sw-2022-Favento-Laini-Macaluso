@@ -101,7 +101,7 @@ public class ActivateCharactersState {
                     charState.run(cli);
                 }
             }
+            System.out.println("You successfully activated " + selectedChar + ".");
         }
-
     }
 }

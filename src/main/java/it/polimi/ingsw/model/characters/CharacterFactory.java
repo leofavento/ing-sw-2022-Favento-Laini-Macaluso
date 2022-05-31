@@ -9,7 +9,7 @@ public class CharacterFactory {
      * @param type the number of the Character
      * @return the generated Character
      */
-    public CharacterCard getCharacter(CharacterEnum type){
+    public static CharacterCard getCharacter(CharacterEnum type){
         CharacterCard ch= null;
         switch (type){
             case Char1:

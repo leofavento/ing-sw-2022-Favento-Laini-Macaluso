@@ -52,7 +52,7 @@ public class ActionStep2State implements State {
 
             if (cli.getView().getDashboard().getAdditionalMNMovements() > 0) {
                 System.out.printf("How many steps do you want MotherNature to make? Choose a number between 1 and %d %s: %n",
-                        steps + cli.getView().getDashboard().getAdditionalMNMovements(),
+                        steps,
                         "(additional Mother Nature movements included)");
             } else {
                 System.out.printf("How many steps do you want MotherNature to make? Choose a number between 1 and %d: %n", steps);

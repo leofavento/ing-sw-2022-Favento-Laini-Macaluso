@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.cli.gameStates.*;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
+import it.polimi.ingsw.model.characters.CharacterFactory;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.Objects;

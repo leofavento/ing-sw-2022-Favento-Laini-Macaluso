@@ -23,9 +23,6 @@ public class Action {
         }
         schoolBoard.getEntrance().extractStudent(student);
         schoolBoard.getDiningRoom().addStudent(student);
-        if (schoolBoard.getDiningRoom().getStudentsNumber(student) % 3 == 0) {
-            schoolBoard.addCoin();
-        }
     }
 
     public static void moveFromEntranceToIsland(Color student, Entrance entrance, Island island) throws StudentNotExistingException {
