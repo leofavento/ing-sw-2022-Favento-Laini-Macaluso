@@ -36,7 +36,9 @@ public class Char3State {
                 selection = in.nextInt();
                 cli.getClient().sendMessage(new ChosenDestination(selection));
             } catch (InputMismatchException e) {
+                in.next();
                 System.out.println("Please enter an integer.");
+                continue;
             }
             if (!cli.isSuccess()) {
                 try {
