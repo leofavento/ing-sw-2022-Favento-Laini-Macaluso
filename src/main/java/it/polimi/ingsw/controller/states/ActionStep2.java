@@ -68,19 +68,7 @@ public class ActionStep2 implements ResumableState {
         game.getDashboard().setAdditionalMNMovements(0);
         Island motherNatureIsland = game.getDashboard().getIslands().get(game.getDashboard().getMotherNaturePosition());
 
-        if (motherNatureIsland.getNoEntry() > 0) {
-            motherNatureIsland.useNoEntry();
-            controller.notify(CommunicationMessage.NO_ENTRY_TILE_ON_ISLAND);
-            //add back the No Entry Tile on the character
-            //only in Char5 this method has effect, in every other is only void
-            for (CharacterCard characterCard : game.getDashboard().getCharacters()) {
-                characterCard.addNoEntryTile();
-            }
-        }
-        //Island is free of No Entry Tiles
-        else {
-            goToResolveIsland(motherNatureIsland);
-        }
+        goToResolveIsland(motherNatureIsland);
     }
 
     private void receiveAck(String sender) {

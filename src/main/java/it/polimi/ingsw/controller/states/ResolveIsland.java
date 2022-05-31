@@ -9,6 +9,7 @@ import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Tower;
+import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
 
 import java.util.*;
@@ -56,45 +57,56 @@ public class ResolveIsland implements State {
     public void execute() {
         HashMap<Tower, Integer> teamsInfluence = new HashMap<>();
 
-        for (Tower tower : game.getTeams()) {
-            teamsInfluence.put(tower, island.countInfluence(game.getTeamFromTower(tower),
-                    game.getDashboard().getDoNotCountTowers(), //true if Char6 effect is active
-                    game.getDashboard().getDoNotCountColor())); // not null only if Char9 effect is active
-        }
-
-        Integer max = Collections.max(teamsInfluence.values());
-        List<Tower> maxTowers;
-        maxTowers = teamsInfluence.entrySet().stream()
-                .filter(Tower -> Objects.equals(Tower.getValue(), max))
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
-
-        if (maxTowers.size() == 1 && island.getTowerColor() != maxTowers.get(0)) {
-            //if Island has already a tower
-            if (island.hasTower()) {
-                //put existing tower in team SchoolBoard
-                for (int i = 0; i < island.getNumUnits(); i++) {
-                    game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();
-                }
+        if (island.getNoEntry() > 0) {
+            island.useNoEntry();
+            controller.notify(CommunicationMessage.NO_ENTRY_TILE_ON_ISLAND);
+            //add back the No Entry Tile on the character
+            //only in Char5 this method has effect, in every other is only void
+            for (CharacterCard characterCard : game.getDashboard().getCharacters()) {
+                characterCard.addNoEntryTile();
             }
-            island.setTowers(maxTowers.get(0));
-            for (int z = 0; z < island.getNumUnits(); z++) {
-                //remove new tower from the right team SchoolBoard
-                game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
-                if (game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().getTowersNumber() == 0) {
-                    controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
-                    controller.check();
-                    break;
-                }
-            }
-            missingAcks.addAll(game.getOnlinePlayers().stream()
-                    .map(Player::getNickname)
-                    .collect(Collectors.toList()));
-            requestedAck = true;
-            controller.notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
-        } else {
-            controller.notify(CommunicationMessage.NO_CHANGES);
             nextState();
+        } else {
+            for (Tower tower : game.getTeams()) {
+                teamsInfluence.put(tower, island.countInfluence(game.getTeamFromTower(tower),
+                        game.getDashboard().getDoNotCountTowers(), //true if Char6 effect is active
+                        game.getDashboard().getDoNotCountColor())); // not null only if Char9 effect is active
+            }
+
+            Integer max = Collections.max(teamsInfluence.values());
+            List<Tower> maxTowers;
+            maxTowers = teamsInfluence.entrySet().stream()
+                    .filter(tower -> Objects.equals(tower.getValue(), max))
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.toList());
+
+            if (maxTowers.size() == 1 && island.getTowerColor() != maxTowers.get(0)) {
+                //if Island has already a tower
+                if (island.hasTower()) {
+                    //put existing tower in team SchoolBoard
+                    for (int i = 0; i < island.getNumUnits(); i++) {
+                        game.getTeamFromTower(island.getTowerColor()).get(0).getSchoolBoard().addTower();
+                    }
+                }
+                island.setTowers(maxTowers.get(0));
+                for (int z = 0; z < island.getNumUnits(); z++) {
+                    //remove new tower from the right team SchoolBoard
+                    game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().removeTower();
+                    if (game.getTeamFromTower(maxTowers.get(0)).get(0).getSchoolBoard().getTowersNumber() == 0) {
+                        controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+                        controller.check();
+                        break;
+                    }
+                }
+                missingAcks.addAll(game.getOnlinePlayers().stream()
+                        .map(Player::getNickname)
+                        .collect(Collectors.toList()));
+                requestedAck = true;
+                controller.notify(new IslandOwner(island, game.getTeamFromTower(maxTowers.get(0)).get(0).getNickname()));
+            } else {
+                controller.notify(CommunicationMessage.NO_CHANGES);
+                nextState();
+            }
         }
     }
 
@@ -123,7 +135,7 @@ public class ResolveIsland implements State {
             mergingIslands.add(game.getDashboard().getIslands().get(nextIsland));
         }
 
-        if (mergingIslands.size() > 0) {
+        if (!mergingIslands.isEmpty()) {
             game.getDashboard().mergeIslands(island, mergingIslands.toArray(Island[]::new));
             controller.notify(CommunicationMessage.UNIFIED_ISLANDS);
         }
