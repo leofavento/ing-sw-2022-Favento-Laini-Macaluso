@@ -133,6 +133,5 @@ public class Char7State {
             cli.setSuccess(false);
             cli.getView().setMovableStudentsChar(null);
         }
-        System.out.println("You successfully activated Char7.");
     }
 }

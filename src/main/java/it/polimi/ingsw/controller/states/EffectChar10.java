@@ -46,7 +46,7 @@ public class EffectChar10 implements State {
     @Override
     public void receiveMessage(Message message, String sender) {
         if (message instanceof ChosenStudent && requestedEntranceStudent) {
-            if (!(((ChosenStudent) message).getStudent() == null)) {
+            if (((ChosenStudent) message).getStudent() != null) {
                 requestedEntranceStudent = false;
                 this.EntranceStudent = ((ChosenStudent) message).getStudent();
                 chooseStudentFromDiningRoom();

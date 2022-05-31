@@ -28,7 +28,6 @@ public class WaitingState implements State {
             CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
             IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
             SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers(), cli.getView().isExpertMode());
-            System.out.println("It is now " + cli.getView().getCurrentPlayer() + "'s round, please wait...");
             System.out.println("Players order:");
             PlayersOrderRenderer.playersOrderRenderer(cli.getView().getPlayers());
         }

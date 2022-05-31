@@ -54,7 +54,7 @@ public class Char12State {
             }
             if (!cli.isSuccess()) {
                 try {
-                    synchronized (cli.getView()) {
+                    synchronized (cli.getGameState()) {
                         cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
@@ -66,7 +66,6 @@ public class Char12State {
         if (cli.isSuccess()) {
             cli.setSuccess(false);
         }
-        System.out.println("You successfully activated Char12.");
     }
 
 }

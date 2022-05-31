@@ -52,6 +52,5 @@ public class Char5State {
             cli.setSuccess(false);
             cli.getView().setRequiredDestination(false);
         }
-        System.out.println("You successfully activated Char5.");
     }
 }

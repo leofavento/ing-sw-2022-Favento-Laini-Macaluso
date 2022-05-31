@@ -18,7 +18,7 @@ public class Char10State {
         while (!cli.isSuccess()) {
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
-                    synchronized (cli.getView()) {
+                    synchronized (cli.getGameState()) {
                         cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
@@ -42,6 +42,7 @@ public class Char10State {
                         color.toString().substring(0, 1).toUpperCase() + color.toString().substring(1));
             }
 
+
             try {
                 in.reset();
                 selection = in.nextInt();
@@ -55,7 +56,9 @@ public class Char10State {
                     cli.getClient().sendMessage(new ChosenStudent(null));
                     while (!cli.isSuccess()) {
                         try {
-                            cli.getGameState().wait();
+                            synchronized (cli.getGameState()) {
+                                cli.getGameState().wait();
+                            }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -76,7 +79,7 @@ public class Char10State {
 
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
-                    synchronized (cli.getView()) {
+                    synchronized (cli.getGameState()) {
                         cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
@@ -90,6 +93,8 @@ public class Char10State {
                             .findAny()
                             .orElse(null)),
                     cli.getView().isExpertMode());
+
+            movableStudentsChar = cli.getView().getMovableStudentsChar();
 
             System.out.println("Select a student to move from your dining room to your entrance: ");
             for (Color color : Color.values()) {
@@ -133,6 +138,5 @@ public class Char10State {
             cli.setSuccess(false);
             cli.getView().setMovableStudentsChar(null);
         }
-        System.out.println("You successfully activated Char10.");
     }
 }

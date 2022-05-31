@@ -105,6 +105,5 @@ public class Char1State {
             cli.getView().setMovableStudentsChar(null);
         }
 
-        System.out.println("You successfully activated Char1.");
     }
 }

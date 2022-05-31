@@ -35,4 +35,9 @@ public class Char11 extends CharacterCard {
     public void activate(CharacterController controller){
         controller.activate(this);
     }
+
+    @Override
+    public void removeStudent(Color c){
+        this.students.remove(c);
+    }
 }

@@ -16,8 +16,8 @@ public class Char9State {
         while (!cli.isSuccess()) {
             if (cli.getView().getColors() == null) {
                 try {
-                    synchronized (cli.getView()) {
-                        wait();
+                    synchronized (cli.getGameState()) {
+                        cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -54,7 +54,7 @@ public class Char9State {
             }
             if (!cli.isSuccess()) {
                 try {
-                    synchronized (cli.getView()) {
+                    synchronized (cli.getGameState()) {
                         cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
@@ -66,7 +66,6 @@ public class Char9State {
         if (cli.isSuccess()) {
             cli.setSuccess(false);
         }
-        System.out.println("You successfully activated Char9.");
     }
 
 }

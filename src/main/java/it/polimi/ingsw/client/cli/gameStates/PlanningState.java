@@ -49,7 +49,7 @@ public class PlanningState implements State {
 
             ArrayList<Assistant> availableAssistants = cli.getView().getAvailableAssistants();
             System.out.println("These are the available assistants");
-            System.out.println("|---NAME------VALUE----MOVEMENTS---");
+            System.out.println("|---NAME--------VALUE------MOVEMENTS---");
             for (int i = 0; i < availableAssistants.size(); i++) {
                 System.out.println(i + 1 + ":   " + availableAssistants.get(i).toString() +
                         "           " + availableAssistants.get(i).getValue() +

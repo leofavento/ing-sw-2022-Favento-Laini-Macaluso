@@ -54,6 +54,5 @@ public class Char3State {
             cli.setSuccess(false);
             cli.getView().setRequiredDestination(false);
         }
-        System.out.println("You successfully activated Char3.");
     }
 }

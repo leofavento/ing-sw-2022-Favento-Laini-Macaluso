@@ -58,10 +58,10 @@ public class EffectChar11 implements State {
             requestedStudent = false;
             game.getCurrentPlayer().getSchoolBoard().getDiningRoom().addStudent(color);
             char11.removeStudent(color);
-            char11.addStudent(game.getDashboard().getBag().drawStudent());
+            char11.setUp(game.getDashboard().getBag());
             requestedAck = true;
-            controller.notify(CommunicationMessage.SUCCESS);
             controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
+            controller.notify(CommunicationMessage.SUCCESS);
         }
     }
 }

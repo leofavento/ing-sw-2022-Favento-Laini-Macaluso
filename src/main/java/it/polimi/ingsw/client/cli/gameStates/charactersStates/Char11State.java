@@ -57,7 +57,9 @@ public class Char11State {
             }
             if (!cli.isSuccess()) {
                 try {
-                    cli.getGameState().wait();
+                    synchronized (cli.getGameState()) {
+                        cli.getGameState().wait();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -69,6 +71,5 @@ public class Char11State {
             cli.getView().setMovableStudentsChar(null);
         }
 
-        System.out.println("You successfully activated Char11.");
     }
 }
