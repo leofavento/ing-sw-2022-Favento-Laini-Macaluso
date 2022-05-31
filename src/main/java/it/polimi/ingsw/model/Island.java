@@ -135,6 +135,15 @@ public class Island implements StudentDeposit, Serializable {
         return value == null ? 0 : value;
     }
 
+    public boolean hasExtraInfluence() {
+        for (Integer value : extraInfluence.values()) {
+            if (value != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void resetExtraInfluences() {
         extraInfluence.clear();
     }

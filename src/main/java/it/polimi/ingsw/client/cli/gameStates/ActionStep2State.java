@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.cli.componentRenderer.ActiveEffectsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
@@ -44,6 +45,7 @@ public class ActionStep2State implements State {
 
             SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers(), cli.getView().isExpertMode());
             IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
+            ActiveEffectsRenderer.printActiveEffects(cli.getView().getDashboard());
 
             if (cli.getView().getLastErrorMessage() != null) {
                 System.out.println(cli.getView().getLastErrorMessage().getMessage());
