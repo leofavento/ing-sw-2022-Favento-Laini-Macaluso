@@ -58,7 +58,12 @@ public class EffectChar10 implements State {
         } else if (message instanceof ChosenStudent && requestedDiningRoomStudent) {
             this.DiningRoomStudent = ((ChosenStudent) message).getStudent();
             requestedDiningRoomStudent = false;
-            swapStudents();
+            if (DiningRoomStudent == null) {
+                controller.notify(ErrorMessage.INVALID_INPUT);
+                chooseStudentFromEntrance();
+            } else {
+                swapStudents();
+            }
         } else if (message instanceof Ack && requestedAck) {
             requestedAck = false;
             nextState();
