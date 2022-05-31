@@ -18,7 +18,7 @@ public class Char7State {
         while (!cli.isSuccess()) {
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
-                    synchronized (cli.getView()) {
+                    synchronized (cli.getGameState()) {
                         cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
@@ -55,7 +55,9 @@ public class Char7State {
                     cli.getClient().sendMessage(new ChosenStudent(null));
                     while (!cli.isSuccess()) {
                         try {
-                            wait();
+                            synchronized (cli.getGameState()) {
+                                cli.getGameState().wait();
+                            }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -76,7 +78,7 @@ public class Char7State {
 
             if (cli.getView().getMovableStudentsChar() == null) {
                 try {
-                    synchronized (cli.getView()) {
+                    synchronized (cli.getGameState()) {
                         cli.getGameState().wait();
                     }
                 } catch (InterruptedException e) {
