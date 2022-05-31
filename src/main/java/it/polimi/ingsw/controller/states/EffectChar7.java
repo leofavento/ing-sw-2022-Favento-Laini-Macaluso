@@ -56,7 +56,12 @@ public class EffectChar7 implements State {
         } else if (message instanceof ChosenStudent && requestedEntranceStudent && !requestedCharStudent) {
             this.entranceStudent = ((ChosenStudent) message).getStudent();
             requestedEntranceStudent = false;
-            swapStudents();
+            if (entranceStudent == null) {
+                controller.notify(ErrorMessage.INVALID_INPUT);
+                chooseStudentFromChar();
+            } else {
+                swapStudents();
+            }
         } else if (message instanceof Ack && requestedAck) {
             requestedAck = false;
             nextState();

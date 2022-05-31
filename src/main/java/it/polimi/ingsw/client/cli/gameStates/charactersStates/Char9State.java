@@ -47,10 +47,12 @@ public class Char9State {
                     cli.getClient().sendMessage(new ChosenStudent(chosenColor));
                 } else {
                     System.out.println("Please enter a valid student.");
+                    continue;
                 }
             } catch (InputMismatchException e) {
                 in.next();
                 System.out.println("Please enter an integer according to your choice.");
+                continue;
             }
             if (!cli.isSuccess()) {
                 try {

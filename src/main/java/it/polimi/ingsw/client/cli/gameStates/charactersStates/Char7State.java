@@ -26,6 +26,11 @@ public class Char7State {
                 }
             }
 
+            if (cli.getView().getLastErrorMessage() != null) {
+                System.out.println(cli.getView().getLastErrorMessage().getMessage());
+                cli.getView().setLastErrorMessage(null);
+            }
+
             ArrayList<Color> movableStudentsChar = cli.getView().getMovableStudentsChar();
 
             SchoolBoardRenderer.renderSchoolBoard(Objects.requireNonNull(cli.getView().getPlayers()
@@ -93,6 +98,8 @@ public class Char7State {
                             .orElse(null)),
                     cli.getView().isExpertMode());
 
+            movableStudentsChar = cli.getView().getMovableStudentsChar();
+
             System.out.println("Select a student to move from your entrance to the Char card: ");
             for (Color color : Color.values()) {
                 System.out.printf("%d --> %s: " + movableStudentsChar.stream().filter(a -> a == color).count() + "%n",
@@ -110,16 +117,15 @@ public class Char7State {
                     }
                 }
                 if (cli.getView().getMovableStudentsChar().contains(chosenStudent)) {
-                    cli.getView().setMovableStudentsChar(null);
                     cli.getClient().sendMessage(new ChosenStudent(chosenStudent));
                 } else {
-                    System.out.println("Choice not valid.");
+                    cli.getClient().sendMessage(new ChosenStudent(null));
                 }
             } catch (InputMismatchException e) {
                 in.next();
-                System.out.println("Please enter an integer according to your choice.");
+                cli.getClient().sendMessage(new ChosenStudent(null));
             }
-
+            cli.getView().setMovableStudentsChar(null);
             if (cli.getView().getMovableStudentsChar() == null && !cli.isSuccess()) {
                 try {
                     synchronized (cli.getGameState()) {
