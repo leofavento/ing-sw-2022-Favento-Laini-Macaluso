@@ -1,6 +1,7 @@
 package it.polimi.ingsw;
 
 import it.polimi.ingsw.client.cli.CLI;
+import it.polimi.ingsw.client.gui.GUI;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,7 +29,7 @@ public class ClientApp {
             CLI cli = new CLI();
             new Thread(cli).start();
         } else {
-            // gui
+            GUI.main(null);
         }
     }
 

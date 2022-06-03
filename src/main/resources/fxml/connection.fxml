@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="540.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.initial.ConnectionController">
+   <children>
+      <ImageView fitHeight="510.0" fitWidth="541.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/eriantys.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="555.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Eryantis!" textAlignment="CENTER">
+         <font>
+            <Font name="Inconsolata" size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ip" layoutX="555.0" layoutY="227.0" prefHeight="24.0" prefWidth="234.0" promptText="IP address" />
+      <Text layoutX="555.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert the server IP address:" />
+      <Text layoutX="555.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert the server port:" />
+      <TextField fx:id="port" layoutX="555.0" layoutY="290.0" prefHeight="24.0" prefWidth="234.0" promptText="Port number" />
+      <Button layoutX="591.0" layoutY="334.0" mnemonicParsing="false" onAction="#connect" prefHeight="39.0" prefWidth="162.0" text="Connect" />
+      <Text fx:id="errorMessage" fill="RED" layoutX="555.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+   </children>
+</AnchorPane>
