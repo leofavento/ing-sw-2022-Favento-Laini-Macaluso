@@ -1,25 +1,26 @@
 package it.polimi.ingsw.client.cli;
 
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.MessageReceiver;
 import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.gameStates.*;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
-import it.polimi.ingsw.model.characters.CharacterFactory;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.Objects;
 
-public class MessageReceiver {
+public class CLIMessageReceiver implements MessageReceiver {
     private final CLI cli;
     private final Client client;
 
-    public MessageReceiver(CLI cli, Client client) {
+    public CLIMessageReceiver(CLI cli, Client client) {
         this.cli = cli;
         this.client = client;
     }
 
+    @Override
     public void receiveMessage(CommunicationMessage message) {
         if (message != CommunicationMessage.SUCCESS) {
             System.out.println(message.getMessage());
@@ -40,6 +41,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(ErrorMessage message) {
         cli.getView().setLastErrorMessage(message);
 
@@ -48,6 +50,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(AvailableGames message) {
         cli.setAvailableGames(message.getAvailableGames());
 
@@ -56,6 +59,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(JoinAlreadyExistingGame message) {
         cli.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
         cli.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
@@ -67,6 +71,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(WaitingForPlayers message) {
         System.out.println(message.getMessage());
         cli.setSuccess(true);
@@ -75,6 +80,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(UpdateLobby message) {
         cli.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
         cli.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
@@ -86,6 +92,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(MatchStarted message) {
         System.out.println(message.getMessage());
         cli.getView().setPlayers(message.getPlayers());
@@ -95,6 +102,7 @@ public class MessageReceiver {
         new Thread(new StateManager(cli, new GameSetupState(cli))).start();
     }
 
+    @Override
     public void receiveMessage(AvailableTowers message) {
         cli.getView().setAvailableTowers(message.getAvailableTowers());
         synchronized (cli.getGameState()) {
@@ -102,6 +110,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(AvailableWizards message) {
         cli.getView().setAvailableWizards(message.getAvailableWizards());
         synchronized (cli.getGameState()) {
@@ -109,12 +118,14 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(UpdateBoard message) {
         cli.getView().setDashboard(message.getDashboard());
         cli.getView().setPlayers(message.getPlayers());
         cli.getClient().sendMessage(new Ack());
     }
 
+    @Override
     public void receiveMessage(PlayerStatusMessage message) {
         PlayerStatus playerStatus= message.getPlayerStatus();
 
@@ -152,6 +163,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(AvailableAssistants message) {
         cli.getView().setAvailableAssistants(message.getAvailableAssistants());
         cli.getView().setPlayedAssistants(message.getPlayedAssistants());
@@ -161,6 +173,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(PlayedAssistant message) {
         System.out.printf("%s played %s (%d value, %d movement)%n",
                 message.getPlayer(),
@@ -169,6 +182,7 @@ public class MessageReceiver {
                 message.getAssistant().getMovements());
     }
 
+    @Override
     public void receiveMessage(StartOfPlayerRound message) {
         cli.getView().setRoundNumber(message.getRoundNumber());
         cli.getView().setCurrentPlayer(message.getNickname());
@@ -182,6 +196,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(CommunicateWinner message) {
         cli.getView().setWinnerTeam(message.getTeam());
         cli.getView().setEndOfGameReason(message.getWinReason());
@@ -189,6 +204,7 @@ public class MessageReceiver {
         new Thread(new EndOfGameState(cli)).start();
     }
 
+    @Override
     public void receiveMessage(EndOfPlayerRound message) {
         if (Objects.equals(message.getNickname(), cli.getClient().getNickname())) {
             System.out.println("Your round finished.");
@@ -201,17 +217,20 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(EndOfRound message) {
         System.out.printf("End of the %d%s round.%n",
                 message.getRoundNumber(),
                 message.getRoundNumber() % 10 == 1 ? "st" : message.getRoundNumber() % 10 == 2 ? "nd" : "th");
     }
 
+    @Override
     public void receiveMessage(IslandOwner message) {
         System.out.println(message.getNickname() + " now owns this island!");
         cli.getClient().sendMessage(new Ack());
     }
 
+    @Override
     public void receiveMessage(MotherNatureSteps message) {
         cli.getView().setMotherNatureSteps(message.getMaxStepsAllowed());
 
@@ -220,6 +239,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(MovableStudents message) {
         cli.getView().setMovableStudents(message.getStudents());
 
@@ -228,22 +248,26 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(PlayerDisconnected message) {
         System.out.println(message.getNickname() + " disconnected. The server is closing your game...");
     }
 
+    @Override
     public void receiveMessage(SelectCloud message) {
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }
     }
 
+    @Override
     public void receiveMessage(SelectColor message) {
         synchronized (cli.getGameState()) {
             cli.getGameState().notifyAll();
         }
     }
 
+    @Override
     public void receiveMessage(WhereToMove message) {
         cli.getView().setRequiredDestination(true);
         synchronized (cli.getGameState()) {
@@ -251,6 +275,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(PlayedCharacter message) {
         if (Objects.equals(message.getPlayer(), cli.getClient().getNickname())) {
             cli.setSuccess(true);
@@ -262,6 +287,7 @@ public class MessageReceiver {
         }
     }
 
+    @Override
     public void receiveMessage(MovableStudentsChar message) {
         cli.getView().setMovableStudentsChar(message.getStudents());
 
@@ -271,6 +297,7 @@ public class MessageReceiver {
 
     }
 
+    @Override
     public void receiveMessage(Ping message) {
         cli.getClient().sendMessage(new Pong());
     }

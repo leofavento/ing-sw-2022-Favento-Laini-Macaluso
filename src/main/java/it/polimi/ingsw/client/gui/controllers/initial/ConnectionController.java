@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.gui.controllers.initial;
 
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.client.gui.GUIMessageReceiver;
 import it.polimi.ingsw.client.gui.controllers.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -44,6 +45,7 @@ public class ConnectionController implements Controller {
             gui.setClient(new Client(false));
             try {
                 gui.getClient().startConnection(serverPort, ip.getText());
+                gui.getClient().setMessageReceiver(new GUIMessageReceiver(gui));
             } catch (IOException e) {
                 errorMessage.setText("The client can't connect to the specified server.");
                 errorMessage.setVisible(true);

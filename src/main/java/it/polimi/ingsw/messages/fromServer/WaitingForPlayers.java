@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.fromServer;
 
-import it.polimi.ingsw.client.cli.MessageReceiver;
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.client.MessageReceiver;
 
 /**
  * Message sent by the server when creating a new game. The server is waiting for other players to join the game.

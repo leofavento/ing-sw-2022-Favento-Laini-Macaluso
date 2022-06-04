@@ -1,6 +1,6 @@
 package it.polimi.ingsw.messages.fromServer;
 
-import it.polimi.ingsw.client.cli.MessageReceiver;
+import it.polimi.ingsw.client.MessageReceiver;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.player.Player;
 

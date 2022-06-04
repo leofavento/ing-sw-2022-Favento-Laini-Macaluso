@@ -1,11 +1,9 @@
 package it.polimi.ingsw.messages.fromServer;
 
-import it.polimi.ingsw.client.cli.MessageReceiver;
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.client.MessageReceiver;
 import it.polimi.ingsw.model.Tower;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Message sent by the server so that the client can see which tower colors are still available.

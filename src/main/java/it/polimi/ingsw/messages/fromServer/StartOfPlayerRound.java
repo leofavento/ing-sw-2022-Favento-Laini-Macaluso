@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.fromServer;
 
-import it.polimi.ingsw.client.cli.MessageReceiver;
-import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.client.MessageReceiver;
 
 /**
  * Message sent by the server to the player to communicate the start of his round

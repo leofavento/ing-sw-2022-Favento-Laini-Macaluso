@@ -100,7 +100,7 @@ public class CLI implements Runnable {
         view = new View();
         try {
             client.startConnection(port, ip);
-            client.setMessageReceiver(new MessageReceiver(this, client));
+            client.setMessageReceiver(new CLIMessageReceiver(this, client));
             new Thread(client).start();
         } catch (IOException e) {
             System.out.println("The client can't connect to the specified server.");
