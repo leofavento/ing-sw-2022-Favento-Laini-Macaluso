@@ -33,6 +33,7 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         initializeStage();
         primaryStage = stage;
+        primaryStage.setResizable(false);
         execute();
     }
 

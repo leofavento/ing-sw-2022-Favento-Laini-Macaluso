@@ -19,7 +19,7 @@
         </Text>
         <TextField fx:id="nickname" layoutX="555.0" layoutY="227.0" prefHeight="24.0" prefWidth="276.0" promptText="Nickname" />
         <Text layoutX="555.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your nickname:" />
-        <Button layoutX="612.0" layoutY="282.0" mnemonicParsing="false" onAction="#enterNickname" prefHeight="39.0" prefWidth="162.0" text="Connect" />
+        <Button defaultButton="true" layoutX="612.0" layoutY="282.0" mnemonicParsing="false" onAction="#enterNickname" prefHeight="39.0" prefWidth="162.0" text="Connect" />
         <Text fx:id="errorMessage" fill="RED" layoutX="555.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="276.0" />
     </children>
 </AnchorPane>
