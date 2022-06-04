@@ -13,12 +13,16 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(CommunicationMessage message) {
-
+        if (message == CommunicationMessage.ENTER_NICKNAME) {
+            gui.updateScene(FxmlScenes.NICKNAME.getPhase());
+        } else if (message == CommunicationMessage.SUCCESS) {
+            gui.getCurrentController().nextPhase();
+        }
     }
 
     @Override
     public void receiveMessage(ErrorMessage message) {
-
+        gui.errorMessage(message.getMessage());
     }
 
     @Override

@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.View;
 import it.polimi.ingsw.client.gui.controllers.Controller;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,8 +20,10 @@ public class GUI extends Application {
     private View view;
     private Stage primaryStage;
     private Scene currentScene;
+    private String currentPhase;
     private final HashMap<String, Scene> scenesMap = new HashMap<>();
     private final HashMap<String, Controller> controllersMap = new HashMap<>();
+
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -46,6 +49,7 @@ public class GUI extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        currentPhase = FxmlScenes.CONNECTION.getPhase();
         currentScene = scenesMap.get(FxmlScenes.CONNECTION.getPhase());
     }
 
@@ -65,5 +69,26 @@ public class GUI extends Application {
 
     public View getView() {
         return view;
+    }
+
+    public String getPhase() {
+        return currentPhase;
+    }
+
+    public void updateScene(String nextPhase) {
+        Platform.runLater(() -> {
+            Scene nextScene = scenesMap.get(nextPhase);
+            currentPhase = nextPhase;
+            primaryStage.setScene(nextScene);
+            primaryStage.show();
+        });
+    }
+
+    public void errorMessage(String error) {
+        controllersMap.get(currentPhase).error(error);
+    }
+
+    public Controller getCurrentController() {
+        return controllersMap.get(currentPhase);
     }
 }

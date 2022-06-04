@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.gui.controllers.initial;
 
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.client.gui.GUIMessageReceiver;
 import it.polimi.ingsw.client.gui.controllers.Controller;
@@ -21,6 +22,17 @@ public class ConnectionController implements Controller {
     @Override
     public void setGui(GUI gui) {
         this.gui = gui;
+    }
+
+    @Override
+    public void error(String error) {
+        errorMessage.setText(error);
+        errorMessage.setVisible(true);
+    }
+
+    @Override
+    public void nextPhase() {
+
     }
 
     public void connect() {
@@ -46,12 +58,11 @@ public class ConnectionController implements Controller {
             try {
                 gui.getClient().startConnection(serverPort, ip.getText());
                 gui.getClient().setMessageReceiver(new GUIMessageReceiver(gui));
+                new Thread(gui.getClient()).start();
             } catch (IOException e) {
                 errorMessage.setText("The client can't connect to the specified server.");
                 errorMessage.setVisible(true);
-                return;
             }
-            new Thread(gui.getClient()).start();
         }
     }
 }
