@@ -24,7 +24,6 @@ public class GUI extends Application {
     private final HashMap<String, Scene> scenesMap = new HashMap<>();
     private final HashMap<String, Controller> controllersMap = new HashMap<>();
 
-
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -34,6 +33,10 @@ public class GUI extends Application {
         initializeStage();
         primaryStage = stage;
         primaryStage.setResizable(false);
+        primaryStage.setOnCloseRequest(e -> {
+            Platform.exit();
+            System.exit(0);
+        });
         execute();
     }
 
@@ -91,5 +94,9 @@ public class GUI extends Application {
 
     public Controller getCurrentController() {
         return controllersMap.get(currentPhase);
+    }
+
+    public Controller getController(String phase) {
+        return controllersMap.get(phase);
     }
 }

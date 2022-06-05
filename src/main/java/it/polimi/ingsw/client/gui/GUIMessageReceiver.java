@@ -1,11 +1,12 @@
 package it.polimi.ingsw.client.gui;
 
 import it.polimi.ingsw.client.MessageReceiver;
+import it.polimi.ingsw.client.gui.controllers.initial.LobbyController;
 import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
 
 public class GUIMessageReceiver implements MessageReceiver {
-    private GUI gui;
+    private final GUI gui;
 
     public GUIMessageReceiver(GUI gui) {
         this.gui = gui;
@@ -27,7 +28,9 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(AvailableGames message) {
-
+        if (gui.getController(FxmlScenes.LOBBY.getPhase()) instanceof LobbyController) {
+            ((LobbyController) gui.getController(FxmlScenes.LOBBY.getPhase())).updateTable(message.getAvailableGames());
+        }
     }
 
     @Override

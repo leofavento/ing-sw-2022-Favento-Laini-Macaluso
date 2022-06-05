@@ -4,7 +4,7 @@ import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.client.gui.controllers.Controller;
 import it.polimi.ingsw.messages.fromClient.LoginMessage;
-import javafx.event.ActionEvent;
+import it.polimi.ingsw.messages.fromClient.RequestGames;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -27,6 +27,7 @@ public class NicknameController implements Controller {
 
     @Override
     public void nextPhase() {
+        gui.getClient().sendMessage(new RequestGames());
         gui.updateScene(FxmlScenes.LOBBY.getPhase());
     }
 

@@ -106,6 +106,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         if (message instanceof Disconnect) {
             gameHandler.disconnect(this);
             close();
+            System.err.println(nickname + " disconnected.");
         } else if (message instanceof LoginMessage && requestedNickname) {
             LoginMessage loginMessage = (LoginMessage) message;
             if (server.checkNickname(loginMessage.getNickname())) {
