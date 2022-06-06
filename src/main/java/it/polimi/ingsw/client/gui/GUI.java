@@ -35,6 +35,7 @@ public class GUI extends Application {
         primaryStage.setResizable(false);
         primaryStage.setOnCloseRequest(e -> {
             Platform.exit();
+            client.closeConnection();
             System.exit(0);
         });
         execute();
@@ -69,6 +70,10 @@ public class GUI extends Application {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void setView(View view) {
+        this.view = view;
     }
 
     public View getView() {

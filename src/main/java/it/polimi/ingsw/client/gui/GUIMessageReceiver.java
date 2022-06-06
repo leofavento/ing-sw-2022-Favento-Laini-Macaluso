@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.gui;
 
 import it.polimi.ingsw.client.MessageReceiver;
 import it.polimi.ingsw.client.gui.controllers.initial.LobbyController;
+import it.polimi.ingsw.client.gui.controllers.initial.WaitingPlayersController;
 import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
 
@@ -18,6 +19,14 @@ public class GUIMessageReceiver implements MessageReceiver {
             gui.updateScene(FxmlScenes.NICKNAME.getPhase());
         } else if (message == CommunicationMessage.SUCCESS) {
             gui.getCurrentController().nextPhase();
+        } else if (message == CommunicationMessage.HOST_LEFT) {
+            gui.getCurrentController().error("The host left, you are being disconnected...");
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            gui.updateScene(FxmlScenes.CONNECTION.getPhase());
         }
     }
 
@@ -35,17 +44,22 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(JoinAlreadyExistingGame message) {
-
+        gui.updateScene(FxmlScenes.WAITING.getPhase());
+        ((WaitingPlayersController)gui.getController(FxmlScenes.WAITING.getPhase())).setGameInfo(message.getGameInfo());
     }
 
     @Override
     public void receiveMessage(WaitingForPlayers message) {
-
+        gui.updateScene(FxmlScenes.WAITING.getPhase());
+        ((WaitingPlayersController)gui.getController(FxmlScenes.WAITING.getPhase())).setMessage(message.getMessage());
     }
 
     @Override
     public void receiveMessage(UpdateLobby message) {
-
+        gui.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
+        gui.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
+        gui.getView().setExpertMode(message.getGameInfo().isExpertGame());
+        ((WaitingPlayersController)gui.getController(FxmlScenes.WAITING.getPhase())).update();
     }
 
     @Override

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="540.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.initial.WaitingPlayersController">
+    <children>
+        <ImageView fitHeight="510.0" fitWidth="541.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../graphics/eriantys.png" />
+            </image>
+        </ImageView>
+        <Text fx:id="message" layoutX="549.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The game has been created" textAlignment="CENTER" visible="false" wrappingWidth="286.5999450683594">
+            <font>
+                <Font name="Inconsolata" size="23.0" />
+            </font>
+        </Text>
+        <Text layoutX="549.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiting for more players" textAlignment="CENTER" wrappingWidth="286.5999450683594">
+            <font>
+                <Font name="Inconsolata" size="23.0" />
+            </font>
+        </Text>
+        <Text layoutX="549.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please wait..." textAlignment="CENTER" wrappingWidth="286.5999450683594">
+            <font>
+                <Font name="Inconsolata" size="23.0" />
+            </font>
+        </Text>
+        <Text fx:id="errorMessage" fill="RED" layoutX="554.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="276.0" />
+    </children>
+</AnchorPane>

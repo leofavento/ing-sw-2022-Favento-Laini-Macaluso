@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.gui.controllers.initial;
 
+import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.client.gui.controllers.Controller;
 import it.polimi.ingsw.messages.fromClient.SetGame;
@@ -64,7 +65,14 @@ public class newGameController implements Controller, Initializable {
             errorMessage.setVisible(true);
         }
         else {
+            gui.getView().setTotalPlayers(numberChoiceBox.getValue());
+            gui.getView().setActivePlayers(1);
+            gui.getView().setExpertMode(myCheckBox.isSelected());
             gui.getClient().sendMessage(new SetGame(numberChoiceBox.getValue(), myCheckBox.isSelected()));
         }
+    }
+
+    public void back() {
+        gui.updateScene(FxmlScenes.LOBBY.getPhase());
     }
 }

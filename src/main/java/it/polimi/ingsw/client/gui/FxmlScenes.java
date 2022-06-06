@@ -3,7 +3,9 @@ package it.polimi.ingsw.client.gui;
 public enum FxmlScenes {
     CONNECTION("connection.fxml"),
     NICKNAME("nickname.fxml"),
-    LOBBY("lobby.fxml");
+    LOBBY("lobby.fxml"),
+    NEW_GAME("newgame.fxml"),
+    WAITING("waitingPlayers.fxml");
 
     private final String phase;
 

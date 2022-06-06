@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.gui.controllers.initial;
 
 import it.polimi.ingsw.client.Client;
+import it.polimi.ingsw.client.View;
 import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.client.gui.GUIMessageReceiver;
@@ -55,6 +56,7 @@ public class ConnectionController implements Controller {
             }
 
             gui.setClient(new Client(false));
+            gui.setView(new View());
             try {
                 gui.getClient().startConnection(serverPort, ip.getText());
                 gui.getClient().setMessageReceiver(new GUIMessageReceiver(gui));
