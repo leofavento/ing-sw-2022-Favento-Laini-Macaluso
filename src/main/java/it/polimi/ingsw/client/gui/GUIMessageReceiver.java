@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.gui;
 
 import it.polimi.ingsw.client.MessageReceiver;
+import it.polimi.ingsw.client.gui.controllers.SetupController;
 import it.polimi.ingsw.client.gui.controllers.initial.LobbyController;
 import it.polimi.ingsw.client.gui.controllers.initial.WaitingPlayersController;
 import it.polimi.ingsw.messages.fromClient.Pong;
@@ -64,22 +65,24 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(MatchStarted message) {
-
+        gui.updateScene(FxmlScenes.SETUP.getPhase());
     }
 
     @Override
     public void receiveMessage(AvailableTowers message) {
-
+        ((SetupController)gui.getController(FxmlScenes.SETUP.getPhase())).update(message);
     }
 
     @Override
     public void receiveMessage(AvailableWizards message) {
-
+        ((SetupController)gui.getController(FxmlScenes.SETUP.getPhase())).update(message);
     }
 
     @Override
     public void receiveMessage(UpdateBoard message) {
-
+        if (gui.getCurrentController() instanceof SetupController) {
+            //TODO show board
+        }
     }
 
     @Override
@@ -134,7 +137,13 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(PlayerDisconnected message) {
-
+        gui.getCurrentController().error(message.getNickname() + " left, you are being disconnected...");
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        gui.updateScene(FxmlScenes.CONNECTION.getPhase());
     }
 
     @Override

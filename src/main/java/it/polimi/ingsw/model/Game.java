@@ -3,10 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.model.characters.CharacterEnum;
 import it.polimi.ingsw.model.player.Player;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -152,6 +149,10 @@ public class Game {
 
     public List<Tower> getTeams() {
         return new ArrayList<>(teams.keySet());
+    }
+
+    public EnumMap<Tower, ArrayList<Player>> getTeamsMap() {
+        return teams;
     }
 
     public ArrayList<Player> getTeamFromPlayer(Player player){

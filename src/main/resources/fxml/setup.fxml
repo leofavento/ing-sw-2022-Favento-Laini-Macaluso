@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="540.0" prefWidth="860.0" stylesheets="@../css/setup.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.SetupController">
+   <children>
+      <Text fx:id="instruction" layoutX="275.0" layoutY="36.0" text="Select your tower" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="140.0" fitWidth="131.0" layoutX="39.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/towers/blacktower.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="240.0" fitWidth="141.0" layoutX="34.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/towers/greytower.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="131.0" fitWidth="168.0" layoutX="39.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/towers/whitetower.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="currentBlack" layoutX="175.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current players: " />
+      <Button fx:id="black" layoutX="175.0" layoutY="108.0" mnemonicParsing="false" onAction="#selectBlack" prefHeight="28.0" prefWidth="100.0" text="Select" />
+      <Text fx:id="currentGrey" layoutX="175.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current players:" />
+      <Button fx:id="grey" layoutX="175.0" layoutY="271.0" mnemonicParsing="false" onAction="#selectGrey" prefHeight="28.0" prefWidth="100.0" text="Select" />
+      <Text fx:id="currentWhite" layoutX="175.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current players: " />
+      <Button fx:id="white" layoutX="175.0" layoutY="436.0" mnemonicParsing="false" onAction="#selectWhite" prefHeight="28.0" prefWidth="100.0" text="Select" />
+      <Text fx:id="errorMessage" fill="RED" layoutX="292.0" layoutY="523.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="276.0" />
+      <ImageView fitHeight="215.0" fitWidth="131.0" layoutX="492.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/wizards/wizard1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="wizard1" layoutX="508.0" layoutY="239.0" mnemonicParsing="false" onAction="#selectWizard1" prefHeight="28.0" prefWidth="100.0" text="Select" />
+      <ImageView fitHeight="215.0" fitWidth="131.0" layoutX="666.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/wizards/wizard2.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="wizard2" layoutX="682.0" layoutY="239.0" mnemonicParsing="false" onAction="#selectWizard2" prefHeight="28.0" prefWidth="100.0" text="Select" />
+      <ImageView fitHeight="215.0" fitWidth="131.0" layoutX="492.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/wizards/wizard3.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="wizard3" layoutX="508.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectWizard3" prefHeight="28.0" prefWidth="100.0" text="Select" />
+      <ImageView fitHeight="215.0" fitWidth="131.0" layoutX="666.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../graphics/wizards/wizard4.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="wizard4" layoutX="682.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectWizard4" prefHeight="28.0" prefWidth="100.0" text="Select" />
+   </children>
+</AnchorPane>

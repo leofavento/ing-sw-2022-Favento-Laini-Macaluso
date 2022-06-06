@@ -89,7 +89,7 @@ public class Setup implements State {
                 p.getSchoolBoard().getDiningRoom().setEnableCoins();
             }
         }
-        controller.notify(new AvailableTowers(availableTowers));
+        controller.notify(new AvailableTowers(availableTowers, game.getTeamsMap()));
     
     }
     
@@ -101,7 +101,7 @@ public class Setup implements State {
         for (Integer i : availableTowers.values()) {
             if (i > 0) {
                 requestedTower = true;
-                controller.notify(new AvailableTowers(availableTowers));
+                controller.notify(new AvailableTowers(availableTowers, game.getTeamsMap()));
                 return;
             }
         }
@@ -181,11 +181,11 @@ public class Setup implements State {
                     checkTowers();
                 } else {
                     controller.notify(ErrorMessage.TOWER_NOT_AVAILABLE);
-                    controller.notify(new AvailableTowers(availableTowers));
+                    controller.notify(new AvailableTowers(availableTowers, game.getTeamsMap()));
                 }
             } catch (NullPointerException e) {
                 controller.notify(ErrorMessage.TOWER_NOT_AVAILABLE);
-                controller.notify(new AvailableTowers(availableTowers));
+                controller.notify(new AvailableTowers(availableTowers, game.getTeamsMap()));
             }
         } else {
             controller.notify(ErrorMessage.ALREADY_RECEIVED);
