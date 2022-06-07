@@ -6,7 +6,8 @@ public enum FxmlScenes {
     LOBBY("lobby.fxml"),
     NEW_GAME("newgame.fxml"),
     WAITING("waitingPlayers.fxml"),
-    SETUP("setup.fxml");
+    SETUP("setup.fxml"),
+    END_GAME("endgame.fxml");
 
     private final String phase;
 
