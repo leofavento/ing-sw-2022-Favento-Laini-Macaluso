@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.DashboardController">
+   <children>
+      <TabPane layoutX="-1.0" prefHeight="1080.0" prefWidth="1492.0" side="BOTTOM" style="-fx-background-color: #69bae9;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Islands">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="5.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="121.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="351.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="893.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="1123.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="1239.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="622.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="1123.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="893.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="622.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="351.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="121.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/island2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1382.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/students/student_blue.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1308.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/students/student_blue.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1283.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/students/student_blue.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1345.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/students/student_blue.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1413.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/students/student_blue.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
