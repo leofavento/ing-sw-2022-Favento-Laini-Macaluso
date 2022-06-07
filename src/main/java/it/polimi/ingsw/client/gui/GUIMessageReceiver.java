@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.gui;
 
 import it.polimi.ingsw.client.MessageReceiver;
+import it.polimi.ingsw.client.gui.controllers.EndGameController;
 import it.polimi.ingsw.client.gui.controllers.SetupController;
 import it.polimi.ingsw.client.gui.controllers.initial.LobbyController;
 import it.polimi.ingsw.client.gui.controllers.initial.WaitingPlayersController;
@@ -107,7 +108,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(CommunicateWinner message) {
-
+        ((EndGameController) gui.getController(FxmlScenes.END_GAME.getPhase())).update(message);
     }
 
     @Override
