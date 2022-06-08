@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.DashboardController">
    <children>
@@ -15,91 +17,666 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="5.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl7" fitHeight="250.0" fitWidth="350.0" layoutX="5.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island1.png" />
+                              <Image url="@../graphics/islands/island1p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="121.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl6" fitHeight="250.0" fitWidth="350.0" layoutX="121.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island3.png" />
+                              <Image url="@../graphics/islands/island3p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="351.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl5" fitHeight="250.0" fitWidth="350.0" layoutX="351.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island2.png" />
+                              <Image url="@../graphics/islands/island2p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="893.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl3" fitHeight="250.0" fitWidth="350.0" layoutX="893.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island3.png" />
+                              <Image url="@../graphics/islands/island3p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="1123.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl2" fitHeight="250.0" fitWidth="350.0" layoutX="1123.0" layoutY="590.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island2.png" />
+                              <Image url="@../graphics/islands/island2p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="1239.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl1" fitHeight="250.0" fitWidth="350.0" layoutX="1239.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island1.png" />
+                              <Image url="@../graphics/islands/island1p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="622.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl4" fitHeight="250.0" fitWidth="350.0" layoutX="622.0" layoutY="727.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island1.png" />
+                              <Image url="@../graphics/islands/island1p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="1123.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl12" fitHeight="250.0" fitWidth="350.0" layoutX="1123.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island3.png" />
+                              <Image url="@../graphics/islands/island3p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="893.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl11" fitHeight="250.0" fitWidth="350.0" layoutX="893.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island2.png" />
+                              <Image url="@../graphics/islands/island2p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="622.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl10" fitHeight="250.0" fitWidth="350.0" layoutX="622.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island1.png" />
+                              <Image url="@../graphics/islands/island1p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="351.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl9" fitHeight="250.0" fitWidth="350.0" layoutX="351.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island3.png" />
+                              <Image url="@../graphics/islands/island3p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="250.0" fitWidth="350.0" layoutX="121.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="isl8" fitHeight="250.0" fitWidth="350.0" layoutX="121.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/islands/island2.png" />
+                              <Image url="@../graphics/islands/island2p.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1382.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+                        <Label layoutX="1208.0" layoutY="468.0" text="Island 1">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl1" layoutX="1208.0" layoutY="493.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland1" fitHeight="56.0" fitWidth="59.0" layoutX="1370.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/students/student_blue.png" />
+                              <Image url="@../graphics/islands/motherNature.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1308.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="noEntryIsl1" fitHeight="56.0" fitWidth="59.0" layoutX="1438.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/students/student_blue.png" />
+                              <Image url="@../graphics/islands/noEntryTile.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1283.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="towerIsl1" fitHeight="56.0" fitWidth="59.0" layoutX="1303.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/students/student_blue.png" />
+                              <Image url="@../graphics/towers/blacktower.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1345.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="pinkIsl1" alignment="CENTER" layoutX="1286.0" layoutY="479.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl1" alignment="CENTER" layoutX="1349.0" layoutY="479.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl1" alignment="CENTER" layoutX="1410.0" layoutY="479.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl1" alignment="CENTER" layoutX="1313.0" layoutY="525.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl1" alignment="CENTER" layoutX="1379.0" layoutY="525.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1092.0" layoutY="651.0" text="Island 2">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl2" layoutX="1092.0" layoutY="676.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland2" fitHeight="56.0" fitWidth="59.0" layoutX="1244.0" layoutY="619.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/students/student_blue.png" />
+                              <Image url="@../graphics/islands/motherNature.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="47.0" fitWidth="38.0" layoutX="1413.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="noEntryIsl2" fitHeight="56.0" fitWidth="59.0" layoutX="1320.0" layoutY="624.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../graphics/students/student_blue.png" />
+                              <Image url="@../graphics/islands/noEntryTile.png" />
                            </image>
                         </ImageView>
+                        <ImageView fx:id="towerIsl2" fitHeight="56.0" fitWidth="59.0" layoutX="1181.0" layoutY="619.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl2" alignment="CENTER" layoutX="1173.0" layoutY="701.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl2" alignment="CENTER" layoutX="1234.0" layoutY="701.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl2" alignment="CENTER" layoutX="1294.0" layoutY="701.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl2" alignment="CENTER" layoutX="1198.0" layoutY="746.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl2" alignment="CENTER" layoutX="1263.0" layoutY="746.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="898.0" layoutY="736.0" text="Island 3">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl3" layoutX="898.0" layoutY="761.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland3" fitHeight="56.0" fitWidth="59.0" layoutX="1020.0" layoutY="760.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl3" fitHeight="56.0" fitWidth="59.0" layoutX="1111.0" layoutY="795.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl3" fitHeight="56.0" fitWidth="59.0" layoutX="956.0" layoutY="760.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl3" alignment="CENTER" layoutX="942.0" layoutY="840.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl3" alignment="CENTER" layoutX="1003.0" layoutY="840.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl3" alignment="CENTER" layoutX="1063.0" layoutY="840.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl3" alignment="CENTER" layoutX="967.0" layoutY="885.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl3" alignment="CENTER" layoutX="1032.0" layoutY="885.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="621.0" layoutY="735.0" text="Island 4">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl4" layoutX="621.0" layoutY="760.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland4" fitHeight="56.0" fitWidth="59.0" layoutX="754.0" layoutY="752.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl4" fitHeight="56.0" fitWidth="59.0" layoutX="838.0" layoutY="838.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl4" fitHeight="56.0" fitWidth="59.0" layoutX="687.0" layoutY="752.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl4" alignment="CENTER" layoutX="670.0" layoutY="837.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl4" alignment="CENTER" layoutX="733.0" layoutY="837.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl4" alignment="CENTER" layoutX="794.0" layoutY="837.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl4" alignment="CENTER" layoutX="696.0" layoutY="883.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl4" alignment="CENTER" layoutX="762.0" layoutY="883.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="398.0" layoutY="706.0" text="Island 5">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl5" layoutX="398.0" layoutY="731.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland5" fitHeight="56.0" fitWidth="59.0" layoutX="471.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl5" fitHeight="56.0" fitWidth="59.0" layoutX="553.0" layoutY="870.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl5" fitHeight="56.0" fitWidth="59.0" layoutX="408.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl5" alignment="CENTER" layoutX="400.0" layoutY="838.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl5" alignment="CENTER" layoutX="461.0" layoutY="838.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl5" alignment="CENTER" layoutX="521.0" layoutY="838.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl5" alignment="CENTER" layoutX="425.0" layoutY="883.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl5" alignment="CENTER" layoutX="490.0" layoutY="883.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="261.0" layoutY="570.0" text="Island 6">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl6" layoutX="261.0" layoutY="595.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland6" fitHeight="56.0" fitWidth="59.0" layoutX="248.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl6" fitHeight="56.0" fitWidth="59.0" layoutX="117.0" layoutY="756.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl6" fitHeight="56.0" fitWidth="59.0" layoutX="184.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl6" alignment="CENTER" layoutX="170.0" layoutY="703.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl6" alignment="CENTER" layoutX="231.0" layoutY="703.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl6" alignment="CENTER" layoutX="291.0" layoutY="703.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl6" alignment="CENTER" layoutX="195.0" layoutY="748.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl6" alignment="CENTER" layoutX="260.0" layoutY="748.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="226.0" layoutY="416.0" text="Island 7">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl7" layoutX="226.0" layoutY="441.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland7" fitHeight="56.0" fitWidth="59.0" layoutX="137.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl7" fitHeight="56.0" fitWidth="59.0" layoutX="5.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl7" fitHeight="56.0" fitWidth="59.0" layoutX="70.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl7" alignment="CENTER" layoutX="53.0" layoutY="479.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl7" alignment="CENTER" layoutX="116.0" layoutY="479.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl7" alignment="CENTER" layoutX="177.0" layoutY="479.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl7" alignment="CENTER" layoutX="79.0" layoutY="525.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl7" alignment="CENTER" layoutX="145.0" layoutY="525.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="342.0" layoutY="282.0" text="Island 8">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl8" layoutX="342.0" layoutY="307.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland8" fitHeight="56.0" fitWidth="59.0" layoutX="242.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl8" fitHeight="56.0" fitWidth="59.0" layoutX="102.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl8" fitHeight="56.0" fitWidth="59.0" layoutX="179.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl8" alignment="CENTER" layoutX="171.0" layoutY="261.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl8" alignment="CENTER" layoutX="232.0" layoutY="261.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl8" alignment="CENTER" layoutX="291.0" layoutY="261.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl8" alignment="CENTER" layoutX="196.0" layoutY="305.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl8" alignment="CENTER" layoutX="260.0" layoutY="305.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="496.0" layoutY="227.0" text="Island 9">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl9" layoutX="496.0" layoutY="252.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland9" fitHeight="56.0" fitWidth="59.0" layoutX="478.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl9" fitHeight="56.0" fitWidth="59.0" layoutX="330.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl9" fitHeight="56.0" fitWidth="59.0" layoutX="414.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl9" alignment="CENTER" layoutX="400.0" layoutY="126.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl9" alignment="CENTER" layoutX="461.0" layoutY="126.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl9" alignment="CENTER" layoutX="521.0" layoutY="126.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl9" alignment="CENTER" layoutX="425.0" layoutY="171.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl9" alignment="CENTER" layoutX="490.0" layoutY="171.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="705.0" layoutY="222.0" text="Island 10">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl10" layoutX="705.0" layoutY="247.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland10" fitHeight="56.0" fitWidth="59.0" layoutX="754.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl10" fitHeight="56.0" fitWidth="59.0" layoutX="815.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl10" fitHeight="56.0" fitWidth="59.0" layoutX="687.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl10" alignment="CENTER" layoutX="670.0" layoutY="123.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl10" alignment="CENTER" layoutX="732.0" layoutY="123.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl10" alignment="CENTER" layoutX="794.0" layoutY="123.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl10" alignment="CENTER" layoutX="695.0" layoutY="169.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl10" alignment="CENTER" layoutX="761.0" layoutY="169.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="925.0" layoutY="222.0" text="Island 11">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl11" layoutX="925.0" layoutY="247.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland11" fitHeight="56.0" fitWidth="59.0" layoutX="1014.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl11" fitHeight="56.0" fitWidth="59.0" layoutX="1084.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl11" fitHeight="56.0" fitWidth="59.0" layoutX="951.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl11" alignment="CENTER" layoutX="943.0" layoutY="126.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl11" alignment="CENTER" layoutX="1004.0" layoutY="126.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl11" alignment="CENTER" layoutX="1064.0" layoutY="126.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl11" alignment="CENTER" layoutX="968.0" layoutY="171.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl11" alignment="CENTER" layoutX="1033.0" layoutY="171.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1107.0" layoutY="313.0" text="Island 12">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="unitsIsl12" layoutX="1107.0" layoutY="338.0" text="Units: 1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="MnIsland12" fitHeight="56.0" fitWidth="59.0" layoutX="1250.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/motherNature.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="noEntryIsl12" fitHeight="56.0" fitWidth="59.0" layoutX="1312.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/islands/noEntryTile.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="towerIsl12" fitHeight="56.0" fitWidth="59.0" layoutX="1186.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../graphics/towers/blacktower.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="pinkIsl12" alignment="CENTER" layoutX="1172.0" layoutY="265.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="greenIsl12" alignment="CENTER" layoutX="1233.0" layoutY="265.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="blueIsl12" alignment="CENTER" layoutX="1293.0" layoutY="265.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="redIsl12" alignment="CENTER" layoutX="1197.0" layoutY="310.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="yellowIsl12" alignment="CENTER" layoutX="1262.0" layoutY="310.0" prefHeight="23.0" prefWidth="29.0" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
                      </children></AnchorPane>
             </content>
           </Tab>
