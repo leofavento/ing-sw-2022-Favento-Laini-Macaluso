@@ -6,14 +6,13 @@ import it.polimi.ingsw.client.gui.controllers.Controller;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class GUI extends Application {
     private Client client;
@@ -32,7 +31,6 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         initializeStage();
         primaryStage = stage;
-        primaryStage.setResizable(false);
         primaryStage.setOnCloseRequest(e -> {
             Platform.exit();
             client.closeConnection();
@@ -90,6 +88,9 @@ public class GUI extends Application {
             currentPhase = nextPhase;
             primaryStage.setScene(nextScene);
             primaryStage.show();
+            if (Objects.equals(nextPhase, FxmlScenes.DASHBOARD.getPhase())) {
+                primaryStage.setMaximized(true);
+            }
         });
     }
 

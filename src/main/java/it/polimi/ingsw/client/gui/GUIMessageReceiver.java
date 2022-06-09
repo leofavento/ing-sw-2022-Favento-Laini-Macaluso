@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.gui;
 
 import it.polimi.ingsw.client.MessageReceiver;
+import it.polimi.ingsw.client.gui.controllers.DashboardController;
 import it.polimi.ingsw.client.gui.controllers.EndGameController;
 import it.polimi.ingsw.client.gui.controllers.SetupController;
 import it.polimi.ingsw.client.gui.controllers.initial.LobbyController;
@@ -82,8 +83,12 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(UpdateBoard message) {
         if (gui.getCurrentController() instanceof SetupController) {
-            //TODO show board
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).setup(message.getPlayers());
+            gui.updateScene(FxmlScenes.DASHBOARD.getPhase());
         }
+        gui.getView().setDashboard(message.getDashboard());
+        gui.getView().setPlayers(message.getPlayers());
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).update();
     }
 
     @Override

@@ -99,6 +99,11 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+            if (gameHandler != null) {
+                gameHandler.disconnect(this);
+            }
+            setActive(false);
+            close();
         }
     }
 
