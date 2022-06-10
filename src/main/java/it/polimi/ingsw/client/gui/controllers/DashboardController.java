@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.SubScene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 
 public class DashboardController implements Controller{
 
+    public ImageView isl7;
     @FXML private TabPane dashboard;
     private HashMap<String, Tab> nicknameToTab;
     private HashMap<String, Controller> nicknameToController;
@@ -35,6 +37,7 @@ public class DashboardController implements Controller{
                 Controller controller = loader.getController();
                 controller.setGui(gui);
                 nicknameToController.put(player.getNickname(), controller);
+                ((SchoolboardController) controller).resetAssistantsButtons();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -43,7 +46,9 @@ public class DashboardController implements Controller{
     }
 
     public void update() {
-        //TODO
+        for (Player player : gui.getView().getPlayers()) {
+            ((SchoolboardController) nicknameToController.get(player.getNickname())).update(player);
+        }
     }
 
     @Override
@@ -61,5 +66,7 @@ public class DashboardController implements Controller{
 
     }
 
+    private void updateIsland1() {
 
+    }
 }
