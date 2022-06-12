@@ -96,7 +96,7 @@ public class CLI implements Runnable {
             }
         } while (port < 1024 || port > 65535);
 
-        client = new Client(true);
+        client = new Client(null);
         view = new View();
         try {
             client.startConnection(port, ip);

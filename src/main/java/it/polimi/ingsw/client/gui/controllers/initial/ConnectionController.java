@@ -55,7 +55,7 @@ public class ConnectionController implements Controller {
                 return;
             }
 
-            gui.setClient(new Client(false));
+            gui.setClient(new Client(gui));
             gui.setView(new View());
             try {
                 gui.getClient().startConnection(serverPort, ip.getText());

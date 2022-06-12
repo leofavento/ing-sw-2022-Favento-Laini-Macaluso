@@ -6,6 +6,7 @@ import it.polimi.ingsw.client.gui.controllers.EndGameController;
 import it.polimi.ingsw.client.gui.controllers.SetupController;
 import it.polimi.ingsw.client.gui.controllers.initial.LobbyController;
 import it.polimi.ingsw.client.gui.controllers.initial.WaitingPlayersController;
+import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
 
@@ -93,17 +94,27 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(PlayerStatusMessage message) {
-
+        switch(message.getPlayerStatus()) {
+            case PLANNING -> {}
+            case END_PLANNING -> {
+                ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetError();
+                ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetAssistants();
+                ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).setInstruction("Other players are taking their turn, please wait");
+            }
+        }
+        gui.getClient().sendMessage(new Ack());
     }
 
     @Override
     public void receiveMessage(AvailableAssistants message) {
-
+        gui.getView().setAvailableAssistants(message.getAvailableAssistants());
+        gui.getView().setPlayedAssistants(message.getPlayedAssistants());
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).requestAssistants();
     }
 
     @Override
     public void receiveMessage(PlayedAssistant message) {
-
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).getSchoolboardController(message.getPlayer()).showPlayed(message.getAssistant());
     }
 
     @Override

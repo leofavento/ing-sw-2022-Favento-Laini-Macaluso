@@ -39,6 +39,12 @@ public class GUI extends Application {
         execute();
     }
 
+    public void close() {
+        Platform.exit();
+        client.closeConnection();
+        System.exit(0);
+    }
+
     public void initializeStage() {
         List<FxmlScenes> fxmlPaths = new ArrayList<>(Arrays.asList(FxmlScenes.values()));
         try {

@@ -63,16 +63,16 @@
                     <Image url="@../graphics/assistants/assistant10.png" />
                 </image>
             </ImageView>
-            <Button fx:id="assistant1" layoutX="54.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant2" layoutX="196.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant3" layoutX="337.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant4" layoutX="480.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant5" layoutX="621.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant6" layoutX="763.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant7" layoutX="907.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant8" layoutX="1052.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant9" layoutX="1197.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
-            <Button fx:id="assistant10" layoutX="1342.0" layoutY="921.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant1" layoutX="54.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant1" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant2" layoutX="196.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant2" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant3" layoutX="337.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant3" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant4" layoutX="480.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant4" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant5" layoutX="621.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant5" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant6" layoutX="763.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant6" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant7" layoutX="907.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant7" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant8" layoutX="1052.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant8" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant9" layoutX="1197.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant9" prefHeight="32.0" prefWidth="97.0" text="Select" />
+            <Button fx:id="assistant10" layoutX="1342.0" layoutY="921.0" mnemonicParsing="false" onAction="#playAssistant10" prefHeight="32.0" prefWidth="97.0" text="Select" />
 
             <ImageView fx:id="green1" fitHeight="88.0" fitWidth="57.0" layoutX="303.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
                 <image>
@@ -446,4 +446,14 @@
             </font></Text>
         </children>
     </AnchorPane>
+    <Text fx:id="played1" layoutX="35.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user played this assistant" textAlignment="CENTER" wrappingWidth="130.0" />
+    <Text fx:id="played2" layoutX="179.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played3" layoutX="320.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played4" layoutX="463.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played5" layoutX="604.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played6" layoutX="746.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played7" layoutX="890.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played8" layoutX="1035.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played9" layoutX="1180.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
+    <Text fx:id="played10" layoutX="1325.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="130.0" />
 </AnchorPane>

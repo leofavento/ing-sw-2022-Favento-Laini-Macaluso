@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.player.Player;
 import javafx.application.Platform;
@@ -10,15 +11,19 @@ import javafx.scene.SubScene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class DashboardController implements Controller{
 
-    public ImageView isl7;
+    @FXML private AnchorPane request;
     @FXML private TabPane dashboard;
+    @FXML private Text instruction;
+    @FXML private Text error;
     private HashMap<String, Tab> nicknameToTab;
     private HashMap<String, Controller> nicknameToController;
     private GUI gui;
@@ -38,6 +43,10 @@ public class DashboardController implements Controller{
                 controller.setGui(gui);
                 nicknameToController.put(player.getNickname(), controller);
                 ((SchoolboardController) controller).resetAssistantsButtons();
+                ((SchoolboardController) controller).removePlayedAssistants();
+                if (!Objects.equals(player.getNickname(), gui.getClient().getNickname())) {
+                    ((SchoolboardController) controller).removeAssistantButtons();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -49,6 +58,8 @@ public class DashboardController implements Controller{
         for (Player player : gui.getView().getPlayers()) {
             ((SchoolboardController) nicknameToController.get(player.getNickname())).update(player);
         }
+
+        gui.getClient().sendMessage(new Ack());
     }
 
     @Override
@@ -58,7 +69,12 @@ public class DashboardController implements Controller{
 
     @Override
     public void error(String error) {
+        this.error.setText(error);
+        this.error.setVisible(true);
+    }
 
+    public void resetError() {
+        error.setVisible(false);
     }
 
     @Override
@@ -66,7 +82,21 @@ public class DashboardController implements Controller{
 
     }
 
-    private void updateIsland1() {
+    public SchoolboardController getSchoolboardController(String nickname) {
+        return (SchoolboardController) nicknameToController.get(nickname);
+    }
+    
+    public void setInstruction(String message) {
+        instruction.setText(message);
+    }
 
+    public void requestAssistants() {
+        dashboard.getSelectionModel().select(nicknameToTab.get(gui.getClient().getNickname()));
+        ((SchoolboardController) nicknameToController.get(gui.getClient().getNickname())).requestAssistant();
+        setInstruction("Select the assistant you want to play");
+    }
+
+    public void resetAssistants() {
+        ((SchoolboardController) nicknameToController.get(gui.getClient().getNickname())).resetAssistantsButtons();
     }
 }
