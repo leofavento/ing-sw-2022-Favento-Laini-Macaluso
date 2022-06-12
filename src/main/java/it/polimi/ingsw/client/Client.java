@@ -1,6 +1,8 @@
 package it.polimi.ingsw.client;
 
+import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.CLIMessageReceiver;
+import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.FromServerMessage;
 
@@ -17,17 +19,10 @@ public class Client implements Runnable {
     private String nickname;
     private boolean active;
     private MessageReceiver messageReceiver;
+    private final GUI gui;
 
-
-    /*@param cli true --> cli
-     *            false --> gui*/
-    public Client(Boolean cli) {
-
-        if (cli) {
-            //TODO
-        } else {
-            //TODO
-        }
+    public Client(GUI gui) {
+        this.gui = gui;
     }
 
 
@@ -91,6 +86,9 @@ public class Client implements Runnable {
             } catch (IOException | ClassNotFoundException e) {
                 System.err.println("Connection closed from server.");
                 active = false;
+                if (gui != null) {
+                    gui.close();
+                }
                 closeConnection();
             }
         }

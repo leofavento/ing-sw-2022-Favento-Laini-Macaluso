@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -9,8 +10,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.DashboardController">
    <children>
@@ -758,11 +760,21 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <SubScene height="431.0" width="200.0">
-                    <root>
-                      <Region />
-                    </root>
-                  </SubScene>
+                  <VBox layoutX="57.0" layoutY="137.0" prefHeight="1080.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="characters" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        <Text fx:id="instruction" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Other players are taking their turn, please wait" textAlignment="CENTER" wrappingWidth="428.0" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="error" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="428.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <AnchorPane fx:id="request" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                     </children></VBox>
                </children>
             </AnchorPane>
          </children>

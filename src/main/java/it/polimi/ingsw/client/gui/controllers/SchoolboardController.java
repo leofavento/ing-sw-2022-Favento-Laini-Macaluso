@@ -1,12 +1,14 @@
 package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.messages.fromClient.PlayAssistant;
 import it.polimi.ingsw.model.Assistant;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.player.DiningRoom;
 import it.polimi.ingsw.model.player.Entrance;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.SchoolBoard;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -14,8 +16,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class SchoolboardController implements Controller {
+    @FXML private Text played1;
+    @FXML private Text played2;
+    @FXML private Text played3;
+    @FXML private Text played4;
+    @FXML private Text played5;
+    @FXML private Text played6;
+    @FXML private Text played7;
+    @FXML private Text played8;
+    @FXML private Text played9;
+    @FXML private Text played10;
     @FXML private Button assistant1;
     @FXML private Button assistant2;
     @FXML private Button assistant3;
@@ -118,6 +131,19 @@ public class SchoolboardController implements Controller {
 
     }
 
+    public void removeAssistantButtons() {
+        assistant1.setVisible(false);
+        assistant2.setVisible(false);
+        assistant3.setVisible(false);
+        assistant4.setVisible(false);
+        assistant5.setVisible(false);
+        assistant6.setVisible(false);
+        assistant7.setVisible(false);
+        assistant8.setVisible(false);
+        assistant9.setVisible(false);
+        assistant10.setVisible(false);
+    }
+
     public void resetAssistantsButtons() {
         assistant1.setDisable(true);
         assistant2.setDisable(true);
@@ -129,6 +155,19 @@ public class SchoolboardController implements Controller {
         assistant8.setDisable(true);
         assistant9.setDisable(true);
         assistant10.setDisable(true);
+    }
+
+    public void removePlayedAssistants() {
+        played1.setVisible(false);
+        played2.setVisible(false);
+        played3.setVisible(false);
+        played4.setVisible(false);
+        played5.setVisible(false);
+        played6.setVisible(false);
+        played7.setVisible(false);
+        played8.setVisible(false);
+        played9.setVisible(false);
+        played10.setVisible(false);
     }
 
     public void requestAssistant() {
@@ -145,7 +184,51 @@ public class SchoolboardController implements Controller {
         assistant9.setDisable(!availableAssistants.contains(Assistant.ELEPHANT));
         assistant10.setDisable(!availableAssistants.contains(Assistant.TURTLE));
 
-        //TODO set some text telling to choose an assistant
+        Map<String, Assistant> playedAssistants = gui.getView().getPlayedAssistants();
+        for (String player : playedAssistants.keySet()) {
+            switch (playedAssistants.get(player)) {
+                case TIGER -> {
+                    played1.setText(player + " played this assistant");
+                    played1.setVisible(true);
+                }
+                case OSTRICH -> {
+                    played2.setText(player + " played this assistant");
+                    played2.setVisible(true);
+                }
+                case ARCHER_CAT -> {
+                    played3.setText(player + " played this assistant");
+                    played3.setVisible(true);
+                }
+                case EAGLE -> {
+                    played4.setText(player + " played this assistant");
+                    played4.setVisible(true);
+                }
+                case FOX -> {
+                    played5.setText(player + " played this assistant");
+                    played5.setVisible(true);
+                }
+                case SNAKE -> {
+                    played6.setText(player + " played this assistant");
+                    played6.setVisible(true);
+                }
+                case OCTOPUS -> {
+                    played7.setText(player + " played this assistant");
+                    played7.setVisible(true);
+                }
+                case DOG -> {
+                    played8.setText(player + " played this assistant");
+                    played8.setVisible(true);
+                }
+                case ELEPHANT -> {
+                    played9.setText(player + " played this assistant");
+                    played9.setVisible(true);
+                }
+                case TURTLE -> {
+                    played10.setText(player + " played this assistant");
+                    played10.setVisible(true);
+                }
+            }
+        }
     }
 
     public void update(Player player) {
@@ -247,6 +330,91 @@ public class SchoolboardController implements Controller {
             case YELLOW -> student.setImage(new Image("graphics/students/student_yellow.png"));
             case PINK -> student.setImage(new Image("graphics/students/student_pink.png"));
             case BLUE -> student.setImage(new Image("graphics/students/student_blue.png"));
+        }
+    }
+
+    public void playAssistant1() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.TIGER));
+    }
+
+    public void playAssistant2() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.OSTRICH));
+    }
+
+    public void playAssistant3() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.ARCHER_CAT));
+    }
+
+    public void playAssistant4() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.EAGLE));
+    }
+
+    public void playAssistant5() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.FOX));
+    }
+
+    public void playAssistant6() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.SNAKE));
+    }
+
+    public void playAssistant7() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.OCTOPUS));
+    }
+
+    public void playAssistant8() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.DOG));
+    }
+
+    public void playAssistant9() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.ELEPHANT));
+    }
+
+    public void playAssistant10() {
+        gui.getClient().sendMessage(new PlayAssistant(Assistant.TURTLE));
+    }
+
+    public void showPlayed(Assistant assistant) {
+        switch (assistant) {
+            case TIGER -> {
+                played1.setText("PLAYED");
+                played1.setVisible(true);
+            }
+            case OSTRICH -> {
+                played2.setText("PLAYED");
+                played2.setVisible(true);
+            }
+            case ARCHER_CAT -> {
+                played3.setText("PLAYED");
+                played3.setVisible(true);
+            }
+            case EAGLE -> {
+                played4.setText("PLAYED");
+                played4.setVisible(true);
+            }
+            case FOX -> {
+                played5.setText("PLAYED");
+                played5.setVisible(true);
+            }
+            case SNAKE -> {
+                played6.setText("PLAYED");
+                played6.setVisible(true);
+            }
+            case OCTOPUS -> {
+                played7.setText("PLAYED");
+                played7.setVisible(true);
+            }
+            case DOG -> {
+                played8.setText("PLAYED");
+                played8.setVisible(true);
+            }
+            case ELEPHANT -> {
+                played9.setText("PLAYED");
+                played9.setVisible(true);
+            }
+            case TURTLE -> {
+                played10.setText("PLAYED");
+                played10.setVisible(true);
+            }
         }
     }
 }
