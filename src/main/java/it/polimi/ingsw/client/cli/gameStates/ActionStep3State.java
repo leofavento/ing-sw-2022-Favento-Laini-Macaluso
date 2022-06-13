@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This state implements controller's ActionStep3 for the command line interface
+ * In this phase the Player can choose the cloud to get the students from or activate a character effect.
+ */
 public class ActionStep3State implements State{
     private final CLI cli;
 

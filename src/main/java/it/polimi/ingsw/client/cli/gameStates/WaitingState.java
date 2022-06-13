@@ -9,6 +9,9 @@ import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
+/**
+ * In the WaitingState phase, the server communicates to the player the order for the first round.
+ */
 public class WaitingState implements State {
     private final CLI cli;
 

@@ -14,11 +14,11 @@ public class CloudsRenderer {
         for(int i=0; i<dashboard.getClouds().size(); i++){
             int x = i + 1;
             System.out.println("Cloud " + x + ":");
-            System.out.println("Green students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a->a == Color.GREEN).count() +
-                    ", red students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a->a == Color.RED).count() +
-                    ", yellow students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a->a == Color.YELLOW).count() +
-                    ", pink students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a->a == Color.PINK).count() +
-                    ", blue students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a->a == Color.BLUE).count());
+            System.out.println("Green students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a -> a == Color.GREEN).count() +
+                    ", red students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a -> a == Color.RED).count() +
+                    ", yellow students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a -> a == Color.YELLOW).count() +
+                    ", pink students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a -> a == Color.PINK).count() +
+                    ", blue students: " + dashboard.getClouds().get(i).getStudents().stream().filter(a -> a == Color.BLUE).count());
 
             System.out.println("|-----------------------------");
         }

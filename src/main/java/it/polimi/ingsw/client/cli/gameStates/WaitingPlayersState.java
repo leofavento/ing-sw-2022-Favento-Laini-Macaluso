@@ -2,6 +2,10 @@ package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
 
+/**
+ * In the WaitingPlayersState phase, the server communicates to every player the number of
+ * players currently connected and the number of required players to start the game.
+ */
 public class WaitingPlayersState implements State {
     private final CLI cli;
 

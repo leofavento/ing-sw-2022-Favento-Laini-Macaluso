@@ -11,6 +11,11 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char9;
 
+/**
+ * This state implements the effect of Character 9.
+ * The player that activate this character chooses a color of student.
+ * During the influence calculation in that turn, that color adds no influence.
+ */
 public class EffectChar9 implements State {
 
     Game game;

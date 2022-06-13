@@ -13,6 +13,11 @@ import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char12;
 import it.polimi.ingsw.model.player.Player;
 
+/**
+ * This state implements the effect of Character 12.
+ * Every player must return 3 students of the selected color from the Dining Room to
+ * the bag
+ */
 public class EffectChar12 implements State {
 
     Game game;

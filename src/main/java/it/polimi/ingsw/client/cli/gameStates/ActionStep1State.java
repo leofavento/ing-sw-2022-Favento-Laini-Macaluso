@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This state implements controller's ActionStep1 for the command line interface
+ * In this phase the Player can move 3 Students from his Entrance in to his DiningRoom or a selected Island.
+ */
 public class ActionStep1State implements State {
     private final CLI cli;
     int selection;

@@ -12,6 +12,11 @@ import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.characters.Char5;
 
+/**
+ * This state implements the effect of Character 5.
+ * The player that activate this character will place a no entry tile on an island of choice, where
+ * the influence won't be calculated
+ */
 public class EffectChar5 implements State {
 
     Game game;

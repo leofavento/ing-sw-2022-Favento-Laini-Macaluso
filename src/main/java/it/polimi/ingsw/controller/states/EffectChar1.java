@@ -10,7 +10,12 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char1;
 
-
+/**
+ * This state implements the effect of Character 1.
+ * The player that activate this character will take one student from the character card ana place
+ * it on an Island of choice. The Player will then draw a new student from the bag and place it on
+ * the character card
+ */
 public class EffectChar1 implements State {
 
     Game game;

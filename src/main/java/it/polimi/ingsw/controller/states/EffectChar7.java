@@ -10,6 +10,11 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char7;
 
+/**
+ * This state implements the effect of Character 7.
+ * The player that activate this character can take up to 3 students from the character card and replace them with the
+ * same number of students from the entrance.
+ */
 public class EffectChar7 implements State {
 
     Game game;

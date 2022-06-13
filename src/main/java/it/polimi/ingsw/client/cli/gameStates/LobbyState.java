@@ -8,6 +8,11 @@ import it.polimi.ingsw.model.Color;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
+/**
+ * In the LobbyState phase, the player can create a new game or request the list of
+ * the already existing ones.
+ */
 public class LobbyState implements State {
     private final CLI cli;
 

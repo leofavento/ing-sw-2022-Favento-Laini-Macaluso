@@ -6,6 +6,11 @@ import it.polimi.ingsw.messages.fromClient.SetGame;
 
 import java.util.Scanner;
 
+
+/**
+ * In the CreateGame phase, the player chooses the number of players for the game and the
+ * enabling of the expert mode.
+ */
 public class CreateGameState implements State {
     private final CLI cli;
 

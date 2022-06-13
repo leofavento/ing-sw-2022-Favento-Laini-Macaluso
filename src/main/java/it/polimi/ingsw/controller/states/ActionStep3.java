@@ -13,6 +13,10 @@ import it.polimi.ingsw.model.player.PlayerStatus;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * ActionStep3 is the third action the Player can perform.
+ * The Player can choose the cloud to get the students from or activate a character effect.
+ */
 public class ActionStep3 implements ResumableState {
     Game game;
     Controller controller;

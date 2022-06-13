@@ -18,6 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * ActionStep2 is the second action the Player can perform.
+ * The Player can move MotherNature, selecting the desired number of steps.
+ */
 public class ActionStep2 implements ResumableState {
     Game game;
     Controller controller;

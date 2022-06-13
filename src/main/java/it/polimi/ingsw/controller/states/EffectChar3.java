@@ -12,6 +12,11 @@ import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.characters.Char3;
 
+/**
+ * This state implements the effect of Character 3.
+ * The player that activate this character will take control of any number of professors, even if the player
+ * has the same number of students as the player who controls them.
+ */
 public class EffectChar3 implements ResumableState {
 
     Game game;
