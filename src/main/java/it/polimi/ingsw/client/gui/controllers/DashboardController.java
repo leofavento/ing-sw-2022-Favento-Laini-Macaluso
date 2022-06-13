@@ -524,22 +524,18 @@ public class DashboardController implements Controller {
         unitsIsl1.setText("Units: " + d.getIslands().get(0).getNumUnits());
 
         //set students number
-        int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+        int pink = 0;
+        int green = 0;
+        int yellow = 0;
+        int red = 0;
+        int blue = 0;
         for (Color c : d.getIslands().get(0).getStudents()) {
-            if (c == Color.YELLOW) {
-                yellow++;
-            }
-            if (c == Color.RED) {
-                red++;
-            }
-            if (c == Color.PINK) {
-                pink++;
-            }
-            if (c == Color.BLUE) {
-                blue++;
-            }
-            if (c == Color.GREEN) {
-                green++;
+            switch (c){
+                case YELLOW -> yellow++;
+                case RED -> red++;
+                case PINK -> pink++;
+                case BLUE -> blue++;
+                case GREEN -> green++;
             }
         }
         pinkIsl1.setText(String.valueOf(pink));
@@ -579,22 +575,18 @@ public class DashboardController implements Controller {
         unitsIsl2.setText("Units: " + d.getIslands().get(1).getNumUnits());
 
         //set students number
-        int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+        int pink = 0;
+        int green = 0;
+        int yellow = 0;
+        int red = 0;
+        int blue = 0;
         for (Color c : d.getIslands().get(1).getStudents()) {
-            if (c == Color.YELLOW) {
-                yellow++;
-            }
-            if (c == Color.RED) {
-                red++;
-            }
-            if (c == Color.PINK) {
-                pink++;
-            }
-            if (c == Color.BLUE) {
-                blue++;
-            }
-            if (c == Color.GREEN) {
-                green++;
+            switch (c){
+                case YELLOW -> yellow++;
+                case RED -> red++;
+                case PINK -> pink++;
+                case BLUE -> blue++;
+                case GREEN -> green++;
             }
         }
         pinkIsl2.setText(String.valueOf(pink));
@@ -635,22 +627,18 @@ public class DashboardController implements Controller {
         unitsIsl3.setText("Units: " + d.getIslands().get(2).getNumUnits());
 
         //set students number
-        int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+        int pink = 0;
+        int green = 0;
+        int yellow = 0;
+        int red = 0;
+        int blue = 0;
         for (Color c : d.getIslands().get(2).getStudents()) {
-            if (c == Color.YELLOW) {
-                yellow++;
-            }
-            if (c == Color.RED) {
-                red++;
-            }
-            if (c == Color.PINK) {
-                pink++;
-            }
-            if (c == Color.BLUE) {
-                blue++;
-            }
-            if (c == Color.GREEN) {
-                green++;
+            switch (c){
+                case YELLOW -> yellow++;
+                case RED -> red++;
+                case PINK -> pink++;
+                case BLUE -> blue++;
+                case GREEN -> green++;
             }
         }
         pinkIsl3.setText(String.valueOf(pink));
@@ -700,7 +688,7 @@ public class DashboardController implements Controller {
         redIsl4.setVisible(false);
         yellowIsl4.setVisible(false);
 
-        if (!(d.getIslands().size() <= 3)){
+        if (d.getIslands().size() > 3){
             isl4.setVisible(true);
             idIsl4.setVisible(true);
             unitsIsl4.setVisible(true);
@@ -714,7 +702,11 @@ public class DashboardController implements Controller {
             unitsIsl4.setText("Units: " + d.getIslands().get(3).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(3).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -767,7 +759,7 @@ public class DashboardController implements Controller {
         redIsl5.setVisible(false);
         yellowIsl5.setVisible(false);
 
-        if (!(d.getIslands().size() <= 4)) {
+        if (d.getIslands().size() > 4) {
             isl5.setVisible(true);
             idIsl5.setVisible(true);
             unitsIsl5.setVisible(true);
@@ -781,7 +773,11 @@ public class DashboardController implements Controller {
             unitsIsl5.setText("Units: " + d.getIslands().get(4).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(4).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -834,7 +830,7 @@ public class DashboardController implements Controller {
         redIsl6.setVisible(false);
         yellowIsl6.setVisible(false);
 
-        if (!(d.getIslands().size() <= 5)){
+        if (d.getIslands().size() > 5){
             isl6.setVisible(true);
             idIsl6.setVisible(true);
             unitsIsl6.setVisible(true);
@@ -848,7 +844,11 @@ public class DashboardController implements Controller {
             unitsIsl6.setText("Units: " + d.getIslands().get(5).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(5).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -900,7 +900,7 @@ public class DashboardController implements Controller {
         redIsl7.setVisible(false);
         yellowIsl7.setVisible(false);
 
-        if (!(d.getIslands().size() <= 6)) {
+        if (d.getIslands().size() > 6) {
             isl7.setVisible(true);
             idIsl7.setVisible(true);
             unitsIsl7.setVisible(true);
@@ -914,7 +914,11 @@ public class DashboardController implements Controller {
             unitsIsl7.setText("Units: " + d.getIslands().get(6).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(6).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -967,7 +971,7 @@ public class DashboardController implements Controller {
         redIsl8.setVisible(false);
         yellowIsl8.setVisible(false);
 
-        if (!(d.getIslands().size() <= 7)) {
+        if (d.getIslands().size() > 7) {
             isl8.setVisible(true);
             idIsl8.setVisible(true);
             unitsIsl8.setVisible(true);
@@ -981,7 +985,11 @@ public class DashboardController implements Controller {
             unitsIsl8.setText("Units: " + d.getIslands().get(7).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(7).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -1034,7 +1042,7 @@ public class DashboardController implements Controller {
         redIsl9.setVisible(false);
         yellowIsl9.setVisible(false);
 
-        if (!(d.getIslands().size() <= 8)) {
+        if (d.getIslands().size() > 8) {
             isl9.setVisible(true);
             idIsl9.setVisible(true);
             unitsIsl9.setVisible(true);
@@ -1048,7 +1056,11 @@ public class DashboardController implements Controller {
             unitsIsl9.setText("Units: " + d.getIslands().get(8).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(8).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -1101,7 +1113,7 @@ public class DashboardController implements Controller {
         redIsl10.setVisible(false);
         yellowIsl10.setVisible(false);
 
-        if (!(d.getIslands().size() <= 9)) {
+        if (d.getIslands().size() > 9) {
             isl10.setVisible(true);
             idIsl10.setVisible(true);
             unitsIsl10.setVisible(true);
@@ -1115,7 +1127,11 @@ public class DashboardController implements Controller {
             unitsIsl10.setText("Units: " + d.getIslands().get(9).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(9).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -1168,7 +1184,7 @@ public class DashboardController implements Controller {
         redIsl11.setVisible(false);
         yellowIsl11.setVisible(false);
 
-        if (!(d.getIslands().size() <= 10)) {
+        if (d.getIslands().size() > 10) {
             isl11.setVisible(true);
             idIsl11.setVisible(true);
             unitsIsl11.setVisible(true);
@@ -1182,7 +1198,11 @@ public class DashboardController implements Controller {
             unitsIsl11.setText("Units: " + d.getIslands().get(10).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(10).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -1235,7 +1255,7 @@ public class DashboardController implements Controller {
         redIsl12.setVisible(false);
         yellowIsl12.setVisible(false);
 
-        if (!(d.getIslands().size() <= 11)) {
+        if (d.getIslands().size() > 11) {
             isl12.setVisible(true);
             idIsl12.setVisible(true);
             unitsIsl12.setVisible(true);
@@ -1249,7 +1269,11 @@ public class DashboardController implements Controller {
             unitsIsl12.setText("Units: " + d.getIslands().get(11).getNumUnits());
 
             //set students number
-            int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
+            int pink = 0;
+            int green = 0;
+            int yellow = 0;
+            int red = 0;
+            int blue = 0;
             for (Color c : d.getIslands().get(11).getStudents()) {
                 switch (c){
                     case YELLOW -> yellow++;
@@ -1403,6 +1427,7 @@ public class DashboardController implements Controller {
             cloud3oneS1.setVisible(true);
             cloud3oneS2.setVisible(true);
             cloud3oneS3.setVisible(true);
+
             switch (d.getClouds().get(0).getStudents().get(0)){
                 case YELLOW -> cloud3oneS0.setImage(new Image(yellowStudent));
                 case BLUE -> cloud3oneS0.setImage(new Image(blueStudent));
