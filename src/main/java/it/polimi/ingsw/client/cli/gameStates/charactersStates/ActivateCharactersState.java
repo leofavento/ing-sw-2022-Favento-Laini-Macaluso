@@ -9,6 +9,10 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * state used to activate the correct character state
+ */
+
 public class ActivateCharactersState {
     public void run(CLI cli) {
         Scanner in = new Scanner(System.in);

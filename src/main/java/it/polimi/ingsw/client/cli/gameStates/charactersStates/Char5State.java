@@ -7,7 +7,15 @@ import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * character 5 state
+ */
 public class Char5State {
+
+    /**
+     * method used to print to command line the effects of character 5
+     * @param cli the game's command line interface
+     */
     public void run(CLI cli) {
         int selection;
         Scanner in = new Scanner(System.in);

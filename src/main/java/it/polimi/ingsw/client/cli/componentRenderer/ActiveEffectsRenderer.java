@@ -4,6 +4,11 @@ import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.characters.Char2;
 
 public class ActiveEffectsRenderer {
+
+    /**
+     * method used to print to the command line the active effects
+     * @param dashboard the game dashboard
+     */
     public static void printActiveEffects(Dashboard dashboard) {
         System.out.println("|-----------------------------");
         System.out.println("| Active turn effects: ");

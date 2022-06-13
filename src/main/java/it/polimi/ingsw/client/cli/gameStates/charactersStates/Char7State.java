@@ -10,7 +10,15 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * character 7 state
+ */
 public class Char7State {
+
+    /**
+     * method used to print to command line the effects of character 7
+     * @param cli the game's command line interface
+     */
     public void run(CLI cli) {
         Scanner in = new Scanner(System.in);
         int selection;

@@ -9,6 +9,12 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.characters.Char11;
 
+/**
+ * This state implements the effect of Character 11.
+ * The player that activate this character will take 1 student from the character card and place it in
+ * the Dining Room.
+ * Then, the player will draw a new student from the bag and place it on the character card.
+ */
 public class EffectChar11 implements State {
 
     Game game;

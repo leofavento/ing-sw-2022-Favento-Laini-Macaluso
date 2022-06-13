@@ -12,6 +12,11 @@ import it.polimi.ingsw.model.characters.Char10;
 
 import java.util.ArrayList;
 
+/**
+ * This state implements the effect of Character 10.
+ * The player that activate this character can exchange up to 2 students between the Entrance
+ * and the Dining Room.
+ */
 public class EffectChar10 implements State {
 
     Game game;

@@ -14,6 +14,10 @@ import it.polimi.ingsw.model.player.PlayerStatus;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This state implements controller's ActionStep2 for the command line interface
+ * In this phase the Player can move MotherNature, selecting the desired number of steps.
+ */
 public class ActionStep2State implements State {
     private final CLI cli;
 

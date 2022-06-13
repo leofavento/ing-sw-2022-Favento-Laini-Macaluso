@@ -8,8 +8,15 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * character 11 state
+ */
 public class Char11State {
 
+    /**
+     * method used to print to command line the effects of character 11
+     * @param cli the game's command line interface
+     */
     public void run(CLI cli) {
         int selection;
         Scanner in = new Scanner(System.in);

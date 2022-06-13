@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * In the PlanningState phase, the player selects an assistant from the list of the available ones.
+ */
 public class PlanningState implements State {
     private final CLI cli;
 

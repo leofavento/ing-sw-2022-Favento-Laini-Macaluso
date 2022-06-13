@@ -7,6 +7,10 @@ import it.polimi.ingsw.messages.fromClient.LoginMessage;
 
 import java.util.Scanner;
 
+
+/**
+ * In the NicknameState phase, the player chooses the desired nickname.
+ */
 public class NicknameState implements State {
     private String nickname;
     private final CLI cli;

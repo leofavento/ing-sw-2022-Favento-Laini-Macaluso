@@ -11,6 +11,10 @@ import it.polimi.ingsw.model.player.Player;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * In EndOfTheGame phase, the server sends to each player a message containing the result of
+ * the game (win or lose), the nickname of the winner player and the reason of the win.
+ */
 public class EndOfTheGame implements State {
     Game game;
     Controller controller;

@@ -2,6 +2,10 @@ package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
 
+/**
+ * In the EndOfGane phase, every player receives a message from the server containing the result of the
+ * game (win or lose), the nickname of the winner player and the reason of the win.
+ */
 public class EndOfGameState implements State {
     private final CLI cli;
 

@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * In the JoinGameState phase, the player chooses the desired game to join from the list
+ * of available games.
+ */
 public class JoinGameState implements State {
     private final CLI cli;
 

@@ -7,6 +7,10 @@ import it.polimi.ingsw.model.Tower;
 
 import java.util.*;
 
+
+/**
+ * In the CreateGame phase, the player chooses the desired tower and wizard.
+ */
 public class GameSetupState implements State {
     private final CLI cli;
 
