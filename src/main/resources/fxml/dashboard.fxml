@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -26,7 +25,7 @@
                         <content>
                               <ScrollPane fitToHeight="true" fitToWidth="true">
                                  <content>
-                                <AnchorPane>
+                                <AnchorPane style="-fx-background-color: #69bae9;">
                                        <children>
                                           <ImageView fx:id="isl7" fitHeight="250.0" fitWidth="350.0" layoutX="5.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -748,6 +747,196 @@
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
+                                          <Label fx:id="cloud2oneID" layoutX="603.0" layoutY="384.0" text="Cloud 1" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud2one" fitHeight="173.0" fitWidth="169.0" layoutX="548.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloudCard1.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud2oneS0" fitHeight="65.0" fitWidth="62.0" layoutX="552.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud2oneS2" fitHeight="65.0" fitWidth="62.0" layoutX="617.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud2oneS1" fitHeight="65.0" fitWidth="62.0" layoutX="638.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cloud2twoID" layoutX="834.0" layoutY="384.0" text="Cloud 2" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud2two" fitHeight="173.0" fitWidth="169.0" layoutX="779.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloudCard2.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud2twoS0" fitHeight="65.0" fitWidth="62.0" layoutX="783.0" layoutY="454.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud2twoS2" fitHeight="65.0" fitWidth="62.0" layoutX="848.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud2twoS1" fitHeight="65.0" fitWidth="62.0" layoutX="869.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cloud4oneID" layoutX="837.0" layoutY="390.0" text="Cloud 3" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud4one" fitHeight="173.0" fitWidth="169.0" layoutX="782.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloudCard3.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud4oneS0" fitHeight="65.0" fitWidth="62.0" layoutX="786.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud4oneS2" fitHeight="65.0" fitWidth="62.0" layoutX="851.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud4oneS1" fitHeight="65.0" fitWidth="62.0" layoutX="872.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cloud4twoID" layoutX="1041.0" layoutY="390.0" text="Cloud 4" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud4two" fitHeight="173.0" fitWidth="169.0" layoutX="986.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloudCard4.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud4twoS0" fitHeight="65.0" fitWidth="62.0" layoutX="989.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud4twoS2" fitHeight="65.0" fitWidth="62.0" layoutX="1055.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud4twoS1" fitHeight="65.0" fitWidth="62.0" layoutX="1076.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cloud3oneID" layoutX="473.0" layoutY="376.0" text="Cloud 1" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud3one" fitHeight="168.0" fitWidth="165.0" layoutX="417.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloud4Card.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3oneS0" fitHeight="54.0" fitWidth="57.0" layoutX="430.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3oneS1" fitHeight="54.0" fitWidth="57.0" layoutX="512.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3oneS2" fitHeight="54.0" fitWidth="57.0" layoutX="430.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3oneS3" fitHeight="54.0" fitWidth="57.0" layoutX="511.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cloud3twoID" layoutX="721.0" layoutY="376.0" text="Cloud 2" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud3two" fitHeight="168.0" fitWidth="165.0" layoutX="665.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloud4Card.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3twoS0" fitHeight="54.0" fitWidth="57.0" layoutX="678.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3twoS1" fitHeight="54.0" fitWidth="57.0" layoutX="760.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3twoS2" fitHeight="54.0" fitWidth="57.0" layoutX="678.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3twoS3" fitHeight="54.0" fitWidth="57.0" layoutX="759.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cloud3threeID" layoutX="968.0" layoutY="376.0" text="Cloud 3" visible="false">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fx:id="cloud3three" fitHeight="168.0" fitWidth="165.0" layoutX="913.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/clouds/cloud4Card.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3threeS0" fitHeight="54.0" fitWidth="57.0" layoutX="925.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3threeS1" fitHeight="54.0" fitWidth="57.0" layoutX="1007.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3threeS2" fitHeight="54.0" fitWidth="57.0" layoutX="926.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="cloud3threeS3" fitHeight="54.0" fitWidth="57.0" layoutX="1007.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../graphics/students/student_red.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </AnchorPane>
                                  </content>

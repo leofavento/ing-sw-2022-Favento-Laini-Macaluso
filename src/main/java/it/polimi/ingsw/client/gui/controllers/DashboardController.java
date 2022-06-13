@@ -336,6 +336,98 @@ public class DashboardController implements Controller {
     private final static String blackTower = "graphics/towers/blacktower.png";
     private final static String whiteTower = "graphics/towers/whitetower.png";
     private final static String greyTower = "graphics/towers/greytower.png";
+    private final static String blueStudent = "graphics/students/student_blue.png";
+    private final static String redStudent = "graphics/students/student_red.png";
+    private final static String pinkStudent = "graphics/students/student_pink.png";
+    private final static String greenStudent = "graphics/students/student_green.png";
+    private final static String yellowStudent = "graphics/students/student_yellow.png";
+
+    //initialize cloud for two players
+    @FXML
+    public ImageView cloud2one;
+    @FXML
+    public Label cloud2oneID;
+    @FXML
+    public ImageView cloud2oneS0;
+    @FXML
+    public ImageView cloud2oneS1;
+    @FXML
+    public ImageView cloud2oneS2;
+
+    @FXML
+    public ImageView cloud2two;
+    @FXML
+    public Label cloud2twoID;
+    @FXML
+    public ImageView cloud2twoS0;
+    @FXML
+    public ImageView cloud2twoS1;
+    @FXML
+    public ImageView cloud2twoS2;
+
+    //initialize cloud for four players
+    @FXML
+    public ImageView cloud4one;
+    @FXML
+    public Label cloud4oneID;
+    @FXML
+    public ImageView cloud4oneS0;
+    @FXML
+    public ImageView cloud4oneS1;
+    @FXML
+    public ImageView cloud4oneS2;
+
+    @FXML
+    public ImageView cloud4two;
+    @FXML
+    public Label cloud4twoID;
+    @FXML
+    public ImageView cloud4twoS0;
+    @FXML
+    public ImageView cloud4twoS1;
+    @FXML
+    public ImageView cloud4twoS2;
+
+    //initialize cloud for three players
+    @FXML
+    public ImageView cloud3one;
+    @FXML
+    public Label cloud3oneID;
+    @FXML
+    public ImageView cloud3oneS0;
+    @FXML
+    public ImageView cloud3oneS1;
+    @FXML
+    public ImageView cloud3oneS2;
+    @FXML
+    public ImageView cloud3oneS3;
+
+    @FXML
+    public ImageView cloud3two;
+    @FXML
+    public Label cloud3twoID;
+    @FXML
+    public ImageView cloud3twoS0;
+    @FXML
+    public ImageView cloud3twoS1;
+    @FXML
+    public ImageView cloud3twoS2;
+    @FXML
+    public ImageView cloud3twoS3;
+
+    @FXML
+    public ImageView cloud3three;
+    @FXML
+    public Label cloud3threeID;
+    @FXML
+    public ImageView cloud3threeS0;
+    @FXML
+    public ImageView cloud3threeS1;
+    @FXML
+    public ImageView cloud3threeS2;
+    @FXML
+    public ImageView cloud3threeS3;
+
 
 
     @FXML
@@ -382,6 +474,7 @@ public class DashboardController implements Controller {
         }
 
         updateIslands(gui.getView().getDashboard());
+        updateClouds(gui.getView().getDashboard());
         gui.getClient().sendMessage(new Ack());
 
 
@@ -536,7 +629,6 @@ public class DashboardController implements Controller {
         mnIsland2.setVisible(d.getMotherNaturePosition() == 1);
 
     }
-
 
     private void updateIsland3(Dashboard d) {
         //set num units
@@ -1246,4 +1338,309 @@ public class DashboardController implements Controller {
         updateIsland11(d);
         updateIsland12(d);
     }
+
+    public void updateClouds(Dashboard d){
+        switch (d.getClouds().size()) {
+            case 2 -> update2Clouds(d);
+            case 3 -> update3Clouds(d);
+            case 4 -> update4Clouds(d);
+        }
+    }
+
+    public void update2Clouds(Dashboard d){
+        cloud2one.setVisible(true);
+        cloud2oneID.setVisible(true);
+        cloud2two.setVisible(true);
+        cloud2twoID.setVisible(true);
+
+        if (d.getClouds().get(0).getStudents().isEmpty()){
+            cloud2oneS0.setVisible(false);
+            cloud2oneS1.setVisible(false);
+            cloud2oneS2.setVisible(false);
+        }
+        else{
+            cloud2oneS0.setVisible(true);
+            cloud2oneS1.setVisible(true);
+            cloud2oneS2.setVisible(true);
+        switch (d.getClouds().get(0).getStudents().get(0)){
+            case YELLOW -> cloud2oneS0.setImage(new Image(yellowStudent));
+            case BLUE -> cloud2oneS0.setImage(new Image(blueStudent));
+            case PINK -> cloud2oneS0.setImage(new Image(pinkStudent));
+            case RED -> cloud2oneS0.setImage(new Image(redStudent));
+            case GREEN -> cloud2oneS0.setImage(new Image(greenStudent));
+        }
+        switch (d.getClouds().get(0).getStudents().get(1)){
+            case YELLOW -> cloud2oneS1.setImage(new Image(yellowStudent));
+            case BLUE -> cloud2oneS1.setImage(new Image(blueStudent));
+            case PINK -> cloud2oneS1.setImage(new Image(pinkStudent));
+            case RED -> cloud2oneS1.setImage(new Image(redStudent));
+            case GREEN -> cloud2oneS1.setImage(new Image(greenStudent));
+        }
+        switch (d.getClouds().get(0).getStudents().get(2)){
+            case YELLOW -> cloud2oneS2.setImage(new Image(yellowStudent));
+            case BLUE -> cloud2oneS2.setImage(new Image(blueStudent));
+            case PINK -> cloud2oneS2.setImage(new Image(pinkStudent));
+            case RED -> cloud2oneS2.setImage(new Image(redStudent));
+            case GREEN -> cloud2oneS2.setImage(new Image(greenStudent));
+        }}
+
+        if (d.getClouds().get(1).getStudents().isEmpty()){
+            cloud2twoS0.setVisible(false);
+            cloud2twoS1.setVisible(false);
+            cloud2twoS2.setVisible(false);
+        }
+        else{
+            cloud2twoS0.setVisible(true);
+            cloud2twoS1.setVisible(true);
+            cloud2twoS2.setVisible(true);
+            switch (d.getClouds().get(1).getStudents().get(0)){
+                case YELLOW -> cloud2twoS0.setImage(new Image(yellowStudent));
+                case BLUE -> cloud2twoS0.setImage(new Image(blueStudent));
+                case PINK -> cloud2twoS0.setImage(new Image(pinkStudent));
+                case RED -> cloud2twoS0.setImage(new Image(redStudent));
+                case GREEN -> cloud2twoS0.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(1).getStudents().get(1)){
+                case YELLOW -> cloud2twoS1.setImage(new Image(yellowStudent));
+                case BLUE -> cloud2twoS1.setImage(new Image(blueStudent));
+                case PINK -> cloud2twoS1.setImage(new Image(pinkStudent));
+                case RED -> cloud2twoS1.setImage(new Image(redStudent));
+                case GREEN -> cloud2twoS1.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(1).getStudents().get(2)){
+                case YELLOW -> cloud2twoS2.setImage(new Image(yellowStudent));
+                case BLUE -> cloud2twoS2.setImage(new Image(blueStudent));
+                case PINK -> cloud2twoS2.setImage(new Image(pinkStudent));
+                case RED -> cloud2twoS2.setImage(new Image(redStudent));
+                case GREEN -> cloud2twoS2.setImage(new Image(greenStudent));
+            }}
+    }
+
+    public void update3Clouds(Dashboard d){
+        cloud3one.setVisible(true);
+        cloud3oneID.setVisible(true);
+        cloud3two.setVisible(true);
+        cloud3twoID.setVisible(true);
+        cloud3three.setVisible(true);
+        cloud3threeID.setVisible(true);
+
+        if (d.getClouds().get(0).getStudents().isEmpty()){
+            cloud3oneS0.setVisible(false);
+            cloud3oneS1.setVisible(false);
+            cloud3oneS2.setVisible(false);
+            cloud3oneS3.setVisible(false);
+        }
+        else{
+            cloud3oneS0.setVisible(true);
+            cloud3oneS1.setVisible(true);
+            cloud3oneS2.setVisible(true);
+            cloud3oneS3.setVisible(true);
+            switch (d.getClouds().get(0).getStudents().get(0)){
+                case YELLOW -> cloud3oneS0.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3oneS0.setImage(new Image(blueStudent));
+                case PINK -> cloud3oneS0.setImage(new Image(pinkStudent));
+                case RED -> cloud3oneS0.setImage(new Image(redStudent));
+                case GREEN -> cloud3oneS0.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(0).getStudents().get(1)){
+                case YELLOW -> cloud3oneS1.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3oneS1.setImage(new Image(blueStudent));
+                case PINK -> cloud3oneS1.setImage(new Image(pinkStudent));
+                case RED -> cloud3oneS1.setImage(new Image(redStudent));
+                case GREEN -> cloud3oneS1.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(0).getStudents().get(2)){
+                case YELLOW -> cloud3oneS2.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3oneS2.setImage(new Image(blueStudent));
+                case PINK -> cloud3oneS2.setImage(new Image(pinkStudent));
+                case RED -> cloud3oneS2.setImage(new Image(redStudent));
+                case GREEN -> cloud3oneS2.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(0).getStudents().get(3)){
+                case YELLOW -> cloud3oneS3.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3oneS3.setImage(new Image(blueStudent));
+                case PINK -> cloud3oneS3.setImage(new Image(pinkStudent));
+                case RED -> cloud3oneS3.setImage(new Image(redStudent));
+                case GREEN -> cloud3oneS3.setImage(new Image(greenStudent));
+            }}
+
+        if (d.getClouds().get(1).getStudents().isEmpty()){
+            cloud3twoS0.setVisible(false);
+            cloud3twoS1.setVisible(false);
+            cloud3twoS2.setVisible(false);
+            cloud3twoS3.setVisible(false);
+        }
+        else{
+            cloud3twoS0.setVisible(true);
+            cloud3twoS1.setVisible(true);
+            cloud3twoS2.setVisible(true);
+            cloud3twoS3.setVisible(true);
+            switch (d.getClouds().get(1).getStudents().get(0)){
+                case YELLOW -> cloud3twoS0.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3twoS0.setImage(new Image(blueStudent));
+                case PINK -> cloud3twoS0.setImage(new Image(pinkStudent));
+                case RED -> cloud3twoS0.setImage(new Image(redStudent));
+                case GREEN -> cloud3twoS0.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(1).getStudents().get(1)){
+                case YELLOW -> cloud3twoS1.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3twoS1.setImage(new Image(blueStudent));
+                case PINK -> cloud3twoS1.setImage(new Image(pinkStudent));
+                case RED -> cloud3twoS1.setImage(new Image(redStudent));
+                case GREEN -> cloud3twoS1.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(1).getStudents().get(2)){
+                case YELLOW -> cloud3twoS2.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3twoS2.setImage(new Image(blueStudent));
+                case PINK -> cloud3twoS2.setImage(new Image(pinkStudent));
+                case RED -> cloud3twoS2.setImage(new Image(redStudent));
+                case GREEN -> cloud3twoS2.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(1).getStudents().get(3)){
+                case YELLOW -> cloud3twoS3.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3twoS3.setImage(new Image(blueStudent));
+                case PINK -> cloud3twoS3.setImage(new Image(pinkStudent));
+                case RED -> cloud3twoS3.setImage(new Image(redStudent));
+                case GREEN -> cloud3twoS3.setImage(new Image(greenStudent));
+            }}
+
+
+        if (d.getClouds().get(2).getStudents().isEmpty()){
+            cloud3threeS0.setVisible(false);
+            cloud3threeS1.setVisible(false);
+            cloud3threeS2.setVisible(false);
+            cloud3threeS3.setVisible(false);
+        }
+        else{
+            cloud3threeS0.setVisible(true);
+            cloud3threeS1.setVisible(true);
+            cloud3threeS2.setVisible(true);
+            cloud3threeS3.setVisible(true);
+            switch (d.getClouds().get(2).getStudents().get(0)){
+                case YELLOW -> cloud3threeS0.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3threeS0.setImage(new Image(blueStudent));
+                case PINK -> cloud3threeS0.setImage(new Image(pinkStudent));
+                case RED -> cloud3threeS0.setImage(new Image(redStudent));
+                case GREEN -> cloud3threeS0.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(2).getStudents().get(1)){
+                case YELLOW -> cloud3threeS1.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3threeS1.setImage(new Image(blueStudent));
+                case PINK -> cloud3threeS1.setImage(new Image(pinkStudent));
+                case RED -> cloud3threeS1.setImage(new Image(redStudent));
+                case GREEN -> cloud3threeS1.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(2).getStudents().get(2)){
+                case YELLOW -> cloud3threeS2.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3threeS2.setImage(new Image(blueStudent));
+                case PINK -> cloud3threeS2.setImage(new Image(pinkStudent));
+                case RED -> cloud3threeS2.setImage(new Image(redStudent));
+                case GREEN -> cloud3threeS2.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(2).getStudents().get(3)){
+                case YELLOW -> cloud3threeS3.setImage(new Image(yellowStudent));
+                case BLUE -> cloud3threeS3.setImage(new Image(blueStudent));
+                case PINK -> cloud3threeS3.setImage(new Image(pinkStudent));
+                case RED -> cloud3threeS3.setImage(new Image(redStudent));
+                case GREEN -> cloud3threeS3.setImage(new Image(greenStudent));
+            }}
+
+    }
+
+    public void update4Clouds(Dashboard d){
+
+        cloud2one.setLayoutX(370);
+        cloud2one.setLayoutY(415);
+        cloud2oneID.setLayoutX(425);
+        cloud2oneID.setLayoutY(390);
+        cloud2oneS0.setLayoutX(374);
+        cloud2oneS0.setLayoutY(459);
+        cloud2oneS1.setLayoutX(460);
+        cloud2oneS1.setLayoutY(433);
+        cloud2oneS2.setLayoutX(439);
+        cloud2oneS2.setLayoutY(519);
+
+        cloud2two.setLayoutX(575);
+        cloud2two.setLayoutY(418);
+        cloud2twoID.setLayoutX(630);
+        cloud2twoID.setLayoutY(390);
+        cloud2twoS0.setLayoutX(579);
+        cloud2twoS0.setLayoutY(463);
+        cloud2twoS1.setLayoutX(665);
+        cloud2twoS1.setLayoutY(437);
+        cloud2twoS2.setLayoutX(644);
+        cloud2twoS2.setLayoutY(523);
+
+        update2Clouds(d);
+
+        cloud4one.setVisible(true);
+        cloud4oneID.setVisible(true);
+        cloud4two.setVisible(true);
+        cloud4twoID.setVisible(true);
+
+        if (d.getClouds().get(2).getStudents().isEmpty()){
+            cloud4oneS0.setVisible(false);
+            cloud4oneS1.setVisible(false);
+            cloud4oneS2.setVisible(false);
+        }
+        else{
+            cloud4oneS0.setVisible(true);
+            cloud4oneS1.setVisible(true);
+            cloud4oneS2.setVisible(true);
+            switch (d.getClouds().get(2).getStudents().get(0)){
+                case YELLOW -> cloud4oneS0.setImage(new Image(yellowStudent));
+                case BLUE -> cloud4oneS0.setImage(new Image(blueStudent));
+                case PINK -> cloud4oneS0.setImage(new Image(pinkStudent));
+                case RED -> cloud4oneS0.setImage(new Image(redStudent));
+                case GREEN -> cloud4oneS0.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(2).getStudents().get(1)){
+                case YELLOW -> cloud4oneS1.setImage(new Image(yellowStudent));
+                case BLUE -> cloud4oneS1.setImage(new Image(blueStudent));
+                case PINK -> cloud4oneS1.setImage(new Image(pinkStudent));
+                case RED -> cloud4oneS1.setImage(new Image(redStudent));
+                case GREEN -> cloud4oneS1.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(2).getStudents().get(2)){
+                case YELLOW -> cloud4oneS2.setImage(new Image(yellowStudent));
+                case BLUE -> cloud4oneS2.setImage(new Image(blueStudent));
+                case PINK -> cloud4oneS2.setImage(new Image(pinkStudent));
+                case RED -> cloud4oneS2.setImage(new Image(redStudent));
+                case GREEN -> cloud4oneS2.setImage(new Image(greenStudent));
+            }}
+
+        if (d.getClouds().get(3).getStudents().isEmpty()){
+            cloud4twoS0.setVisible(false);
+            cloud4twoS1.setVisible(false);
+            cloud4twoS2.setVisible(false);
+        }
+        else{
+            cloud4twoS0.setVisible(true);
+            cloud4twoS1.setVisible(true);
+            cloud4twoS2.setVisible(true);
+            switch (d.getClouds().get(3).getStudents().get(0)){
+                case YELLOW -> cloud4twoS0.setImage(new Image(yellowStudent));
+                case BLUE -> cloud4twoS0.setImage(new Image(blueStudent));
+                case PINK -> cloud4twoS0.setImage(new Image(pinkStudent));
+                case RED -> cloud4twoS0.setImage(new Image(redStudent));
+                case GREEN -> cloud4twoS0.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(3).getStudents().get(1)){
+                case YELLOW -> cloud4twoS1.setImage(new Image(yellowStudent));
+                case BLUE -> cloud4twoS1.setImage(new Image(blueStudent));
+                case PINK -> cloud4twoS1.setImage(new Image(pinkStudent));
+                case RED -> cloud4twoS1.setImage(new Image(redStudent));
+                case GREEN -> cloud4twoS1.setImage(new Image(greenStudent));
+            }
+            switch (d.getClouds().get(3).getStudents().get(2)){
+                case YELLOW -> cloud4twoS2.setImage(new Image(yellowStudent));
+                case BLUE -> cloud4twoS2.setImage(new Image(blueStudent));
+                case PINK -> cloud4twoS2.setImage(new Image(pinkStudent));
+                case RED -> cloud4twoS2.setImage(new Image(redStudent));
+                case GREEN -> cloud4twoS2.setImage(new Image(greenStudent));
+            }}
+
+    }
 }
+
+
