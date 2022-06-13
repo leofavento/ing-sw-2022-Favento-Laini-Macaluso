@@ -549,16 +549,18 @@ public class DashboardController implements Controller {
         yellowIsl1.setText(String.valueOf(yellow));
 
         //set no entry tile
+        noEntryIsl1.setVisible(false);
+        nEIsl1.setVisible(false);
+
         if (d.getIslands().get(0).getNoEntry() != 0) {
             noEntryIsl1.setVisible(true);
             nEIsl1.setText(String.valueOf(d.getIslands().get(0).getNoEntry()));
             nEIsl1.setVisible(true);
-        } else {
-            noEntryIsl1.setVisible(false);
-            nEIsl1.setVisible(false);
         }
 
         //set tower
+        towerIsl1.setVisible(false);
+
         if (d.getIslands().get(0).hasTower()) {
             towerIsl1.setVisible(true);
             switch (d.getIslands().get(0).getTowerColor()) {
@@ -566,8 +568,6 @@ public class DashboardController implements Controller {
                 case WHITE -> towerIsl1.setImage(new Image(whiteTower));
                 case GREY -> towerIsl1.setImage(new Image(greyTower));
             }
-        } else {
-            towerIsl1.setVisible(false);
         }
 
         //set mother nature
@@ -604,16 +604,18 @@ public class DashboardController implements Controller {
         yellowIsl2.setText(String.valueOf(yellow));
 
         //set no entry tile
+        noEntryIsl2.setVisible(false);
+        nEIsl2.setVisible(false);
+
         if (d.getIslands().get(1).getNoEntry() != 0) {
             noEntryIsl2.setVisible(true);
             nEIsl2.setText(String.valueOf(d.getIslands().get(1).getNoEntry()));
             nEIsl2.setVisible(true);
-        } else {
-            noEntryIsl2.setVisible(false);
-            nEIsl2.setVisible(false);
         }
 
         //set tower
+        towerIsl2.setVisible(false);
+
         if (d.getIslands().get(1).hasTower()) {
             towerIsl2.setVisible(true);
             switch (d.getIslands().get(1).getTowerColor()) {
@@ -621,8 +623,6 @@ public class DashboardController implements Controller {
                 case WHITE -> towerIsl2.setImage(new Image(whiteTower));
                 case GREY -> towerIsl2.setImage(new Image(greyTower));
             }
-        } else {
-            towerIsl2.setVisible(false);
         }
 
         //set mother nature
@@ -660,16 +660,18 @@ public class DashboardController implements Controller {
         yellowIsl3.setText(String.valueOf(yellow));
 
         //set no entry tile
+        noEntryIsl3.setVisible(false);
+        nEIsl3.setVisible(false);
+
         if (d.getIslands().get(2).getNoEntry() != 0) {
             noEntryIsl3.setVisible(true);
             nEIsl3.setText(String.valueOf(d.getIslands().get(2).getNoEntry()));
             nEIsl3.setVisible(true);
-        } else {
-            noEntryIsl3.setVisible(false);
-            nEIsl3.setVisible(false);
         }
 
         //set tower
+        towerIsl3.setVisible(false);
+
         if (d.getIslands().get(2).hasTower()) {
             towerIsl3.setVisible(true);
             switch (d.getIslands().get(2).getTowerColor()) {
@@ -677,8 +679,6 @@ public class DashboardController implements Controller {
                 case WHITE -> towerIsl3.setImage(new Image(whiteTower));
                 case GREY -> towerIsl3.setImage(new Image(greyTower));
             }
-        } else {
-            towerIsl3.setVisible(false);
         }
 
         //set mother nature
@@ -687,40 +687,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland4(Dashboard d) {
-        if (d.getIslands().size() <= 3) {
-            isl4.setVisible(false);
-            idIsl4.setVisible(false);
-            unitsIsl4.setVisible(false);
-            mnIsland4.setVisible(false);
-            noEntryIsl4.setVisible(false);
-            nEIsl4.setVisible(false);
-            towerIsl4.setVisible(false);
-            pinkIsl4.setVisible(false);
-            greenIsl4.setVisible(false);
-            blueIsl4.setVisible(false);
-            redIsl4.setVisible(false);
-            yellowIsl4.setVisible(false);
-        } else {
+        isl4.setVisible(false);
+        idIsl4.setVisible(false);
+        unitsIsl4.setVisible(false);
+        mnIsland4.setVisible(false);
+        noEntryIsl4.setVisible(false);
+        nEIsl4.setVisible(false);
+        towerIsl4.setVisible(false);
+        pinkIsl4.setVisible(false);
+        greenIsl4.setVisible(false);
+        blueIsl4.setVisible(false);
+        redIsl4.setVisible(false);
+        yellowIsl4.setVisible(false);
+
+        if (!(d.getIslands().size() <= 3)){
+            isl4.setVisible(true);
+            idIsl4.setVisible(true);
+            unitsIsl4.setVisible(true);
+            pinkIsl4.setVisible(true);
+            greenIsl4.setVisible(true);
+            blueIsl4.setVisible(true);
+            redIsl4.setVisible(true);
+            yellowIsl4.setVisible(true);
+
             //set num units
             unitsIsl4.setText("Units: " + d.getIslands().get(3).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(3).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl4.setText(String.valueOf(pink));
@@ -734,9 +735,6 @@ public class DashboardController implements Controller {
                 noEntryIsl4.setVisible(true);
                 nEIsl4.setText(String.valueOf(d.getIslands().get(3).getNoEntry()));
                 nEIsl4.setVisible(true);
-            } else {
-                noEntryIsl4.setVisible(false);
-                nEIsl4.setVisible(false);
             }
 
             //set tower
@@ -747,8 +745,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl4.setImage(new Image(whiteTower));
                     case GREY -> towerIsl4.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl4.setVisible(false);
             }
 
             //set mother nature
@@ -758,40 +754,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland5(Dashboard d) {
-        if (d.getIslands().size() <= 4) {
-            isl5.setVisible(false);
-            idIsl5.setVisible(false);
-            unitsIsl5.setVisible(false);
-            mnIsland5.setVisible(false);
-            noEntryIsl5.setVisible(false);
-            nEIsl5.setVisible(false);
-            towerIsl5.setVisible(false);
-            pinkIsl5.setVisible(false);
-            greenIsl5.setVisible(false);
-            blueIsl5.setVisible(false);
-            redIsl5.setVisible(false);
-            yellowIsl5.setVisible(false);
-        } else {
+        isl5.setVisible(false);
+        idIsl5.setVisible(false);
+        unitsIsl5.setVisible(false);
+        mnIsland5.setVisible(false);
+        noEntryIsl5.setVisible(false);
+        nEIsl5.setVisible(false);
+        towerIsl5.setVisible(false);
+        pinkIsl5.setVisible(false);
+        greenIsl5.setVisible(false);
+        blueIsl5.setVisible(false);
+        redIsl5.setVisible(false);
+        yellowIsl5.setVisible(false);
+
+        if (!(d.getIslands().size() <= 4)) {
+            isl5.setVisible(true);
+            idIsl5.setVisible(true);
+            unitsIsl5.setVisible(true);
+            pinkIsl5.setVisible(true);
+            greenIsl5.setVisible(true);
+            blueIsl5.setVisible(true);
+            redIsl5.setVisible(true);
+            yellowIsl5.setVisible(true);
+
             //set num units
             unitsIsl5.setText("Units: " + d.getIslands().get(4).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(4).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl5.setText(String.valueOf(pink));
@@ -805,9 +802,6 @@ public class DashboardController implements Controller {
                 noEntryIsl5.setVisible(true);
                 nEIsl5.setText(String.valueOf(d.getIslands().get(4).getNoEntry()));
                 nEIsl5.setVisible(true);
-            } else {
-                noEntryIsl5.setVisible(false);
-                nEIsl5.setVisible(false);
             }
 
             //set tower
@@ -818,8 +812,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl5.setImage(new Image(whiteTower));
                     case GREY -> towerIsl5.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl5.setVisible(false);
             }
 
             //set mother nature
@@ -829,40 +821,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland6(Dashboard d) {
-        if (d.getIslands().size() <= 5) {
-            isl6.setVisible(false);
-            idIsl6.setVisible(false);
-            unitsIsl6.setVisible(false);
-            mnIsland6.setVisible(false);
-            noEntryIsl6.setVisible(false);
-            nEIsl6.setVisible(false);
-            towerIsl6.setVisible(false);
-            pinkIsl6.setVisible(false);
-            greenIsl6.setVisible(false);
-            blueIsl6.setVisible(false);
-            redIsl6.setVisible(false);
-            yellowIsl6.setVisible(false);
-        } else {
+        isl6.setVisible(false);
+        idIsl6.setVisible(false);
+        unitsIsl6.setVisible(false);
+        mnIsland6.setVisible(false);
+        noEntryIsl6.setVisible(false);
+        nEIsl6.setVisible(false);
+        towerIsl6.setVisible(false);
+        pinkIsl6.setVisible(false);
+        greenIsl6.setVisible(false);
+        blueIsl6.setVisible(false);
+        redIsl6.setVisible(false);
+        yellowIsl6.setVisible(false);
+
+        if (!(d.getIslands().size() <= 5)){
+            isl6.setVisible(true);
+            idIsl6.setVisible(true);
+            unitsIsl6.setVisible(true);
+            pinkIsl6.setVisible(true);
+            greenIsl6.setVisible(true);
+            blueIsl6.setVisible(true);
+            redIsl6.setVisible(true);
+            yellowIsl6.setVisible(true);
+
             //set num units
             unitsIsl6.setText("Units: " + d.getIslands().get(5).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(5).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl6.setText(String.valueOf(pink));
@@ -876,9 +869,6 @@ public class DashboardController implements Controller {
                 noEntryIsl6.setVisible(true);
                 nEIsl6.setText(String.valueOf(d.getIslands().get(5).getNoEntry()));
                 nEIsl6.setVisible(true);
-            } else {
-                noEntryIsl6.setVisible(false);
-                nEIsl6.setVisible(false);
             }
 
             //set tower
@@ -889,8 +879,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl6.setImage(new Image(whiteTower));
                     case GREY -> towerIsl6.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl6.setVisible(false);
             }
 
             //set mother nature
@@ -899,40 +887,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland7(Dashboard d) {
-        if (d.getIslands().size() <= 6) {
-            isl7.setVisible(false);
-            idIsl7.setVisible(false);
-            unitsIsl7.setVisible(false);
-            mnIsland7.setVisible(false);
-            noEntryIsl7.setVisible(false);
-            nEIsl7.setVisible(false);
-            towerIsl7.setVisible(false);
-            pinkIsl7.setVisible(false);
-            greenIsl7.setVisible(false);
-            blueIsl7.setVisible(false);
-            redIsl7.setVisible(false);
-            yellowIsl7.setVisible(false);
-        } else {
+        isl7.setVisible(false);
+        idIsl7.setVisible(false);
+        unitsIsl7.setVisible(false);
+        mnIsland7.setVisible(false);
+        noEntryIsl7.setVisible(false);
+        nEIsl7.setVisible(false);
+        towerIsl7.setVisible(false);
+        pinkIsl7.setVisible(false);
+        greenIsl7.setVisible(false);
+        blueIsl7.setVisible(false);
+        redIsl7.setVisible(false);
+        yellowIsl7.setVisible(false);
+
+        if (!(d.getIslands().size() <= 6)) {
+            isl7.setVisible(true);
+            idIsl7.setVisible(true);
+            unitsIsl7.setVisible(true);
+            pinkIsl7.setVisible(true);
+            greenIsl7.setVisible(true);
+            blueIsl7.setVisible(true);
+            redIsl7.setVisible(true);
+            yellowIsl7.setVisible(true);
+
             //set num units
             unitsIsl7.setText("Units: " + d.getIslands().get(6).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(6).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl7.setText(String.valueOf(pink));
@@ -946,9 +935,6 @@ public class DashboardController implements Controller {
                 noEntryIsl7.setVisible(true);
                 nEIsl7.setText(String.valueOf(d.getIslands().get(6).getNoEntry()));
                 nEIsl7.setVisible(true);
-            } else {
-                noEntryIsl7.setVisible(false);
-                nEIsl7.setVisible(false);
             }
 
             //set tower
@@ -959,8 +945,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl7.setImage(new Image(whiteTower));
                     case GREY -> towerIsl7.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl7.setVisible(false);
             }
 
             //set mother nature
@@ -970,40 +954,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland8(Dashboard d) {
-        if (d.getIslands().size() <= 7) {
-            isl8.setVisible(false);
-            idIsl8.setVisible(false);
-            unitsIsl8.setVisible(false);
-            mnIsland8.setVisible(false);
-            noEntryIsl8.setVisible(false);
-            nEIsl8.setVisible(false);
-            towerIsl8.setVisible(false);
-            pinkIsl8.setVisible(false);
-            greenIsl8.setVisible(false);
-            blueIsl8.setVisible(false);
-            redIsl8.setVisible(false);
-            yellowIsl8.setVisible(false);
-        } else {
+        isl8.setVisible(false);
+        idIsl8.setVisible(false);
+        unitsIsl8.setVisible(false);
+        mnIsland8.setVisible(false);
+        noEntryIsl8.setVisible(false);
+        nEIsl8.setVisible(false);
+        towerIsl8.setVisible(false);
+        pinkIsl8.setVisible(false);
+        greenIsl8.setVisible(false);
+        blueIsl8.setVisible(false);
+        redIsl8.setVisible(false);
+        yellowIsl8.setVisible(false);
+
+        if (!(d.getIslands().size() <= 7)) {
+            isl8.setVisible(true);
+            idIsl8.setVisible(true);
+            unitsIsl8.setVisible(true);
+            pinkIsl8.setVisible(true);
+            greenIsl8.setVisible(true);
+            blueIsl8.setVisible(true);
+            redIsl8.setVisible(true);
+            yellowIsl8.setVisible(true);
+
             //set num units
             unitsIsl8.setText("Units: " + d.getIslands().get(7).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(7).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl8.setText(String.valueOf(pink));
@@ -1017,9 +1002,6 @@ public class DashboardController implements Controller {
                 noEntryIsl8.setVisible(true);
                 nEIsl8.setText(String.valueOf(d.getIslands().get(7).getNoEntry()));
                 nEIsl8.setVisible(true);
-            } else {
-                noEntryIsl8.setVisible(false);
-                nEIsl8.setVisible(false);
             }
 
             //set tower
@@ -1030,8 +1012,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl8.setImage(new Image(whiteTower));
                     case GREY -> towerIsl8.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl8.setVisible(false);
             }
 
             //set mother nature
@@ -1041,40 +1021,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland9(Dashboard d) {
-        if (d.getIslands().size() <= 8) {
-            isl9.setVisible(false);
-            idIsl9.setVisible(false);
-            unitsIsl9.setVisible(false);
-            mnIsland9.setVisible(false);
-            noEntryIsl9.setVisible(false);
-            nEIsl9.setVisible(false);
-            towerIsl9.setVisible(false);
-            pinkIsl9.setVisible(false);
-            greenIsl9.setVisible(false);
-            blueIsl9.setVisible(false);
-            redIsl9.setVisible(false);
-            yellowIsl9.setVisible(false);
-        } else {
+        isl9.setVisible(false);
+        idIsl9.setVisible(false);
+        unitsIsl9.setVisible(false);
+        mnIsland9.setVisible(false);
+        noEntryIsl9.setVisible(false);
+        nEIsl9.setVisible(false);
+        towerIsl9.setVisible(false);
+        pinkIsl9.setVisible(false);
+        greenIsl9.setVisible(false);
+        blueIsl9.setVisible(false);
+        redIsl9.setVisible(false);
+        yellowIsl9.setVisible(false);
+
+        if (!(d.getIslands().size() <= 8)) {
+            isl9.setVisible(true);
+            idIsl9.setVisible(true);
+            unitsIsl9.setVisible(true);
+            pinkIsl9.setVisible(true);
+            greenIsl9.setVisible(true);
+            blueIsl9.setVisible(true);
+            redIsl9.setVisible(true);
+            yellowIsl9.setVisible(true);
+
             //set num units
             unitsIsl9.setText("Units: " + d.getIslands().get(8).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(8).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl9.setText(String.valueOf(pink));
@@ -1088,9 +1069,6 @@ public class DashboardController implements Controller {
                 noEntryIsl9.setVisible(true);
                 nEIsl9.setText(String.valueOf(d.getIslands().get(8).getNoEntry()));
                 nEIsl9.setVisible(true);
-            } else {
-                noEntryIsl9.setVisible(false);
-                nEIsl9.setVisible(false);
             }
 
             //set tower
@@ -1101,8 +1079,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl9.setImage(new Image(whiteTower));
                     case GREY -> towerIsl9.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl9.setVisible(false);
             }
 
             //set mother nature
@@ -1112,40 +1088,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland10(Dashboard d) {
-        if (d.getIslands().size() <= 9) {
-            isl10.setVisible(false);
-            idIsl10.setVisible(false);
-            unitsIsl10.setVisible(false);
-            mnIsland10.setVisible(false);
-            noEntryIsl10.setVisible(false);
-            nEIsl10.setVisible(false);
-            towerIsl10.setVisible(false);
-            pinkIsl10.setVisible(false);
-            greenIsl10.setVisible(false);
-            blueIsl10.setVisible(false);
-            redIsl10.setVisible(false);
-            yellowIsl10.setVisible(false);
-        } else {
+        isl10.setVisible(false);
+        idIsl10.setVisible(false);
+        unitsIsl10.setVisible(false);
+        mnIsland10.setVisible(false);
+        noEntryIsl10.setVisible(false);
+        nEIsl10.setVisible(false);
+        towerIsl10.setVisible(false);
+        pinkIsl10.setVisible(false);
+        greenIsl10.setVisible(false);
+        blueIsl10.setVisible(false);
+        redIsl10.setVisible(false);
+        yellowIsl10.setVisible(false);
+
+        if (!(d.getIslands().size() <= 9)) {
+            isl10.setVisible(true);
+            idIsl10.setVisible(true);
+            unitsIsl10.setVisible(true);
+            pinkIsl10.setVisible(true);
+            greenIsl10.setVisible(true);
+            blueIsl10.setVisible(true);
+            redIsl10.setVisible(true);
+            yellowIsl10.setVisible(true);
+
             //set num units
             unitsIsl10.setText("Units: " + d.getIslands().get(9).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(9).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl10.setText(String.valueOf(pink));
@@ -1159,9 +1136,6 @@ public class DashboardController implements Controller {
                 noEntryIsl10.setVisible(true);
                 nEIsl10.setText(String.valueOf(d.getIslands().get(9).getNoEntry()));
                 nEIsl10.setVisible(true);
-            } else {
-                noEntryIsl10.setVisible(false);
-                nEIsl10.setVisible(false);
             }
 
             //set tower
@@ -1172,8 +1146,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl10.setImage(new Image(whiteTower));
                     case GREY -> towerIsl10.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl10.setVisible(false);
             }
 
             //set mother nature
@@ -1183,40 +1155,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland11(Dashboard d) {
-        if (d.getIslands().size() <= 10) {
-            isl11.setVisible(false);
-            idIsl11.setVisible(false);
-            unitsIsl11.setVisible(false);
-            mnIsland11.setVisible(false);
-            noEntryIsl11.setVisible(false);
-            nEIsl11.setVisible(false);
-            towerIsl11.setVisible(false);
-            pinkIsl11.setVisible(false);
-            greenIsl11.setVisible(false);
-            blueIsl11.setVisible(false);
-            redIsl11.setVisible(false);
-            yellowIsl11.setVisible(false);
-        } else {
+        isl11.setVisible(false);
+        idIsl11.setVisible(false);
+        unitsIsl11.setVisible(false);
+        mnIsland11.setVisible(false);
+        noEntryIsl11.setVisible(false);
+        nEIsl11.setVisible(false);
+        towerIsl11.setVisible(false);
+        pinkIsl11.setVisible(false);
+        greenIsl11.setVisible(false);
+        blueIsl11.setVisible(false);
+        redIsl11.setVisible(false);
+        yellowIsl11.setVisible(false);
+
+        if (!(d.getIslands().size() <= 10)) {
+            isl11.setVisible(true);
+            idIsl11.setVisible(true);
+            unitsIsl11.setVisible(true);
+            pinkIsl11.setVisible(true);
+            greenIsl11.setVisible(true);
+            blueIsl11.setVisible(true);
+            redIsl11.setVisible(true);
+            yellowIsl11.setVisible(true);
+
             //set num units
             unitsIsl11.setText("Units: " + d.getIslands().get(10).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(10).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl11.setText(String.valueOf(pink));
@@ -1230,9 +1203,6 @@ public class DashboardController implements Controller {
                 noEntryIsl11.setVisible(true);
                 nEIsl11.setText(String.valueOf(d.getIslands().get(10).getNoEntry()));
                 nEIsl11.setVisible(true);
-            } else {
-                noEntryIsl11.setVisible(false);
-                nEIsl11.setVisible(false);
             }
 
             //set tower
@@ -1243,8 +1213,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl11.setImage(new Image(whiteTower));
                     case GREY -> towerIsl11.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl11.setVisible(false);
             }
 
             //set mother nature
@@ -1254,40 +1222,41 @@ public class DashboardController implements Controller {
     }
 
     private void updateIsland12(Dashboard d) {
-        if (d.getIslands().size() <= 11) {
-            isl12.setVisible(false);
-            idIsl12.setVisible(false);
-            unitsIsl12.setVisible(false);
-            mnIsland12.setVisible(false);
-            noEntryIsl12.setVisible(false);
-            nEIsl12.setVisible(false);
-            towerIsl12.setVisible(false);
-            pinkIsl12.setVisible(false);
-            greenIsl12.setVisible(false);
-            blueIsl12.setVisible(false);
-            redIsl12.setVisible(false);
-            yellowIsl12.setVisible(false);
-        } else {
+        isl12.setVisible(false);
+        idIsl12.setVisible(false);
+        unitsIsl12.setVisible(false);
+        mnIsland12.setVisible(false);
+        noEntryIsl12.setVisible(false);
+        nEIsl12.setVisible(false);
+        towerIsl12.setVisible(false);
+        pinkIsl12.setVisible(false);
+        greenIsl12.setVisible(false);
+        blueIsl12.setVisible(false);
+        redIsl12.setVisible(false);
+        yellowIsl12.setVisible(false);
+
+        if (!(d.getIslands().size() <= 11)) {
+            isl12.setVisible(true);
+            idIsl12.setVisible(true);
+            unitsIsl12.setVisible(true);
+            pinkIsl12.setVisible(true);
+            greenIsl12.setVisible(true);
+            blueIsl12.setVisible(true);
+            redIsl12.setVisible(true);
+            yellowIsl12.setVisible(true);
+
             //set num units
             unitsIsl12.setText("Units: " + d.getIslands().get(11).getNumUnits());
 
             //set students number
             int pink = 0, green = 0, yellow = 0, red = 0, blue = 0;
             for (Color c : d.getIslands().get(11).getStudents()) {
-                if (c == Color.YELLOW) {
-                    yellow++;
-                }
-                if (c == Color.RED) {
-                    red++;
-                }
-                if (c == Color.PINK) {
-                    pink++;
-                }
-                if (c == Color.BLUE) {
-                    blue++;
-                }
-                if (c == Color.GREEN) {
-                    green++;
+                switch (c){
+                    case YELLOW -> yellow++;
+                    case RED -> red++;
+                    case PINK -> pink++;
+                    case BLUE -> blue++;
+                    case GREEN -> green++;
                 }
             }
             pinkIsl12.setText(String.valueOf(pink));
@@ -1301,9 +1270,6 @@ public class DashboardController implements Controller {
                 noEntryIsl12.setVisible(true);
                 nEIsl12.setText(String.valueOf(d.getIslands().get(11).getNoEntry()));
                 nEIsl12.setVisible(true);
-            } else {
-                noEntryIsl12.setVisible(false);
-                nEIsl12.setVisible(false);
             }
 
             //set tower
@@ -1314,8 +1280,6 @@ public class DashboardController implements Controller {
                     case WHITE -> towerIsl12.setImage(new Image(whiteTower));
                     case GREY -> towerIsl12.setImage(new Image(greyTower));
                 }
-            } else {
-                towerIsl12.setVisible(false);
             }
 
             //set mother nature
@@ -1353,12 +1317,14 @@ public class DashboardController implements Controller {
         cloud2two.setVisible(true);
         cloud2twoID.setVisible(true);
 
-        if (d.getClouds().get(0).getStudents().isEmpty()){
-            cloud2oneS0.setVisible(false);
-            cloud2oneS1.setVisible(false);
-            cloud2oneS2.setVisible(false);
-        }
-        else{
+        cloud2oneS0.setVisible(false);
+        cloud2oneS1.setVisible(false);
+        cloud2oneS2.setVisible(false);
+        cloud2twoS0.setVisible(false);
+        cloud2twoS1.setVisible(false);
+        cloud2twoS2.setVisible(false);
+
+        if(!(d.getClouds().get(0).getStudents().isEmpty())){
             cloud2oneS0.setVisible(true);
             cloud2oneS1.setVisible(true);
             cloud2oneS2.setVisible(true);
@@ -1384,12 +1350,7 @@ public class DashboardController implements Controller {
             case GREEN -> cloud2oneS2.setImage(new Image(greenStudent));
         }}
 
-        if (d.getClouds().get(1).getStudents().isEmpty()){
-            cloud2twoS0.setVisible(false);
-            cloud2twoS1.setVisible(false);
-            cloud2twoS2.setVisible(false);
-        }
-        else{
+        if (!(d.getClouds().get(1).getStudents().isEmpty())){
             cloud2twoS0.setVisible(true);
             cloud2twoS1.setVisible(true);
             cloud2twoS2.setVisible(true);
@@ -1424,13 +1385,20 @@ public class DashboardController implements Controller {
         cloud3three.setVisible(true);
         cloud3threeID.setVisible(true);
 
-        if (d.getClouds().get(0).getStudents().isEmpty()){
-            cloud3oneS0.setVisible(false);
-            cloud3oneS1.setVisible(false);
-            cloud3oneS2.setVisible(false);
-            cloud3oneS3.setVisible(false);
-        }
-        else{
+        cloud3oneS0.setVisible(false);
+        cloud3oneS1.setVisible(false);
+        cloud3oneS2.setVisible(false);
+        cloud3oneS3.setVisible(false);
+        cloud3twoS0.setVisible(false);
+        cloud3twoS1.setVisible(false);
+        cloud3twoS2.setVisible(false);
+        cloud3twoS3.setVisible(false);
+        cloud3threeS0.setVisible(false);
+        cloud3threeS1.setVisible(false);
+        cloud3threeS2.setVisible(false);
+        cloud3threeS3.setVisible(false);
+
+        if (!(d.getClouds().get(0).getStudents().isEmpty())){
             cloud3oneS0.setVisible(true);
             cloud3oneS1.setVisible(true);
             cloud3oneS2.setVisible(true);
@@ -1464,13 +1432,7 @@ public class DashboardController implements Controller {
                 case GREEN -> cloud3oneS3.setImage(new Image(greenStudent));
             }}
 
-        if (d.getClouds().get(1).getStudents().isEmpty()){
-            cloud3twoS0.setVisible(false);
-            cloud3twoS1.setVisible(false);
-            cloud3twoS2.setVisible(false);
-            cloud3twoS3.setVisible(false);
-        }
-        else{
+        if (!(d.getClouds().get(1).getStudents().isEmpty())){
             cloud3twoS0.setVisible(true);
             cloud3twoS1.setVisible(true);
             cloud3twoS2.setVisible(true);
@@ -1505,13 +1467,7 @@ public class DashboardController implements Controller {
             }}
 
 
-        if (d.getClouds().get(2).getStudents().isEmpty()){
-            cloud3threeS0.setVisible(false);
-            cloud3threeS1.setVisible(false);
-            cloud3threeS2.setVisible(false);
-            cloud3threeS3.setVisible(false);
-        }
-        else{
+        if (!(d.getClouds().get(2).getStudents().isEmpty())){
             cloud3threeS0.setVisible(true);
             cloud3threeS1.setVisible(true);
             cloud3threeS2.setVisible(true);
@@ -1578,12 +1534,14 @@ public class DashboardController implements Controller {
         cloud4two.setVisible(true);
         cloud4twoID.setVisible(true);
 
-        if (d.getClouds().get(2).getStudents().isEmpty()){
-            cloud4oneS0.setVisible(false);
-            cloud4oneS1.setVisible(false);
-            cloud4oneS2.setVisible(false);
-        }
-        else{
+        cloud4oneS0.setVisible(false);
+        cloud4oneS1.setVisible(false);
+        cloud4oneS2.setVisible(false);
+        cloud4twoS0.setVisible(false);
+        cloud4twoS1.setVisible(false);
+        cloud4twoS2.setVisible(false);
+
+        if (!(d.getClouds().get(2).getStudents().isEmpty())){
             cloud4oneS0.setVisible(true);
             cloud4oneS1.setVisible(true);
             cloud4oneS2.setVisible(true);
@@ -1609,12 +1567,7 @@ public class DashboardController implements Controller {
                 case GREEN -> cloud4oneS2.setImage(new Image(greenStudent));
             }}
 
-        if (d.getClouds().get(3).getStudents().isEmpty()){
-            cloud4twoS0.setVisible(false);
-            cloud4twoS1.setVisible(false);
-            cloud4twoS2.setVisible(false);
-        }
-        else{
+        if (!(d.getClouds().get(3).getStudents().isEmpty())){
             cloud4twoS0.setVisible(true);
             cloud4twoS1.setVisible(true);
             cloud4twoS2.setVisible(true);
