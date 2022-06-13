@@ -1330,7 +1330,7 @@ public class DashboardController implements Controller {
     public void updateClouds(Dashboard d){
         switch (d.getClouds().size()) {
             case 2 -> update2Clouds(d);
-            case 3 -> update3Clouds(d);
+            //case 3 -> update3Clouds(d);
             case 4 -> update4Clouds(d);
         }
     }
@@ -1401,7 +1401,7 @@ public class DashboardController implements Controller {
             }}
     }
 
-    public void update3Clouds(Dashboard d){
+    /*public void update3Clouds(Dashboard d){
         cloud3one.setVisible(true);
         cloud3oneID.setVisible(true);
         cloud3two.setVisible(true);
@@ -1526,7 +1526,7 @@ public class DashboardController implements Controller {
                 case GREEN -> cloud3threeS3.setImage(new Image(greenStudent));
             }}
 
-    }
+    }*/
 
     public void update4Clouds(Dashboard d){
 
