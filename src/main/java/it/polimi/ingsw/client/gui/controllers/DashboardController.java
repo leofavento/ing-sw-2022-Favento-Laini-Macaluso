@@ -431,6 +431,14 @@ public class DashboardController implements Controller {
 
 
     @FXML
+    public Label playersList;
+    @FXML
+    public Label roundN;
+    @FXML
+    public Label playerTurn;
+
+
+    @FXML
     private AnchorPane request;
     @FXML
     private TabPane dashboard;
@@ -475,6 +483,8 @@ public class DashboardController implements Controller {
 
         updateIslands(gui.getView().getDashboard());
         updateClouds(gui.getView().getDashboard());
+        updatePlayersList();
+        updateTurn();
         gui.getClient().sendMessage(new Ack());
 
 
@@ -518,6 +528,18 @@ public class DashboardController implements Controller {
         ((SchoolboardController) nicknameToController.get(gui.getClient().getNickname())).resetAssistantsButtons();
     }
 
+    public void updateTurn(){
+        roundN.setText("Round " + gui.getView().getRoundNumber());
+        playerTurn.setText(gui.getView().getCurrentPlayer() + " turn");
+    }
+
+    public void updatePlayersList(){
+        switch (gui.getView().getTotalPlayers()){
+            case 2 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+".");
+            case 3 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+", " + gui.getView().getPlayers().get(2).getNickname() + ".");
+            case 4 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+", " + gui.getView().getPlayers().get(2).getNickname() + ", " + gui.getView().getPlayers().get(3).getNickname() + ".");
+        }
+    }
 
     private void updateIsland1(Dashboard d) {
         //set num units
