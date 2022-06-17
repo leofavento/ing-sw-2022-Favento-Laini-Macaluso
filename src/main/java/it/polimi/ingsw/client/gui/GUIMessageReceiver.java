@@ -180,7 +180,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(PlayedCharacter message) {
-
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
     }
 
     @Override

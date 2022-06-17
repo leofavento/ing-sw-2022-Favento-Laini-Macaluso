@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MothernatureStepsController">
+   <children>
+      <ChoiceBox fx:id="stepsNumber" layoutX="139.0" layoutY="193.0" prefWidth="150.0" />
+      <Text layoutX="112.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of steps:" textAlignment="CENTER" wrappingWidth="204.91015625" />
+      <Button layoutX="169.0" layoutY="250.0" mnemonicParsing="false" onAction="#move" prefHeight="39.0" prefWidth="90.0" text="Move" />
+   </children>
+</AnchorPane>

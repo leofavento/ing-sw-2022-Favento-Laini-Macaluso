@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="142.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.CharactersController">
+   <children>
+      <ImageView fx:id="character" fitHeight="186.0" fitWidth="139.0" layoutX="11.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="8.372474670410156" AnchorPane.topAnchor="127.0">
+         <image>
+            <Image url="@../graphics/characters/character1.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="button" layoutX="32.0" layoutY="67.0" mnemonicParsing="false" onAction="#activate" prefHeight="31.0" prefWidth="83.0" text="Activate" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="67.0" />
+      <Text fx:id="cost" layoutX="10.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost: 1" textAlignment="CENTER" wrappingWidth="122.62752532958984" />
+      <ImageView fx:id="student5" fitHeight="59.0" fitWidth="34.0" layoutX="56.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.topAnchor="235.0">
+         <image>
+            <Image url="@../graphics/students/student_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="student6" fitHeight="59.0" fitWidth="34.0" layoutX="56.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.topAnchor="275.0">
+         <image>
+            <Image url="@../graphics/students/student_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="student1" fitHeight="59.0" fitWidth="34.0" layoutX="17.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="235.0">
+         <image>
+            <Image url="@../graphics/students/student_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="student3" fitHeight="59.0" fitWidth="34.0" layoutX="17.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="275.0">
+         <image>
+            <Image url="@../graphics/students/student_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="student2" fitHeight="59.0" fitWidth="34.0" layoutX="95.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="235.0">
+         <image>
+            <Image url="@../graphics/students/student_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="student4" fitHeight="59.0" fitWidth="34.0" layoutX="95.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="275.0">
+         <image>
+            <Image url="@../graphics/students/student_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="noEntry1" fitHeight="40.0" fitWidth="34.0" layoutX="34.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="235.0">
+         <image>
+            <Image url="@../graphics/islands/noEntryTile.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="noEntry2" fitHeight="40.0" fitWidth="34.0" layoutX="73.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="235.0">
+         <image>
+            <Image url="@../graphics/islands/noEntryTile.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="noEntry3" fitHeight="40.0" fitWidth="34.0" layoutX="34.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="275.0">
+         <image>
+            <Image url="@../graphics/islands/noEntryTile.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="noEntry4" fitHeight="40.0" fitWidth="34.0" layoutX="73.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="275.0">
+         <image>
+            <Image url="@../graphics/islands/noEntryTile.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="description" layoutX="11.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="JUSTIFY" wrappingWidth="122.62752532958984" />
+   </children>
+</AnchorPane>

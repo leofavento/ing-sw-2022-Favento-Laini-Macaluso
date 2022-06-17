@@ -1,13 +1,18 @@
 package it.polimi.ingsw.client.gui.controllers;
 
+import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.Tower;
+import it.polimi.ingsw.model.characters.CharacterCard;
+import it.polimi.ingsw.model.characters.CharacterEnum;
 import it.polimi.ingsw.model.player.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -438,6 +443,9 @@ public class DashboardController implements Controller {
     public Label playerTurn;
 
 
+    @FXML private ScrollPane characterPane1;
+    @FXML private ScrollPane characterPane2;
+    @FXML private ScrollPane characterPane3;
     @FXML
     private AnchorPane request;
     @FXML
@@ -448,6 +456,7 @@ public class DashboardController implements Controller {
     private Text error;
     private HashMap<String, Tab> nicknameToTab;
     private HashMap<String, Controller> nicknameToController;
+    private HashMap<CharacterEnum, Controller> characterControllers;
     private GUI gui;
 
     public void setup(ArrayList<Player> players) {
@@ -485,6 +494,13 @@ public class DashboardController implements Controller {
         updateClouds(gui.getView().getDashboard());
         updatePlayersList();
         updateTurn();
+        if (gui.getView().isExpertMode()) {
+            if (characterControllers == null) {
+                setCharacterPanes();
+            } else {
+                updateCharacters();
+            }
+        }
         gui.getClient().sendMessage(new Ack());
 
 
@@ -1640,6 +1656,60 @@ public class DashboardController implements Controller {
                 case GREEN -> cloud4twoS2.setImage(new Image(greenStudent));
             }}
 
+    }
+
+    private void setCharacterPanes() {
+        characterControllers = new HashMap<>();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/characters.fxml"));
+            AnchorPane anchorPane = loader.load();
+            Platform.runLater(() -> {
+                characterPane1.setContent(anchorPane);
+            });
+            Controller controller = loader.getController();
+            controller.setGui(gui);
+            characterControllers.put(gui.getView().getDashboard().getCharacters()[0].getValue(), controller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/characters.fxml"));
+            AnchorPane anchorPane = loader.load();
+            Platform.runLater(() -> {
+                characterPane2.setContent(anchorPane);
+            });
+            Controller controller = loader.getController();
+            controller.setGui(gui);
+            characterControllers.put(gui.getView().getDashboard().getCharacters()[1].getValue(), controller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/characters.fxml"));
+            AnchorPane anchorPane = loader.load();
+            Platform.runLater(() -> {
+                characterPane3.setContent(anchorPane);
+            });
+            Controller controller = loader.getController();
+            controller.setGui(gui);
+            characterControllers.put(gui.getView().getDashboard().getCharacters()[2].getValue(), controller);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        updateCharacters();
+        disableCharactersButton(true);
+    }
+
+    private void updateCharacters() {
+        for (CharacterCard card : gui.getView().getDashboard().getCharacters()) {
+            ((CharactersController) characterControllers.get(card.getValue())).update(card);
+        }
+    }
+
+    public void disableCharactersButton(boolean disable) {
+        for (Controller controller : characterControllers.values()) {
+            ((CharactersController) controller).disableButton(disable);
+        }
     }
 }
 
