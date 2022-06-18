@@ -140,19 +140,18 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(IslandOwner message) {
-
+        gui.getClient().sendMessage(new Ack());
     }
 
     @Override
     public void receiveMessage(MotherNatureSteps message) {
-
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMotherNatureSteps(message.getMaxStepsAllowed());
     }
 
     @Override
     public void receiveMessage(MovableStudents message) {
         gui.getView().setMovableStudents(message.getStudents());
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents(message.getStudents());
-
     }
 
     @Override

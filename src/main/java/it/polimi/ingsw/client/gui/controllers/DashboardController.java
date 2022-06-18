@@ -1747,4 +1747,16 @@ public class DashboardController implements Controller {
         request.getChildren().removeAll();
     }
 
+    public void updateMotherNatureSteps(int steps){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/mothernatureSteps.fxml"));
+            AnchorPane anchorPane = loader.load();
+            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            MothernatureStepsController controller = loader.getController();
+            controller.setGui(gui);
+            controller.loadSteps(steps);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }
