@@ -35,6 +35,7 @@ public class View {
     private ErrorMessage lastErrorMessage;
     private boolean requiredDestination;
     private PlayerStatus currentStatus;
+    private int activatedCharacter=0;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -205,5 +206,12 @@ public class View {
 
     public PlayerStatus getCurrentStatus() {
         return currentStatus;
+    }
+
+    public int getActivatedCharacter(){
+        return activatedCharacter;}
+
+    public void setActivatedCharacter(int i){
+        activatedCharacter=i;
     }
 }

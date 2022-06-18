@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Dashboard;
@@ -12,6 +13,7 @@ import it.polimi.ingsw.model.player.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -483,6 +485,24 @@ public class DashboardController implements Controller {
             }
         }
         dashboard.getTabs().addAll(nicknameToTab.values());
+    }
+
+    public void requestDestination(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/schoolboard.fxml"));
+            AnchorPane anchorPane = loader.load();
+            request.getChildren().setAll(anchorPane);
+            DestinationController controller = loader.getController();
+            controller.setGui(gui);
+            controller.initializeDestination();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendDestination(int destination){
+        gui.getClient().sendMessage(new ChosenDestination(destination));
+        request.getChildren().removeAll();
     }
 
     public void update() {
@@ -1663,9 +1683,7 @@ public class DashboardController implements Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/characters.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> {
-                characterPane1.setContent(anchorPane);
-            });
+            Platform.runLater(() -> characterPane1.setContent(anchorPane));
             Controller controller = loader.getController();
             controller.setGui(gui);
             characterControllers.put(gui.getView().getDashboard().getCharacters()[0].getValue(), controller);
@@ -1675,9 +1693,7 @@ public class DashboardController implements Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/characters.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> {
-                characterPane2.setContent(anchorPane);
-            });
+            Platform.runLater(() -> characterPane2.setContent(anchorPane));
             Controller controller = loader.getController();
             controller.setGui(gui);
             characterControllers.put(gui.getView().getDashboard().getCharacters()[1].getValue(), controller);
@@ -1687,9 +1703,7 @@ public class DashboardController implements Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/characters.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> {
-                characterPane3.setContent(anchorPane);
-            });
+            Platform.runLater(() -> characterPane3.setContent(anchorPane));
             Controller controller = loader.getController();
             controller.setGui(gui);
             characterControllers.put(gui.getView().getDashboard().getCharacters()[2].getValue(), controller);

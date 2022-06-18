@@ -175,7 +175,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(WhereToMove message) {
-
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).requestDestination();
     }
 
     @Override
