@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MovableStudentsController">
    <children>
-      <Button fx:id="s0button" layoutX="70.0" layoutY="266.0" mnemonicParsing="false" text="Select" />
-      <Button fx:id="s1button" layoutX="189.0" layoutY="266.0" mnemonicParsing="false" text="Select" />
-      <Button fx:id="s2button" layoutX="308.0" layoutY="266.0" mnemonicParsing="false" text="Select" />
+      <Button fx:id="s0button" layoutX="70.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectStudent0" text="Select" />
+      <Button fx:id="s1button" layoutX="189.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectStudent1" text="Select" />
+      <Button fx:id="s2button" layoutX="308.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectStudent2" text="Select" />
       <ImageView fx:id="s0" fitHeight="85.0" fitWidth="110.0" layoutX="53.5" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../graphics/students/student_blue.png" />
@@ -37,10 +37,10 @@
             <Image url="@../graphics/students/student_blue.png" />
          </image>
       </ImageView>
-      <Button fx:id="s3button" layoutX="189.0" layoutY="424.0" mnemonicParsing="false" text="Select" />
-      <Button fx:id="s4button" layoutX="69.0" layoutY="599.0" mnemonicParsing="false" text="Select" />
-      <Button fx:id="s5button" layoutX="188.0" layoutY="599.0" mnemonicParsing="false" text="Select" />
-      <Button fx:id="s6button" layoutX="307.0" layoutY="599.0" mnemonicParsing="false" text="Select" />
+      <Button fx:id="s3button" layoutX="189.0" layoutY="424.0" mnemonicParsing="false" onAction="#selectStudent3" text="Select" />
+      <Button fx:id="s4button" layoutX="69.0" layoutY="599.0" mnemonicParsing="false" onAction="#selectStudent4" text="Select" />
+      <Button fx:id="s5button" layoutX="188.0" layoutY="599.0" mnemonicParsing="false" onAction="#selectStudent5" text="Select" />
+      <Button fx:id="s6button" layoutX="307.0" layoutY="599.0" mnemonicParsing="false" onAction="#selectStudent6" text="Select" />
       <ImageView fx:id="s4" fitHeight="85.0" fitWidth="110.0" layoutX="53.5" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../graphics/students/student_blue.png" />

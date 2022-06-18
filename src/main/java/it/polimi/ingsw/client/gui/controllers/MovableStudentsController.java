@@ -1,10 +1,14 @@
 package it.polimi.ingsw.client.gui.controllers;
 
+import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.messages.fromClient.ChosenStudent;
+import it.polimi.ingsw.messages.fromClient.ChosenWizard;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.player.Entrance;
 import it.polimi.ingsw.model.player.SchoolBoard;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,6 +70,8 @@ public class MovableStudentsController implements Controller{
     private final static String greenStudent = "graphics/students/student_green.png";
     private final static String yellowStudent = "graphics/students/student_yellow.png";
 
+    private GUI gui;
+
 
     public void updateEntrance(Entrance e){
         ImageView[] students = new ImageView[]{s0, s1, s2, s3, s4, s5, s6};
@@ -90,6 +96,43 @@ public class MovableStudentsController implements Controller{
 
     }
 
+    public void selectStudent0(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(0));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+    public void selectStudent1(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(1));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+    public void selectStudent2(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(2));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+    public void selectStudent3(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(3));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+    public void selectStudent4(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(4));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+    public void selectStudent5(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(5));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+    public void selectStudent6(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(6));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removeMovableStudentsScene();
+    }
+
+
+
     public void changeStudents(ImageView student, Color color){
         switch (color){
             case YELLOW -> student.setImage(new Image(yellowStudent));
@@ -103,7 +146,6 @@ public class MovableStudentsController implements Controller{
 
 
     private Text error;
-    private GUI gui;
     @Override
     public void setGui(GUI gui) {
         this.gui = gui;
