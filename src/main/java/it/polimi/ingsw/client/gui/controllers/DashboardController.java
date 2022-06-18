@@ -1727,13 +1727,14 @@ public class DashboardController implements Controller {
         }
     }
 
-    public void updateMovableStudents(){
+    public void updateMovableStudents(ArrayList<Color> students){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/movablestudents.fxml"));
             AnchorPane anchorPane = loader.load();
-            request.getChildren().setAll(anchorPane);
+            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
             MovableStudentsController controller = loader.getController();
             controller.setGui(gui);
+            controller.updateEntrance(students);
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -1741,10 +1742,7 @@ public class DashboardController implements Controller {
 
     public void sendMovableStudents(Color color){
         gui.getClient().sendMessage(new ChosenStudent(color));
-    }
-
-    public void removeMovableStudentsScene(){
         request.getChildren().removeAll();
     }
-}
 
+}

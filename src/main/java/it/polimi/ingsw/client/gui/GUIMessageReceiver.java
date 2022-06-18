@@ -149,7 +149,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(MovableStudents message) {
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents();
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents(message.getStudents());
 
     }
 
