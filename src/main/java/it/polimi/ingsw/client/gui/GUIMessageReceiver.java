@@ -9,6 +9,7 @@ import it.polimi.ingsw.client.gui.controllers.initial.WaitingPlayersController;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.Pong;
 import it.polimi.ingsw.messages.fromServer.*;
+import javafx.application.Platform;
 
 public class GUIMessageReceiver implements MessageReceiver {
     private final GUI gui;
@@ -89,7 +90,7 @@ public class GUIMessageReceiver implements MessageReceiver {
         }
         gui.getView().setDashboard(message.getDashboard());
         gui.getView().setPlayers(message.getPlayers());
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).update();
+        Platform.runLater(() -> ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).update());
     }
 
     @Override
@@ -149,6 +150,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(MovableStudents message) {
+        gui.getView().setMovableStudents(message.getStudents());
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents(message.getStudents());
 
     }

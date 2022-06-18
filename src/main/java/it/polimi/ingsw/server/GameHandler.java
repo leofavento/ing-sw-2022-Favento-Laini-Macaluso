@@ -63,7 +63,7 @@ public class GameHandler implements Observer<Message> {
     public void disconnect(ServerClientConnection player) {
         players.remove(player);
         if (hasStarted) {
-            broadcastMessage(new PlayerDisconnected(player.getNickname()));
+            sendToAllExcept(player.getNickname(), new PlayerDisconnected(player.getNickname()));
             endGame();
         } else {
             if (isHost(player)) {

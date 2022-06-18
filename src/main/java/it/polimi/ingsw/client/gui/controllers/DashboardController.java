@@ -490,9 +490,9 @@ public class DashboardController implements Controller {
 
     public void requestDestination(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/schoolboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/destination.fxml"));
             AnchorPane anchorPane = loader.load();
-            request.getChildren().setAll(anchorPane);
+            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
             DestinationController controller = loader.getController();
             controller.setGui(gui);
             controller.initializeDestination();
@@ -571,11 +571,13 @@ public class DashboardController implements Controller {
     }
 
     public void updatePlayersList(){
-        switch (gui.getView().getTotalPlayers()){
-            case 2 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+".");
-            case 3 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+", " + gui.getView().getPlayers().get(2).getNickname() + ".");
-            case 4 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+", " + gui.getView().getPlayers().get(2).getNickname() + ", " + gui.getView().getPlayers().get(3).getNickname() + ".");
-        }
+        Platform.runLater(() -> {
+            switch (gui.getView().getTotalPlayers()){
+                case 2 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+".");
+                case 3 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+", " + gui.getView().getPlayers().get(2).getNickname() + ".");
+                case 4 -> playersList.setText(gui.getView().getPlayers().get(0).getNickname() + ", " + gui.getView().getPlayers().get(1).getNickname()+", " + gui.getView().getPlayers().get(2).getNickname() + ", " + gui.getView().getPlayers().get(3).getNickname() + ".");
+            }
+        });
     }
 
     private void updateIsland1(Dashboard d) {
