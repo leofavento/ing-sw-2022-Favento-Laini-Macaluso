@@ -9,7 +9,7 @@
   <artifactId>PSP32</artifactId>
 
   <version>1.0-SNAPSHOT</version>
-  <name>Eryantis</name>
+  <name>Eriantys</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,7 +81,7 @@
                   <mainClass>it.polimi.ingsw.ClientApp</mainClass>
                 </transformer>
               </transformers>
-              <finalName>EryantisClient</finalName>
+              <finalName>EriantysClient</finalName>
             </configuration>
           </execution>
           <execution>
@@ -97,7 +97,7 @@
                   <mainClass>it.polimi.ingsw.ServerApp</mainClass>
                 </transformer>
               </transformers>
-              <finalName>EryantisServer</finalName>
+              <finalName>EriantysServer</finalName>
             </configuration>
           </execution>
         </executions>

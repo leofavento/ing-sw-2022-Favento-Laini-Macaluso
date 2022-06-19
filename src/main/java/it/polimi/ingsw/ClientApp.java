@@ -11,7 +11,7 @@ public class ClientApp {
         Scanner in = new Scanner(System.in);
         int input = -1;
 
-        System.out.println("Welcome to Eryantis.");
+        System.out.println("Welcome to Eriantys.");
         System.out.println("Press 0 to run the CLI, or press 1 to run the GUI.");
         do {
             try {

@@ -72,7 +72,7 @@ public class GUI extends Application {
     }
 
     public void execute() {
-        primaryStage.setTitle("Eryantis");
+        primaryStage.setTitle("Eriantys");
         primaryStage.setScene(currentScene);
         primaryStage.show();
     }
