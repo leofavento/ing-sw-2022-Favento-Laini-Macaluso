@@ -24,33 +24,6 @@ public class MovableStudentsController implements Controller{
     public Text title;
 
     @FXML
-    public ImageView s0;
-
-    @FXML
-    public ImageView s1;
-
-    @FXML
-    public ImageView s2;
-
-    @FXML
-    public ImageView s3;
-
-    @FXML
-    public ImageView s4;
-
-    @FXML
-    public ImageView s5;
-
-    @FXML
-    public ImageView s6;
-
-    @FXML
-    public ImageView s7;
-
-    @FXML
-    public ImageView s8;
-
-    @FXML
     public Button s0button;
 
     @FXML
@@ -77,8 +50,6 @@ public class MovableStudentsController implements Controller{
     @FXML
     public Button s8button;
 
-
-
     private final static String blueStudent = "graphics/students/student_blue.png";
     private final static String redStudent = "graphics/students/student_red.png";
     private final static String pinkStudent = "graphics/students/student_pink.png";
@@ -89,22 +60,14 @@ public class MovableStudentsController implements Controller{
 
 
     public void updateEntrance(ArrayList<Color> students){
-        ImageView[] studentsImage = new ImageView[]{s0, s1, s2, s3, s4, s5, s6, s7, s8};
-
         Button[] buttons = new Button[]{s0button, s1button, s2button, s3button, s4button, s5button, s6button, s7button, s8button};
-
-        for(ImageView student : studentsImage){
-            student.setVisible(false);
-        }
 
         for(int i = 0; i < 9; i++){
             buttons[i].setVisible(false);
         }
 
         for(int i = 0; i < students.size(); i++){
-            changeStudents(studentsImage[i], students.get(i));
-            studentsImage[i].setVisible(true);
-
+            changeStudents(buttons[i], students.get(i));
             buttons[i].setVisible(true);
         }
 
@@ -148,14 +111,13 @@ public class MovableStudentsController implements Controller{
     }
 
 
-
-    public void changeStudents(ImageView student, Color color){
+    public void changeStudents(Button student, Color color){
         switch (color){
-            case YELLOW -> student.setImage(new Image(yellowStudent));
-            case RED -> student.setImage(new Image(redStudent));
-            case PINK -> student.setImage(new Image(pinkStudent));
-            case BLUE -> student.setImage(new Image(blueStudent));
-            case GREEN -> student.setImage(new Image(greenStudent));
+            case YELLOW -> student.setGraphic(new ImageView(new Image(yellowStudent)));
+            case RED -> student.setGraphic(new ImageView(new Image(redStudent)));
+            case PINK -> student.setGraphic(new ImageView(new Image(pinkStudent)));
+            case BLUE -> student.setGraphic(new ImageView(new Image(blueStudent)));
+            case GREEN -> student.setGraphic(new ImageView(new Image(greenStudent)));
         }
     }
 

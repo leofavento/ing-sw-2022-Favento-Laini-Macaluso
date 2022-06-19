@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
 import it.polimi.ingsw.model.Color;
@@ -1758,5 +1759,23 @@ public class DashboardController implements Controller {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void updateCloudSelection(int clouds){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/cloudSelection.fxml"));
+            AnchorPane anchorPane = loader.load();
+            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            CloudSelectionController controller = loader.getController();
+            controller.setGui(gui);
+            controller.updateCloudButtons(clouds);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void sendCloudSelection(int selection){
+        gui.getClient().sendMessage(new ChosenCloud(selection));
+        request.getChildren().removeAll();
     }
 }
