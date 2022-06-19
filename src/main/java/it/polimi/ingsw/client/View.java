@@ -35,7 +35,7 @@ public class View {
     private ErrorMessage lastErrorMessage;
     private boolean requiredDestination;
     private PlayerStatus currentStatus;
-    private int activatedCharacter=0;
+    private boolean activatedCharacterEffect=false;
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -208,10 +208,10 @@ public class View {
         return currentStatus;
     }
 
-    public int getActivatedCharacter(){
-        return activatedCharacter;}
+    public boolean getActivatedCharacterEffect(){
+        return activatedCharacterEffect;}
 
-    public void setActivatedCharacter(int i){
-        activatedCharacter=i;
+    public void setActivatedCharacterEffect(Boolean b){
+        activatedCharacterEffect=b;
     }
 }

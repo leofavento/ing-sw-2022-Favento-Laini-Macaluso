@@ -496,7 +496,12 @@ public class DashboardController implements Controller {
             AnchorPane anchorPane = loader.load();
             Platform.runLater(() -> {
                 request.getChildren().setAll(anchorPane);
+                request.setVisible(true);
                 setInstruction("Select where you want to move the student");
+                if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter()!=null)){
+                    if (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4){
+                        setInstruction("Select an Island");}
+                }
             });
             DestinationController controller = loader.getController();
             controller.setGui(gui);
@@ -508,7 +513,7 @@ public class DashboardController implements Controller {
 
     public void sendDestination(int destination){
         gui.getClient().sendMessage(new ChosenDestination(destination));
-        request.getChildren().removeAll();
+        request.getChildren().clear();
     }
 
     public void update() {
@@ -1746,6 +1751,7 @@ public class DashboardController implements Controller {
             AnchorPane anchorPane = loader.load();
             Platform.runLater(() -> {
                 request.getChildren().setAll(anchorPane);
+                request.setVisible(true);
                 setInstruction("Select the student you want to move");
             });
             MovableStudentsController controller = loader.getController();
@@ -1758,7 +1764,7 @@ public class DashboardController implements Controller {
 
     public void sendMovableStudents(Color color){
         gui.getClient().sendMessage(new ChosenStudent(color));
-        request.getChildren().removeAll();
+        request.getChildren().clear();
     }
 
     public void updateMotherNatureSteps(int steps){
@@ -1767,6 +1773,7 @@ public class DashboardController implements Controller {
             AnchorPane anchorPane = loader.load();
             Platform.runLater(() -> {
                 request.getChildren().setAll(anchorPane);
+                request.setVisible(true);
                 setInstruction("Choose by how many steps you want to move mother nature");
             });
             MothernatureStepsController controller = loader.getController();
@@ -1783,6 +1790,7 @@ public class DashboardController implements Controller {
             AnchorPane anchorPane = loader.load();
             Platform.runLater(() -> {
                 request.getChildren().setAll(anchorPane);
+                request.setVisible(true);
                 setInstruction("Select the cloud you want to take the students from");
             });
             CloudSelectionController controller = loader.getController();
@@ -1795,7 +1803,7 @@ public class DashboardController implements Controller {
 
     public void sendCloudSelection(int selection){
         gui.getClient().sendMessage(new ChosenCloud(selection));
-        request.getChildren().removeAll();
+        request.getChildren().clear();
     }
 
     public void cleanRequest() {

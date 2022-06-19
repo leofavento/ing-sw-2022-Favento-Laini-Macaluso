@@ -111,5 +111,6 @@ public class CharactersController implements Controller{
 
     public void activate() {
         gui.getClient().sendMessage(new UseCharacterEffect(charEnum));
+        gui.getView().setActivatedCharacterEffect(true);
     }
 }

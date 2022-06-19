@@ -50,6 +50,10 @@ public class MovableStudentsController implements Controller{
     @FXML
     public Button s8button;
 
+    @FXML
+    public Button buttonStop;
+
+
     private final static String blueStudent = "graphics/students/student_blue.png";
     private final static String redStudent = "graphics/students/student_red.png";
     private final static String pinkStudent = "graphics/students/student_pink.png";
@@ -57,7 +61,6 @@ public class MovableStudentsController implements Controller{
     private final static String yellowStudent = "graphics/students/student_yellow.png";
 
     private GUI gui;
-
 
     public void updateEntrance(ArrayList<Color> students){
         Button[] buttons = new Button[]{s0button, s1button, s2button, s3button, s4button, s5button, s6button, s7button, s8button};
@@ -70,8 +73,9 @@ public class MovableStudentsController implements Controller{
             changeStudents(buttons[i], students.get(i));
             buttons[i].setVisible(true);
         }
-
-
+        if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==6 ||gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==9)){
+            buttonStop.setVisible(true);
+        }
     }
 
     public void selectStudent0(){
@@ -110,6 +114,10 @@ public class MovableStudentsController implements Controller{
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(8));
     }
 
+    public void selectStop(){
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(null);
+        buttonStop.setVisible(false);
+    }
 
     public void changeStudents(Button student, Color color){
         switch (color){

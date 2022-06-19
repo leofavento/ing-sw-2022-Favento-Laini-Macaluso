@@ -23,6 +23,7 @@ public class GUIMessageReceiver implements MessageReceiver {
         if (message == CommunicationMessage.ENTER_NICKNAME) {
             gui.updateScene(FxmlScenes.NICKNAME.getPhase());
         } else if (message == CommunicationMessage.SUCCESS) {
+            gui.getView().setActivatedCharacterEffect(false);
             gui.getCurrentController().nextPhase();
         } else if (message == CommunicationMessage.HOST_LEFT) {
             gui.getCurrentController().error("The host left, you are being disconnected...");
@@ -190,7 +191,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(SelectColor message) {
-
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents(gui.getView().getColors());
     }
 
     @Override
@@ -203,12 +204,15 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(PlayedCharacter message) {
+        if(gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==0 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==6 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==8 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==9 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==10 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==11){
+        gui.getView().setActivatedCharacterEffect(true);}
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
     }
 
     @Override
     public void receiveMessage(MovableStudentsChar message) {
-
+        gui.getView().setMovableStudentsChar(message.getStudents());
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents(message.getStudents());
     }
 
     @Override
