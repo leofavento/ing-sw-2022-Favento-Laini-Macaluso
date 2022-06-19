@@ -11,7 +11,7 @@ public class ServerApp {
         String input;
         int port;
 
-        System.out.println("Eryantis: Server");
+        System.out.println("Eriantys: Server");
 
         do {
             System.out.println("Enter the port you wish to use [d = default port -> 25565]:");

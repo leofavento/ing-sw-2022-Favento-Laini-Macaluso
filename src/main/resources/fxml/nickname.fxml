@@ -12,7 +12,7 @@
                 <Image url="@../graphics/eriantys.png" />
             </image>
         </ImageView>
-        <Text layoutX="555.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Eryantis!" textAlignment="CENTER">
+        <Text layoutX="555.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Eriantys!" textAlignment="CENTER">
             <font>
                 <Font name="Inconsolata" size="23.0" />
             </font>
