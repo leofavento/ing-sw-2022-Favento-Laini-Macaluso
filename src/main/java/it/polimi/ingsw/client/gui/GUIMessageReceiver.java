@@ -167,6 +167,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(SelectCloud message) {
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateCloudSelection(gui.getView().getTotalPlayers());
 
     }
 
