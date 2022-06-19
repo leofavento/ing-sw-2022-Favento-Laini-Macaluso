@@ -3,9 +3,9 @@
 ![Santorini Logo](src/main/resources/graphics/eriantys.png)
 
 **Students**
-- Leonardo Favento
-- Matteo Laini
-- Matteo Macaluso
+- Leonardo Favento ([@leofavento](https://github.com/leofavento))
+- Matteo Laini ([@matteolaini](https://github.com/matteolaini))
+- Matteo Macaluso ([@magicteo](https://github.com/magicteo))
 
 ## Implemented functionalities
 
