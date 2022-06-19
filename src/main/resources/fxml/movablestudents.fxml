@@ -1,72 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MovableStudentsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MovableStudentsController">
    <children>
-      <Button fx:id="s0button" layoutX="70.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectStudent0" text="Select" />
-      <Button fx:id="s1button" layoutX="189.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectStudent1" text="Select" />
-      <Button fx:id="s2button" layoutX="308.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectStudent2" text="Select" />
-      <ImageView fx:id="s0" fitHeight="85.0" fitWidth="110.0" layoutX="53.5" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="s1" fitHeight="85.0" fitWidth="110.0" layoutX="170.5" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="s2" fitHeight="85.0" fitWidth="110.0" layoutX="289.5" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="title" layoutX="89.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the students you want to move" wrappingWidth="301.2890625">
+      <Text fx:id="title" layoutX="90.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the student you want to move" wrappingWidth="245.2890625">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <ImageView fx:id="s4" fitHeight="85.0" fitWidth="110.0" layoutX="170.5" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="s4button" layoutX="189.0" layoutY="424.0" mnemonicParsing="false" onAction="#selectStudent4" text="Select" />
-      <Button fx:id="s6button" layoutX="69.0" layoutY="599.0" mnemonicParsing="false" onAction="#selectStudent6" text="Select" />
-      <Button fx:id="s7button" layoutX="188.0" layoutY="599.0" mnemonicParsing="false" onAction="#selectStudent7" text="Select" />
-      <Button fx:id="s8button" layoutX="307.0" layoutY="599.0" mnemonicParsing="false" onAction="#selectStudent8" text="Select" />
-      <ImageView fx:id="s6" fitHeight="85.0" fitWidth="110.0" layoutX="53.5" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="s7" fitHeight="85.0" fitWidth="110.0" layoutX="170.5" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="s8" fitHeight="85.0" fitWidth="110.0" layoutX="289.5" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="s3button" layoutX="70.0" layoutY="424.0" mnemonicParsing="false" onAction="#selectStudent3" text="Select" />
-      <ImageView fx:id="s3" fitHeight="85.0" fitWidth="110.0" layoutX="53.5" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="s5button" layoutX="308.0" layoutY="424.0" mnemonicParsing="false" onAction="#selectStudent5" text="Select" />
-      <ImageView fx:id="s5" fitHeight="85.0" fitWidth="110.0" layoutX="289.5" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../graphics/students/student_blue.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="s0button" layoutX="55.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent0" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s1button" layoutX="175.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent1" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s2button" layoutX="295.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent2" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s4button" layoutX="175.5" layoutY="237.0" mnemonicParsing="false" onAction="#selectStudent4" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s6button" layoutX="55.5" layoutY="377.0" mnemonicParsing="false" onAction="#selectStudent6" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s7button" layoutX="175.5" layoutY="377.0" mnemonicParsing="false" onAction="#selectStudent7" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s8button" layoutX="295.5" layoutY="377.0" mnemonicParsing="false" onAction="#selectStudent8" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s3button" layoutX="55.5" layoutY="237.0" mnemonicParsing="false" onAction="#selectStudent3" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s5button" layoutX="295.5" layoutY="237.0" mnemonicParsing="false" onAction="#selectStudent5" prefHeight="55.0" prefWidth="75.0" />
    </children>
 </AnchorPane>
