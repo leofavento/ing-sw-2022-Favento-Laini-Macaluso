@@ -574,7 +574,11 @@ public class DashboardController implements Controller {
 
     public void updateTurn(){
         roundN.setText("Round " + gui.getView().getRoundNumber());
-        playerTurn.setText(gui.getView().getCurrentPlayer() + " turn");
+        if (gui.getView().getCurrentPlayer() != null) {
+            playerTurn.setText(gui.getView().getCurrentPlayer() + " turn");
+        } else {
+            playerTurn.setText("Planning");
+        }
     }
 
     public void updatePlayersList(){
@@ -1732,7 +1736,7 @@ public class DashboardController implements Controller {
 
     public void disableCharactersButton(boolean disable) {
         for (Controller controller : characterControllers.values()) {
-            ((CharactersController) controller).disableButton(disable);
+            Platform.runLater(() -> ((CharactersController) controller).disableButton(disable));
         }
     }
 
@@ -1796,5 +1800,14 @@ public class DashboardController implements Controller {
 
     public void cleanRequest() {
         Platform.runLater(() -> request.getChildren().clear());
+        if (gui.getView().isExpertMode()) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
+        }
+    }
+
+    public void removePlayedAssistants() {
+        for (Controller controller : nicknameToController.values()) {
+            ((SchoolboardController) controller).removePlayedAssistants();
+        }
     }
 }

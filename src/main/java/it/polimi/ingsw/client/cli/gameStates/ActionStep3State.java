@@ -31,14 +31,6 @@ public class ActionStep3State implements State{
         cli.getView().setCurrentStatus(PlayerStatus.MOVE_3);
         cli.getClient().sendMessage(new Ack());
 
-        try{
-            synchronized (this) {
-                wait();
-            }
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
-
         while (!cli.isSuccess()){
             Scanner in = new Scanner(System.in);
 

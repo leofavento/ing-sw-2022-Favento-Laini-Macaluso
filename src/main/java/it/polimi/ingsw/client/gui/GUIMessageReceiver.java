@@ -91,6 +91,9 @@ public class GUIMessageReceiver implements MessageReceiver {
         gui.getView().setDashboard(message.getDashboard());
         gui.getView().setPlayers(message.getPlayers());
         Platform.runLater(() -> ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).update());
+        if (gui.getView().isExpertMode() && gui.getView().getDashboard().getPlayedCharacter() != null) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
+        }
     }
 
     @Override
@@ -99,6 +102,7 @@ public class GUIMessageReceiver implements MessageReceiver {
             case WAITING -> {
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).setInstruction("Other players are taking their turn, please wait");
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).cleanRequest();
+                ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetError();
             }
             case PLANNING -> {}
             case END_PLANNING -> {
@@ -124,7 +128,8 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(StartOfPlayerRound message) {
-
+        gui.getView().setRoundNumber(message.getRoundNumber());
+        gui.getView().setCurrentPlayer(message.getNickname());
     }
 
     @Override
@@ -139,7 +144,7 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(EndOfRound message) {
-
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).removePlayedAssistants();
     }
 
     @Override
@@ -150,12 +155,18 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(MotherNatureSteps message) {
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMotherNatureSteps(message.getMaxStepsAllowed());
+        if (gui.getView().isExpertMode() && gui.getView().getDashboard().getPlayedCharacter() == null) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(false);
+        }
     }
 
     @Override
     public void receiveMessage(MovableStudents message) {
         gui.getView().setMovableStudents(message.getStudents());
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateMovableStudents(message.getStudents());
+        if (gui.getView().isExpertMode() && gui.getView().getDashboard().getPlayedCharacter() == null) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(false);
+        }
     }
 
     @Override
@@ -172,7 +183,9 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(SelectCloud message) {
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).updateCloudSelection(gui.getView().getTotalPlayers());
-
+        if (gui.getView().isExpertMode() && gui.getView().getDashboard().getPlayedCharacter() == null) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(false);
+        }
     }
 
     @Override
@@ -183,6 +196,9 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(WhereToMove message) {
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).requestDestination();
+        if (gui.getView().isExpertMode()) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
+        }
     }
 
     @Override
