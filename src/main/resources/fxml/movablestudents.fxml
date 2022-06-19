@@ -7,11 +7,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MovableStudentsController">
    <children>
-      <Text fx:id="title" layoutX="90.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the student you want to move" wrappingWidth="245.2890625">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
       <Button fx:id="s0button" layoutX="55.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent0" prefHeight="55.0" prefWidth="75.0" />
       <Button fx:id="s1button" layoutX="175.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent1" prefHeight="55.0" prefWidth="75.0" />
       <Button fx:id="s2button" layoutX="295.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent2" prefHeight="55.0" prefWidth="75.0" />

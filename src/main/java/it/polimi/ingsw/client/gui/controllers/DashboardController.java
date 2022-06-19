@@ -445,6 +445,7 @@ public class DashboardController implements Controller {
     public Label roundN;
     @FXML
     public Label playerTurn;
+    @FXML private AnchorPane characters;
 
 
     @FXML private ScrollPane characterPane1;
@@ -493,7 +494,10 @@ public class DashboardController implements Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/destination.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            Platform.runLater(() -> {
+                request.getChildren().setAll(anchorPane);
+                setInstruction("Select where you want to move the student");
+            });
             DestinationController controller = loader.getController();
             controller.setGui(gui);
             controller.initializeDestination();
@@ -522,6 +526,8 @@ public class DashboardController implements Controller {
             } else {
                 updateCharacters();
             }
+        } else {
+            characters.getChildren().clear();
         }
         gui.getClient().sendMessage(new Ack());
 
@@ -1734,7 +1740,10 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/movablestudents.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            Platform.runLater(() -> {
+                request.getChildren().setAll(anchorPane);
+                setInstruction("Select the student you want to move");
+            });
             MovableStudentsController controller = loader.getController();
             controller.setGui(gui);
             controller.updateEntrance(students);
@@ -1752,7 +1761,10 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/mothernatureSteps.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            Platform.runLater(() -> {
+                request.getChildren().setAll(anchorPane);
+                setInstruction("Choose by how many steps you want to move mother nature");
+            });
             MothernatureStepsController controller = loader.getController();
             controller.setGui(gui);
             controller.loadSteps(steps);
@@ -1765,7 +1777,10 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/cloudSelection.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            Platform.runLater(() -> {
+                request.getChildren().setAll(anchorPane);
+                setInstruction("Select the cloud you want to take the students from");
+            });
             CloudSelectionController controller = loader.getController();
             controller.setGui(gui);
             controller.updateCloudButtons(clouds);
@@ -1777,5 +1792,9 @@ public class DashboardController implements Controller {
     public void sendCloudSelection(int selection){
         gui.getClient().sendMessage(new ChosenCloud(selection));
         request.getChildren().removeAll();
+    }
+
+    public void cleanRequest() {
+        Platform.runLater(() -> request.getChildren().clear());
     }
 }

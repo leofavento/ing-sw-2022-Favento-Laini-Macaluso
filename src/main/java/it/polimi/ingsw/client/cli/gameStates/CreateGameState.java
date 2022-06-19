@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.StateManager;
 import it.polimi.ingsw.messages.fromClient.SetGame;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -28,8 +29,14 @@ public class CreateGameState implements State {
             do {
                 System.out.println("Enter your desired number of players [2-4]:");
                 in.reset();
-                numOfPlayers = in.nextInt();
-            } while (numOfPlayers < 0 || numOfPlayers > 4);
+                try {
+                    numOfPlayers = in.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input");
+                    numOfPlayers = 0;
+                    in.next();
+                }
+            } while (numOfPlayers < 2 || numOfPlayers > 4);
             System.out.println("Do you wish to enable the expert mode? [y/n]");
             in.reset();
             expertMode = in.next();

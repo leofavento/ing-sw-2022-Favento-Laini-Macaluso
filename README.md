@@ -9,16 +9,16 @@
 
 ## Implemented functionalities
 
-| Functionality      |          State          |
-|:-------------------|:-----------------------:|
-| Basic rules        |    :heavy_check_mark:   |
-| Complete rules     |    :heavy_check_mark:   |
-| CLI                |    :heavy_check_mark:   |
-| Socket             |    :heavy_check_mark:   |
+| Functionality      |          State           |
+|:-------------------|:------------------------:|
+| Basic rules        |    :heavy_check_mark:    |
+| Complete rules     |    :heavy_check_mark:    |
+| CLI                |    :heavy_check_mark:    |
+| Socket             |    :heavy_check_mark:    |
 | GUI                | :heavy_multiplication_x: |
-| 12 Character Cards |   :heavy_check_mark:    |
-| 4 Players mode     | :heavy_check_mark: |
-| Multiple games     | :heavy_check_mark: |
+| 12 Character Cards |    :heavy_check_mark:    |
+| 4 Players mode     |    :heavy_check_mark:    |
+| Multiple games     |    :heavy_check_mark:    |
 
 ## Build
 

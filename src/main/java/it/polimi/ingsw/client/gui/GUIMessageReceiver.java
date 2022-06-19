@@ -96,6 +96,10 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(PlayerStatusMessage message) {
         switch(message.getPlayerStatus()) {
+            case WAITING -> {
+                ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).setInstruction("Other players are taking their turn, please wait");
+                ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).cleanRequest();
+            }
             case PLANNING -> {}
             case END_PLANNING -> {
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetError();

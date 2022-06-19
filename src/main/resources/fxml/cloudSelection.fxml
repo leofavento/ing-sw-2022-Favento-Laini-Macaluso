@@ -11,10 +11,5 @@
         <Button fx:id="cloud0" layoutX="177.0" layoutY="120.0" mnemonicParsing="false" onAction="#cloud0Action" prefHeight="36.0" prefWidth="72.0" text="Cloud 1" />
         <Button fx:id="cloud3" layoutX="177.0" layoutY="420.0" mnemonicParsing="false" onAction="#cloud3Action" prefHeight="36.0" prefWidth="72.0" text="Cloud 4" />
         <Button fx:id="cloud2" layoutX="177.0" layoutY="320.0" mnemonicParsing="false" onAction="#cloud2Action" prefHeight="36.0" prefWidth="72.0" text="Cloud 3" />
-        <Text fx:id="title" layoutX="42.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the cloud you want to take the students from">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Text>
     </children>
 </AnchorPane>
