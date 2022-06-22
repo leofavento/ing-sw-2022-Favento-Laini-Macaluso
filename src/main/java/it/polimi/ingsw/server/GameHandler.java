@@ -93,6 +93,9 @@ public class GameHandler implements Observer<Message> {
      */
     private void endGame() {
         server.getActiveGames().remove(this);
+        while (!players.isEmpty()) {
+            players.get(0).close();
+        }
     }
 
     /**
@@ -257,7 +260,7 @@ public class GameHandler implements Observer<Message> {
             broadcastMessage(message);
         } else if (message instanceof CommunicateWinner) {
             broadcastMessage(message);
-            endGame();
+            server.getActiveGames().remove(this);
         } else if (message instanceof PlayedCharacter) {
             broadcastMessage(message);
         }
