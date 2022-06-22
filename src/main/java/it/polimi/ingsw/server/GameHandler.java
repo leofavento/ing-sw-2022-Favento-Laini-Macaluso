@@ -93,9 +93,6 @@ public class GameHandler implements Observer<Message> {
      */
     private void endGame() {
         server.getActiveGames().remove(this);
-        while (!players.isEmpty()) {
-            players.get(0).close();
-        }
     }
 
     /**

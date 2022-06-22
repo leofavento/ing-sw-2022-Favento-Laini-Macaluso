@@ -240,7 +240,7 @@ class ActionStep2Test {
         controller.getState().receiveMessage(new Ack(), "Player1");
         controller.getState().receiveMessage(new Ack(), "Player2");
 
-        assertEquals(2, game.getDashboard().getMotherNaturePosition());
+        assertEquals(1, game.getDashboard().getMotherNaturePosition());
 
         assertTrue(game.getDashboard().getIslands().get(1).hasTower());
         assertEquals(2, game.getDashboard().getIslands().get(1).getNumUnits());

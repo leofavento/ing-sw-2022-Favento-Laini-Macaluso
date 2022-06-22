@@ -97,9 +97,10 @@ public class Dashboard implements Serializable {
      * @param merging every other island needed to merge
      */
     public void mergeIslands(Island a, Island ... merging) {
+        setMotherNature(a);
         for (Island t : merging) {
-            if (motherNaturePosition == islands.indexOf(t)) {
-                setMotherNature(a);
+            if (motherNaturePosition > islands.indexOf(t)) {
+                setMotherNature(t);
             }
             a.addIsland(t);
             deleteIsland(t);

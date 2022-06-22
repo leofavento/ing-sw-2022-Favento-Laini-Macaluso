@@ -51,13 +51,13 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(JoinAlreadyExistingGame message) {
         gui.updateScene(FxmlScenes.WAITING.getPhase());
-        ((WaitingPlayersController)gui.getController(FxmlScenes.WAITING.getPhase())).setGameInfo(message.getGameInfo());
+        ((WaitingPlayersController) gui.getController(FxmlScenes.WAITING.getPhase())).setGameInfo(message.getGameInfo());
     }
 
     @Override
     public void receiveMessage(WaitingForPlayers message) {
         gui.updateScene(FxmlScenes.WAITING.getPhase());
-        ((WaitingPlayersController)gui.getController(FxmlScenes.WAITING.getPhase())).setMessage(message.getMessage());
+        ((WaitingPlayersController) gui.getController(FxmlScenes.WAITING.getPhase())).setMessage(message.getMessage());
     }
 
     @Override
@@ -65,7 +65,7 @@ public class GUIMessageReceiver implements MessageReceiver {
         gui.getView().setTotalPlayers(message.getGameInfo().getNumOfTotalPlayers());
         gui.getView().setActivePlayers(message.getGameInfo().getNumOfWaitingPlayers());
         gui.getView().setExpertMode(message.getGameInfo().isExpertGame());
-        ((WaitingPlayersController)gui.getController(FxmlScenes.WAITING.getPhase())).update();
+        ((WaitingPlayersController) gui.getController(FxmlScenes.WAITING.getPhase())).update();
     }
 
     @Override
@@ -75,12 +75,12 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(AvailableTowers message) {
-        ((SetupController)gui.getController(FxmlScenes.SETUP.getPhase())).update(message);
+        ((SetupController) gui.getController(FxmlScenes.SETUP.getPhase())).update(message);
     }
 
     @Override
     public void receiveMessage(AvailableWizards message) {
-        ((SetupController)gui.getController(FxmlScenes.SETUP.getPhase())).update(message);
+        ((SetupController) gui.getController(FxmlScenes.SETUP.getPhase())).update(message);
     }
 
     @Override
@@ -99,13 +99,14 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(PlayerStatusMessage message) {
-        switch(message.getPlayerStatus()) {
+        switch (message.getPlayerStatus()) {
             case WAITING -> {
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).setInstruction("Other players are taking their turn, please wait");
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).cleanRequest();
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetError();
             }
-            case PLANNING -> {}
+            case PLANNING -> {
+            }
             case END_PLANNING -> {
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetError();
                 ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).resetAssistants();
@@ -204,8 +205,9 @@ public class GUIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(PlayedCharacter message) {
-        if(gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==0 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==6 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==8 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==9 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==10 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==11){
-        gui.getView().setActivatedCharacterEffect(true);}
+        if (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 0 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 4 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 6 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 8 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 9 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 10 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal() == 11) {
+            gui.getView().setActivatedCharacterEffect(true);
+        }
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
     }
 

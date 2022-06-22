@@ -59,11 +59,13 @@ public class MovableStudentsController implements Controller{
     private final static String pinkStudent = "graphics/students/student_pink.png";
     private final static String greenStudent = "graphics/students/student_green.png";
     private final static String yellowStudent = "graphics/students/student_yellow.png";
+    private ArrayList<Color> availableStudents;
 
     private GUI gui;
 
     public void updateEntrance(ArrayList<Color> students){
         Button[] buttons = new Button[]{s0button, s1button, s2button, s3button, s4button, s5button, s6button, s7button, s8button};
+        availableStudents = students;
 
         for(int i = 0; i < 9; i++){
             buttons[i].setVisible(false);
@@ -73,45 +75,47 @@ public class MovableStudentsController implements Controller{
             changeStudents(buttons[i], students.get(i));
             buttons[i].setVisible(true);
         }
-        if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==6 ||gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==9)){
+        if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter() != null)
+                && (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==6 ||
+                gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==9)){
             buttonStop.setVisible(true);
         }
     }
 
     public void selectStudent0(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(0));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(0));
     }
 
     public void selectStudent1(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(1));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(1));
     }
 
     public void selectStudent2(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(2));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(2));
     }
 
     public void selectStudent3(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(3));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(3));
     }
 
     public void selectStudent4(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(4));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(4));
     }
 
     public void selectStudent5(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(5));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(5));
     }
 
     public void selectStudent6(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(6));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(6));
     }
 
     public void selectStudent7(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(7));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(7));
     }
 
     public void selectStudent8(){
-        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(gui.getView().getMovableStudents().get(8));
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(8));
     }
 
     public void selectStop(){

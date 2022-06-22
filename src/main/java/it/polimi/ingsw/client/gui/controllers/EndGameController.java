@@ -62,6 +62,6 @@ public class EndGameController implements Controller {
     }
 
     public void menu() {
-        gui.updateScene(FxmlScenes.CONNECTION.getPhase());
+        gui.updateScene(FxmlScenes.LOBBY.getPhase());
     }
 }

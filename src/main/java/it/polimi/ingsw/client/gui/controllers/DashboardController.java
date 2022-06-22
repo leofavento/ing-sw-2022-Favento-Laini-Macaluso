@@ -1749,14 +1749,15 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/movablestudents.fxml"));
             AnchorPane anchorPane = loader.load();
+            MovableStudentsController controller = loader.getController();
+            controller.setGui(gui);
             Platform.runLater(() -> {
+                controller.updateEntrance(students);
                 request.getChildren().setAll(anchorPane);
                 request.setVisible(true);
                 setInstruction("Select the student you want to move");
             });
-            MovableStudentsController controller = loader.getController();
-            controller.setGui(gui);
-            controller.updateEntrance(students);
+
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -1771,14 +1772,15 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/mothernatureSteps.fxml"));
             AnchorPane anchorPane = loader.load();
+            MothernatureStepsController controller = loader.getController();
+            controller.setGui(gui);
             Platform.runLater(() -> {
+                controller.loadSteps(steps);
                 request.getChildren().setAll(anchorPane);
                 request.setVisible(true);
                 setInstruction("Choose by how many steps you want to move mother nature");
             });
-            MothernatureStepsController controller = loader.getController();
-            controller.setGui(gui);
-            controller.loadSteps(steps);
+
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -1788,14 +1790,15 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/cloudSelection.fxml"));
             AnchorPane anchorPane = loader.load();
+            CloudSelectionController controller = loader.getController();
+            controller.setGui(gui);
             Platform.runLater(() -> {
+                controller.updateCloudButtons(clouds);
                 request.getChildren().setAll(anchorPane);
                 request.setVisible(true);
                 setInstruction("Select the cloud you want to take the students from");
             });
-            CloudSelectionController controller = loader.getController();
-            controller.setGui(gui);
-            controller.updateCloudButtons(clouds);
+
         } catch (IOException e){
             e.printStackTrace();
         }
