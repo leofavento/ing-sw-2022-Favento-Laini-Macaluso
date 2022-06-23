@@ -11,6 +11,7 @@ import it.polimi.ingsw.model.player.SchoolBoard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -113,6 +114,7 @@ public class SchoolboardController implements Controller {
     @FXML private ImageView entrance9;
     @FXML private ImageView coinsIcon;
     @FXML private Text coins;
+    @FXML private Label teamColor;
 
     private GUI gui;
 
@@ -373,6 +375,22 @@ public class SchoolboardController implements Controller {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.TURTLE));
     }
 
+    public void setTeamColor(Player player){
+        switch (player.getSchoolBoard().getTowerColor()){
+            case GREY -> {
+                teamColor.setText("GREY");
+                teamColor.setStyle("-fx-text-fill: grey;");
+            }
+            case BLACK -> {
+                teamColor.setText("BLACK");
+                teamColor.setStyle("-fx-text-fill: black;");
+            }
+            case WHITE -> {
+                teamColor.setText("WHITE");
+                teamColor.setStyle("-fx-text-fill: white;");
+            }
+        }
+    }
     public void showPlayed(Assistant assistant) {
         switch (assistant) {
             case TIGER -> {

@@ -937,22 +937,22 @@
                                                 <Image url="@../graphics/students/student_red.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="18.0" layoutY="991.0" text="Players order for this turn:     ">
+                                          <Label layoutX="18.0" layoutY="961.0" text="Players order for this turn:     ">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="playersList" layoutX="232.0" layoutY="991.0" text="Player 1, Player2.">
+                                          <Label fx:id="playersList" layoutX="232.0" layoutY="961.0" text="Player 1, Player2.">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="roundN" layoutX="39.0" layoutY="26.0" text="Round 1">
+                                          <Label fx:id="roundN" layoutX="39.0" layoutY="34.0" text="Round 1">
                                              <font>
                                                 <Font size="28.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="playerTurn" layoutX="39.0" layoutY="70.0" text="Player 1 turn">
+                                          <Label fx:id="playerTurn" layoutX="39.0" layoutY="78.0" text="Player 1 turn">
                                              <font>
                                                 <Font size="22.0" />
                                              </font>

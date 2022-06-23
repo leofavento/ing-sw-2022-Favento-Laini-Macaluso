@@ -137,6 +137,8 @@ public class GUIMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(CommunicateWinner message) {
         ((EndGameController) gui.getController(FxmlScenes.END_GAME.getPhase())).update(message);
+        gui.updateScene(FxmlScenes.END_GAME.getPhase());
+
     }
 
     @Override
