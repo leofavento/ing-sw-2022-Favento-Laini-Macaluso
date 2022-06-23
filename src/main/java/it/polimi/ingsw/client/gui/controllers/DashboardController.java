@@ -1618,8 +1618,11 @@ public class DashboardController implements Controller {
     }
 
     public void removePlayedAssistants() {
-        for (Controller controller : nicknameToController.values()) {
-            ((SchoolboardController) controller).removePlayedAssistants();
+        for (String nickname : nicknameToController.keySet()) {
+            if (!nickname.equals(gui.getClient().getNickname())) {
+                ((SchoolboardController) nicknameToController.get(nickname)).removeAssistantImage();
+            }
+            ((SchoolboardController) nicknameToController.get(nickname)).removePlayedAssistants();
         }
     }
 }

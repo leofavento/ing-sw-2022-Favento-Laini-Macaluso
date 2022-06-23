@@ -16,52 +16,52 @@
                     <Image url="@../graphics/dashboard/dashboard.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="229.0" fitWidth="130.0" layoutX="37.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage1" fitHeight="229.0" fitWidth="130.0" layoutX="37.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant1.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="239.0" fitWidth="130.0" layoutX="179.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage2" fitHeight="239.0" fitWidth="130.0" layoutX="179.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant2.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="320.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage3" fitHeight="237.0" fitWidth="130.0" layoutX="320.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant3.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="463.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage4" fitHeight="237.0" fitWidth="130.0" layoutX="463.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant4.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="604.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage5" fitHeight="237.0" fitWidth="130.0" layoutX="604.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant5.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="746.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage6" fitHeight="237.0" fitWidth="130.0" layoutX="746.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant6.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="890.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage7" fitHeight="237.0" fitWidth="130.0" layoutX="890.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant7.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="1035.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage8" fitHeight="237.0" fitWidth="130.0" layoutX="1035.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant8.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="1180.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage9" fitHeight="237.0" fitWidth="130.0" layoutX="1180.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant9.png" />
                 </image>
             </ImageView>
-            <ImageView fitHeight="237.0" fitWidth="130.0" layoutX="1325.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="assistantImage10" fitHeight="237.0" fitWidth="130.0" layoutX="1325.0" layoutY="715.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../graphics/assistants/assistant10.png" />
                 </image>

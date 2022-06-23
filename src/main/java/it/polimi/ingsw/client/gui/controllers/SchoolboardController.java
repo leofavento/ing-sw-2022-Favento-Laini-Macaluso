@@ -20,6 +20,16 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class SchoolboardController implements Controller {
+    @FXML private ImageView assistantImage1;
+    @FXML private ImageView assistantImage2;
+    @FXML private ImageView assistantImage3;
+    @FXML private ImageView assistantImage4;
+    @FXML private ImageView assistantImage5;
+    @FXML private ImageView assistantImage6;
+    @FXML private ImageView assistantImage7;
+    @FXML private ImageView assistantImage8;
+    @FXML private ImageView assistantImage9;
+    @FXML private ImageView assistantImage10;
     @FXML private Text played1;
     @FXML private Text played2;
     @FXML private Text played3;
@@ -392,6 +402,7 @@ public class SchoolboardController implements Controller {
         }
     }
     public void showPlayed(Assistant assistant) {
+        removePlayedAssistants();
         switch (assistant) {
             case TIGER -> {
                 played1.setText("PLAYED");
@@ -434,5 +445,18 @@ public class SchoolboardController implements Controller {
                 played10.setVisible(true);
             }
         }
+    }
+
+    public void removeAssistantImage() {
+        assistantImage1.setVisible(!played1.isVisible());
+        assistantImage2.setVisible(!played2.isVisible());
+        assistantImage3.setVisible(!played3.isVisible());
+        assistantImage4.setVisible(!played4.isVisible());
+        assistantImage5.setVisible(!played5.isVisible());
+        assistantImage6.setVisible(!played6.isVisible());
+        assistantImage7.setVisible(!played7.isVisible());
+        assistantImage8.setVisible(!played8.isVisible());
+        assistantImage9.setVisible(!played9.isVisible());
+        assistantImage10.setVisible(!played10.isVisible());
     }
 }
