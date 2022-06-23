@@ -27,6 +27,25 @@
       <version>18.0.1</version>
     </dependency>
 
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>18.0.1</version>
+          <classifier>win</classifier>
+      </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>18.0.1</version>
+          <classifier>linux</classifier>
+      </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>18.0.1</version>
+          <classifier>mac</classifier>
+      </dependency>
+
     <!-- JUnit provides unit testing for Java applications -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
