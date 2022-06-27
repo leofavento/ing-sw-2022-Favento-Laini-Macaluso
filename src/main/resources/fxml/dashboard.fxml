@@ -1002,7 +1002,11 @@
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <AnchorPane fx:id="request" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        <ScrollPane fx:id="requestPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                          </content>
+                        </ScrollPane>
                      </children></VBox>
                </children>
             </AnchorPane>

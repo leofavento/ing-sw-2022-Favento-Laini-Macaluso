@@ -255,7 +255,7 @@ public class DashboardController implements Controller {
     @FXML private ScrollPane characterPane1;
     @FXML private ScrollPane characterPane2;
     @FXML private ScrollPane characterPane3;
-    @FXML private AnchorPane request;
+    @FXML private ScrollPane requestPane;
     @FXML private TabPane dashboard;
     @FXML private Text instruction;
     @FXML private Text error;
@@ -296,8 +296,7 @@ public class DashboardController implements Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/destination.fxml"));
             AnchorPane anchorPane = loader.load();
             Platform.runLater(() -> {
-                request.getChildren().setAll(anchorPane);
-                request.setVisible(true);
+                requestPane.setContent(anchorPane);
                 setInstruction("Select where you want to move the student");
                 if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter()!=null)){
                     if (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4){
@@ -314,7 +313,6 @@ public class DashboardController implements Controller {
 
     public void sendDestination(int destination){
         gui.getClient().sendMessage(new ChosenDestination(destination));
-        request.getChildren().clear();
     }
 
     public void update() {
@@ -1554,8 +1552,7 @@ public class DashboardController implements Controller {
             controller.setGui(gui);
             Platform.runLater(() -> {
                 controller.updateEntrance(students);
-                request.getChildren().setAll(anchorPane);
-                request.setVisible(true);
+                requestPane.setContent(anchorPane);
                 setInstruction("Select the student you want to move");
             });
 
@@ -1566,7 +1563,6 @@ public class DashboardController implements Controller {
 
     public void sendMovableStudents(Color color){
         gui.getClient().sendMessage(new ChosenStudent(color));
-        request.getChildren().clear();
     }
 
     public void updateMotherNatureSteps(int steps){
@@ -1577,8 +1573,7 @@ public class DashboardController implements Controller {
             controller.setGui(gui);
             Platform.runLater(() -> {
                 controller.loadSteps(steps);
-                request.getChildren().setAll(anchorPane);
-                request.setVisible(true);
+                requestPane.setContent(anchorPane);
                 setInstruction("Choose by how many steps you want to move mother nature");
             });
 
@@ -1595,8 +1590,7 @@ public class DashboardController implements Controller {
             controller.setGui(gui);
             Platform.runLater(() -> {
                 controller.updateCloudButtons(clouds);
-                request.getChildren().setAll(anchorPane);
-                request.setVisible(true);
+                requestPane.setContent(anchorPane);
                 setInstruction("Select the cloud you want to take the students from");
             });
 
@@ -1607,11 +1601,10 @@ public class DashboardController implements Controller {
 
     public void sendCloudSelection(int selection){
         gui.getClient().sendMessage(new ChosenCloud(selection));
-        request.getChildren().clear();
     }
 
     public void cleanRequest() {
-        Platform.runLater(() -> request.getChildren().clear());
+        Platform.runLater(() -> requestPane.setContent(new AnchorPane()));
         if (gui.getView().isExpertMode()) {
             ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
         }

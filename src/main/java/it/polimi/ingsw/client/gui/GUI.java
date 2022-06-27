@@ -42,7 +42,9 @@ public class GUI extends Application {
 
         primaryStage.setOnCloseRequest(e -> {
             Platform.exit();
-            client.closeConnection();
+            if (client != null) {
+                client.closeConnection();
+            }
             System.exit(0);
         });
         execute();
