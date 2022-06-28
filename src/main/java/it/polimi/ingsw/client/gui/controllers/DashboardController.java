@@ -1542,6 +1542,7 @@ public class DashboardController implements Controller {
         for (Controller controller : characterControllers.values()) {
             Platform.runLater(() -> ((CharactersController) controller).disableButton(disable));
         }
+        error.setVisible(false);
     }
 
     public void updateMovableStudents(ArrayList<Color> students){

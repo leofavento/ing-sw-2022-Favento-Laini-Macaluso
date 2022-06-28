@@ -6,14 +6,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MothernatureStepsController">
+<AnchorPane prefHeight="380.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MothernatureStepsController">
    <children>
-      <ChoiceBox fx:id="stepsNumber" layoutX="129.0" layoutY="193.0" prefHeight="45.0" prefWidth="167.0" />
-      <Text layoutX="112.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of steps:" textAlignment="CENTER" wrappingWidth="204.91015625">
+      <ChoiceBox fx:id="stepsNumber" layoutX="129.0" layoutY="162.0" prefHeight="45.0" prefWidth="167.0" />
+      <Text layoutX="113.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of steps:" textAlignment="CENTER" wrappingWidth="204.91015625">
          <font>
-            <Font size="16.0" />
+            <Font size="17.0" />
          </font></Text>
-      <Button layoutX="161.0" layoutY="263.0" mnemonicParsing="false" onAction="#move" prefHeight="53.0" prefWidth="100.0" text="Move">
+      <Button layoutX="163.0" layoutY="238.0" mnemonicParsing="false" onAction="#move" prefHeight="53.0" prefWidth="100.0" text="Move">
          <font>
             <Font size="16.0" />
          </font></Button>

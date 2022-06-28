@@ -4,21 +4,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.CloudSelectionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.CloudSelectionController">
     <children>
-        <Button fx:id="cloud1" layoutX="163.0" layoutY="202.0" mnemonicParsing="false" onAction="#cloud1Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 2">
+        <Button fx:id="cloud1" layoutX="163.0" layoutY="157.0" mnemonicParsing="false" onAction="#cloud1Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 2">
          <font>
             <Font size="15.0" />
          </font></Button>
-        <Button fx:id="cloud0" layoutX="163.0" layoutY="107.0" mnemonicParsing="false" onAction="#cloud0Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 1">
+        <Button fx:id="cloud0" layoutX="163.0" layoutY="54.0" mnemonicParsing="false" onAction="#cloud0Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 1">
          <font>
             <Font size="15.0" />
          </font></Button>
-        <Button fx:id="cloud3" layoutX="163.0" layoutY="392.0" mnemonicParsing="false" onAction="#cloud3Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 4">
+        <Button fx:id="cloud3" layoutX="163.0" layoutY="363.0" mnemonicParsing="false" onAction="#cloud3Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 4">
          <font>
             <Font size="15.0" />
          </font></Button>
-        <Button fx:id="cloud2" layoutX="163.0" layoutY="297.0" mnemonicParsing="false" onAction="#cloud2Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 3">
+        <Button fx:id="cloud2" layoutX="163.0" layoutY="260.0" mnemonicParsing="false" onAction="#cloud2Action" prefHeight="49.0" prefWidth="102.0" text="Cloud 3">
          <font>
             <Font size="15.0" />
          </font></Button>

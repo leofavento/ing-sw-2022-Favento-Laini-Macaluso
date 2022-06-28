@@ -3,17 +3,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MovableStudentsController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.MovableStudentsController">
    <children>
-      <Button fx:id="s0button" layoutX="54.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent0" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s1button" layoutX="174.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent1" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s2button" layoutX="294.5" layoutY="107.0" mnemonicParsing="false" onAction="#selectStudent2" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s4button" layoutX="174.5" layoutY="237.0" mnemonicParsing="false" onAction="#selectStudent4" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s6button" layoutX="54.5" layoutY="377.0" mnemonicParsing="false" onAction="#selectStudent6" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s7button" layoutX="174.5" layoutY="377.0" mnemonicParsing="false" onAction="#selectStudent7" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s8button" layoutX="294.5" layoutY="377.0" mnemonicParsing="false" onAction="#selectStudent8" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s3button" layoutX="54.5" layoutY="237.0" mnemonicParsing="false" onAction="#selectStudent3" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="s5button" layoutX="294.5" layoutY="237.0" mnemonicParsing="false" onAction="#selectStudent5" prefHeight="55.0" prefWidth="75.0" />
-      <Button fx:id="buttonStop" layoutX="369.0" layoutY="461.0" mnemonicParsing="false" onAction="#selectStop" text="Stop" visible="false" />
+      <Button fx:id="s0button" layoutX="50.5" layoutY="80.0" mnemonicParsing="false" onAction="#selectStudent0" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s1button" layoutX="170.5" layoutY="80.0" mnemonicParsing="false" onAction="#selectStudent1" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s2button" layoutX="290.5" layoutY="80.0" mnemonicParsing="false" onAction="#selectStudent2" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s4button" layoutX="170.5" layoutY="210.0" mnemonicParsing="false" onAction="#selectStudent4" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s6button" layoutX="50.5" layoutY="340.0" mnemonicParsing="false" onAction="#selectStudent6" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s7button" layoutX="170.5" layoutY="340.0" mnemonicParsing="false" onAction="#selectStudent7" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s8button" layoutX="290.5" layoutY="340.0" mnemonicParsing="false" onAction="#selectStudent8" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s3button" layoutX="50.5" layoutY="210.0" mnemonicParsing="false" onAction="#selectStudent3" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="s5button" layoutX="290.5" layoutY="210.0" mnemonicParsing="false" onAction="#selectStudent5" prefHeight="55.0" prefWidth="75.0" />
+      <Button fx:id="buttonStop" layoutX="323.0" layoutY="430.0" mnemonicParsing="false" onAction="#selectStop" text="Stop" visible="false" />
    </children>
 </AnchorPane>
