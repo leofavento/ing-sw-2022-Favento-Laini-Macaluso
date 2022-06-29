@@ -71,9 +71,11 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             while (isActive()) {
                 Message received = (Message) input.readObject();
                 readMessage(received);
+                /*
                 if (! (received instanceof Pong)) {
                     System.out.printf("From %s: %s%n", nickname, received);
                 }
+                */
             }
         } catch (IOException e) {
             if (gameHandler != null) {
@@ -94,9 +96,11 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             output.reset();
             output.writeObject(message);
             output.flush();
+            /*
             if (! (message instanceof Ping)) {
                 System.out.printf("To %s: %s%n", nickname, message);
             }
+            */
         } catch (IOException e) {
             e.printStackTrace();
             if (gameHandler != null) {

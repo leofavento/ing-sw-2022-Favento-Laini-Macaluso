@@ -3,6 +3,7 @@ package it.polimi.ingsw.client.gui;
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.View;
 import it.polimi.ingsw.client.gui.controllers.Controller;
+import it.polimi.ingsw.client.gui.controllers.initial.ConnectionController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +33,7 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        initializeStage();
+        initializeStage(false);
         primaryStage = stage;
 
         Image image = new Image("graphics/eriantys.png");
@@ -51,12 +52,12 @@ public class GUI extends Application {
     }
 
     public void close() {
-        Platform.exit();
+        //Platform.exit();
         client.closeConnection();
-        System.exit(0);
+        //System.exit(0);
     }
 
-    public void initializeStage() {
+    public void initializeStage(boolean disconnection) {
         List<FxmlScenes> fxmlPaths = new ArrayList<>(Arrays.asList(FxmlScenes.values()));
         try {
             for (FxmlScenes path : fxmlPaths) {
@@ -71,9 +72,13 @@ public class GUI extends Application {
         }
         currentPhase = FxmlScenes.CONNECTION.getPhase();
         currentScene = scenesMap.get(FxmlScenes.CONNECTION.getPhase());
+        if (disconnection) {
+            ((ConnectionController) controllersMap.get(currentPhase)).showDisconnected();
+        }
     }
 
     public void execute() {
+        primaryStage.setMaximized(false);
         primaryStage.setTitle("Eriantys");
         primaryStage.setScene(currentScene);
         primaryStage.show();
@@ -103,14 +108,14 @@ public class GUI extends Application {
         Platform.runLater(() -> {
             Scene nextScene = scenesMap.get(nextPhase);
             currentPhase = nextPhase;
-            primaryStage.setScene(nextScene);
-            primaryStage.show();
             if (Objects.equals(nextPhase, FxmlScenes.DASHBOARD.getPhase())) {
                 primaryStage.setMaximized(true);
             }
             if (Objects.equals(nextPhase, FxmlScenes.END_GAME.getPhase())) {
                 primaryStage.setMaximized(false);
             }
+            primaryStage.setScene(nextScene);
+            primaryStage.show();
         });
     }
 

@@ -448,15 +448,15 @@ public class SchoolboardController implements Controller {
     }
 
     public void removeAssistantImage() {
-        assistantImage1.setVisible(!played1.isVisible());
-        assistantImage2.setVisible(!played2.isVisible());
-        assistantImage3.setVisible(!played3.isVisible());
-        assistantImage4.setVisible(!played4.isVisible());
-        assistantImage5.setVisible(!played5.isVisible());
-        assistantImage6.setVisible(!played6.isVisible());
-        assistantImage7.setVisible(!played7.isVisible());
-        assistantImage8.setVisible(!played8.isVisible());
-        assistantImage9.setVisible(!played9.isVisible());
-        assistantImage10.setVisible(!played10.isVisible());
+        assistantImage1.setVisible(assistantImage1.isVisible() && !played1.isVisible());
+        assistantImage2.setVisible(assistantImage2.isVisible() && !played2.isVisible());
+        assistantImage3.setVisible(assistantImage3.isVisible() && !played3.isVisible());
+        assistantImage4.setVisible(assistantImage4.isVisible() && !played4.isVisible());
+        assistantImage5.setVisible(assistantImage5.isVisible() && !played5.isVisible());
+        assistantImage6.setVisible(assistantImage6.isVisible() && !played6.isVisible());
+        assistantImage7.setVisible(assistantImage7.isVisible() && !played7.isVisible());
+        assistantImage8.setVisible(assistantImage8.isVisible() && !played8.isVisible());
+        assistantImage9.setVisible(assistantImage9.isVisible() && !played9.isVisible());
+        assistantImage10.setVisible(assistantImage10.isVisible() && !played10.isVisible());
     }
 }

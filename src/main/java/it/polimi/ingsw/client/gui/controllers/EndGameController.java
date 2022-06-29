@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.messages.fromClient.RequestGames;
 import it.polimi.ingsw.messages.fromServer.CommunicateWinner;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
@@ -62,6 +63,7 @@ public class EndGameController implements Controller {
     }
 
     public void menu() {
-        gui.updateScene(FxmlScenes.LOBBY.getPhase());
+        gui.getClient().closeConnection();
+        gui.updateScene(FxmlScenes.CONNECTION.getPhase());
     }
 }
