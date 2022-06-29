@@ -259,6 +259,7 @@ public class DashboardController implements Controller {
     @FXML private TabPane dashboard;
     @FXML private Text instruction;
     @FXML private Text error;
+    @FXML private ImageView logo;
     private HashMap<String, Tab> nicknameToTab;
     private HashMap<String, Controller> nicknameToController;
     private HashMap<CharacterEnum, Controller> characterControllers;
@@ -332,6 +333,12 @@ public class DashboardController implements Controller {
             }
         } else {
             characters.getChildren().clear();
+            characters.getChildren().add(logo);
+            logo.setVisible(true);
+            logo.setPreserveRatio(true);
+            logo.fitWidthProperty().bind(characters.widthProperty());
+            logo.fitHeightProperty().bind(characters.heightProperty());
+            characters.setMaxHeight(439);
         }
         gui.getClient().sendMessage(new Ack());
 

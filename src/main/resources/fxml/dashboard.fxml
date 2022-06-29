@@ -973,6 +973,10 @@
                      <children>
                         <AnchorPane fx:id="characters" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
+                              <ImageView fx:id="logo" fitHeight="150.0" fitWidth="428.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../graphics/eriantys.png" />
+                                 </image></ImageView>
                               <HBox layoutX="102.0" layoutY="172.0" prefHeight="540.0" prefWidth="428.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <ScrollPane fx:id="characterPane1" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
