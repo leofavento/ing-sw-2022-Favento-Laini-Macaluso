@@ -108,12 +108,7 @@ public class GUI extends Application {
         Platform.runLater(() -> {
             Scene nextScene = scenesMap.get(nextPhase);
             currentPhase = nextPhase;
-            if (Objects.equals(nextPhase, FxmlScenes.DASHBOARD.getPhase())) {
-                primaryStage.setMaximized(true);
-            }
-            if (Objects.equals(nextPhase, FxmlScenes.END_GAME.getPhase())) {
-                primaryStage.setMaximized(false);
-            }
+            primaryStage.setMaximized(Objects.equals(nextPhase, FxmlScenes.DASHBOARD.getPhase()));
             primaryStage.setScene(nextScene);
             primaryStage.show();
         });

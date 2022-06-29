@@ -5,6 +5,7 @@ import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
+import it.polimi.ingsw.messages.fromServer.CommunicateWinner;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Dashboard;
@@ -1624,6 +1625,23 @@ public class DashboardController implements Controller {
                 ((SchoolboardController) nicknameToController.get(nickname)).removeAssistantImage();
             }
             ((SchoolboardController) nicknameToController.get(nickname)).removePlayedAssistants();
+        }
+    }
+
+    public void setEndGame(CommunicateWinner message) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/endgame.fxml"));
+            AnchorPane anchorPane = loader.load();
+            EndGameController controller = loader.getController();
+            controller.setGui(gui);
+            Platform.runLater(() -> {
+                controller.update(message);
+                requestPane.setContent(anchorPane);
+                setInstruction("This is the end of the game!");
+            });
+
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
