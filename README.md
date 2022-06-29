@@ -1,6 +1,6 @@
 # Software Engineering Project 2022
 
-![Santorini Logo](src/main/resources/graphics/eriantys.png)
+![Eriantys Logo](src/main/resources/graphics/eriantys.png)
 
 **Students**
 - Leonardo Favento ([@leofavento](https://github.com/leofavento))
