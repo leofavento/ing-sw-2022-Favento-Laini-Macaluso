@@ -108,6 +108,9 @@ public class GUI extends Application {
             if (Objects.equals(nextPhase, FxmlScenes.DASHBOARD.getPhase())) {
                 primaryStage.setMaximized(true);
             }
+            if (Objects.equals(nextPhase, FxmlScenes.END_GAME.getPhase())) {
+                primaryStage.setMaximized(false);
+            }
         });
     }
 

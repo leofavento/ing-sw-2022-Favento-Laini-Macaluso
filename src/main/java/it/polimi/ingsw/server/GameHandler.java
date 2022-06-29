@@ -261,6 +261,9 @@ public class GameHandler implements Observer<Message> {
         } else if (message instanceof CommunicateWinner) {
             broadcastMessage(message);
             server.getActiveGames().remove(this);
+            for (ServerClientConnection player : players) {
+                player.setGame(null);
+            }
         } else if (message instanceof PlayedCharacter) {
             broadcastMessage(message);
         }
