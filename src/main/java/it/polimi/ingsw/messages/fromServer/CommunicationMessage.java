@@ -7,7 +7,6 @@ import it.polimi.ingsw.client.MessageReceiver;
  */
 
 public enum CommunicationMessage implements FromServerMessage {
-    PING("Ping!"),
     ENTER_NICKNAME("Please enter your nickname: "),
     SUCCESS("Success"),
     STUDENT_MOVED("The student has been moved."),
