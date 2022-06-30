@@ -29,6 +29,7 @@ public class Client implements Runnable {
 
     public void startConnection(int port, String IP_address) throws IOException {
         clientSocket = new Socket(IP_address, port);
+        clientSocket.setSoTimeout(5000);
         System.out.println("Client: started");
         System.out.println("Client socket: " + clientSocket);
         output = new ObjectOutputStream(clientSocket.getOutputStream());
