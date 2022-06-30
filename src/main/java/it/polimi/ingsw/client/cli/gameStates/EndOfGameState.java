@@ -48,30 +48,8 @@ public class EndOfGameState implements State {
         }
         System.out.println();
 
-
-        int choice;
-        Scanner in = new Scanner(System.in);
-
-        do {
-            System.out.println("Press 0 to go back to the menu, or 1 to close the game.");
-            in.reset();
-            try {
-                choice = in.nextInt();
-
-                if (choice != 0 && choice != 1) {
-                    System.out.println("This option is not valid.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("You have to enter an integer.");
-                choice = -1;
-                in.next();
-            }
-        } while (choice != 0 && choice != 1);
-
-        if (choice == 0) {
-            new Thread(new StateManager(cli, new LobbyState(cli))).start();
-        } else {
-            cli.getClient().closeConnection();
-        }
+        System.out.println("Thanks for having played, we hope to see you again!");
+        cli.getClient().closeConnection();
+        System.exit(0);
     }
 }
