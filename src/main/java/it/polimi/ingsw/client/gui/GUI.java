@@ -24,8 +24,8 @@ public class GUI extends Application {
     private Stage primaryStage;
     private Scene currentScene;
     private String currentPhase;
-    private final HashMap<String, Scene> scenesMap = new HashMap<>();
-    private final HashMap<String, Controller> controllersMap = new HashMap<>();
+    private HashMap<String, Scene> scenesMap = new HashMap<>();
+    private HashMap<String, Controller> controllersMap = new HashMap<>();
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -55,6 +55,11 @@ public class GUI extends Application {
         //Platform.exit();
         client.closeConnection();
         //System.exit(0);
+    }
+
+    public void resetMaps() {
+        scenesMap = new HashMap<>();
+        controllersMap = new HashMap<>();
     }
 
     public void initializeStage(boolean disconnection) {

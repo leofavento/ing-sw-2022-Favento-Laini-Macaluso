@@ -200,7 +200,7 @@ public class CLIMessageReceiver implements MessageReceiver {
         cli.getView().setWinnerTeam(message.getTeam());
         cli.getView().setEndOfGameReason(message.getWinReason());
         cli.getView().setWinners(message.getNicknames());
-        new Thread(new EndOfGameState(cli)).start();
+        new Thread(new StateManager(cli, new EndOfGameState(cli))).start();
     }
 
     @Override
