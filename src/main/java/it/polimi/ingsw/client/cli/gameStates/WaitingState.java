@@ -6,7 +6,6 @@ import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.messages.fromClient.Ack;
-import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 /**

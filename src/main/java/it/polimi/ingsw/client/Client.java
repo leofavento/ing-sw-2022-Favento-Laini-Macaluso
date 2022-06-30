@@ -1,7 +1,5 @@
 package it.polimi.ingsw.client;
 
-import it.polimi.ingsw.client.cli.CLI;
-import it.polimi.ingsw.client.cli.CLIMessageReceiver;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.FromServerMessage;

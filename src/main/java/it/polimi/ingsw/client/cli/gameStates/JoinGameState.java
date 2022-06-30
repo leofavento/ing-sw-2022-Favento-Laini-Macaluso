@@ -88,7 +88,7 @@ public class JoinGameState implements State {
                     (game.isExpertGame() ? 'Y' : 'N'));
             System.out.println(s);
         }
-        if (availableGames.size() == 0) {
+        if (availableGames.isEmpty()) {
             System.out.println("|                                            |");
         }
         System.out.println("+--------------------------------------------+");

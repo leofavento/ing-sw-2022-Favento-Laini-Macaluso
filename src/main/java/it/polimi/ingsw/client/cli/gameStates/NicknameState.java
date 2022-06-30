@@ -45,9 +45,6 @@ public class NicknameState implements State {
             }
             in.reset();
             nickname = in.nextLine();
-            /*if (!validNickname(nickname)) {
-                System.out.println("The nickname entered is not valid.");
-            } else {*/
                 cli.getClient().sendMessage(new LoginMessage(nickname));
                 try {
                     synchronized (this) {
@@ -56,7 +53,6 @@ public class NicknameState implements State {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            //}
             firstLoop = false;
         }
         if (cli.isSuccess()) {

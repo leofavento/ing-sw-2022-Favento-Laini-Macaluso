@@ -2,7 +2,6 @@ package it.polimi.ingsw.client.gui.controllers.initial;
 
 import it.polimi.ingsw.client.Client;
 import it.polimi.ingsw.client.View;
-import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.client.gui.GUIMessageReceiver;
 import it.polimi.ingsw.client.gui.controllers.Controller;
@@ -33,8 +32,7 @@ public class ConnectionController implements Controller {
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 
     /**

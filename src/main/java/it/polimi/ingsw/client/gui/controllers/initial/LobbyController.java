@@ -9,19 +9,11 @@ import it.polimi.ingsw.model.GameInfo;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.skin.TableHeaderRow;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
-import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 
 public class LobbyController implements Controller {
@@ -78,8 +70,7 @@ public class LobbyController implements Controller {
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 
     /**

@@ -133,13 +133,11 @@ public class SchoolboardController implements Controller {
     }
 
     @Override
-    public void error(String error) {
-
+    public void error(String error) {//unused method
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 
     /**

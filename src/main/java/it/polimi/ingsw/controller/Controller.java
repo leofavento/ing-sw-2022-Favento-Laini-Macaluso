@@ -6,30 +6,22 @@ import it.polimi.ingsw.controller.states.State;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
-
-import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observable;
 import it.polimi.ingsw.observer.Observer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparing;
-
 public class Controller implements Observer<Message>, Observable<Message> {
     private final Game game;
     private State state;
     private final CharacterController characterController;
-    //VirtualView virtualView;
 
     private final List<Observer<Message>> observers = new ArrayList<>();
 
     public Controller(Game game) {
-        //this.virtualView=v;
         this.game = game;
         game.setCurrentPlayer(game.getOnlinePlayers().get(0));
         characterController = new CharacterController(this, game, null);
@@ -157,7 +149,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
      * method used to check if the bag has no students left or the player has no assistant left to play
      */
     public void isFinalRound() {
-        if (game.getDashboard().getBag().getStudentsLeft() == 0 || game.getCurrentPlayer().getAvailableAssistants().size() == 0) {
+        if (game.getDashboard().getBag().getStudentsLeft() == 0 || game.getCurrentPlayer().getAvailableAssistants().isEmpty()) {
             game.setFinalRound();
             notify(CommunicationMessage.LAST_ROUND);
         }

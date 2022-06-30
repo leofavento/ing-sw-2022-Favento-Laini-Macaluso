@@ -28,7 +28,7 @@ public class EndOfTheGame implements State {
     }
     
     @Override
-    public void nextState() {
+    public void nextState() { //unused method
     }
 
     @Override
@@ -54,7 +54,6 @@ public class EndOfTheGame implements State {
     }
 
     @Override
-    public void receiveMessage(Message message, String sender) {
-
+    public void receiveMessage(Message message, String sender) {//unused method
     }
 }
