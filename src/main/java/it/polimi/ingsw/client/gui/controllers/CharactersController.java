@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 public class CharactersController implements Controller{
     @FXML private Button button;
     @FXML private Text description;
+    @FXML private Text activeChar;
     @FXML private ImageView noEntry1;
     @FXML private ImageView noEntry2;
     @FXML private ImageView noEntry3;
@@ -52,6 +53,7 @@ public class CharactersController implements Controller{
         setCharacter();
         cost.setText("Cost: " + characterCard.getCost());
         description.setText(characterCard.getDescription());
+        activeChar.setVisible(false);
         student1.setVisible(false);
         student2.setVisible(false);
         student3.setVisible(false);
@@ -62,6 +64,8 @@ public class CharactersController implements Controller{
         noEntry2.setVisible(false);
         noEntry3.setVisible(false);
         noEntry4.setVisible(false);
+        activeChar.setVisible(characterCard.getActive());
+
         if (characterCard instanceof Char1 || characterCard instanceof Char7
                 || characterCard instanceof Char11) {
             setStudent(student1, characterCard.getStudents().get(0));

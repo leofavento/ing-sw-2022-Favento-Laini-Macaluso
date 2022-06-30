@@ -12,20 +12,10 @@ public class CloudSelectionController implements Controller{
     private Text error;
     private GUI gui;
 
-    @FXML
-    public Text title;
-
-    @FXML
-    public Button cloud0;
-
-    @FXML
-    public Button cloud1;
-
-    @FXML
-    public Button cloud2;
-
-    @FXML
-    public Button cloud3;
+    @FXML public Button cloud0;
+    @FXML public Button cloud1;
+    @FXML public Button cloud2;
+    @FXML public Button cloud3;
 
 
     public void updateCloudButtons(int clouds){

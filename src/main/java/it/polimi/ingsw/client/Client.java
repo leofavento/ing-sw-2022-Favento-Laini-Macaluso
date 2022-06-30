@@ -5,6 +5,7 @@ import it.polimi.ingsw.client.cli.CLIMessageReceiver;
 import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.FromServerMessage;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -57,15 +58,15 @@ public class Client implements Runnable {
     public void closeConnection() {
         try {
             clientSocket.close();
-        } catch (IOException ignored) {
+        } catch (NullPointerException | IOException ignored) {
         }
         try {
             input.close();
-        } catch (IOException ignored) {
+        } catch (NullPointerException | IOException ignored) {
         }
         try {
             output.close();
-        } catch (IOException ignored) {
+        } catch (NullPointerException | IOException ignored) {
         }
     }
 
@@ -88,6 +89,12 @@ public class Client implements Runnable {
                 active = false;
                 if (gui != null) {
                     gui.close();
+                    Platform.runLater(() -> {
+                        gui.initializeStage(true);
+                        gui.execute();
+                    });
+                } else {
+                    System.exit(0);
                 }
                 closeConnection();
             }

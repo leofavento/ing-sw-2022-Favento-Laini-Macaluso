@@ -20,12 +20,12 @@
             <AnchorPane prefWidth="1492.0" HBox.hgrow="ALWAYS">
                <children>
                   <TabPane fx:id="dashboard" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1080.0" side="BOTTOM" style="-fx-background-color: #69bae9;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <tabs>
-                      <Tab text="Islands">
-                        <content>
+                     <tabs>
+                        <Tab text="Islands">
+                           <content>
                               <ScrollPane fitToHeight="true" fitToWidth="true">
                                  <content>
-                                <AnchorPane style="-fx-background-color: #69bae9;">
+                                    <AnchorPane style="-fx-background-color: #69bae9;">
                                        <children>
                                           <ImageView fx:id="isl7" fitHeight="250.0" fitWidth="350.0" layoutX="5.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -937,22 +937,22 @@
                                                 <Image url="@../graphics/students/student_red.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="18.0" layoutY="991.0" text="Players order for this turn:     ">
+                                          <Label layoutX="18.0" layoutY="961.0" text="Players order for this turn:     ">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="playersList" layoutX="232.0" layoutY="991.0" text="Player 1, Player2.">
+                                          <Label fx:id="playersList" layoutX="232.0" layoutY="961.0" text="Player 1, Player2.">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="roundN" layoutX="39.0" layoutY="26.0" text="Round 1">
+                                          <Label fx:id="roundN" layoutX="39.0" layoutY="34.0" text="Round 1">
                                              <font>
                                                 <Font size="28.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="playerTurn" layoutX="39.0" layoutY="70.0" text="Player 1 turn">
+                                          <Label fx:id="playerTurn" layoutX="39.0" layoutY="78.0" text="Player 1 turn">
                                              <font>
                                                 <Font size="22.0" />
                                              </font>
@@ -961,34 +961,38 @@
                                     </AnchorPane>
                                  </content>
                               </ScrollPane>
-                        </content>
-                      </Tab>
-                    </tabs>
+                           </content>
+                        </Tab>
+                     </tabs>
                   </TabPane>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox layoutX="57.0" layoutY="137.0" prefHeight="1080.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="vboxChar" layoutX="57.0" layoutY="137.0" prefHeight="1080.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane fx:id="characters" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
+                              <ImageView fx:id="logo" fitHeight="150.0" fitWidth="428.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../graphics/eriantys.png" />
+                                 </image></ImageView>
                               <HBox layoutX="102.0" layoutY="172.0" prefHeight="540.0" prefWidth="428.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <ScrollPane fx:id="characterPane1" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                      </content>
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
                                     </ScrollPane>
                                     <ScrollPane fx:id="characterPane2" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                      </content>
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
                                     </ScrollPane>
                                     <ScrollPane fx:id="characterPane3" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                      </content>
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                       </content>
                                     </ScrollPane>
                                  </children></HBox>
                            </children></AnchorPane>
@@ -1002,7 +1006,11 @@
                               <Insets />
                            </VBox.margin>
                         </Text>
-                        <AnchorPane fx:id="request" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        <ScrollPane fx:id="requestPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                          </content>
+                        </ScrollPane>
                      </children></VBox>
                </children>
             </AnchorPane>

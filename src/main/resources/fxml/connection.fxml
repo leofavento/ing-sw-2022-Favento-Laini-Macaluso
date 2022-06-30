@@ -12,6 +12,11 @@
             <Image url="@../graphics/eriantys.png" />
          </image>
       </ImageView>
+      <Text fx:id="disconnected" fill="RED" layoutX="555.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have been disconnected from the server" textAlignment="CENTER" visible="false" wrappingWidth="276.0">
+         <font>
+            <Font name="Inconsolata" size="16.0" />
+         </font>
+      </Text>
       <Text layoutX="555.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Eriantys!" textAlignment="CENTER">
          <font>
             <Font name="Inconsolata" size="23.0" />

@@ -2,6 +2,9 @@ package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
+import it.polimi.ingsw.model.characters.Char1;
+import it.polimi.ingsw.model.characters.CharacterCard;
+import it.polimi.ingsw.model.characters.CharacterEnum;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
@@ -140,9 +143,10 @@ public class DestinationController implements Controller{
             buttonIsl4.setDisable(true);
 
         }
-        if (gui.getView().getActivatedCharacter()==1 || gui.getView().getActivatedCharacter()==3 || gui.getView().getActivatedCharacter()==5){
+        if ((gui.getView().getDashboard().getPlayedCharacter()!=null) && gui.getView().getActivatedCharacterEffect()){
+            if (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==0 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4){
             buttonDining.setVisible(false);
-            buttonDining.setDisable(true);
+            buttonDining.setDisable(true);}
         }
     }
 

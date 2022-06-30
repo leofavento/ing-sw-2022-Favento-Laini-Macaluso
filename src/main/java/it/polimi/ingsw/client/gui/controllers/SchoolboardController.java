@@ -11,6 +11,7 @@ import it.polimi.ingsw.model.player.SchoolBoard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -19,6 +20,16 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class SchoolboardController implements Controller {
+    @FXML private ImageView assistantImage1;
+    @FXML private ImageView assistantImage2;
+    @FXML private ImageView assistantImage3;
+    @FXML private ImageView assistantImage4;
+    @FXML private ImageView assistantImage5;
+    @FXML private ImageView assistantImage6;
+    @FXML private ImageView assistantImage7;
+    @FXML private ImageView assistantImage8;
+    @FXML private ImageView assistantImage9;
+    @FXML private ImageView assistantImage10;
     @FXML private Text played1;
     @FXML private Text played2;
     @FXML private Text played3;
@@ -113,6 +124,7 @@ public class SchoolboardController implements Controller {
     @FXML private ImageView entrance9;
     @FXML private ImageView coinsIcon;
     @FXML private Text coins;
+    @FXML private Label teamColor;
 
     private GUI gui;
 
@@ -373,7 +385,24 @@ public class SchoolboardController implements Controller {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.TURTLE));
     }
 
+    public void setTeamColor(Player player){
+        switch (player.getSchoolBoard().getTowerColor()){
+            case GREY -> {
+                teamColor.setText("GREY");
+                teamColor.setStyle("-fx-text-fill: grey;");
+            }
+            case BLACK -> {
+                teamColor.setText("BLACK");
+                teamColor.setStyle("-fx-text-fill: black;");
+            }
+            case WHITE -> {
+                teamColor.setText("WHITE");
+                teamColor.setStyle("-fx-text-fill: white;");
+            }
+        }
+    }
     public void showPlayed(Assistant assistant) {
+        removePlayedAssistants();
         switch (assistant) {
             case TIGER -> {
                 played1.setText("PLAYED");
@@ -416,5 +445,18 @@ public class SchoolboardController implements Controller {
                 played10.setVisible(true);
             }
         }
+    }
+
+    public void removeAssistantImage() {
+        assistantImage1.setVisible(assistantImage1.isVisible() && !played1.isVisible());
+        assistantImage2.setVisible(assistantImage2.isVisible() && !played2.isVisible());
+        assistantImage3.setVisible(assistantImage3.isVisible() && !played3.isVisible());
+        assistantImage4.setVisible(assistantImage4.isVisible() && !played4.isVisible());
+        assistantImage5.setVisible(assistantImage5.isVisible() && !played5.isVisible());
+        assistantImage6.setVisible(assistantImage6.isVisible() && !played6.isVisible());
+        assistantImage7.setVisible(assistantImage7.isVisible() && !played7.isVisible());
+        assistantImage8.setVisible(assistantImage8.isVisible() && !played8.isVisible());
+        assistantImage9.setVisible(assistantImage9.isVisible() && !played9.isVisible());
+        assistantImage10.setVisible(assistantImage10.isVisible() && !played10.isVisible());
     }
 }

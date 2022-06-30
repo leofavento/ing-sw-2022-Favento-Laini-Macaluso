@@ -5,6 +5,7 @@ import it.polimi.ingsw.client.gui.GUI;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
 import it.polimi.ingsw.messages.fromClient.ChosenDestination;
 import it.polimi.ingsw.messages.fromClient.ChosenStudent;
+import it.polimi.ingsw.messages.fromServer.CommunicateWinner;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Dashboard;
@@ -31,316 +32,162 @@ import java.util.Objects;
 public class DashboardController implements Controller {
 
     //initializing every element of an Island
-    @FXML
-    public ImageView isl1;
-    @FXML
-    public Label idIsl1;
-    @FXML
-    public ImageView mnIsland1;
-    @FXML
-    public ImageView noEntryIsl1;
-    @FXML
-    public Label nEIsl1;
-    @FXML
-    public ImageView towerIsl1;
-    @FXML
-    public Label unitsIsl1;
-    @FXML
-    public Label pinkIsl1;
-    @FXML
-    public Label greenIsl1;
-    @FXML
-    public Label blueIsl1;
-    @FXML
-    public Label redIsl1;
-    @FXML
-    public Label yellowIsl1;
+    @FXML public ImageView isl1;
+    @FXML public Label idIsl1;
+    @FXML public ImageView mnIsland1;
+    @FXML public ImageView noEntryIsl1;
+    @FXML public Label nEIsl1;
+    @FXML public ImageView towerIsl1;
+    @FXML public Label unitsIsl1;
+    @FXML public Label pinkIsl1;
+    @FXML public Label greenIsl1;
+    @FXML public Label blueIsl1;
+    @FXML public Label redIsl1;
+    @FXML public Label yellowIsl1;
+
+    @FXML public ImageView isl2;
+    @FXML public Label idIsl2;
+    @FXML public ImageView mnIsland2;
+    @FXML public ImageView noEntryIsl2;
+    @FXML public Label nEIsl2;
+    @FXML public ImageView towerIsl2;
+    @FXML public Label unitsIsl2;
+    @FXML public Label pinkIsl2;
+    @FXML public Label greenIsl2;
+    @FXML public Label blueIsl2;
+    @FXML public Label redIsl2;
+    @FXML public Label yellowIsl2;
+
+    @FXML public ImageView isl3;
+    @FXML public Label idIsl3;
+    @FXML public ImageView mnIsland3;
+    @FXML public ImageView noEntryIsl3;
+    @FXML public Label nEIsl3;
+    @FXML public ImageView towerIsl3;
+    @FXML public Label unitsIsl3;
+    @FXML public Label pinkIsl3;
+    @FXML public Label greenIsl3;
+    @FXML public Label blueIsl3;
+    @FXML public Label redIsl3;
+    @FXML public Label yellowIsl3;
+
+    @FXML public ImageView isl4;
+    @FXML public Label idIsl4;
+    @FXML public ImageView mnIsland4;
+    @FXML public ImageView noEntryIsl4;
+    @FXML public Label nEIsl4;
+    @FXML public ImageView towerIsl4;
+    @FXML public Label unitsIsl4;
+    @FXML public Label pinkIsl4;
+    @FXML public Label greenIsl4;
+    @FXML public Label blueIsl4;
+    @FXML public Label redIsl4;
+    @FXML public Label yellowIsl4;
 
 
-    @FXML
-    public ImageView isl2;
-    @FXML
-    public Label idIsl2;
-    @FXML
-    public ImageView mnIsland2;
-    @FXML
-    public ImageView noEntryIsl2;
-    @FXML
-    public Label nEIsl2;
-    @FXML
-    public ImageView towerIsl2;
-    @FXML
-    public Label unitsIsl2;
-    @FXML
-    public Label pinkIsl2;
-    @FXML
-    public Label greenIsl2;
-    @FXML
-    public Label blueIsl2;
-    @FXML
-    public Label redIsl2;
-    @FXML
-    public Label yellowIsl2;
+    @FXML public ImageView isl5;
+    @FXML public Label idIsl5;
+    @FXML public ImageView mnIsland5;
+    @FXML public ImageView noEntryIsl5;
+    @FXML public Label nEIsl5;
+    @FXML public ImageView towerIsl5;
+    @FXML public Label unitsIsl5;
+    @FXML public Label pinkIsl5;
+    @FXML public Label greenIsl5;
+    @FXML public Label blueIsl5;
+    @FXML public Label redIsl5;
+    @FXML public Label yellowIsl5;
 
+    @FXML public ImageView isl6;
+    @FXML public Label idIsl6;
+    @FXML public ImageView mnIsland6;
+    @FXML public ImageView noEntryIsl6;
+    @FXML public Label nEIsl6;
+    @FXML public ImageView towerIsl6;
+    @FXML public Label unitsIsl6;
+    @FXML public Label pinkIsl6;
+    @FXML public Label greenIsl6;
+    @FXML public Label blueIsl6;
+    @FXML public Label redIsl6;
+    @FXML public Label yellowIsl6;
 
-    @FXML
-    public ImageView isl3;
-    @FXML
-    public Label idIsl3;
-    @FXML
-    public ImageView mnIsland3;
-    @FXML
-    public ImageView noEntryIsl3;
-    @FXML
-    public Label nEIsl3;
-    @FXML
-    public ImageView towerIsl3;
-    @FXML
-    public Label unitsIsl3;
-    @FXML
-    public Label pinkIsl3;
-    @FXML
-    public Label greenIsl3;
-    @FXML
-    public Label blueIsl3;
-    @FXML
-    public Label redIsl3;
-    @FXML
-    public Label yellowIsl3;
+    @FXML public ImageView isl7;
+    @FXML public Label idIsl7;
+    @FXML public ImageView mnIsland7;
+    @FXML public ImageView noEntryIsl7;
+    @FXML public Label nEIsl7;
+    @FXML public ImageView towerIsl7;
+    @FXML public Label unitsIsl7;
+    @FXML public Label pinkIsl7;
+    @FXML public Label greenIsl7;
+    @FXML public Label blueIsl7;
+    @FXML public Label redIsl7;
+    @FXML public Label yellowIsl7;
 
+    @FXML public ImageView isl8;
+    @FXML public Label idIsl8;
+    @FXML public ImageView mnIsland8;
+    @FXML public ImageView noEntryIsl8;
+    @FXML public Label nEIsl8;
+    @FXML public ImageView towerIsl8;
+    @FXML public Label unitsIsl8;
+    @FXML public Label pinkIsl8;
+    @FXML public Label greenIsl8;
+    @FXML public Label blueIsl8;
+    @FXML public Label redIsl8;
+    @FXML public Label yellowIsl8;
 
-    @FXML
-    public ImageView isl4;
-    @FXML
-    public Label idIsl4;
-    @FXML
-    public ImageView mnIsland4;
-    @FXML
-    public ImageView noEntryIsl4;
-    @FXML
-    public Label nEIsl4;
-    @FXML
-    public ImageView towerIsl4;
-    @FXML
-    public Label unitsIsl4;
-    @FXML
-    public Label pinkIsl4;
-    @FXML
-    public Label greenIsl4;
-    @FXML
-    public Label blueIsl4;
-    @FXML
-    public Label redIsl4;
-    @FXML
-    public Label yellowIsl4;
+    @FXML public ImageView isl9;
+    @FXML public Label idIsl9;
+    @FXML public ImageView mnIsland9;
+    @FXML public ImageView noEntryIsl9;
+    @FXML public Label nEIsl9;
+    @FXML public ImageView towerIsl9;
+    @FXML public Label unitsIsl9;
+    @FXML public Label pinkIsl9;
+    @FXML public Label greenIsl9;
+    @FXML public Label blueIsl9;
+    @FXML public Label redIsl9;
+    @FXML public Label yellowIsl9;
 
+    @FXML public ImageView isl10;
+    @FXML public Label idIsl10;
+    @FXML public ImageView mnIsland10;
+    @FXML public ImageView noEntryIsl10;
+    @FXML public Label nEIsl10;
+    @FXML public ImageView towerIsl10;
+    @FXML public Label unitsIsl10;
+    @FXML public Label pinkIsl10;
+    @FXML public Label greenIsl10;
+    @FXML public Label blueIsl10;
+    @FXML public Label redIsl10;
+    @FXML public Label yellowIsl10;
 
-    @FXML
-    public ImageView isl5;
-    @FXML
-    public Label idIsl5;
-    @FXML
-    public ImageView mnIsland5;
-    @FXML
-    public ImageView noEntryIsl5;
-    @FXML
-    public Label nEIsl5;
-    @FXML
-    public ImageView towerIsl5;
-    @FXML
-    public Label unitsIsl5;
-    @FXML
-    public Label pinkIsl5;
-    @FXML
-    public Label greenIsl5;
-    @FXML
-    public Label blueIsl5;
-    @FXML
-    public Label redIsl5;
-    @FXML
-    public Label yellowIsl5;
+    @FXML public ImageView isl11;
+    @FXML public Label idIsl11;
+    @FXML public ImageView mnIsland11;
+    @FXML public ImageView noEntryIsl11;
+    @FXML public Label nEIsl11;
+    @FXML public ImageView towerIsl11;
+    @FXML public Label unitsIsl11;
+    @FXML public Label pinkIsl11;
+    @FXML public Label greenIsl11;
+    @FXML public Label blueIsl11;
+    @FXML public Label redIsl11;
+    @FXML public Label yellowIsl11;
 
-
-    @FXML
-    public ImageView isl6;
-    @FXML
-    public Label idIsl6;
-    @FXML
-    public ImageView mnIsland6;
-    @FXML
-    public ImageView noEntryIsl6;
-    @FXML
-    public Label nEIsl6;
-    @FXML
-    public ImageView towerIsl6;
-    @FXML
-    public Label unitsIsl6;
-    @FXML
-    public Label pinkIsl6;
-    @FXML
-    public Label greenIsl6;
-    @FXML
-    public Label blueIsl6;
-    @FXML
-    public Label redIsl6;
-    @FXML
-    public Label yellowIsl6;
-
-
-    @FXML
-    public ImageView isl7;
-    @FXML
-    public Label idIsl7;
-    @FXML
-    public ImageView mnIsland7;
-    @FXML
-    public ImageView noEntryIsl7;
-    @FXML
-    public Label nEIsl7;
-    @FXML
-    public ImageView towerIsl7;
-    @FXML
-    public Label unitsIsl7;
-    @FXML
-    public Label pinkIsl7;
-    @FXML
-    public Label greenIsl7;
-    @FXML
-    public Label blueIsl7;
-    @FXML
-    public Label redIsl7;
-    @FXML
-    public Label yellowIsl7;
-
-
-    @FXML
-    public ImageView isl8;
-    @FXML
-    public Label idIsl8;
-    @FXML
-    public ImageView mnIsland8;
-    @FXML
-    public ImageView noEntryIsl8;
-    @FXML
-    public Label nEIsl8;
-    @FXML
-    public ImageView towerIsl8;
-    @FXML
-    public Label unitsIsl8;
-    @FXML
-    public Label pinkIsl8;
-    @FXML
-    public Label greenIsl8;
-    @FXML
-    public Label blueIsl8;
-    @FXML
-    public Label redIsl8;
-    @FXML
-    public Label yellowIsl8;
-
-
-    @FXML
-    public ImageView isl9;
-    @FXML
-    public Label idIsl9;
-    @FXML
-    public ImageView mnIsland9;
-    @FXML
-    public ImageView noEntryIsl9;
-    @FXML
-    public Label nEIsl9;
-    @FXML
-    public ImageView towerIsl9;
-    @FXML
-    public Label unitsIsl9;
-    @FXML
-    public Label pinkIsl9;
-    @FXML
-    public Label greenIsl9;
-    @FXML
-    public Label blueIsl9;
-    @FXML
-    public Label redIsl9;
-    @FXML
-    public Label yellowIsl9;
-
-
-    @FXML
-    public ImageView isl10;
-    @FXML
-    public Label idIsl10;
-    @FXML
-    public ImageView mnIsland10;
-    @FXML
-    public ImageView noEntryIsl10;
-    @FXML
-    public Label nEIsl10;
-    @FXML
-    public ImageView towerIsl10;
-    @FXML
-    public Label unitsIsl10;
-    @FXML
-    public Label pinkIsl10;
-    @FXML
-    public Label greenIsl10;
-    @FXML
-    public Label blueIsl10;
-    @FXML
-    public Label redIsl10;
-    @FXML
-    public Label yellowIsl10;
-
-
-    @FXML
-    public ImageView isl11;
-    @FXML
-    public Label idIsl11;
-    @FXML
-    public ImageView mnIsland11;
-    @FXML
-    public ImageView noEntryIsl11;
-    @FXML
-    public Label nEIsl11;
-    @FXML
-    public ImageView towerIsl11;
-    @FXML
-    public Label unitsIsl11;
-    @FXML
-    public Label pinkIsl11;
-    @FXML
-    public Label greenIsl11;
-    @FXML
-    public Label blueIsl11;
-    @FXML
-    public Label redIsl11;
-    @FXML
-    public Label yellowIsl11;
-
-
-    @FXML
-    public ImageView isl12;
-    @FXML
-    public Label idIsl12;
-    @FXML
-    public ImageView mnIsland12;
-    @FXML
-    public ImageView noEntryIsl12;
-    @FXML
-    public Label nEIsl12;
-    @FXML
-    public ImageView towerIsl12;
-    @FXML
-    public Label unitsIsl12;
-    @FXML
-    public Label pinkIsl12;
-    @FXML
-    public Label greenIsl12;
-    @FXML
-    public Label blueIsl12;
-    @FXML
-    public Label redIsl12;
-    @FXML
-    public Label yellowIsl12;
+    @FXML public ImageView isl12;
+    @FXML public Label idIsl12;
+    @FXML public ImageView mnIsland12;
+    @FXML public ImageView noEntryIsl12;
+    @FXML public Label nEIsl12;
+    @FXML public ImageView towerIsl12;
+    @FXML public Label unitsIsl12;
+    @FXML public Label pinkIsl12;
+    @FXML public Label greenIsl12;
+    @FXML public Label blueIsl12;
+    @FXML public Label redIsl12;
+    @FXML public Label yellowIsl12;
 
     private final static String blackTower = "graphics/towers/blacktower.png";
     private final static String whiteTower = "graphics/towers/whitetower.png";
@@ -352,112 +199,68 @@ public class DashboardController implements Controller {
     private final static String yellowStudent = "graphics/students/student_yellow.png";
 
     //initialize cloud for two players
-    @FXML
-    public ImageView cloud2one;
-    @FXML
-    public Label cloud2oneID;
-    @FXML
-    public ImageView cloud2oneS0;
-    @FXML
-    public ImageView cloud2oneS1;
-    @FXML
-    public ImageView cloud2oneS2;
+    @FXML public ImageView cloud2one;
+    @FXML public Label cloud2oneID;
+    @FXML public ImageView cloud2oneS0;
+    @FXML public ImageView cloud2oneS1;
+    @FXML public ImageView cloud2oneS2;
 
-    @FXML
-    public ImageView cloud2two;
-    @FXML
-    public Label cloud2twoID;
-    @FXML
-    public ImageView cloud2twoS0;
-    @FXML
-    public ImageView cloud2twoS1;
-    @FXML
-    public ImageView cloud2twoS2;
+    @FXML public ImageView cloud2two;
+    @FXML public Label cloud2twoID;
+    @FXML public ImageView cloud2twoS0;
+    @FXML public ImageView cloud2twoS1;
+    @FXML public ImageView cloud2twoS2;
 
     //initialize cloud for four players
-    @FXML
-    public ImageView cloud4one;
-    @FXML
-    public Label cloud4oneID;
-    @FXML
-    public ImageView cloud4oneS0;
-    @FXML
-    public ImageView cloud4oneS1;
-    @FXML
-    public ImageView cloud4oneS2;
+    @FXML public ImageView cloud4one;
+    @FXML public Label cloud4oneID;
+    @FXML public ImageView cloud4oneS0;
+    @FXML public ImageView cloud4oneS1;
+    @FXML public ImageView cloud4oneS2;
 
-    @FXML
-    public ImageView cloud4two;
-    @FXML
-    public Label cloud4twoID;
-    @FXML
-    public ImageView cloud4twoS0;
-    @FXML
-    public ImageView cloud4twoS1;
-    @FXML
-    public ImageView cloud4twoS2;
+    @FXML public ImageView cloud4two;
+    @FXML public Label cloud4twoID;
+    @FXML public ImageView cloud4twoS0;
+    @FXML public ImageView cloud4twoS1;
+    @FXML public ImageView cloud4twoS2;
 
     //initialize cloud for three players
-    @FXML
-    public ImageView cloud3one;
-    @FXML
-    public Label cloud3oneID;
-    @FXML
-    public ImageView cloud3oneS0;
-    @FXML
-    public ImageView cloud3oneS1;
-    @FXML
-    public ImageView cloud3oneS2;
-    @FXML
-    public ImageView cloud3oneS3;
+    @FXML public ImageView cloud3one;
+    @FXML public Label cloud3oneID;
+    @FXML public ImageView cloud3oneS0;
+    @FXML public ImageView cloud3oneS1;
+    @FXML public ImageView cloud3oneS2;
+    @FXML public ImageView cloud3oneS3;
 
-    @FXML
-    public ImageView cloud3two;
-    @FXML
-    public Label cloud3twoID;
-    @FXML
-    public ImageView cloud3twoS0;
-    @FXML
-    public ImageView cloud3twoS1;
-    @FXML
-    public ImageView cloud3twoS2;
-    @FXML
-    public ImageView cloud3twoS3;
+    @FXML public ImageView cloud3two;
+    @FXML public Label cloud3twoID;
+    @FXML public ImageView cloud3twoS0;
+    @FXML public ImageView cloud3twoS1;
+    @FXML public ImageView cloud3twoS2;
+    @FXML public ImageView cloud3twoS3;
 
-    @FXML
-    public ImageView cloud3three;
-    @FXML
-    public Label cloud3threeID;
-    @FXML
-    public ImageView cloud3threeS0;
-    @FXML
-    public ImageView cloud3threeS1;
-    @FXML
-    public ImageView cloud3threeS2;
-    @FXML
-    public ImageView cloud3threeS3;
+    @FXML public ImageView cloud3three;
+    @FXML public Label cloud3threeID;
+    @FXML public ImageView cloud3threeS0;
+    @FXML public ImageView cloud3threeS1;
+    @FXML public ImageView cloud3threeS2;
+    @FXML public ImageView cloud3threeS3;
 
 
-
-    @FXML
-    public Label playersList;
-    @FXML
-    public Label roundN;
-    @FXML
-    public Label playerTurn;
+    @FXML public Label playersList;
+    @FXML public Label roundN;
+    @FXML public Label playerTurn;
+    @FXML private AnchorPane characters;
 
 
     @FXML private ScrollPane characterPane1;
     @FXML private ScrollPane characterPane2;
     @FXML private ScrollPane characterPane3;
-    @FXML
-    private AnchorPane request;
-    @FXML
-    private TabPane dashboard;
-    @FXML
-    private Text instruction;
-    @FXML
-    private Text error;
+    @FXML private ScrollPane requestPane;
+    @FXML private TabPane dashboard;
+    @FXML private Text instruction;
+    @FXML private Text error;
+    @FXML private ImageView logo;
     private HashMap<String, Tab> nicknameToTab;
     private HashMap<String, Controller> nicknameToController;
     private HashMap<CharacterEnum, Controller> characterControllers;
@@ -478,6 +281,7 @@ public class DashboardController implements Controller {
                 controller.setGui(gui);
                 nicknameToController.put(player.getNickname(), controller);
                 ((SchoolboardController) controller).resetAssistantsButtons();
+                ((SchoolboardController) controller).setTeamColor(player);
                 ((SchoolboardController) controller).removePlayedAssistants();
                 if (!Objects.equals(player.getNickname(), gui.getClient().getNickname())) {
                     ((SchoolboardController) controller).removeAssistantButtons();
@@ -493,7 +297,14 @@ public class DashboardController implements Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/destination.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
+            Platform.runLater(() -> {
+                requestPane.setContent(anchorPane);
+                setInstruction("Select where you want to move the student");
+                if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter()!=null)){
+                    if (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4){
+                        setInstruction("Select an Island");}
+                }
+            });
             DestinationController controller = loader.getController();
             controller.setGui(gui);
             controller.initializeDestination();
@@ -504,7 +315,6 @@ public class DashboardController implements Controller {
 
     public void sendDestination(int destination){
         gui.getClient().sendMessage(new ChosenDestination(destination));
-        request.getChildren().removeAll();
     }
 
     public void update() {
@@ -522,6 +332,14 @@ public class DashboardController implements Controller {
             } else {
                 updateCharacters();
             }
+        } else {
+            characters.getChildren().clear();
+            characters.getChildren().add(logo);
+            logo.setVisible(true);
+            logo.setPreserveRatio(true);
+            logo.fitWidthProperty().bind(characters.widthProperty());
+            logo.fitHeightProperty().bind(characters.heightProperty());
+            characters.setMaxHeight(439);
         }
         gui.getClient().sendMessage(new Ack());
 
@@ -568,7 +386,11 @@ public class DashboardController implements Controller {
 
     public void updateTurn(){
         roundN.setText("Round " + gui.getView().getRoundNumber());
-        playerTurn.setText(gui.getView().getCurrentPlayer() + " turn");
+        if (gui.getView().getCurrentPlayer() != null) {
+            playerTurn.setText(gui.getView().getCurrentPlayer() + " turn");
+        } else {
+            playerTurn.setText("Planning");
+        }
     }
 
     public void updatePlayersList(){
@@ -1726,18 +1548,23 @@ public class DashboardController implements Controller {
 
     public void disableCharactersButton(boolean disable) {
         for (Controller controller : characterControllers.values()) {
-            ((CharactersController) controller).disableButton(disable);
+            Platform.runLater(() -> ((CharactersController) controller).disableButton(disable));
         }
+        error.setVisible(false);
     }
 
     public void updateMovableStudents(ArrayList<Color> students){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/movablestudents.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
             MovableStudentsController controller = loader.getController();
             controller.setGui(gui);
-            controller.updateEntrance(students);
+            Platform.runLater(() -> {
+                controller.updateEntrance(students);
+                requestPane.setContent(anchorPane);
+                setInstruction("Select the student you want to move");
+            });
+
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -1745,17 +1572,20 @@ public class DashboardController implements Controller {
 
     public void sendMovableStudents(Color color){
         gui.getClient().sendMessage(new ChosenStudent(color));
-        request.getChildren().removeAll();
     }
 
     public void updateMotherNatureSteps(int steps){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/mothernatureSteps.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
             MothernatureStepsController controller = loader.getController();
             controller.setGui(gui);
-            controller.loadSteps(steps);
+            Platform.runLater(() -> {
+                controller.loadSteps(steps);
+                requestPane.setContent(anchorPane);
+                setInstruction("Choose by how many steps you want to move mother nature");
+            });
+
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -1765,10 +1595,14 @@ public class DashboardController implements Controller {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/cloudSelection.fxml"));
             AnchorPane anchorPane = loader.load();
-            Platform.runLater(() -> request.getChildren().setAll(anchorPane));
             CloudSelectionController controller = loader.getController();
             controller.setGui(gui);
-            controller.updateCloudButtons(clouds);
+            Platform.runLater(() -> {
+                controller.updateCloudButtons(clouds);
+                requestPane.setContent(anchorPane);
+                setInstruction("Select the cloud you want to take the students from");
+            });
+
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -1776,6 +1610,38 @@ public class DashboardController implements Controller {
 
     public void sendCloudSelection(int selection){
         gui.getClient().sendMessage(new ChosenCloud(selection));
-        request.getChildren().removeAll();
+    }
+
+    public void cleanRequest() {
+        Platform.runLater(() -> requestPane.setContent(new AnchorPane()));
+        if (gui.getView().isExpertMode()) {
+            ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
+        }
+    }
+
+    public void removePlayedAssistants() {
+        for (String nickname : nicknameToController.keySet()) {
+            if (!nickname.equals(gui.getClient().getNickname())) {
+                ((SchoolboardController) nicknameToController.get(nickname)).removeAssistantImage();
+            }
+            ((SchoolboardController) nicknameToController.get(nickname)).removePlayedAssistants();
+        }
+    }
+
+    public void setEndGame(CommunicateWinner message) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/endgame.fxml"));
+            AnchorPane anchorPane = loader.load();
+            EndGameController controller = loader.getController();
+            controller.setGui(gui);
+            Platform.runLater(() -> {
+                controller.update(message);
+                requestPane.setContent(anchorPane);
+                setInstruction("This is the end of the game!");
+            });
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

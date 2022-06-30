@@ -85,6 +85,7 @@ public class GameHandler implements Observer<Message> {
         broadcastMessage(CommunicationMessage.HOST_LEFT);
         while (!players.isEmpty()) {
             players.get(0).close();
+            players.remove(players.get(0));
         }
     }
 
@@ -94,7 +95,11 @@ public class GameHandler implements Observer<Message> {
     private void endGame() {
         server.getActiveGames().remove(this);
         while (!players.isEmpty()) {
+            players.get(0).setGame(null);
+            players.get(0).setActive(false);
+            players.get(0).setPlaying(false);
             players.get(0).close();
+            players.remove(players.get(0));
         }
     }
 
@@ -259,8 +264,12 @@ public class GameHandler implements Observer<Message> {
         } else if (message instanceof IslandOwner) {
             broadcastMessage(message);
         } else if (message instanceof CommunicateWinner) {
+            server.getActiveGames().remove(this);
+            for (ServerClientConnection player : players) {
+                player.setGame(null);
+                player.setPlaying(false);
+            }
             broadcastMessage(message);
-            endGame();
         } else if (message instanceof PlayedCharacter) {
             broadcastMessage(message);
         }

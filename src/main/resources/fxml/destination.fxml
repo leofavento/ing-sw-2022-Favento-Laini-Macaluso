@@ -3,76 +3,70 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="destinationAP" prefHeight="519.0" prefWidth="428.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.DestinationController">
+<AnchorPane fx:id="destinationAP" prefHeight="487.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.DestinationController">
    <children>
-      <Text layoutX="116.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a destination">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="buttonDining" layoutX="162.0" layoutY="106.0" mnemonicParsing="false" onAction="#actionButtonDining" text="Dining Room">
+      <Button fx:id="buttonDining" layoutX="162.0" layoutY="61.0" mnemonicParsing="false" onAction="#actionButtonDining" text="Dining Room">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl1" layoutX="43.0" layoutY="193.0" mnemonicParsing="false" onAction="#actionButton1" text="Island 1 ">
+      <Button fx:id="buttonIsl1" layoutX="43.0" layoutY="138.0" mnemonicParsing="false" onAction="#actionButton1" text="Island 1 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl2" layoutX="176.0" layoutY="193.0" mnemonicParsing="false" onAction="#actionButton2" text="Island 2 ">
+      <Button fx:id="buttonIsl2" layoutX="176.0" layoutY="138.0" mnemonicParsing="false" onAction="#actionButton2" text="Island 2 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl3" layoutX="309.0" layoutY="193.0" mnemonicParsing="false" onAction="#actionButton3" text="Island 3 ">
+      <Button fx:id="buttonIsl3" layoutX="309.0" layoutY="138.0" mnemonicParsing="false" onAction="#actionButton3" text="Island 3 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl4" layoutX="43.0" layoutY="281.0" mnemonicParsing="false" onAction="#actionButton4" text="Island 4 ">
+      <Button fx:id="buttonIsl4" layoutX="43.0" layoutY="226.0" mnemonicParsing="false" onAction="#actionButton4" text="Island 4 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl5" layoutX="176.0" layoutY="281.0" mnemonicParsing="false" onAction="#actionButton5" text="Island 5 ">
+      <Button fx:id="buttonIsl5" layoutX="176.0" layoutY="226.0" mnemonicParsing="false" onAction="#actionButton5" text="Island 5 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl6" layoutX="309.0" layoutY="281.0" mnemonicParsing="false" onAction="#actionButton6" text="Island 6 ">
+      <Button fx:id="buttonIsl6" layoutX="309.0" layoutY="226.0" mnemonicParsing="false" onAction="#actionButton6" text="Island 6 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl7" layoutX="43.0" layoutY="369.0" mnemonicParsing="false" onAction="#actionButton7" text="Island 7 ">
+      <Button fx:id="buttonIsl7" layoutX="43.0" layoutY="314.0" mnemonicParsing="false" onAction="#actionButton7" text="Island 7 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl8" layoutX="176.0" layoutY="369.0" mnemonicParsing="false" onAction="#actionButton8" text="Island 8 ">
+      <Button fx:id="buttonIsl8" layoutX="176.0" layoutY="314.0" mnemonicParsing="false" onAction="#actionButton8" text="Island 8 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl9" layoutX="309.0" layoutY="369.0" mnemonicParsing="false" onAction="#actionButton9" text="Island 9 ">
+      <Button fx:id="buttonIsl9" layoutX="309.0" layoutY="314.0" mnemonicParsing="false" onAction="#actionButton9" text="Island 9 ">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl10" layoutX="43.0" layoutY="457.0" mnemonicParsing="false" onAction="#actionButton10" text="Island 10">
+      <Button fx:id="buttonIsl10" layoutX="43.0" layoutY="402.0" mnemonicParsing="false" onAction="#actionButton10" text="Island 10">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl11" layoutX="176.0" layoutY="457.0" mnemonicParsing="false" onAction="#actionButton11" text="Island 11">
+      <Button fx:id="buttonIsl11" layoutX="176.0" layoutY="402.0" mnemonicParsing="false" onAction="#actionButton11" text="Island 11">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="buttonIsl12" layoutX="309.0" layoutY="457.0" mnemonicParsing="false" onAction="#actionButton12" text="Island 12">
+      <Button fx:id="buttonIsl12" layoutX="309.0" layoutY="402.0" mnemonicParsing="false" onAction="#actionButton12" text="Island 12">
          <font>
             <Font size="15.0" />
          </font>

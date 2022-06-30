@@ -5,28 +5,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="540.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.EndGameController">
+<AnchorPane prefHeight="426.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.EndGameController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="153.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="169.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../graphics/trophy.png" />
          </image>
       </ImageView>
-      <Text fx:id="congratulations" layoutX="322.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations to the BLACK team!" textAlignment="CENTER">
+      <Text fx:id="congratulations" layoutX="6.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations to the BLACK team!" textAlignment="CENTER" wrappingWidth="475.4140625">
          <font>
             <Font name="Inconsolata" size="23.0" />
          </font>
       </Text>
-      <Text fx:id="nicknames" layoutX="405.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Well played, nickname!" textAlignment="CENTER">
+      <Text fx:id="nicknames" layoutX="22.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Well played, nickname!" textAlignment="CENTER" wrappingWidth="444.4140625">
          <font>
             <Font name="Inconsolata" size="23.0" />
          </font>
       </Text>
-      <Text fx:id="reason" layoutX="364.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason" textAlignment="CENTER">
+      <Text fx:id="reason" layoutX="35.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason" textAlignment="CENTER" wrappingWidth="417.4140625">
          <font>
             <Font name="Inconsolata" size="23.0" />
          </font>
       </Text>
-      <Button layoutX="325.0" layoutY="414.0" mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="160.0" text="Go to menu" />
+      <Button layoutX="164.0" layoutY="364.0" mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="160.0" text="Go to menu" />
    </children>
 </AnchorPane>

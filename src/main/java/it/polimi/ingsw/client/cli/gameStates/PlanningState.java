@@ -52,13 +52,11 @@ public class PlanningState implements State {
 
             ArrayList<Assistant> availableAssistants = cli.getView().getAvailableAssistants();
             System.out.println("These are the available assistants");
-            System.out.println("|---NAME--------VALUE------MOVEMENTS---");
+            System.out.println("|-----NAME--------------VALUE-----MOVEMENTS----|");
             for (int i = 0; i < availableAssistants.size(); i++) {
-                System.out.println(i + 1 + ":   " + availableAssistants.get(i).toString() +
-                        "           " + availableAssistants.get(i).getValue() +
-                        "           " + availableAssistants.get(i).getMovements());
+                System.out.printf("%2d:   %-11s        %2d           %-2d\n" , i+1, availableAssistants.get(i).toString(), availableAssistants.get(i).getValue(), availableAssistants.get(i).getMovements());
             }
-            System.out.println("|----------------------------------");
+            System.out.println("|----------------------------------------------|");
             for (String player : cli.getView().getPlayedAssistants().keySet()) {
                 System.out.printf("%s played %s (%d value, %d movement)%n",
                         player,

@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class ConnectionController implements Controller {
 
+    @FXML Text disconnected;
     @FXML private TextField ip;
     @FXML private TextField port;
     @FXML private Text errorMessage;
@@ -37,6 +38,7 @@ public class ConnectionController implements Controller {
     }
 
     public void connect() {
+        disconnected.setVisible(false);
         if (ip.getText().equals("") || port.getText().equals("")) {
             errorMessage.setText("Please enter the ip and the port number.");
             errorMessage.setVisible(true);
@@ -66,5 +68,9 @@ public class ConnectionController implements Controller {
                 errorMessage.setVisible(true);
             }
         }
+    }
+
+    public void showDisconnected() {
+        disconnected.setVisible(true);
     }
 }
