@@ -16,7 +16,7 @@ public class View {
     private String currentPlayer;
     private Dashboard dashboard;
     private ArrayList<Player> players;
-    private final HashMap<String, Assistant> playedAssistants = new HashMap<>();
+    private HashMap<String, Assistant> playedAssistants = new HashMap<>();
     private int roundNumber;
     private boolean expertMode;
     private HashMap<Tower, Integer> availableTowers;
@@ -36,6 +36,26 @@ public class View {
     private boolean requiredDestination;
     private PlayerStatus currentStatus;
     private boolean activatedCharacterEffect=false;
+
+    public void resetView() {
+        currentPlayer = null;
+        dashboard = null;
+        players = null;
+        playedAssistants = new HashMap<>();
+        roundNumber = 0;
+        totalPlayers = 0;
+        activePlayers = 0;
+        isHost = false;
+        movableStudents = null;
+        movableStudentsChar = null;
+        winnerTeam = null;
+        winners = null;
+        endOfGameReason = null;
+        lastErrorMessage = null;
+        requiredDestination = false;
+        currentStatus = null;
+        activatedCharacterEffect = false;
+    }
 
     public ArrayList<Player> getPlayers() {
         return players;

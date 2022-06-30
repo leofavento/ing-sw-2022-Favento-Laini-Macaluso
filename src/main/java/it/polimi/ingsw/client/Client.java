@@ -92,6 +92,7 @@ public class Client implements Runnable {
                     gui.close();
                     Platform.runLater(() -> {
                         gui.resetMaps();
+                        gui.getView().resetView();
                         gui.initializeStage(true);
                         gui.execute();
                     });
