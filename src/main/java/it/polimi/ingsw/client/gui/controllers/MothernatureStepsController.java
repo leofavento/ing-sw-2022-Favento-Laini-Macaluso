@@ -26,6 +26,10 @@ public class MothernatureStepsController implements Controller {
 
     }
 
+    /**
+     * method used to set the number of possible MotherNature steps
+     * @param maxSteps maximum MotherNature steps
+     */
     public void loadSteps(int maxSteps) {
         ObservableList<Integer> choices = FXCollections.observableArrayList();
         for (int i = 1; i <= maxSteps; i++) {

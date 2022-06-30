@@ -63,6 +63,10 @@ public class MovableStudentsController implements Controller{
 
     private GUI gui;
 
+    /**
+     * method used to update the available movable students in the entrance
+     * @param students the list of movable students
+     */
     public void updateEntrance(ArrayList<Color> students){
         Button[] buttons = new Button[]{s0button, s1button, s2button, s3button, s4button, s5button, s6button, s7button, s8button};
         availableStudents = students;
@@ -82,47 +86,81 @@ public class MovableStudentsController implements Controller{
         }
     }
 
+    /**
+     * method used to handle the selection of student 0
+     */
     public void selectStudent0(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(0));
     }
 
+    /**
+     * method used to handle the selection of student 1
+     */
     public void selectStudent1(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(1));
     }
 
+    /**
+     * method used to handle the selection of student 2
+     */
     public void selectStudent2(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(2));
     }
 
+    /**
+     * method used to handle the selection of student 3
+     */
     public void selectStudent3(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(3));
     }
 
+    /**
+     * method used to handle the selection of student 4
+     */
     public void selectStudent4(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(4));
     }
 
+    /**
+     * method used to handle the selection of student 5
+     */
     public void selectStudent5(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(5));
     }
 
+    /**
+     * method used to handle the selection of student 6
+     */
     public void selectStudent6(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(6));
     }
 
+    /**
+     * method used to handle the selection of student 7
+     */
     public void selectStudent7(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(7));
     }
 
+    /**
+     * method used to handle the selection of student 8
+     */
     public void selectStudent8(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(availableStudents.get(8));
     }
 
+
+    /**
+     * method used to handle the selection of the stop button
+     */
     public void selectStop(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendMovableStudents(null);
         buttonStop.setVisible(false);
     }
 
+    /**
+     * method used to update the images of the entrance students
+     */
     public void changeStudents(Button student, Color color){
         switch (color){
             case YELLOW -> student.setGraphic(new ImageView(new Image(yellowStudent)));
