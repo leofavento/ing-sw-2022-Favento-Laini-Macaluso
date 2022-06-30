@@ -143,6 +143,9 @@ public class SchoolboardController implements Controller {
 
     }
 
+    /**
+     * method used to remove the buttons of all the assistants (setting them as insvisible)
+     */
     public void removeAssistantButtons() {
         assistant1.setVisible(false);
         assistant2.setVisible(false);
@@ -156,6 +159,9 @@ public class SchoolboardController implements Controller {
         assistant10.setVisible(false);
     }
 
+    /**
+     * method used to disable the buttons of all the assistants
+     */
     public void resetAssistantsButtons() {
         assistant1.setDisable(true);
         assistant2.setDisable(true);
@@ -168,6 +174,7 @@ public class SchoolboardController implements Controller {
         assistant9.setDisable(true);
         assistant10.setDisable(true);
     }
+
 
     public void removePlayedAssistants() {
         played1.setVisible(false);
