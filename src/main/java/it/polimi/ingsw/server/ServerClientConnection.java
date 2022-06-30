@@ -118,7 +118,9 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             System.err.println(nickname + " disconnected.");
         } else if (message instanceof LoginMessage && requestedNickname) {
             LoginMessage loginMessage = (LoginMessage) message;
-            if (server.checkNickname(loginMessage.getNickname())) {
+            if (!validNickname(loginMessage.getNickname())) {
+                sendMessage(ErrorMessage.NICKNAME_TOO_LONG);
+            } else if (server.checkNickname(loginMessage.getNickname())) {
                 requestedNickname = false;
                 nickname = loginMessage.getNickname();
                 server.registerUser(this);
@@ -137,6 +139,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         } else if (isPlaying) {
             gameHandler.readMessage(nickname, message);
         }
+    }
+
+    private boolean validNickname(String nickname) {
+        return nickname.length() < 20;
     }
 
     private void createGame(SetGame setGame) {
