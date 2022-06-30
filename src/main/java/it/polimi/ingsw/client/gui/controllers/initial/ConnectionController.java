@@ -37,6 +37,9 @@ public class ConnectionController implements Controller {
 
     }
 
+    /**
+     * method used to handle the connection phase in GUI mode
+     */
     public void connect() {
         disconnected.setVisible(false);
         if (ip.getText().equals("") || port.getText().equals("")) {

@@ -50,6 +50,10 @@ public class newGameController implements Controller, Initializable {
         numberChoiceBox.getItems().addAll(numPlayers);
     }
 
+    /**
+     * method used to handle the selection of the expert mode option
+     * @param event the selection/deselection of the expert mode
+     */
     public void change(ActionEvent event){
         if (myCheckBox.isSelected()){
             modeLabel.setText("You will play with Expert mode rules.");
@@ -59,6 +63,9 @@ public class newGameController implements Controller, Initializable {
         }
     }
 
+    /**
+     * method used to handle the creation of a new game and its options
+     */
     public void createGame(){
         if (numberChoiceBox.getValue()==null){
             errorMessage.setText("Please select the number of players.");

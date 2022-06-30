@@ -23,6 +23,9 @@ public class WaitingPlayersController implements Controller {
         update();
     }
 
+    /**
+     * method used to update the number of current players connected to a game
+     */
     public void update() {
         message.setText(String.format("%d/%d players currently connected", gui.getView().getActivePlayers(),
                 gui.getView().getTotalPlayers()));

@@ -31,6 +31,9 @@ public class NicknameController implements Controller {
         gui.updateScene(FxmlScenes.LOBBY.getPhase());
     }
 
+    /**
+     * method used to get the users nicknames
+     */
     public void enterNickname() {
         String nick = nickname.getText();
         if (nick.equals("")) {

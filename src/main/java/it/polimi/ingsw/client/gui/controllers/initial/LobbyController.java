@@ -35,6 +35,9 @@ public class LobbyController implements Controller {
     @FXML private TableView<GameInfo> games;
     private GUI gui;
 
+    /**
+     * method used to set up the GUI lobby page
+     */
     @FXML
     public void initialize() {
         join.disableProperty().bind(Bindings.isEmpty(games.getSelectionModel().getSelectedItems()));
@@ -45,6 +48,10 @@ public class LobbyController implements Controller {
                 .isExpertGame() ? "enabled" : "disabled"));
     }
 
+    /**
+     * method used to update the list of available games in the lobby page
+     * @param availableGames the list of the current available games
+     */
     public void updateTable(ArrayList<GameInfo> availableGames) {
         games.getItems().clear();
         for (GameInfo game : availableGames) {
@@ -52,6 +59,9 @@ public class LobbyController implements Controller {
         }
     }
 
+    /**
+     * method used to handle the player's request of the current available games
+     */
     public void requestGames() {
         gui.getClient().sendMessage(new RequestGames());
     }
@@ -72,11 +82,17 @@ public class LobbyController implements Controller {
 
     }
 
+    /**
+     * method used to handle the player's selection of a game to join
+     */
     public void joinGame() {
         int selectedGame = games.getSelectionModel().getSelectedItem().getGameID();
         gui.getClient().sendMessage(new JoinAvailableGame(selectedGame));
     }
 
+    /**
+     * method used to handle the creation of a new game
+     */
     public void createGame() {
         gui.updateScene(FxmlScenes.NEW_GAME.getPhase());
     }
