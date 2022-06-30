@@ -36,6 +36,7 @@ public class GameSetupState implements State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 
@@ -61,6 +62,7 @@ public class GameSetupState implements State {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Please enter the number of your chosen tower.");
@@ -80,6 +82,7 @@ public class GameSetupState implements State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
         while(!cli.isSuccess()) {
@@ -99,6 +102,7 @@ public class GameSetupState implements State {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Please enter the number of your chosen wizard.");

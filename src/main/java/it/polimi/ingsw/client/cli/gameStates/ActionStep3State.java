@@ -65,6 +65,7 @@ public class ActionStep3State implements State{
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                 }
             } catch (InputMismatchException e){

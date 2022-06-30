@@ -49,6 +49,7 @@ public class CreateGameState implements State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
             cli.getView().setHost(true);
             cli.getView().setTotalPlayers(numOfPlayers);

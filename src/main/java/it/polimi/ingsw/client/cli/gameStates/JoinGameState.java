@@ -36,6 +36,7 @@ public class JoinGameState implements State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
 
             printAvailableGames();
@@ -57,6 +58,7 @@ public class JoinGameState implements State {
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                     if (cli.getView().getLastErrorMessage() != null) {
                         System.out.println(cli.getView().getLastErrorMessage().getMessage());

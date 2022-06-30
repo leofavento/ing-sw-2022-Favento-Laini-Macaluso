@@ -37,6 +37,7 @@ public class GUIMessageReceiver implements MessageReceiver {
                 Thread.sleep(4000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
             gui.updateScene(FxmlScenes.CONNECTION.getPhase());
         }
@@ -266,6 +267,7 @@ public class GUIMessageReceiver implements MessageReceiver {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
         gui.updateScene(FxmlScenes.CONNECTION.getPhase());
     }

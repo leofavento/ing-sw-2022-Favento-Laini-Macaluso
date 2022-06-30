@@ -43,7 +43,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public synchronized void setActive(boolean active) {
         this.active = active;
     }
 
@@ -55,6 +55,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
                     TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 if (active) {
                     sendMessage(new Ping());
