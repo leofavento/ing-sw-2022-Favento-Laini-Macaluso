@@ -32,7 +32,7 @@ public class CharacterController {
 
     /**
      * method used to generate the game characters
-     * @param dashboard the game dashboard
+     * @param dashboard the game Dashboard
      */
     public void generateCharacters(Dashboard dashboard) {
         ArrayList<CharacterEnum> allCharacters = new ArrayList<>();

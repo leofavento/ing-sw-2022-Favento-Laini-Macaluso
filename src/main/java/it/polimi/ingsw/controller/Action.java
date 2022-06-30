@@ -30,7 +30,7 @@ public class Action {
     /**
      * method used to move students from entrance to dining room
      * @param student the color of the student to move
-     * @param schoolBoard the game schoolboard
+     * @param schoolBoard the player SchoolBoard
      * @throws FullDiningRoomException exception thrown when the dining room is full
      * @throws StudentNotExistingException exception thrown when the chosen student is not in the entrance
      */
