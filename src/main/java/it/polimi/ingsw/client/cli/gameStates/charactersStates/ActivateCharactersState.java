@@ -43,6 +43,7 @@ public class ActivateCharactersState {
                 choice = in.nextInt();
                 if (choice == 0) {
                     cli.setSuccess(true);
+                    selectedChar = null;
                 } else {
                     selectedChar = cli.getView().getDashboard().getCharacters()[choice - 1].getValue();
                     cli.getClient().sendMessage(new UseCharacterEffect(selectedChar));
@@ -56,13 +57,13 @@ public class ActivateCharactersState {
                 continue;
             }
 
-            if (!cli.isSuccess()) {
-                try {
-                    synchronized (cli.getGameState()) {
+            synchronized (cli.getGameState()) {
+                while (!cli.isSuccess() && cli.getView().getLastErrorMessage() == null) {
+                    try {
                         cli.getGameState().wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }

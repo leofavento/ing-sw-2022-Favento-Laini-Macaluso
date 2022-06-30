@@ -43,9 +43,8 @@ public class CLIMessageReceiver implements MessageReceiver {
 
     @Override
     public void receiveMessage(ErrorMessage message) {
-        cli.getView().setLastErrorMessage(message);
-
         synchronized (cli.getGameState()) {
+            cli.getView().setLastErrorMessage(message);
             cli.getGameState().notifyAll();
         }
     }

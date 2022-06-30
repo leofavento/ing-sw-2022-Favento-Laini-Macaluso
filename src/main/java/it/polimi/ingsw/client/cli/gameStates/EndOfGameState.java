@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * In the EndOfGane phase, every player receives a message from the server containing the result of the
+ * In the EndOfGame phase, every player receives a message from the server containing the result of the
  * game (win or lose), the nickname of the winner player and the reason of the win.
  */
 public class EndOfGameState implements State {

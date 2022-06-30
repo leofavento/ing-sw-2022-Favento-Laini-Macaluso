@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.ActiveEffectsRenderer;
+import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
 import it.polimi.ingsw.messages.fromClient.Ack;
@@ -46,6 +47,7 @@ public class ActionStep1State implements State {
                 }
             }
 
+            CloudsRenderer.cloudRenderer(cli.getView().getDashboard());
             IslandsRenderer.islandsRenderer(cli.getView().getDashboard());
             SchoolBoardRenderer.renderAllSchoolBoards(cli.getView().getPlayers(), cli.getView().isExpertMode());
             ActiveEffectsRenderer.printActiveEffects(cli.getView().getDashboard());
