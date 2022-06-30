@@ -36,14 +36,22 @@ public class Controller implements Observer<Message>, Observable<Message> {
         setState(new Setup(game, this));
     }
 
+    /**
+     * method used to set the current controller state
+     * @param state the current state
+     */
     public void setState(State state) {
         this.state = state;
     }
 
 
+    /**
+     * method used to establish the players order for the current turn
+     */
     public void updateTurnOrder() {
         game.getOnlinePlayers().sort(Comparator.comparingInt((Player p) -> p.getPlayedAssistant().getValue()));
     }
+
 
     public State getState() {
         return state;
@@ -145,8 +153,10 @@ public class Controller implements Observer<Message>, Observable<Message> {
         return false;
     }
 
+    /**
+     * method used to check if the bag has no students left or the player has no assistant left to play
+     */
     public void isFinalRound() {
-        //Check if the bag has no students left or the player has no assistant left to play
         if (game.getDashboard().getBag().getStudentsLeft() == 0 || game.getCurrentPlayer().getAvailableAssistants().size() == 0) {
             game.setFinalRound();
             notify(CommunicationMessage.LAST_ROUND);

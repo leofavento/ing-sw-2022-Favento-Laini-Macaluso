@@ -1,5 +1,8 @@
 package it.polimi.ingsw.controller;
 
+/**
+ * list of all possible reasons for the end of a game
+ */
 public enum EndOfGameReason {
     LAST_TOWER_BUILD,
     THREE_ISLANDS_REMAINING_TOWER,
