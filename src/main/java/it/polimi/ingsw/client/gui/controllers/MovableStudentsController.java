@@ -2,16 +2,9 @@ package it.polimi.ingsw.client.gui.controllers;
 
 import it.polimi.ingsw.client.gui.FxmlScenes;
 import it.polimi.ingsw.client.gui.GUI;
-import it.polimi.ingsw.messages.fromClient.ChosenStudent;
-import it.polimi.ingsw.messages.fromClient.ChosenWizard;
 import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Dashboard;
-import it.polimi.ingsw.model.player.Entrance;
-import it.polimi.ingsw.model.player.SchoolBoard;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;

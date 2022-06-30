@@ -8,7 +8,6 @@ import it.polimi.ingsw.model.player.DiningRoom;
 import it.polimi.ingsw.model.player.Entrance;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.SchoolBoard;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -175,7 +174,9 @@ public class SchoolboardController implements Controller {
         assistant10.setDisable(true);
     }
 
-
+    /**
+     * method used to remove the played assistants
+     */
     public void removePlayedAssistants() {
         played1.setVisible(false);
         played2.setVisible(false);
