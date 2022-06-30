@@ -199,6 +199,7 @@ public class GUIMessageReceiver implements MessageReceiver {
      */
     @Override
     public void receiveMessage(CommunicateWinner message) {
+        ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).disableCharactersButton(true);
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).setEndGame(message);
     }
 
