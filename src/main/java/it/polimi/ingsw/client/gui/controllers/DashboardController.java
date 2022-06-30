@@ -9,15 +9,12 @@ import it.polimi.ingsw.messages.fromServer.CommunicateWinner;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.model.Dashboard;
-import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.characters.CharacterEnum;
 import it.polimi.ingsw.model.player.Player;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -307,9 +304,8 @@ public class DashboardController implements Controller {
             Platform.runLater(() -> {
                 requestPane.setContent(anchorPane);
                 setInstruction("Select where you want to move the student");
-                if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter()!=null)){
-                    if (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4){
-                        setInstruction("Select an Island");}
+                if (gui.getView().getActivatedCharacterEffect() && (gui.getView().getDashboard().getPlayedCharacter()!=null) && (gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==2 || gui.getView().getDashboard().getPlayedCharacter().getValue().ordinal()==4)){
+                        setInstruction("Select an Island");
                 }
             });
             DestinationController controller = loader.getController();
