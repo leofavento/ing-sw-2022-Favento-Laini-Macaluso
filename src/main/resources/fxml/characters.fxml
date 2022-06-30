@@ -7,67 +7,67 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="470.0" prefWidth="140.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.CharactersController">
+<AnchorPane prefHeight="460.0" prefWidth="140.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.gui.controllers.CharactersController">
    <children>
-      <ImageView fx:id="character" fitHeight="186.0" fitWidth="139.0" layoutX="10.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.372474670410156" AnchorPane.topAnchor="92.0">
+      <ImageView fx:id="character" fitHeight="186.0" fitWidth="139.0" layoutX="10.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.372474670410156" AnchorPane.topAnchor="82.0">
          <image>
             <Image url="@../graphics/characters/character1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="button" layoutX="31.0" layoutY="31.0" mnemonicParsing="false" onAction="#activate" prefHeight="31.0" prefWidth="83.0" text="Activate" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="31.0" />
-      <Text fx:id="cost" layoutX="9.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost: 1" textAlignment="CENTER" wrappingWidth="122.62752532958984" />
-      <ImageView fx:id="student5" fitHeight="59.0" fitWidth="34.0" layoutX="55.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.topAnchor="200.0">
+      <Button fx:id="button" layoutX="31.0" layoutY="21.0" mnemonicParsing="false" onAction="#activate" prefHeight="31.0" prefWidth="83.0" text="Activate" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="21.0" />
+      <Text fx:id="cost" layoutX="9.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost: 1" textAlignment="CENTER" wrappingWidth="122.62752532958984" />
+      <ImageView fx:id="student5" fitHeight="59.0" fitWidth="34.0" layoutX="55.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.topAnchor="190.0">
          <image>
             <Image url="@../graphics/students/student_red.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="student6" fitHeight="59.0" fitWidth="34.0" layoutX="55.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.topAnchor="240.0">
+      <ImageView fx:id="student6" fitHeight="59.0" fitWidth="34.0" layoutX="55.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.topAnchor="230.0">
          <image>
             <Image url="@../graphics/students/student_red.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="student1" fitHeight="59.0" fitWidth="34.0" layoutX="17.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="200.0">
+      <ImageView fx:id="student1" fitHeight="59.0" fitWidth="34.0" layoutX="17.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="190.0">
          <image>
             <Image url="@../graphics/students/student_red.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="student3" fitHeight="59.0" fitWidth="34.0" layoutX="17.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="240.0">
+      <ImageView fx:id="student3" fitHeight="59.0" fitWidth="34.0" layoutX="17.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="230.0">
          <image>
             <Image url="@../graphics/students/student_red.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="student2" fitHeight="59.0" fitWidth="34.0" layoutX="95.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="200.0">
+      <ImageView fx:id="student2" fitHeight="59.0" fitWidth="34.0" layoutX="95.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="190.0">
          <image>
             <Image url="@../graphics/students/student_red.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="student4" fitHeight="59.0" fitWidth="34.0" layoutX="95.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="240.0">
+      <ImageView fx:id="student4" fitHeight="59.0" fitWidth="34.0" layoutX="95.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="230.0">
          <image>
             <Image url="@../graphics/students/student_red.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="noEntry1" fitHeight="40.0" fitWidth="34.0" layoutX="34.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="203.0">
+      <ImageView fx:id="noEntry1" fitHeight="40.0" fitWidth="34.0" layoutX="34.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="193.0">
          <image>
             <Image url="@../graphics/islands/noEntryTile.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="noEntry2" fitHeight="40.0" fitWidth="34.0" layoutX="73.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="203.0">
+      <ImageView fx:id="noEntry2" fitHeight="40.0" fitWidth="34.0" layoutX="73.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="193.0">
          <image>
             <Image url="@../graphics/islands/noEntryTile.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="noEntry3" fitHeight="40.0" fitWidth="34.0" layoutX="34.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="243.0">
+      <ImageView fx:id="noEntry3" fitHeight="40.0" fitWidth="34.0" layoutX="34.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="233.0">
          <image>
             <Image url="@../graphics/islands/noEntryTile.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="noEntry4" fitHeight="40.0" fitWidth="34.0" layoutX="73.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="243.0">
+      <ImageView fx:id="noEntry4" fitHeight="40.0" fitWidth="34.0" layoutX="73.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="233.0">
          <image>
             <Image url="@../graphics/islands/noEntryTile.png" />
          </image>
       </ImageView>
-      <Text fx:id="description" layoutX="11.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="JUSTIFY" wrappingWidth="122.62752532958984" />
-      <Text fx:id="activeChar" fill="#f80303" layoutX="47.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ACTIVE" visible="false">
+      <Text fx:id="description" layoutX="11.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="JUSTIFY" wrappingWidth="122.62752532958984" />
+      <Text fx:id="activeChar" fill="#f80303" layoutX="47.0" layoutY="16.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="ACTIVE" visible="false">
          <font>
             <Font size="15.0" />
          </font>
