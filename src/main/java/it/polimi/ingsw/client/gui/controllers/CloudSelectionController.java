@@ -18,6 +18,10 @@ public class CloudSelectionController implements Controller{
     @FXML public Button cloud3;
 
 
+    /**
+     * method used to update the visibility of the cloud buttons
+     * @param clouds the number of clouds, depending on the game's number of players
+     */
     public void updateCloudButtons(int clouds){
 
         Button[] buttons = new Button[]{cloud0, cloud1, cloud2, cloud3};
@@ -46,18 +50,30 @@ public class CloudSelectionController implements Controller{
         }
     }
 
+    /**
+     * method used to handle the selection of the first cloud
+     */
     public void cloud0Action(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendCloudSelection(0);
     }
 
+    /**
+     * method used to handle the selection of the second cloud
+     */
     public void cloud1Action(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendCloudSelection(1);
     }
 
+    /**
+     * method used to handle the selection of the third cloud
+     */
     public void cloud2Action(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendCloudSelection(2);
     }
 
+    /**
+     * method used to handle the selection of the fourth cloud
+     */
     public void cloud3Action(){
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendCloudSelection(3);
     }

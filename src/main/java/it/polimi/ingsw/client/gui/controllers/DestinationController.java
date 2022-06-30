@@ -45,60 +45,114 @@ public class DestinationController implements Controller{
         this.gui=gui;
     }
 
+    /**
+     * method used to handle the selection of the dining room as destination
+     */
     public void actionButtonDining(){
         destination=0;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
 
+    /**
+     * method used to handle the selection of island 1 as destination
+     */
     public void actionButton1(){
         destination=1;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 2 as destination
+     */
     public void actionButton2(){
         destination=2;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 3 as destination
+     */
     public void actionButton3(){
         destination=3;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 4 as destination
+     */
     public void actionButton4(){
         destination=4;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 5 as destination
+     */
     public void actionButton5(){
         destination=5;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 6 as destination
+     */
     public void actionButton6(){
         destination=6;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 7 as destination
+     */
     public void actionButton7(){
         destination=7;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 8 as destination
+     */
     public void actionButton8(){
         destination=8;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 9 as destination
+     */
     public void actionButton9(){
         destination=9;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 10 as destination
+     */
+
     public void actionButton10(){
         destination=10;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 11 as destination
+     */
     public void actionButton11(){
         destination=11;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
+
+    /**
+     * method used to handle the selection of island 12 as destination
+     */
     public void actionButton12(){
         destination=12;
         ((DashboardController) gui.getController(FxmlScenes.DASHBOARD.getPhase())).sendDestination(destination);
     }
 
+    /**
+     * method used to initialize all the destination buttons
+     */
     public void initializeDestination(){
         if (gui.getView().getDashboard().getIslands().size()<12){
             buttonIsl12.setVisible(false);

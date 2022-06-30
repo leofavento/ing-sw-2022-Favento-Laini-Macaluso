@@ -44,10 +44,18 @@ public class CharactersController implements Controller{
 
     }
 
+    /**
+     * method used to disable a button
+     * @param disable true if the button has to be disabled
+     */
     public void disableButton(boolean disable) {
         button.setDisable(disable);
     }
 
+    /**
+     * method used to update the infos about a given character card
+     * @param characterCard the character card to update
+     */
     public void update(CharacterCard characterCard) {
         charEnum = characterCard.getValue();
         setCharacter();
@@ -85,6 +93,11 @@ public class CharactersController implements Controller{
         }
     }
 
+    /**
+     * method used to set a student image, given its color
+     * @param image the image object to update
+     * @param student the color of the student
+     */
     private void setStudent(ImageView image, Color student) {
         switch(student) {
             case YELLOW -> image.setImage(new Image("graphics/students/student_yellow.png"));
@@ -96,6 +109,9 @@ public class CharactersController implements Controller{
         image.setVisible(true);
     }
 
+    /**
+     * method used to set the right image to show for every character
+     */
     private void setCharacter() {
         switch (charEnum) {
             case Char1 -> character.setImage(new Image("graphics/characters/character1.jpg"));
@@ -113,6 +129,9 @@ public class CharactersController implements Controller{
         }
     }
 
+    /**
+     * method used to handle the activation of a character
+     */
     public void activate() {
         gui.getClient().sendMessage(new UseCharacterEffect(charEnum));
     }

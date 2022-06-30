@@ -15,6 +15,10 @@ public class EndGameController implements Controller {
     @FXML private Text reason;
     private GUI gui;
 
+    /**
+     * method used to show the end game informations (the player/team who won and the reason for the win)
+     * @param message the CommunicateWinner message received
+     */
    public void update(CommunicateWinner message) {
        if (message.getTeam() == null) {
            congratulations.setText("It's a tie!");
@@ -38,6 +42,11 @@ public class EndGameController implements Controller {
        }
    }
 
+    /**
+     * method used to create a string containing all the players nicknames of a team
+     * @param nicknames the nicknames of all players in a team
+     * @return the string containing all the nicknames of a team
+     */
     private String buildTeamString(ArrayList<String> nicknames) {
         StringBuilder teamBuilder = new StringBuilder("Well played, ");
         for (String player : nicknames) {
