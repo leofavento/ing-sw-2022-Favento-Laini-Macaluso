@@ -266,6 +266,10 @@ public class DashboardController implements Controller {
     private HashMap<CharacterEnum, Controller> characterControllers;
     private GUI gui;
 
+    /**
+     * method used to set up the Dashboard page
+     * @param players the game players
+     */
     public void setup(ArrayList<Player> players) {
         nicknameToTab = new HashMap<>();
         nicknameToController = new HashMap<>();
@@ -293,6 +297,9 @@ public class DashboardController implements Controller {
         dashboard.getTabs().addAll(nicknameToTab.values());
     }
 
+    /**
+     * method used to handle the display of the possible students destinations to choose from
+     */
     public void requestDestination(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/destination.fxml"));
@@ -313,10 +320,17 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to handle the selection of the chosen destination of the students
+     * @param destination an integer representing the selection
+     */
     public void sendDestination(int destination){
         gui.getClient().sendMessage(new ChosenDestination(destination));
     }
 
+    /**
+     * method used to update the game Dashboard
+     */
     public void update() {
         for (Player player : gui.getView().getPlayers()) {
             ((SchoolboardController) nicknameToController.get(player.getNickname())).update(player);
@@ -374,16 +388,25 @@ public class DashboardController implements Controller {
         instruction.setText(message);
     }
 
+    /**
+     * method used to handle the selection of the assistant
+     */
     public void requestAssistants() {
         dashboard.getSelectionModel().select(nicknameToTab.get(gui.getClient().getNickname()));
         ((SchoolboardController) nicknameToController.get(gui.getClient().getNickname())).requestAssistant();
         setInstruction("Select the assistant you want to play");
     }
 
+    /**
+     * method used to reset all assistant buttons
+     */
     public void resetAssistants() {
         ((SchoolboardController) nicknameToController.get(gui.getClient().getNickname())).resetAssistantsButtons();
     }
 
+    /**
+     * method used to update the current turn number
+     */
     public void updateTurn(){
         roundN.setText("Round " + gui.getView().getRoundNumber());
         if (gui.getView().getCurrentPlayer() != null) {
@@ -393,6 +416,9 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to update the list of the players currently playing the game
+     */
     public void updatePlayersList(){
         Platform.runLater(() -> {
             switch (gui.getView().getTotalPlayers()){
@@ -403,6 +429,10 @@ public class DashboardController implements Controller {
         });
     }
 
+    /**
+     * method used to update all the infos about island 1
+     * @param d the game Dashboard
+     */
     private void updateIsland1(Dashboard d) {
         //set num units
         unitsIsl1.setText("Units: " + d.getIslands().get(0).getNumUnits());
@@ -454,6 +484,10 @@ public class DashboardController implements Controller {
         mnIsland1.setVisible(d.getMotherNaturePosition() == 0);
     }
 
+    /**
+     * method used to update all the infos about island 2
+     * @param d the game Dashboard
+     */
     private void updateIsland2(Dashboard d) {
         //set num units
         unitsIsl2.setText("Units: " + d.getIslands().get(1).getNumUnits());
@@ -506,6 +540,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 3
+     * @param d the game Dashboard
+     */
     private void updateIsland3(Dashboard d) {
         //set num units
         unitsIsl3.setText("Units: " + d.getIslands().get(2).getNumUnits());
@@ -558,6 +596,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 4
+     * @param d the game Dashboard
+     */
     private void updateIsland4(Dashboard d) {
         isl4.setVisible(false);
         idIsl4.setVisible(false);
@@ -629,6 +671,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 5
+     * @param d the game Dashboard
+     */
     private void updateIsland5(Dashboard d) {
         isl5.setVisible(false);
         idIsl5.setVisible(false);
@@ -700,6 +746,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 6
+     * @param d the game Dashboard
+     */
     private void updateIsland6(Dashboard d) {
         isl6.setVisible(false);
         idIsl6.setVisible(false);
@@ -770,6 +820,10 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to update all the infos about island 7
+     * @param d the game Dashboard
+     */
     private void updateIsland7(Dashboard d) {
         isl7.setVisible(false);
         idIsl7.setVisible(false);
@@ -841,6 +895,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 8
+     * @param d the game Dashboard
+     */
     private void updateIsland8(Dashboard d) {
         isl8.setVisible(false);
         idIsl8.setVisible(false);
@@ -912,6 +970,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 9
+     * @param d the game Dashboard
+     */
     private void updateIsland9(Dashboard d) {
         isl9.setVisible(false);
         idIsl9.setVisible(false);
@@ -983,6 +1045,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 10
+     * @param d the game Dashboard
+     */
     private void updateIsland10(Dashboard d) {
         isl10.setVisible(false);
         idIsl10.setVisible(false);
@@ -1054,6 +1120,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 11
+     * @param d the game Dashboard
+     */
     private void updateIsland11(Dashboard d) {
         isl11.setVisible(false);
         idIsl11.setVisible(false);
@@ -1125,6 +1195,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all the infos about island 12
+     * @param d the game Dashboard
+     */
     private void updateIsland12(Dashboard d) {
         isl12.setVisible(false);
         idIsl12.setVisible(false);
@@ -1196,6 +1270,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update all island infos
+     * @param d the game Dashboard
+     */
     private void updateIslands(Dashboard d) {
         updateIsland1(d);
         updateIsland2(d);
@@ -1211,6 +1289,10 @@ public class DashboardController implements Controller {
         updateIsland12(d);
     }
 
+    /**
+     * method used to update the students on every cloud
+     * @param d the game Dashboard
+     */
     public void updateClouds(Dashboard d){
         switch (d.getClouds().size()) {
             case 2 -> update2Clouds(d);
@@ -1219,6 +1301,10 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to update the students on every cloud of a two-player game
+     * @param d the game Dashboard
+     */
     public void update2Clouds(Dashboard d){
         cloud2one.setVisible(true);
         cloud2oneID.setVisible(true);
@@ -1285,6 +1371,10 @@ public class DashboardController implements Controller {
             }}
     }
 
+    /**
+     * method used to update the students on every cloud of a three-player game
+     * @param d the game Dashboard
+     */
     public void update3Clouds(Dashboard d){
         cloud3one.setVisible(true);
         cloud3oneID.setVisible(true);
@@ -1412,6 +1502,10 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to update the students on every cloud of a four-player game
+     * @param d the game Dashboard
+     */
     public void update4Clouds(Dashboard d){
 
         cloud2one.setLayoutX(370);
@@ -1504,6 +1598,9 @@ public class DashboardController implements Controller {
 
     }
 
+    /**
+     * method used to show the available characters for a player
+     */
     private void setCharacterPanes() {
         characterControllers = new HashMap<>();
         try {
@@ -1540,12 +1637,19 @@ public class DashboardController implements Controller {
         disableCharactersButton(true);
     }
 
+    /**
+     * method used to update the current characters
+     */
     private void updateCharacters() {
         for (CharacterCard card : gui.getView().getDashboard().getCharacters()) {
             ((CharactersController) characterControllers.get(card.getValue())).update(card);
         }
     }
 
+    /**
+     * method used to disable a character button
+     * @param disable true if the button has to be disabled
+     */
     public void disableCharactersButton(boolean disable) {
         for (Controller controller : characterControllers.values()) {
             Platform.runLater(() -> ((CharactersController) controller).disableButton(disable));
@@ -1553,6 +1657,10 @@ public class DashboardController implements Controller {
         error.setVisible(false);
     }
 
+    /**
+     * method used to update the list of movable students from entrance to an island or the dining room
+     * @param students the list of movable students
+     */
     public void updateMovableStudents(ArrayList<Color> students){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/movablestudents.fxml"));
@@ -1570,6 +1678,10 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to send the selection of the student to move
+     * @param color the chosen student
+     */
     public void sendMovableStudents(Color color){
         gui.getClient().sendMessage(new ChosenStudent(color));
     }
@@ -1591,6 +1703,10 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to handle the selection of the cloud to take the students from
+     * @param clouds the number of clouds
+     */
     public void updateCloudSelection(int clouds){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/cloudSelection.fxml"));
@@ -1608,10 +1724,17 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to send the selection of the cloud to take the students from
+     * @param selection an integer representing the selected cloud
+     */
     public void sendCloudSelection(int selection){
         gui.getClient().sendMessage(new ChosenCloud(selection));
     }
 
+    /**
+     * method used to reset the request pane in the Dashboard page
+     */
     public void cleanRequest() {
         Platform.runLater(() -> requestPane.setContent(new AnchorPane()));
         if (gui.getView().isExpertMode()) {
@@ -1619,6 +1742,9 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to remove the played assistants from the view
+     */
     public void removePlayedAssistants() {
         for (String nickname : nicknameToController.keySet()) {
             if (!nickname.equals(gui.getClient().getNickname())) {
@@ -1628,6 +1754,10 @@ public class DashboardController implements Controller {
         }
     }
 
+    /**
+     * method used to show the endgame page
+     * @param message the message containing the winner
+     */
     public void setEndGame(CommunicateWinner message) {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/endgame.fxml"));
