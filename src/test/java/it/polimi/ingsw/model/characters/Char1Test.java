@@ -28,7 +28,7 @@ class Char1Test {
         game.addNewPlayer(p2);
 
         Controller controller = new Controller(game);
-        CharacterController characterController = new CharacterController(controller, game, null);
+        CharacterController characterController = new CharacterController(controller, game);
 
         controller.getState().execute();
 

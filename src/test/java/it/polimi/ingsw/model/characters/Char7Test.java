@@ -33,7 +33,7 @@ class Char7Test {
         Controller controller = new Controller(game);
         controller.getState().execute();
 
-        CharacterController characterController = new CharacterController(controller, game, null);
+        CharacterController characterController = new CharacterController(controller, game);
 
         controller.getState().receiveMessage(new ChosenTower(Tower.BLACK),"Player1");
         controller.getState().receiveMessage(new ChosenTower(Tower.WHITE),"Player2");

@@ -24,7 +24,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
     public Controller(Game game) {
         this.game = game;
         game.setCurrentPlayer(game.getOnlinePlayers().get(0));
-        characterController = new CharacterController(this, game, null);
+        characterController = new CharacterController(this, game);
         setState(new Setup(game, this));
     }
 
