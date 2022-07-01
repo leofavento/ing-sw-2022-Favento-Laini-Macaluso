@@ -143,7 +143,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
     }
 
     private boolean validNickname(String nickname) {
-        return nickname.length() < 20;
+        return nickname.length() <= 20;
     }
 
     private void createGame(SetGame setGame) {

@@ -10,7 +10,7 @@ public enum ErrorMessage implements FromServerMessage {
     TAKEN_NICKNAME("This nickname is already taken, please choose another one."),
     WRONG_TURN("This is not your turn."),
     ALREADY_RECEIVED("This message was already received."),
-    NICKNAME_TOO_LONG("The selected nickname is too long"),
+    NICKNAME_TOO_LONG("The selected nickname is too long\nMax length: 20 characters"),
     INVALID_SETTINGS("The desired settings are not valid"),
     FULL_GAME("The selected game is already full"),
     TOWER_NOT_AVAILABLE("The chosen tower color is not available"),
