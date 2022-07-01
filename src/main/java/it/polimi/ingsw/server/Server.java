@@ -14,7 +14,7 @@ public class Server implements Runnable {
     private final ArrayList<String> takenNicknames;
     private final ArrayList<GameHandler> activeGames;
     private final ArrayList<GameHandler> startingGames;
-    private final int SOCKET_TIMEOUT = 5000;
+    private static final int SOCKET_TIMEOUT = 5000;
 
     private int nextGameID;
 

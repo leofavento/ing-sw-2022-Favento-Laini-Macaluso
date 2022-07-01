@@ -1,8 +1,6 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.messages.Message;
-import it.polimi.ingsw.messages.fromClient.*;
-import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.observer.Observer;
 
 public class VirtualView implements Observer<Message> {
