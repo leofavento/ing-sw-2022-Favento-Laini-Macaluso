@@ -81,7 +81,7 @@ public class Controller implements Observer<Message>, Observable<Message> {
             return true;
         }
         //Check if there are only 3 groups of Islands or if this is last round
-        if (game.getDashboard().getIslands().size() < 4 || game.getFinalRound()) {
+        if (game.getDashboard().getIslands().size() < 4 || (game.getFinalRound() && game.getCurrentPlayer().equals(game.getOnlinePlayers().get(game.getNumberOfPlayers()-1)))) {
             //The player who has built the most Towers on Islands wins the game
             //In case of a tie, the player who controls the most Professors wins the game
             List<Player> minTowers;

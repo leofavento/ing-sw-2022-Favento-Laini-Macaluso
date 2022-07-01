@@ -59,7 +59,7 @@ public class EffectChar11 implements State {
         Color student = message.getStudent();
         if (!(char11.getStudents().contains(student))) {
             controller.notify(ErrorMessage.STUDENT_NOT_AVAILABLE);
-        } else if (game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(color) == 10) {
+        } else if (game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(student) == 10) {
             controller.notify(ErrorMessage.FULL_DINING_ROOM);
         } else {
             this.color = student;
