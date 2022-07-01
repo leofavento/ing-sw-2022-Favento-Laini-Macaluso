@@ -22,7 +22,7 @@
 
 ## Build
 
-After having installed Java JRE (minimum version 14) and Maven, clone this repo.
+After having installed Java JRE (minimum version 14) and Maven (version 3.8.6), clone this repo.
 Inside the cloned repo, run:
 ```bash
 mvn clean package
