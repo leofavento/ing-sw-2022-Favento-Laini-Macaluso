@@ -6,19 +6,14 @@ import it.polimi.ingsw.controller.states.State;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
-
-import it.polimi.ingsw.model.player.PlayerStatus;
 import it.polimi.ingsw.observer.Observable;
 import it.polimi.ingsw.observer.Observer;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparing;
 
 public class Controller implements Observer<Message>, Observable<Message> {
     private final Game game;

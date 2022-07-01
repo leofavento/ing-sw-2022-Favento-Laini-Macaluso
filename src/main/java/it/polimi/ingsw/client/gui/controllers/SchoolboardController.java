@@ -190,6 +190,9 @@ public class SchoolboardController implements Controller {
         played10.setVisible(false);
     }
 
+    /**
+     * method used to show the played assistants
+     */
     public void requestAssistant() {
         ArrayList<Assistant> availableAssistants = gui.getView().getAvailableAssistants();
 
@@ -251,6 +254,10 @@ public class SchoolboardController implements Controller {
         }
     }
 
+    /**
+     * method used to show informations about coins (only in expert mode) in the player's SchoolBoard
+     * @param player the desired player
+     */
     public void update(Player player) {
         updateDining(player.getSchoolBoard().getDiningRoom());
         updateTowers(player.getSchoolBoard());
@@ -266,6 +273,10 @@ public class SchoolboardController implements Controller {
         }
     }
 
+    /**
+     * method used to update all infos about the dining room
+     * @param diningRoom a player's dining room
+     */
     private void updateDining(DiningRoom diningRoom) {
         ImageView[] greenStudents = new ImageView[]{green1,
                 green2, green3, green4, green5, green6, green7, green8, green9, green10};
@@ -288,12 +299,21 @@ public class SchoolboardController implements Controller {
         setDiningColor(blueStudents, diningRoom.getStudentsNumber(Color.BLUE));
     }
 
+    /**
+     * method used to show properly the images of the dining room students
+     * @param students the students currently in the dining room
+     * @param number the number of students to show
+     */
     private void setDiningColor(ImageView[] students, int number) {
         for (int i = 0; i < 10; i++) {
             students[i].setVisible(number > i);
         }
     }
 
+    /**
+     * method used to update the towers currently in a player's SchoolBoard
+     * @param schoolBoard a player's SchoolBoard
+     */
     private void updateTowers(SchoolBoard schoolBoard) {
         ImageView[] towers = new ImageView[]{tower1, tower2, tower3, tower4, tower5, tower6, tower7, tower8};
         switch (schoolBoard.getTowerColor()) {
@@ -318,6 +338,10 @@ public class SchoolboardController implements Controller {
         }
     }
 
+    /**
+     * method used to update the professors currently in a player's SchoolBoard
+     * @param schoolBoard a player's SchoolBoard
+     */
     private void updateProfessors(SchoolBoard schoolBoard) {
         greenProfessor.setVisible(schoolBoard.getProfessors().stream()
                 .anyMatch(professor -> professor.getColor() == Color.GREEN));
@@ -331,6 +355,10 @@ public class SchoolboardController implements Controller {
                 .anyMatch(professor -> professor.getColor() == Color.BLUE));
     }
 
+    /**
+     * method used to update the images of the students currently in a player's entrance
+     * @param entrance a player's entrance
+     */
     private void updateEntrance(Entrance entrance) {
         ImageView[] students = new ImageView[]{entrance1, entrance2,
                 entrance3, entrance4, entrance5, entrance6, entrance7, entrance8, entrance9};
@@ -343,6 +371,11 @@ public class SchoolboardController implements Controller {
         }
     }
 
+    /**
+     * method used to set the images of the students properly, based on their colors
+     * @param student the selected student
+     * @param color the student's color
+     */
     private void changeStudent(ImageView student, Color color) {
         switch(color) {
             case GREEN -> student.setImage(new Image("graphics/students/student_green.png"));
@@ -353,46 +386,80 @@ public class SchoolboardController implements Controller {
         }
     }
 
+    /**
+     * method used to handle the selection of assistant 1
+     */
     public void playAssistant1() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.TIGER));
     }
 
+    /**
+     * method used to handle the selection of assistant 2
+     */
     public void playAssistant2() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.OSTRICH));
     }
 
+    /**
+     * method used to handle the selection of assistant 3
+     */
     public void playAssistant3() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.ARCHER_CAT));
     }
 
+    /**
+     * method used to handle the selection of assistant 4
+     */
     public void playAssistant4() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.EAGLE));
     }
 
+    /**
+     * method used to handle the selection of assistant 5
+     */
     public void playAssistant5() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.FOX));
     }
 
+    /**
+     * method used to handle the selection of assistant 6
+     */
     public void playAssistant6() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.SNAKE));
     }
 
+    /**
+     * method used to handle the selection of assistant 7
+     */
     public void playAssistant7() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.OCTOPUS));
     }
 
+    /**
+     * method used to handle the selection of assistant 8
+     */
     public void playAssistant8() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.DOG));
     }
 
+    /**
+     * method used to handle the selection of assistant 9
+     */
     public void playAssistant9() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.ELEPHANT));
     }
 
+    /**
+     * method used to handle the selection of assistant 10
+     */
     public void playAssistant10() {
         gui.getClient().sendMessage(new PlayAssistant(Assistant.TURTLE));
     }
 
+    /**
+     * method used to set the right color of a player's team
+     * @param player the selected player
+     */
     public void setTeamColor(Player player){
         switch (player.getSchoolBoard().getTowerColor()){
             case GREY -> {
@@ -409,6 +476,11 @@ public class SchoolboardController implements Controller {
             }
         }
     }
+
+    /**
+     * method used to show if an assistant has already been played
+     * @param assistant the selected assistant
+     */
     public void showPlayed(Assistant assistant) {
         removePlayedAssistants();
         switch (assistant) {
