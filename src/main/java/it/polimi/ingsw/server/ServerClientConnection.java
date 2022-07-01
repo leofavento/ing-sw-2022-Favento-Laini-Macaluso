@@ -92,16 +92,16 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         close();
     }
 
+    /**
+     * method used to send messages
+     * @param message the message to send
+     */
     public synchronized void sendMessage(Message message) {
         try {
             output.reset();
             output.writeObject(message);
             output.flush();
-            /*
-            if (! (message instanceof Ping)) {
-                System.out.printf("To %s: %s%n", nickname, message);
-            }
-            */
+
         } catch (IOException e) {
             e.printStackTrace();
             if (gameHandler != null) {
@@ -112,6 +112,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         }
     }
 
+    /**
+     * method used to receive messages
+     * @param message the message to be received
+     */
     public void readMessage(Message message) {
         if (message instanceof Disconnect) {
             gameHandler.disconnect(this);
@@ -142,10 +146,19 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         }
     }
 
+    /**
+     * method used to check if a chosen nickname is valid based on its length (max 20 characters)
+     * @param nickname the chosen nickname
+     * @return true if the nickname is valid, false if not
+     */
     private boolean validNickname(String nickname) {
         return nickname.length() <= 20;
     }
 
+    /**
+     * method used to handle the creation of a new game
+     * @param setGame the message from the client containing the chosen settings
+     */
     private void createGame(SetGame setGame) {
         if (setGame.getNumberOfPlayers() >= 2 && setGame.getNumberOfPlayers() <= 4) {
             gameHandler = server.createRoom(this, setGame.getNumberOfPlayers(), setGame.getExpertMode());
@@ -154,6 +167,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         }
     }
 
+    /**
+     * method used to handle the joining of a game
+     * @param joinAvailableGame the message from the client
+     */
     private void joinAvailableGame(JoinAvailableGame joinAvailableGame) {
         int gameID = joinAvailableGame.getGameID();
         if (server.getStartingGameByID(gameID) != null) {
@@ -167,6 +184,9 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         this.isPlaying = isPlaying;
     }
 
+    /**
+     * method used to close the connection with a client
+     */
     public synchronized void close() {
         try {
             gameHandler.getPlayers().remove(this);
@@ -187,6 +207,9 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         }
     }
 
+    /**
+     * method used to ask a nickname to a new client
+     */
     public void askNickname() {
         sendMessage(CommunicationMessage.ENTER_NICKNAME);
         requestedNickname = true;

@@ -63,11 +63,20 @@ public class Server implements Runnable {
         return takenNicknames.stream().noneMatch(client -> client.equalsIgnoreCase(newNickname));
     }
 
+    /**
+     * method used to add a new user
+     * it adds the chosen nickname to the list of taken nicknames
+     * @param client the new client
+     */
     public void registerUser(ServerClientConnection client) {
         takenNicknames.add(client.getNickname());
         client.sendMessage(CommunicationMessage.SUCCESS);
     }
 
+    /**
+     * method used to remove a client from the registered users
+     * @param client the client to remove
+     */
     public void unregisterUser(ServerClientConnection client) {
         takenNicknames.remove(client.getNickname());
     }
@@ -91,6 +100,13 @@ public class Server implements Runnable {
         return startingGames;
     }
 
+    /**
+     * method user to create a room for a new game
+     * @param host the host of the game
+     * @param numberOfPlayers the number of players for the game, chosen by the host
+     * @param expertMode true if expert mode is activated, false if not
+     * @return the new room
+     */
     public GameHandler createRoom(ServerClientConnection host, int numberOfPlayers, boolean expertMode) {
         GameHandler room = new GameHandler(this, nextGameID, host, expertMode, numberOfPlayers);
         nextGameID++;
