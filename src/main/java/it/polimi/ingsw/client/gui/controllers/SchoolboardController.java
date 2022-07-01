@@ -525,6 +525,9 @@ public class SchoolboardController implements Controller {
         }
     }
 
+    /**
+     * method used to remove images of assistants already played by other players
+     */
     public void removeAssistantImage() {
         assistantImage1.setVisible(assistantImage1.isVisible() && !played1.isVisible());
         assistantImage2.setVisible(assistantImage2.isVisible() && !played2.isVisible());
