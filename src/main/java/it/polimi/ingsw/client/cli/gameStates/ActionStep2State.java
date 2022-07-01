@@ -7,8 +7,6 @@ import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenSteps;
-import it.polimi.ingsw.model.Assistant;
-import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
 
 import java.util.InputMismatchException;

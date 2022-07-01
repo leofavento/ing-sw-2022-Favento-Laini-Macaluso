@@ -3,14 +3,9 @@ package it.polimi.ingsw.client.cli.gameStates;
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
 import it.polimi.ingsw.client.cli.gameStates.charactersStates.ActivateCharactersState;
-import it.polimi.ingsw.controller.states.ActionStep3;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenCloud;
-import it.polimi.ingsw.model.Cloud;
-import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.player.PlayerStatus;
-
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

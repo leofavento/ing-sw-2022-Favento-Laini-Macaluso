@@ -1,10 +1,7 @@
 package it.polimi.ingsw.client.cli.gameStates;
 
 import it.polimi.ingsw.client.cli.CLI;
-import it.polimi.ingsw.client.cli.StateManager;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  * In the EndOfGame phase, every player receives a message from the server containing the result of the
