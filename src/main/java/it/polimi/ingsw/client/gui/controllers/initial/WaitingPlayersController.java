@@ -44,7 +44,6 @@ public class WaitingPlayersController implements Controller {
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 }

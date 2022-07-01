@@ -4,8 +4,6 @@ import it.polimi.ingsw.model.characters.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * This is the equivalent of the table in the physical game

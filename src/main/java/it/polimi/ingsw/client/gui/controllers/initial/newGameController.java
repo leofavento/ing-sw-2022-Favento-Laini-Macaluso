@@ -41,8 +41,7 @@ public class newGameController implements Controller, Initializable {
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 
     @Override

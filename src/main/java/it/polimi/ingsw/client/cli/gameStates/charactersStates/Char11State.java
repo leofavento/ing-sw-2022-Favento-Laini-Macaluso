@@ -28,6 +28,7 @@ public class Char11State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
         ArrayList<Color> movableStudentsChar = cli.getView().getMovableStudentsChar();
@@ -69,6 +70,7 @@ public class Char11State {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }

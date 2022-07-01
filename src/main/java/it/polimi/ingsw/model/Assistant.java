@@ -25,10 +25,6 @@ public enum Assistant {
         this.movements = movements;
     }
 
-    public boolean equals(Assistant assistant){
-        return assistant.value == this.value && assistant.movements == this.movements;
-    }
-
     public int getValue(){
         return this.value;
     }

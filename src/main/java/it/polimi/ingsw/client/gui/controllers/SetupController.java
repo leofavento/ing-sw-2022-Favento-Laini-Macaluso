@@ -7,10 +7,8 @@ import it.polimi.ingsw.messages.fromServer.AvailableTowers;
 import it.polimi.ingsw.messages.fromServer.AvailableWizards;
 import it.polimi.ingsw.model.Tower;
 import it.polimi.ingsw.model.player.Player;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -105,8 +103,7 @@ public class SetupController implements Controller{
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 
     public void selectBlack() {

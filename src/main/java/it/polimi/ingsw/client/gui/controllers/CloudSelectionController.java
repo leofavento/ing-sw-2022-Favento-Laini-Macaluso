@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 
-import java.awt.*;
-
 public class CloudSelectionController implements Controller{
     private Text error;
     private GUI gui;
@@ -97,7 +95,6 @@ public class CloudSelectionController implements Controller{
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 }

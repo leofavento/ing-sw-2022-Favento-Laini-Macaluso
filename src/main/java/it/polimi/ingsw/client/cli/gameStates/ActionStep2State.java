@@ -39,6 +39,7 @@ public class ActionStep2State implements State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 
@@ -85,6 +86,7 @@ public class ActionStep2State implements State {
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                 }
             } catch (InputMismatchException e) {

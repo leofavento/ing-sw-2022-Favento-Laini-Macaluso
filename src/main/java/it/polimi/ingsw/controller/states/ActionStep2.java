@@ -1,21 +1,16 @@
 package it.polimi.ingsw.controller.states;
 
 import it.polimi.ingsw.controller.Controller;
-import it.polimi.ingsw.controller.EndOfGameReason;
 import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.ChosenSteps;
-import it.polimi.ingsw.messages.fromClient.PlayAssistant;
 import it.polimi.ingsw.messages.fromServer.*;
 import it.polimi.ingsw.model.Game;
 import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.characters.CharacterCard;
 import it.polimi.ingsw.model.player.Player;
 import it.polimi.ingsw.model.player.PlayerStatus;
-import it.polimi.ingsw.observer.Observer;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 

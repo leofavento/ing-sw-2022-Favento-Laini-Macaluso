@@ -44,6 +44,7 @@ public class ActionStep1State implements State {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
 
@@ -101,6 +102,7 @@ public class ActionStep1State implements State {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
 
@@ -136,6 +138,7 @@ public class ActionStep1State implements State {
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }

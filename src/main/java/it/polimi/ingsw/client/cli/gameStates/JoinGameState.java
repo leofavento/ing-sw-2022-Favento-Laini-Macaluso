@@ -36,6 +36,7 @@ public class JoinGameState implements State {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
 
             printAvailableGames();
@@ -57,6 +58,7 @@ public class JoinGameState implements State {
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                     if (cli.getView().getLastErrorMessage() != null) {
                         System.out.println(cli.getView().getLastErrorMessage().getMessage());
@@ -88,7 +90,7 @@ public class JoinGameState implements State {
                     (game.isExpertGame() ? 'Y' : 'N'));
             System.out.println(s);
         }
-        if (availableGames.size() == 0) {
+        if (availableGames.isEmpty()) {
             System.out.println("|                                            |");
         }
         System.out.println("+--------------------------------------------+");

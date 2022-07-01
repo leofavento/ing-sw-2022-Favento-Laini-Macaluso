@@ -11,11 +11,11 @@ class AssistantTest {
         Assistant tiger2 = Assistant.TIGER;
         Assistant ostrich = Assistant.OSTRICH;
 
-        assertFalse(tiger1.equals(ostrich));
+        assertNotSame(tiger1, ostrich);
         assertEquals(tiger1.getMovements(), ostrich.getMovements());
         assertNotEquals(tiger1.getValue(), ostrich.getValue());
 
-        assertTrue(tiger2.equals(tiger1));
+        assertSame(tiger2, tiger1);
         assertEquals(tiger1.getMovements(), tiger2.getMovements());
         assertEquals(tiger1.getValue(), tiger2.getValue());
     }

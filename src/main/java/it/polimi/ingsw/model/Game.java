@@ -6,6 +6,9 @@ import it.polimi.ingsw.model.player.Player;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * The entire game, containing the Dashboard, the list of players and all the settings for the current match.
+ */
 public class Game {
     private final int ID;
     private final ArrayList<Player> players;
@@ -68,6 +71,9 @@ public class Game {
         setCurrentPlayer(onlinePlayers.get((onlinePlayers.indexOf(getCurrentPlayer()) + 1) % onlinePlayers.size()));
     }
 
+    /**
+     * method used to set the current number of Towers in the players schoolboards
+     */
     public void initialTowersDeal(){
         switch (numberOfPlayers) {
             case (2), (4) -> {
@@ -82,12 +88,20 @@ public class Game {
         }
     }
 
+    /**
+     * method used to set a number of students in the player's entrance. The students are extracted from the bag.
+     * @param p the player
+     * @param numStudents the number of student to put in entrance
+     */
     public void dealStudents(Player p, int numStudents){
         for (int i = 0; i < numStudents; i++) {
             p.getSchoolBoard().getEntrance().addStudent(dashboard.getBag().drawStudent());
         }
     }
 
+    /**
+     * method used to update the professors owners every time a student is placed in a dining room
+     */
     public void updateProfessors() {
         for (Color color : Color.values()) {
             // calculate maximum number of students of a certain color in any SchoolBoard
@@ -155,6 +169,11 @@ public class Game {
         return teams;
     }
 
+    /**
+     * method used to find the team to which a specific player belongs
+     * @param player the player
+     * @return an ArrayList containing every player in the team
+     */
     public ArrayList<Player> getTeamFromPlayer(Player player){
         ArrayList<Player> selectedTeam = new ArrayList<>();
         for (ArrayList<Player> a: teams.values()) {

@@ -67,7 +67,7 @@ public class EffectChar12 implements State {
                     player.getSchoolBoard().getDiningRoom().extractStudent(color);
                     game.getDashboard().getBag().addStudent(color);
                 } catch (StudentNotExistingException e) {
-                    i = 3;
+                    break;
                 }
             }
         }

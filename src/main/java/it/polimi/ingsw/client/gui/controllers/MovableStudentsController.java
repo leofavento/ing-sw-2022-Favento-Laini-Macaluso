@@ -47,11 +47,11 @@ public class MovableStudentsController implements Controller{
     public Button buttonStop;
 
 
-    private final static String blueStudent = "graphics/students/student_blue.png";
-    private final static String redStudent = "graphics/students/student_red.png";
-    private final static String pinkStudent = "graphics/students/student_pink.png";
-    private final static String greenStudent = "graphics/students/student_green.png";
-    private final static String yellowStudent = "graphics/students/student_yellow.png";
+    private static final String blueStudent = "graphics/students/student_blue.png";
+    private static final String greenStudent = "graphics/students/student_green.png";
+    private static final String pinkStudent = "graphics/students/student_pink.png";
+    private static final String redStudent = "graphics/students/student_red.png";
+    private static final String yellowStudent = "graphics/students/student_yellow.png";
     private ArrayList<Color> availableStudents;
 
     private GUI gui;
@@ -184,7 +184,6 @@ public class MovableStudentsController implements Controller{
     }
 
     @Override
-    public void nextPhase() {
-
+    public void nextPhase() {//unused method
     }
 }

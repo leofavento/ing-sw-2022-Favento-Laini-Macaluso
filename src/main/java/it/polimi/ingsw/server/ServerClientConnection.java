@@ -43,7 +43,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public synchronized void setActive(boolean active) {
         this.active = active;
     }
 
@@ -55,6 +55,7 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
                     TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
                 if (active) {
                     sendMessage(new Ping());
@@ -118,7 +119,9 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
             System.err.println(nickname + " disconnected.");
         } else if (message instanceof LoginMessage && requestedNickname) {
             LoginMessage loginMessage = (LoginMessage) message;
-            if (server.checkNickname(loginMessage.getNickname())) {
+            if (!validNickname(loginMessage.getNickname())) {
+                sendMessage(ErrorMessage.NICKNAME_TOO_LONG);
+            } else if (server.checkNickname(loginMessage.getNickname())) {
                 requestedNickname = false;
                 nickname = loginMessage.getNickname();
                 server.registerUser(this);
@@ -137,6 +140,10 @@ public class ServerClientConnection implements Observable<Message>, Runnable {
         } else if (isPlaying) {
             gameHandler.readMessage(nickname, message);
         }
+    }
+
+    private boolean validNickname(String nickname) {
+        return nickname.length() < 20;
     }
 
     private void createGame(SetGame setGame) {

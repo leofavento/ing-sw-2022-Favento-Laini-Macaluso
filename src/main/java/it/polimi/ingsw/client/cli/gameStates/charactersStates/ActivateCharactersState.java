@@ -63,6 +63,7 @@ public class ActivateCharactersState {
                         cli.getGameState().wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                        Thread.currentThread().interrupt();
                     }
                 }
             }

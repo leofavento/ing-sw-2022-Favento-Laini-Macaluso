@@ -3,7 +3,6 @@ package it.polimi.ingsw.client.cli.gameStates;
 import it.polimi.ingsw.client.cli.CLI;
 import it.polimi.ingsw.client.cli.componentRenderer.CloudsRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.IslandsRenderer;
-import it.polimi.ingsw.client.cli.componentRenderer.PlayersOrderRenderer;
 import it.polimi.ingsw.client.cli.componentRenderer.SchoolBoardRenderer;
 import it.polimi.ingsw.messages.fromClient.Ack;
 import it.polimi.ingsw.messages.fromClient.PlayAssistant;
@@ -35,6 +34,7 @@ public class PlanningState implements State {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 }
             }
         }
@@ -78,6 +78,7 @@ public class PlanningState implements State {
                             wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
+                            Thread.currentThread().interrupt();
                         }
                     }
                 }

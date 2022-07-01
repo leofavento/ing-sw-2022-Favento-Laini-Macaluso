@@ -27,7 +27,8 @@ public class EffectChar10 implements State {
     boolean requestedDiningRoomStudent = false;
     boolean requestedEntranceStudent = false;
     int i = 0;
-    Color DiningRoomStudent, EntranceStudent;
+    Color diningRoomStudent;
+    Color entranceStudent;
 
     public EffectChar10(Game game, Controller controller, ResumableState previousState, Char10 char10) {
         this.game = game;
@@ -53,7 +54,7 @@ public class EffectChar10 implements State {
         if (message instanceof ChosenStudent && requestedEntranceStudent) {
             if (((ChosenStudent) message).getStudent() != null) {
                 requestedEntranceStudent = false;
-                this.EntranceStudent = ((ChosenStudent) message).getStudent();
+                this.entranceStudent = ((ChosenStudent) message).getStudent();
                 chooseStudentFromDiningRoom();
             } else {
                 i = 2;
@@ -61,9 +62,9 @@ public class EffectChar10 implements State {
                 chooseStudentFromEntrance();
             }
         } else if (message instanceof ChosenStudent && requestedDiningRoomStudent) {
-            this.DiningRoomStudent = ((ChosenStudent) message).getStudent();
+            this.diningRoomStudent = ((ChosenStudent) message).getStudent();
             requestedDiningRoomStudent = false;
-            if (DiningRoomStudent == null) {
+            if (diningRoomStudent == null) {
                 controller.notify(ErrorMessage.INVALID_INPUT);
                 chooseStudentFromEntrance();
             } else {
@@ -99,16 +100,16 @@ public class EffectChar10 implements State {
     }
 
     private void swapStudents() {
-        if (!game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(EntranceStudent)
-                || game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(DiningRoomStudent) == 0) {
+        if (!game.getCurrentPlayer().getSchoolBoard().getEntrance().getStudents().contains(entranceStudent)
+                || game.getCurrentPlayer().getSchoolBoard().getDiningRoom().getStudentsNumber(diningRoomStudent) == 0) {
             controller.notify(ErrorMessage.INVALID_INPUT);
         } else {
 
             try {
-                game.getCurrentPlayer().getSchoolBoard().getEntrance().extractStudent(EntranceStudent);
-                game.getCurrentPlayer().getSchoolBoard().getDiningRoom().extractStudent(DiningRoomStudent);
-                game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(DiningRoomStudent);
-                game.getCurrentPlayer().getSchoolBoard().getDiningRoom().addStudent(EntranceStudent);
+                game.getCurrentPlayer().getSchoolBoard().getEntrance().extractStudent(entranceStudent);
+                game.getCurrentPlayer().getSchoolBoard().getDiningRoom().extractStudent(diningRoomStudent);
+                game.getCurrentPlayer().getSchoolBoard().getEntrance().addStudent(diningRoomStudent);
+                game.getCurrentPlayer().getSchoolBoard().getDiningRoom().addStudent(entranceStudent);
                 controller.notify(new UpdateBoard(game.getDashboard(), game.getOnlinePlayers()));
                 i++;
             } catch (StudentNotExistingException e) {
