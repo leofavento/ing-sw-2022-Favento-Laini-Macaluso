@@ -1,25 +1,15 @@
 package it.polimi.ingsw.model.characters;
 
-import it.polimi.ingsw.controller.CharacterController;
-import it.polimi.ingsw.controller.Controller;
-import it.polimi.ingsw.controller.states.ActionStep1;
-import it.polimi.ingsw.exceptions.InvalidInputException;
-import it.polimi.ingsw.exceptions.NoEntryTilesLeftException;
-import it.polimi.ingsw.exceptions.NotEnoughCoinsException;
-import it.polimi.ingsw.messages.fromClient.*;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Game;
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.Tower;
-import it.polimi.ingsw.model.characters.*;
-import it.polimi.ingsw.model.player.Player;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterGeneratorTest {
 
+    /**
+     * Test used to verify the correct generation of every character
+     */
     @Test
     public void testFactory() {
 

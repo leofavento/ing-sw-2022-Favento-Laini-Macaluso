@@ -208,6 +208,9 @@ class GameTest {
         }
     }
 
+    /**
+     * Test used to verify the proper handling of game rounds
+     */
     @Test
     public void roundTest(){
         Game game = new Game(10,2,false);

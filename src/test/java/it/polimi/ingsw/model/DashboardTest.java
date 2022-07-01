@@ -21,6 +21,10 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DashboardTest {
+
+    /**
+     * Test used to verify the correct placement of the islands in the Dashboard
+     */
     @Test
     public void testPlaceIslands() {
         Dashboard dashboard = new Dashboard();
@@ -30,6 +34,9 @@ class DashboardTest {
         assertEquals(12, dashboard.getIslands().size());
     }
 
+    /**
+     * Test used to verify the proper functioning of the movements of mother nature
+     */
     @Test
     public void testMotherNature() {
         Dashboard dashboard = new Dashboard();
@@ -50,6 +57,9 @@ class DashboardTest {
         assertEquals(2, dashboard.getAdditionalMNMovements());
     }
 
+    /**
+     * Test used to verify the proper functioning of Clouds
+     */
     @Test
     public void testClouds() {
         Dashboard dashboard = new Dashboard();
@@ -78,6 +88,9 @@ class DashboardTest {
         assertArrayEquals(new Color[]{student1, Color.PINK}, dashboard.getClouds().get(0).getStudents().toArray());
     }
 
+    /**
+     * Test used to verify the proper placements of towers on islands
+     */
     @Test
     public void testCountTowers() {
         Dashboard dashboard = new Dashboard();
@@ -100,6 +113,9 @@ class DashboardTest {
         assertTrue(dashboard.getDoNotCountTowers());
     }
 
+    /**
+     * Test used to verify the proper initialization of the characters
+     */
     @Test
     public void testCharactersInitialization() {
         Game game = new Game(1, 2, true);
@@ -157,6 +173,9 @@ class DashboardTest {
         }
     }
 
+    /**
+     * Test used to verify the correct avoided count of a selected color
+     */
     @Test
     public void DoNotCountColorTest(){
         Dashboard dashboard = new Dashboard();

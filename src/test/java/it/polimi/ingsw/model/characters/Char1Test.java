@@ -17,6 +17,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 1 effect
+ */
 class Char1Test {
 
     @Test

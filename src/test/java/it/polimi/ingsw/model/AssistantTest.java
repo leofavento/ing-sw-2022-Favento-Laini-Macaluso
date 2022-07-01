@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of the assistants
+ */
 class AssistantTest {
     @Test
     public void testAssistant() {

@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 12 effect
+ */
 class Char12Test {
 
     @Test

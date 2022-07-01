@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameInfoTest {
 
+    /**
+     * Test used to verify the correct infos of a new game
+     */
     @Test
     public void gameInfoTester(){
 

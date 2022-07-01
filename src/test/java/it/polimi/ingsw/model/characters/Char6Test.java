@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 6 effect
+ */
 class Char6Test {
     @Test
     public void testChar6() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {

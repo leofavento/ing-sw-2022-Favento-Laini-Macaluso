@@ -21,6 +21,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 7 effect
+ */
 class Char7Test {
     @Test
     public void testChar7() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException, StudentNotExistingException {

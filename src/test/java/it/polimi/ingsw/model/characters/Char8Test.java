@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 8 effect
+ */
 class Char8Test {
     @Test
     public void testChar8() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {

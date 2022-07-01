@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 4 effect
+ */
 class Char4Test {
 
     @Test

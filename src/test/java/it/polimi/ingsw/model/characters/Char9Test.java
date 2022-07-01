@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 9 effect
+ */
 class Char9Test {
     @Test
     public void testChar9() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {

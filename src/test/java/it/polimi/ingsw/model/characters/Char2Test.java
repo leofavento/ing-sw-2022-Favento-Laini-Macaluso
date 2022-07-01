@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 2 effect
+ */
 class Char2Test {
     @Test
     public void testChar2() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {

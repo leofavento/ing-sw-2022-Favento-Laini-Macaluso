@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the proper functioning of Character 3 effect
+ */
 class Char3Test {
     @Test
     public void testChar3() throws NotEnoughCoinsException, InvalidInputException, AlreadyPlayedCharacterException {
