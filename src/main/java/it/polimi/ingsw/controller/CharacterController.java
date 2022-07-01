@@ -10,7 +10,6 @@ import it.polimi.ingsw.messages.fromServer.PlayedCharacter;
 import it.polimi.ingsw.messages.fromServer.UpdateBoard;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.model.characters.*;
-import it.polimi.ingsw.server.VirtualView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +21,10 @@ import java.util.Collections;
 public class CharacterController {
     Controller controller;
     Game game;
-    VirtualView virtualview;
 
-    public CharacterController(Controller c, Game g, VirtualView v) {
+    public CharacterController(Controller c, Game g) {
         this.controller = c;
         this.game = g;
-        this.virtualview = v;
     }
 
     /**
