@@ -14,7 +14,14 @@ import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * tests used to simulate Mother Nature movement and influence calculation on island.
+ */
 class ActionStep2Test {
+    /**
+     * In this case both players have no professors, so we expect no changes on the island.
+     */
     @Test
     public void testAction2_case1(){
         //Case1. Both players have no professors. No changes on the island
@@ -68,10 +75,11 @@ class ActionStep2Test {
         assertFalse(game.getDashboard().getIslands().get(1).hasTower());
     }
 
-    // controllare i vari casi di resolve island
 
-
-
+    /**
+     * In this case the island has already a White tower on it. Now Black team has influence, so we expect
+     * the controller to replace the White tower with the Black one.
+     */
     @Test
     public void testActionStep2_case2(){
         //Case2: the island has a white tower. Black tower wins. Tower replaced.
@@ -130,6 +138,9 @@ class ActionStep2Test {
         assertEquals(8, p2.getSchoolBoard().getTowersNumber());
     }
 
+    /**
+     * In this case the island has already a White tower on it. Influence results in a draw, so we expect no changes.
+     */
     @Test
     public void testAction2_case3(){
         //Case3: the island has a white tower. Draw in influence count. No Changes.
@@ -187,6 +198,12 @@ class ActionStep2Test {
         assertEquals(7, p2.getSchoolBoard().getTowersNumber());
     }
 
+    /**
+     * In this case we consider two islands. Island 2 has a Black Tower on it. Island 3 has a White Tower on it.
+     * Black team has now influence on Island 3, so when resolving Island 3 we expect to replace the White tower
+     * with a Black one.
+     * Now we expect the merge of Island 2 and Island 3.
+     */
     @Test
     public void testActionStep2_case4(){
         //Case 4: island 2 has a black Tower. Island 3 has a white Tower. Influence calculation on Island 3.

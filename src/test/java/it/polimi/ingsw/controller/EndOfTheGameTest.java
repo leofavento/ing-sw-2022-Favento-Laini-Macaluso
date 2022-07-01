@@ -15,8 +15,15 @@ import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * test used to simulate ending scenarios of the game.
+ */
 class EndOfTheGameTest {
 
+    /**
+     * In this case Player 1 has no towers left in his schoolboard, so we expect him as the winner.
+     */
     @Test
     public void testEnding_case1(){
         //Player 1 has no towers left
@@ -49,6 +56,10 @@ class EndOfTheGameTest {
         assertEquals(1, game.getWinners().size());
     }
 
+    /**
+     * In this case there are only 3 groups of Islands remaining. We expect Player 1 as winner, because of
+     * having fewer towers left.
+     */
     @Test
     public void testEnding_case2(){
         //There are only 3 islands remaining. Player1 wins because has fewer towers left
@@ -155,6 +166,11 @@ class EndOfTheGameTest {
         assertEquals(1, game.getWinners().size());
     }
 
+    /**
+     * In this case Player 1 has only 1 Tower left in his schoolboard.
+     * After calculating influence on an island with 2 units, he has to place 2 Towers.
+     * We expect him winning the game with no issue.
+     */
     @Test
     public void testEnding_case3(){
         //Player BLACK has only 1 Tower left in Schoolboard. He wins an Island with 2 Towers on it.

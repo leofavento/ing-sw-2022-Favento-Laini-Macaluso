@@ -11,6 +11,10 @@ import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * test used to simulate the cloud selection by the player.
+ */
 class ActionStep3Test {
     @Test
     public void testAction3(){

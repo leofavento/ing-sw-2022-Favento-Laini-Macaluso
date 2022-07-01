@@ -11,6 +11,9 @@ import it.polimi.ingsw.model.player.Player;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * test used to simulate the movements of the students in Action Step 1
+ */
 class ActionStep1Test {
     @Test
     public void testAction1(){

@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * test used to simulate the Planning phase of a generic turn.
+ */
 class PlanningTest {
     @Test
     public void testPlanning(){

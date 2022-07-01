@@ -61,6 +61,11 @@ class GameTest {
         assertEquals(p1, game.getCurrentPlayer());
     }
 
+    /**
+     * test used to simulate the addition of 5 different students in the player entrance from the bag.
+     * Then the students are moved in the player dining room.
+     * @throws StudentNotExistingException exception not thrown in this test
+     */
     @Test
     public void testDealStudents() throws StudentNotExistingException {
         Game game = new Game(3, 2, true);
