@@ -937,12 +937,12 @@
                                                 <Image url="@../graphics/students/student_red.png" />
                                              </image>
                                           </ImageView>
-                                          <Label layoutX="18.0" layoutY="961.0" text="Players order for this turn:     ">
+                                          <Label layoutX="18.0" layoutY="946.0" text="Players order for this turn:     ">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="playersList" layoutX="232.0" layoutY="961.0" text="Player 1, Player2.">
+                                          <Label fx:id="playersList" layoutX="232.0" layoutY="946.0" text="Player 1, Player2.">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
