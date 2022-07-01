@@ -7,7 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * test used to verify the correct functioning of the player's actions and status
+ */
 class PlayerTest {
+    /**
+     * test used to check the proper functioning of the choice of the assisstant
+     */
     @Test
     public void testPlayedAssistant() {
         Player player = new Player("Player");
@@ -31,6 +37,9 @@ class PlayerTest {
         assertEquals(Assistant.DOG, player.getPlayedAssistant());
     }
 
+    /**
+     * tests if all the students from an island get moved to the player's Entrance
+     */
     @Test
     public void testGetFromCloud() {
         Player player = new Player("Player");
@@ -51,6 +60,9 @@ class PlayerTest {
         assertEquals(3, player.getSchoolBoard().getEntrance().getStudents().size());
     }
 
+    /**
+     * tests the proper functioning of the setStatus method
+     */
     @Test
     public void testStatus(){
         Player player = new Player("Player1");

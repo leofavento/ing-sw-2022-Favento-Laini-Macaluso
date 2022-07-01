@@ -8,7 +8,13 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * test used to check the proper functioning of the Island class
+ */
 class IslandTest {
+    /**
+     * test used to check the correct initialization of an island
+     */
     @Test
     public void testInit() {
         Island island = new Island();
@@ -19,6 +25,9 @@ class IslandTest {
         assertFalse(island.useNoEntry());
     }
 
+    /**
+     * test used to check if the influence count is working properly
+     */
     @Test
     public void testInfluenceCount() {
         Island island = new Island();
@@ -47,6 +56,9 @@ class IslandTest {
         assertEquals(5, island.countInfluence(team));
     }
 
+    /**
+     * test used to check if extra influence adds the right amount of influence
+     */
     @Test
     public void testExtraInfluence() {
         Island island = new Island();
@@ -60,6 +72,9 @@ class IslandTest {
         assertEquals(0, island.getExtraInfluence(player));
     }
 
+    /**
+     * test used to check the proper functioning of NoEntry tiles
+     */
     @Test
     public void testNoEntry() {
         Island island1 = new Island();
@@ -92,6 +107,9 @@ class IslandTest {
         assertFalse(island1.useNoEntry());
     }
 
+    /**
+     * test used to check if the correct amount of students are added or removed from an island
+     */
     @Test
     public void testAddRemoveStudents() {
         Island island = new Island();
@@ -112,6 +130,9 @@ class IslandTest {
         assertThrows(StudentNotExistingException.class, () -> island.extractStudent(Color.BLUE));
     }
 
+    /**
+     * test used to check if an island contains the specified students
+     */
     @Test
     public void testGetStudents(){
         Island island=new Island();

@@ -8,7 +8,13 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * test used to check the correct execution of various game situations
+ */
 class GameTest {
+    /**
+     * test used to check if players are added to the game properly
+     */
     @Test
     public void testGetPlayer() {
         Game game = new Game(1, 2, true);
@@ -26,6 +32,9 @@ class GameTest {
         assertNull(game.getPlayer("Player3"));
     }
 
+    /**
+     * test used to check if turns are managed correctly
+     */
     @Test
     public void testPlayerTurns() {
         Game game = new Game(10, 2, true);
@@ -101,6 +110,10 @@ class GameTest {
         assertEquals(1, player.getSchoolBoard().getCoins());
     }
 
+    /**
+     * test used to check if professors are updated after students are moved to players' Dining Rooms
+     * @throws StudentNotExistingException if the selected student is not present
+     */
     @Test
     public void testUpdateProfessors() throws StudentNotExistingException {
         Game game = new Game(5, 2, false);
@@ -156,6 +169,9 @@ class GameTest {
         assertFalse(p2.getSchoolBoard().getProfessors().contains(game.getDashboard().getProfessors()[Color.PINK.ordinal()]));
     }
 
+    /**
+     * test used to check if the correct amount of towers are dealt
+     */
     @Test
     public void testTowersDeal() {
         Game game = new Game(3, 2, false);

@@ -6,7 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test used to verify the correct functioning of the SchoolBoard
+ */
 class SchoolBoardTest {
+    /**
+     * Test used to verify the correct management of the towers
+     */
     @Test
     public void testTowers() {
         SchoolBoard schoolBoard = new SchoolBoard();
@@ -26,6 +32,10 @@ class SchoolBoardTest {
         assertEquals(6, schoolBoard.getTowersNumber());
     }
 
+    /**
+     * Test used to verify if the SchoolBoard contains the right amount of coins
+     * under different circumstances
+     */
     @Test
     public void testCoins() {
         SchoolBoard schoolBoard = new SchoolBoard();
@@ -41,6 +51,11 @@ class SchoolBoardTest {
         assertEquals(2, schoolBoard.getCoins());
     }
 
+    /**
+     * Test used to verify if the entrance contains the right amount of students of every color
+     * and the proper functioning of the students extractions
+     * @throws StudentNotExistingException not thrown in this test
+     */
     @Test
     public void testEntrance() throws StudentNotExistingException {
         SchoolBoard schoolBoard = new SchoolBoard();
