@@ -2,6 +2,12 @@
 
 ![Eriantys Logo](src/main/resources/graphics/eriantys.png)
 
+This is a Java implementation of Eriantys, a board game designed by Leo Colovini and published by Cranio Creations. You can find the full game [here](https://craniointernational.com/products/eriantys/).
+
+The project is the final test of **"Software Engineering"**, course of **"Computer Science Engineering"** held at Politecnico di Milano (2021/22).
+
+**Final Grade**: 30/30
+
 **Students**
 - Leonardo Favento ([@leofavento](https://github.com/leofavento))
 - Matteo Laini ([@matteolaini](https://github.com/matteolaini))
